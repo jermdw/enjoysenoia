@@ -1,0 +1,191 @@
+[
+  {
+    "title": "Upcoming Events",
+    "date_time": "August 21, 2026 5:00 PM",
+    "category": "August 21, 2026 5:00 PM",
+    "description": "Click on or select any event for more...",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6980f95eb898c8958cd58b4e_Senoia%E2%80%99s%20Memorial%20Day%20Celebration%20(1200%20x%20628%20px)%20(1200%20x%20628%20px)%20(5).jpg",
+    "link": "/events/locals-night-2",
+    "is_recurring": false
+  },
+  {
+    "title": "Locals Night",
+    "date_time": "August 21, 2026 5:00 PM",
+    "category": "August 21, 2026 5:00 PM",
+    "description": "August 21, 2026 5:00 PM",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6980f95eb898c8958cd58b4e_Senoia%E2%80%99s%20Memorial%20Day%20Celebration%20(1200%20x%20628%20px)%20(1200%20x%20628%20px)%20(5).jpg",
+    "link": "/events/locals-night-2",
+    "is_recurring": false
+  },
+  {
+    "title": "Senoia PorchFest 2026",
+    "date_time": "September 6, 2026 3:00 PM",
+    "category": "September 6, 2026 3:00 PM",
+    "description": "September 6, 2026 3:00 PM",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/69b1756d86955e2d4d604a28_Fat%20tuesday%20(1200%20x%20628%20px)%20(19).jpg",
+    "link": "/events/senoia-porchfest-2026",
+    "is_recurring": false
+  },
+  {
+    "title": "Senoia Car Show 2026",
+    "date_time": "September 26, 2026 10:00 AM",
+    "category": "September 26, 2026 10:00 AM",
+    "description": "September 26, 2026 10:00 AM",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6a1c493218cf6bd5dcf20050_2026_scs_flyer_web_final_jdw.jpg",
+    "link": "/events/senoia-car-show-2",
+    "is_recurring": false
+  },
+  {
+    "title": "Italian Heritage Festival",
+    "date_time": "October 11, 2026 3:00 PM",
+    "category": "October 11, 2026 3:00 PM",
+    "description": "October 11, 2026 3:00 PM",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/69b176928eeda50790daf7a7_Fat%20tuesday%20(1200%20x%20628%20px)%20(21).jpg",
+    "link": "/events/italian-heritage-festival",
+    "is_recurring": false
+  },
+  {
+    "title": "Light Up Senoia Parade",
+    "date_time": "December 5, 2026 4:00 PM",
+    "category": "December 5, 2026 4:00 PM",
+    "description": "December 5, 2026 4:00 PM",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/69b177b7927b8052b2ff124c_Fat%20tuesday%20(1200%20x%20628%20px)%20(22).jpg",
+    "link": "/events/light-up-senoia-parade",
+    "is_recurring": false
+  },
+  {
+    "title": "Senoia Farmers' Market",
+    "date_time": "August 15, 2026 8:30 AM",
+    "category": "August 15, 2026 8:30 AM",
+    "description": "August 15, 2026 8:30 AM",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/67b7cebe7735727df5de2fe0_Fat%20tuesday%20(1200%20x%20628%20px)%20(4).jpg",
+    "link": "/events/senoia-farmers-market",
+    "is_recurring": true
+  },
+  {
+    "title": "Senoia Alive After Five",
+    "date_time": "September 18, 2026 5:00 PM",
+    "category": "September 18, 2026 5:00 PM",
+    "description": "September 18, 2026 5:00 PM",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/643f23a72061b4151f668e27_Untitled%20(1200%20%C3%97%20628%20px)%20(70).webp",
+    "link": "/events/senoia-alive-after-five",
+    "is_recurring": true
+  },
+  {
+    "title": "Senoia PorchFest 2025",
+    "date_time": "August 31, 2025",
+    "category": "August 31, 2025",
+    "description": "August 31, 2025",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6863379464637c268c02755b_8B2D06CD-DB4D-4A85-84C9-D521E3BC0DA2.JPG",
+    "link": "/events/senoia-porchfest-2025",
+    "is_recurring": false
+  },
+  {
+    "title": "Fat Tuesday Celebration",
+    "date_time": "March 4, 2025",
+    "category": "March 4, 2025",
+    "description": "March 4, 2025",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/675a56c4a0e0a344e562b7a6_Fat%20tuesday.jpg",
+    "link": "/events/fat-tuesday-celebration",
+    "is_recurring": false
+  },
+  {
+    "title": "2024 Light Up Senoia",
+    "date_time": "December 7, 2024",
+    "category": "December 7, 2024",
+    "description": "December 7, 2024",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/66f2197e6886474bdc2c3fb5_Light%20Up%20Senoia%20(1200%20x%20628%20px)%20(2).jpg",
+    "link": "/events/light-up-senoia-2024",
+    "is_recurring": false
+  },
+  {
+    "title": "19th Annual Senoia Car Show 2024",
+    "date_time": "September 21, 2024",
+    "category": "September 21, 2024",
+    "description": "September 21, 2024",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/65b19c9e3c6b6b12ed3483ba_car-show-wide.jpg",
+    "link": "/events/19th-annual-senoia-car-show-2024",
+    "is_recurring": false
+  },
+  {
+    "title": "2024 Senoia PorchFest",
+    "date_time": "September 1, 2024",
+    "category": "September 1, 2024",
+    "description": "September 1, 2024",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/668c98859564350ffa0c910b_3rd%20Annual%20(Instagram%20Post).png.PNG",
+    "link": "/events/senoia-porchfest-2024",
+    "is_recurring": false
+  },
+  {
+    "title": "2023 Candlelight Tour of Homes",
+    "date_time": "December 10, 2023",
+    "category": "December 10, 2023",
+    "description": "December 10, 2023",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/65675ec01dbf2cca08c70cb0_FB2451F0-C2BA-4282-AC24-7D1BA06F056B.webp",
+    "link": "/events/2023-candlelight-tour-of-homes",
+    "is_recurring": false
+  },
+  {
+    "title": "Light Up Senoia 2023",
+    "date_time": "December 3, 2023",
+    "category": "December 3, 2023",
+    "description": "December 3, 2023",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/635805438343c59dcf081b97_IMG_0639.webp",
+    "link": "/events/light-up-senoia-2023",
+    "is_recurring": false
+  },
+  {
+    "title": "18th Annual Senoia Car Show 2023",
+    "date_time": "September 30, 2023",
+    "category": "September 30, 2023",
+    "description": "September 30, 2023",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/645e3373a2462692cea9ab96_Senoia%20Car%20Show%20Web%20Graphic.webp",
+    "link": "/events/18th-annual-senoia-car-show-2023",
+    "is_recurring": false
+  },
+  {
+    "title": "Senoia PorchFest 2023",
+    "date_time": "September 3, 2023",
+    "category": "September 3, 2023",
+    "description": "September 3, 2023",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6490ac5087c387ca1d259718_PorchFest.jpg",
+    "link": "/events/senoia-porchfest-2023",
+    "is_recurring": false
+  },
+  {
+    "title": "2023 Senoia Memorial Day Remembrance Ceremony",
+    "date_time": "May 29, 2023",
+    "category": "May 29, 2023",
+    "description": "May 29, 2023",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/64258a34d34ba17e75e104a8_md23-remember.webp",
+    "link": "/events/2023-senoia-memorial-day-remembrance-ceremony",
+    "is_recurring": false
+  },
+  {
+    "title": "2023 Senoia Memorial Day Celebration",
+    "date_time": "May 27, 2023",
+    "category": "May 27, 2023",
+    "description": "May 27, 2023",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/64249238d1c7c772d75c6108_main-image-logo-2.jpg",
+    "link": "/events/2023-senoia-memorial-day-celebration",
+    "is_recurring": false
+  },
+  {
+    "title": "Senoia 2nd Annual Mardi Gras Pub Crawl",
+    "date_time": "February 21, 2023",
+    "category": "February 21, 2023",
+    "description": "February 21, 2023",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63e67f47361d795df3b9ec00_pub-craw-hero-sold-out.jpg",
+    "link": "/events/senoia-2nd-annual-mardi-gras-pub-crawl",
+    "is_recurring": false
+  },
+  {
+    "title": "Senoia Veterans' Memorial Cornhole Tournament",
+    "date_time": "November 12, 2022",
+    "category": "November 12, 2022",
+    "description": "November 12, 2022",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/635fe26af54a497236211d87_62c8a01709e7a2b1c5d8e391_62b3224dd403cb39fa63f82f_header-image-1-p-500.webp",
+    "link": "/events/senoia-veterans-memorial-cornhole-tournament",
+    "is_recurring": false
+  }
+]

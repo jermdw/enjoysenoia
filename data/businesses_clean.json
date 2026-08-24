@@ -1,0 +1,662 @@
+[
+  {
+    "name": "Andreone Sports & Family Chiropractic",
+    "category": "Services",
+    "address": "72 Main StreetSenoia,Georgiaofficemanager@andreone.com",
+    "phone": "770 - 486 -7576",
+    "email": "-7576officemanager@andreone.com",
+    "website": "https://www.facebook.com/PeachtreeCityChiropractic",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/69a0b187b270203af9b1009c_Fat%20tuesday%20(1200%20x%20628%20px)%20(16).jpg",
+    "raw_info": "Andreone Sports & Family ChiropracticServices72 Main StreetSenoia,Georgia770 - 486 -7576officemanager@andreone.com"
+  },
+  {
+    "name": "Ashley's Garden",
+    "category": "Retail",
+    "address": "132 Morgan StreetSenoia,GAashleysgarden@icloud.com",
+    "phone": "(770)-599-1110",
+    "email": "-599-1110ashleysgarden@icloud.com",
+    "website": "https://www.facebook.com/ashleysgarden2019",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63c02a9715862f97c89838c5_Untitled%20(1200%20%C3%97%20628%20px)%20(16).webp",
+    "raw_info": "Ashley's GardenRetail132 Morgan StreetSenoia,GA(770)-599-1110ashleysgarden@icloud.com"
+  },
+  {
+    "name": "Beez Freeze",
+    "category": "Food/Drink",
+    "address": "75 Main StreetSenoia,GA",
+    "phone": "(850)-501-9478",
+    "email": "",
+    "website": "https://www.facebook.com/BeezFreezeSenoia",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/637c1d8eb16190e5b5bf46b4_Untitled%20(1200%20%C3%97%20628%20px)%20(1).webp",
+    "raw_info": "Beez FreezeFood/Drink75 Main StreetSenoia,GA(850)-501-9478"
+  },
+  {
+    "name": "Bistro Hilary",
+    "category": "Food/Drink",
+    "address": "21 Barnes St.Senoia,GAinfo@bistrohilary.com",
+    "phone": "770-727-9188",
+    "email": "GA770-727-9188info@bistrohilary.com",
+    "website": "https://www.facebook.com/search/top?q=bistro%20hilary",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6380f360e6f9dd3078ef2d69_Untitled%20(1200%20%C3%97%20628%20px)%20(4).webp",
+    "raw_info": "Bistro HilaryFood/Drink21 Barnes St.Senoia,GA770-727-9188info@bistrohilary.com"
+  },
+  {
+    "name": "Book Love the Bookshop of Senoia",
+    "category": "Retail",
+    "address": "53 Main St.Ste CSenoia,GAbooklovethebookshop@gmail.com",
+    "phone": "470-781-0028",
+    "email": "GA470-781-0028booklovethebookshop@gmail.com",
+    "website": "https://www.facebook.com/BOOKLOVEthebookshop",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63c02d653cec2ed5319059db_Untitled%20(1200%20%C3%97%20628%20px)%20(17).webp",
+    "raw_info": "Book Love the Bookshop of SenoiaRetail53 Main St.Ste CSenoia,GA470-781-0028booklovethebookshop@gmail.com"
+  },
+  {
+    "name": "Borgo Italia",
+    "category": "Food/Drink",
+    "address": "18 Main StreetSenoia,GAinfo@borgoitalia.us",
+    "phone": "(770)-629-2300",
+    "email": "-629-2300info@borgoitalia.us",
+    "website": "https://www.facebook.com/borgoitaliaptc",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/65a6d0e9041d2434d1cc2ad6_Untitled%20(1200%20x%20628%20px)%20(2).webp",
+    "raw_info": "Borgo ItaliaFood/Drink18 Main StreetSenoia,GA(770)-629-2300info@borgoitalia.us"
+  },
+  {
+    "name": "Brick and Branch Real Estate",
+    "category": "Services",
+    "address": "26 Main St.Senoia,GAadam@brickbranch.com",
+    "phone": "770-599-5140",
+    "email": "GA770-599-5140adam@brickbranch.com",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63891454a490a7d581faa731_Untitled%20(1200%20%C3%97%20628%20px)%20(7).webp",
+    "raw_info": "Brick and Branch Real EstateServices26 Main St.Senoia,GA770-599-5140adam@brickbranch.com"
+  },
+  {
+    "name": "Caycie's Boutique",
+    "category": "Retail",
+    "address": "17 Barnes Street Suite 1BSenoia,Georgiainfo@cayciesboutique.com",
+    "phone": "678-340-5085",
+    "email": "Georgia678-340-5085info@cayciesboutique.com",
+    "website": "https://www.facebook.com/profile.php?id=100081797619141",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/697e798ba307a2c87eafc7b8_Fat%20tuesday%20(1200%20x%20628%20px)%20(9).jpg",
+    "raw_info": "Caycie's BoutiqueRetail17 Barnes Street Suite 1BSenoia,Georgia678-340-5085info@cayciesboutique.com"
+  },
+  {
+    "name": "Chase Mewbourn - State Farm Insurance Agent",
+    "category": "Services",
+    "address": "42 Main St.Suite 2BSenoia,GAchase@mewbourninsurance.com",
+    "phone": "678-723-4077",
+    "email": "GA678-723-4077chase@mewbourninsurance.com",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63c457ded8a8a70375661ff1_Untitled%20(1200%20%C3%97%20628%20px)%20(21).webp",
+    "raw_info": "Chase Mewbourn - State Farm Insurance AgentServices42 Main St.Suite 2BSenoia,GA678-723-4077chase@mewbourninsurance.com"
+  },
+  {
+    "name": "Cornerstone Tattoo Gallery",
+    "category": "Services",
+    "address": "48 Main St.LL1Senoia,GAcornerstonetattoo@gmail.com",
+    "phone": "(770)599-6782",
+    "email": "599-6782cornerstonetattoo@gmail.com",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63c17e99d3beec6812a26408_Untitled%20(1200%20%C3%97%20628%20px)%20(19).webp",
+    "raw_info": "Cornerstone Tattoo GalleryServices48 Main St.LL1Senoia,GA(770)599-6782cornerstonetattoo@gmail.com"
+  },
+  {
+    "name": "Country Junction",
+    "category": "Retail",
+    "address": "48 Main St.Ste 1DSenoia,GAhjm1974@gmail.com",
+    "phone": "770-727-9470",
+    "email": "GA770-727-9470hjm1974@gmail.com",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63c1817ce0862036ca85497f_Untitled%20(1200%20%C3%97%20628%20px)%20(20).webp",
+    "raw_info": "Country JunctionRetail48 Main St.Ste 1DSenoia,GA770-727-9470hjm1974@gmail.com"
+  },
+  {
+    "name": "Crust & Craft Senoia",
+    "category": "Food/Drink",
+    "address": "70 Main StreetSenoia,Georgiasenoiainfo@crustandcraftpizza.com",
+    "phone": "678-723-7080",
+    "email": "Georgia678-723-7080senoiainfo@crustandcraftpizza.com",
+    "website": "https://www.facebook.com/profile.php?id=61588409727575",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/69a0b4da2ae4a5e6389cdf2f_Fat%20tuesday%20(1200%20x%20628%20px)%20(17).jpg",
+    "raw_info": "Crust & Craft SenoiaFood/Drink70 Main StreetSenoia,Georgia678-723-7080senoiainfo@crustandcraftpizza.com"
+  },
+  {
+    "name": "Donna Pollard: Allstate Insurance",
+    "category": "Services",
+    "address": "48 Main St.Suite 2BSenoia,GAdonnapollard1@allstate.com",
+    "phone": "770-892-3606",
+    "email": "GA770-892-3606donnapollard1@allstate.com",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63c465fcbf23c696e27ba9bb_Untitled%20(1200%20%C3%97%20628%20px)%20(24).webp",
+    "raw_info": "Donna Pollard: Allstate InsuranceServices48 Main St.Suite 2BSenoia,GA770-892-3606donnapollard1@allstate.com"
+  },
+  {
+    "name": "Edward Jones",
+    "category": "Services",
+    "address": "53 Main StreetSenoia,GAjennifer.camp@edwardjones.com",
+    "phone": "(770)-599-3981",
+    "email": "-599-3981jennifer.camp@edwardjones.com",
+    "website": "https://www.facebook.com/EJadvisorJenniferCamp/",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63c4686d6f7733cd8f461918_Untitled%20(1200%20%C3%97%20628%20px)%20(23).webp",
+    "raw_info": "Edward JonesServices53 Main StreetSenoia,GA(770)-599-3981jennifer.camp@edwardjones.com"
+  },
+  {
+    "name": "First Baptist Church of Senoia",
+    "category": "Churches",
+    "address": "41 Johnson StreetSenoia,GAinfo@fbcsenoia.org",
+    "phone": "770-599-3012",
+    "email": "GA770-599-3012info@fbcsenoia.org",
+    "website": "https://www.facebook.com/firstbaptistsenoia",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/64f782dfdfb041cd17f24738_Untitled%20(1200%20%C3%97%20628%20px)%20(78).webp",
+    "raw_info": "First Baptist Church of SenoiaChurches41 Johnson StreetSenoia,GA770-599-3012info@fbcsenoia.org"
+  },
+  {
+    "name": "Foxxhollow Antiques",
+    "category": "Retail",
+    "address": "7 Main StreetSenoia,GAfoxxhollow2@yahoo.com",
+    "phone": "770-599-0606",
+    "email": "GA770-599-0606foxxhollow2@yahoo.com",
+    "website": "https://www.facebook.com/foxxhollowantiques/",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/634d8a627295ed7f7926af7a_6307813a2b201a6c86b21eaa_main.webp",
+    "raw_info": "Foxxhollow AntiquesRetail7 Main StreetSenoia,GA770-599-0606foxxhollow2@yahoo.com"
+  },
+  {
+    "name": "Georgia Tours",
+    "category": "Entertainment",
+    "address": "Main StreetSenoia,",
+    "phone": "",
+    "email": "Georgiageorgiatours.00@gmail.com",
+    "website": "https://instagram.com/GeorgiaToursLLC",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/696a9cc825b0bafe2a9a9246_Fat%20tuesday%20(1200%20x%20628%20px)%20(8).jpg",
+    "raw_info": "Georgia ToursEntertainmentMain StreetSenoia,Georgiageorgiatours.00@gmail.com"
+  },
+  {
+    "name": "Glass House Society",
+    "category": "Services",
+    "address": "48 Main Street Suite 1ASenoia,Georgia",
+    "phone": "943-469-9019",
+    "email": "",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/69bb40c8ce84f37ff6be5b7d_Senoia%E2%80%99s%20Memorial%20Day%20Celebration%20(1200%20x%20628%20px)%20(2).jpg",
+    "raw_info": "Glass House SocietyServices48 Main Street Suite 1ASenoia,Georgia943-469-9019"
+  },
+  {
+    "name": "Greenhouse Mercantile",
+    "category": "Retail",
+    "address": "42 Main St.Senoia,GAinfo@greenhousemercantile.com",
+    "phone": "678-857-9025",
+    "email": "GA678-857-9025info@greenhousemercantile.com",
+    "website": "https://www.facebook.com/GreenhouseMercantile/",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/642efcfc955d422f4559dc73_Untitled%20(1200%20%C3%97%20628%20px)%20(66).webp",
+    "raw_info": "Greenhouse MercantileRetail42 Main St.Senoia,GA678-857-9025info@greenhousemercantile.com"
+  },
+  {
+    "name": "Hollberg's Fine Furniture",
+    "category": "Retail",
+    "address": "33 Main St.Senoia,GAsales@hollbergs.com",
+    "phone": "(770)-599-3443",
+    "email": "-599-3443sales@hollbergs.com",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/640f608461acd25e65ee241a_Untitled%20(1200%20%C3%97%20628%20px)%20(55).webp",
+    "raw_info": "Hollberg's Fine FurnitureRetail33 Main St.Senoia,GA(770)-599-3443sales@hollbergs.com"
+  },
+  {
+    "name": "Lisa's Creperie & Cafe",
+    "category": "Food/Drink",
+    "address": "48 Main St.Suite 1BSenoia,GAinfo@lisascreperie.com",
+    "phone": "770-727-9566",
+    "email": "GA770-727-9566info@lisascreperie.com",
+    "website": "https://www.facebook.com/lisascreperie",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/637d013836b9b5987f92ec84_Untitled%20(1200%20%C3%97%20628%20px)%20(3).webp",
+    "raw_info": "Lisa's Creperie & CafeFood/Drink48 Main St.Suite 1BSenoia,GA770-727-9566info@lisascreperie.com"
+  },
+  {
+    "name": "Maguire's",
+    "category": "Food/Drink",
+    "address": "42 Main St.Senoia,GAcontactus@maguiresirishpub.com",
+    "phone": "770-727-3020",
+    "email": "GA770-727-3020contactus@maguiresirishpub.com",
+    "website": "https://www.facebook.com/MaguiresSenoiaGA/",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63ed0ccb4c35f7e4c2d9771e_Untitled%20(1200%20%C3%97%20628%20px)%20(45).webp",
+    "raw_info": "Maguire'sFood/Drink42 Main St.Senoia,GA770-727-3020contactus@maguiresirishpub.com"
+  },
+  {
+    "name": "Main Street Fudge & Ice Cream Shop",
+    "category": "Food/Drink",
+    "address": "42 Main St.Suite 1ASenoia,GA",
+    "phone": "770-599-3168",
+    "email": "",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/640f640abf6171243bac663c_Untitled%20(1200%20%C3%97%20628%20px)%20(56).webp",
+    "raw_info": "Main Street Fudge & Ice Cream ShopFood/Drink42 Main St.Suite 1ASenoia,GA770-599-3168"
+  },
+  {
+    "name": "Matt's Smalltown Pizza",
+    "category": "Food/Drink",
+    "address": "53 Main St.Ste ESenoia,GAsmalltownpizza@att.net",
+    "phone": "(770) 599-1226",
+    "email": "599-1226smalltownpizza@att.net",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63ed0f1cf063a77b3bee3f01_Untitled%20(1200%20%C3%97%20628%20px)%20(46).webp",
+    "raw_info": "Matt's Smalltown PizzaFood/Drink53 Main St.Ste ESenoia,GA(770) 599-1226smalltownpizza@att.net"
+  },
+  {
+    "name": "Mess Hall on Main St.",
+    "category": "Food/Drink",
+    "address": "30 Main St.Senoia,GA",
+    "phone": "770-599-8000",
+    "email": "",
+    "website": "https://www.facebook.com/senoiacoffeecafe",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6377d9c7ac5dd810cd1dd766_mess-1200.webp",
+    "raw_info": "Mess Hall on Main St.Food/Drink30 Main St.Senoia,GA770-599-8000"
+  },
+  {
+    "name": "Nic & Norman's Senoia",
+    "category": "Food/Drink",
+    "address": "20 Main St.Senoia,GA",
+    "phone": "770-727-9432",
+    "email": "",
+    "website": "https://www.facebook.com/nicandnormansofficialpage",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/636bfc1263314817c129fff7_IMG_6174.webp",
+    "raw_info": "Nic & Norman's SenoiaFood/Drink20 Main St.Senoia,GA770-727-9432"
+  },
+  {
+    "name": "Olivia James Apparel",
+    "category": "Retail",
+    "address": "60 Main St.Senoia,GAoliviajamesapparel@gmail.com",
+    "phone": "770-727-9207",
+    "email": "GA770-727-9207oliviajamesapparel@gmail.com",
+    "website": "https://www.facebook.com/OliviaJamesApparel/",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6435b126809a748d0c8b264e_Untitled%20(1200%20%C3%97%20628%20px)%20(68).webp",
+    "raw_info": "Olivia James ApparelRetail60 Main St.Senoia,GA770-727-9207oliviajamesapparel@gmail.com"
+  },
+  {
+    "name": "Pearl & Pine Brewery",
+    "category": "Food/Drink",
+    "address": "22 Main StreetSenoia,GAsam@pearlandpinebeer.com",
+    "phone": "(770)-727-9565",
+    "email": "-727-9565sam@pearlandpinebeer.com",
+    "website": "https://www.facebook.com/pearlandpinebeer",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6473b034e0b358681d822a18_Untitled%20(1200%20%C3%97%20628%20px)%20(71).webp",
+    "raw_info": "Pearl & Pine BreweryFood/Drink22 Main StreetSenoia,GA(770)-727-9565sam@pearlandpinebeer.com"
+  },
+  {
+    "name": "Pink Chair Boutique",
+    "category": "Retail",
+    "address": "15 Barnes St.Suite 1ASenoia,GApinkchairboutique@gmail.com",
+    "phone": "770-866-5792",
+    "email": "GA770-866-5792pinkchairboutique@gmail.com",
+    "website": "http://www.facebook.com/pinkchairboutique",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/639786fd5c1384097ed5385e_Untitled%20(1200%20%C3%97%20628%20px)%20(11).webp",
+    "raw_info": "Pink Chair BoutiqueRetail15 Barnes St.Suite 1ASenoia,GA770-866-5792pinkchairboutique@gmail.com"
+  },
+  {
+    "name": "Plumyumi Day Spa",
+    "category": "Health/Beauty",
+    "address": "9 Main St.Suite 1Senoia,GAinfo@plumyumidayspa.com",
+    "phone": "770-727-9450",
+    "email": "GA770-727-9450info@plumyumidayspa.com",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63ed1233e335e2f08611cb72_Untitled%20(1200%20%C3%97%20628%20px)%20(48).webp",
+    "raw_info": "Plumyumi Day SpaHealth/Beauty9 Main St.Suite 1Senoia,GA770-727-9450info@plumyumidayspa.com"
+  },
+  {
+    "name": "Prestige Unlimited",
+    "category": "Health/Beauty",
+    "address": "57 Broad StreetSenoia,GA",
+    "phone": "(770)-599-6575",
+    "email": "",
+    "website": "https://www.facebook.com/profile.php?id=100063685954934",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/640f77f2393c8f7b66be3abc_Untitled%20(1200%20%C3%97%20628%20px)%20(59).webp",
+    "raw_info": "Prestige UnlimitedHealth/Beauty57 Broad StreetSenoia,GA(770)-599-6575"
+  },
+  {
+    "name": "Red Dahlia Salon",
+    "category": "Health/Beauty",
+    "address": "20 Barnes St.Ste 101/102Senoia,GAinfo@reddahliasalon.com",
+    "phone": "(678)-723-7036",
+    "email": "-723-7036info@reddahliasalon.com",
+    "website": "https://www.facebook.com/reddahliasalon",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63890c9cdb037643dffbfae5_Untitled%20(1200%20%C3%97%20628%20px)%20(6).webp",
+    "raw_info": "Red Dahlia SalonHealth/Beauty20 Barnes St.Ste 101/102Senoia,GA(678)-723-7036info@reddahliasalon.com"
+  },
+  {
+    "name": "Renee Horton Agency, LLC American Family Insurance",
+    "category": "Services",
+    "address": "17 Barnes St.Suite 1BSenoia,GArhorton@amfam.com",
+    "phone": "678-621-6420",
+    "email": "GA678-621-6420rhorton@amfam.com",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/640f3b2f82ba9623ef6c0967_Untitled%20(1200%20%C3%97%20628%20px)%20(50).webp",
+    "raw_info": "Renee Horton Agency, LLC American Family InsuranceServices17 Barnes St.Suite 1BSenoia,GA678-621-6420rhorton@amfam.com"
+  },
+  {
+    "name": "Senoia Beer Company",
+    "category": "Food/Drink",
+    "address": "1 Main St.Senoia,GAchris@senoiabeer.com",
+    "phone": "770-727-9579",
+    "email": "GA770-727-9579chris@senoiabeer.com",
+    "website": "https://www.facebook.com/senoiabeerco",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/640f5734234a59e54f21d9ba_Untitled%20(1200%20%C3%97%20628%20px)%20(52).webp",
+    "raw_info": "Senoia Beer CompanyFood/Drink1 Main St.Senoia,GA770-727-9579chris@senoiabeer.com"
+  },
+  {
+    "name": "Senoia Bicycle Inc.",
+    "category": "Retail",
+    "address": "34 Barnes St.Senoia,GAinfo@senoiabicycle.com",
+    "phone": "770-599-0308",
+    "email": "GA770-599-0308info@senoiabicycle.com",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/640f5a507466e81fb65a8682_Untitled%20(1200%20%C3%97%20628%20px)%20(53).webp",
+    "raw_info": "Senoia Bicycle Inc.Retail34 Barnes St.Senoia,GA770-599-0308info@senoiabicycle.com"
+  },
+  {
+    "name": "Senoia Bridal Company",
+    "category": "Services",
+    "address": "35 Barnes Street Suite 1ASenoia,GAhello@senoiabridal.com",
+    "phone": "678-633-4042",
+    "email": "GA678-633-4042hello@senoiabridal.com",
+    "website": "https://www.facebook.com/senoiabridal",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/65c69bd5ddc74f5709187b32_Untitled%20(1200%20x%20628%20px)%20(9).webp",
+    "raw_info": "Senoia Bridal CompanyServices35 Barnes Street Suite 1ASenoia,GA678-633-4042hello@senoiabridal.com"
+  },
+  {
+    "name": "Senoia Buggy Museum",
+    "category": "Entertainment",
+    "address": "72 Main StreetSenoia,GAbuggyshopsenoia@aol.com",
+    "phone": "770-253-1018",
+    "email": "GA770-253-1018buggyshopsenoia@aol.com",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/640f7af8e759becf7a6ab78f_Untitled%20(1200%20%C3%97%20628%20px)%20(63).webp",
+    "raw_info": "Senoia Buggy MuseumEntertainment72 Main StreetSenoia,GA770-253-1018buggyshopsenoia@aol.com"
+  },
+  {
+    "name": "Senoia Cart Co.",
+    "category": "Services",
+    "address": "Senoia,",
+    "phone": "",
+    "email": "GAencompassmobilityrentals@gmail.com",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/642efc4bb3baae09f1a7ae7c_Untitled%20(1200%20%C3%97%20628%20px)%20(65).webp",
+    "raw_info": "Senoia Cart Co.ServicesSenoia,GAencompassmobilityrentals@gmail.com"
+  },
+  {
+    "name": "Senoia City Hall",
+    "category": "Services",
+    "address": "80 Main StreetSenoia,GA",
+    "phone": "(770)-599-3679",
+    "email": "",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/640f7ac44433fb6a36f1e41b_Untitled%20(1200%20%C3%97%20628%20px)%20(62).webp",
+    "raw_info": "Senoia City HallServices80 Main StreetSenoia,GA(770)-599-3679"
+  },
+  {
+    "name": "Senoia Coffee",
+    "category": "Food/Drink",
+    "address": "30 Main StreetSenoia,GAinfo.senoiacoffeecafe@gmail.com",
+    "phone": "(770)-599-8000",
+    "email": "-599-8000info.senoiacoffeecafe@gmail.com",
+    "website": "https://www.facebook.com/senoiacoffeecafe",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6492478e4de4099d69db7c20_Untitled%20(1200%20%C3%97%20628%20px)%20(76).webp",
+    "raw_info": "Senoia CoffeeFood/Drink30 Main StreetSenoia,GA(770)-599-8000info.senoiacoffeecafe@gmail.com"
+  },
+  {
+    "name": "Senoia Enterprises",
+    "category": "Services",
+    "address": "42 Main St.Ste 3ASenoia,GA",
+    "phone": "770-727-9159",
+    "email": "",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63d14fd79966a8ec5f28b8f8_Untitled%20(1200%20%C3%97%20628%20px)%20(40).webp",
+    "raw_info": "Senoia EnterprisesServices42 Main St.Ste 3ASenoia,GA770-727-9159"
+  },
+  {
+    "name": "Senoia Family Dentistry",
+    "category": "Services",
+    "address": "42 Main St.Suite #bSenoia,GAsmile@senoiadental.com",
+    "phone": "(770)-599-4441",
+    "email": "-599-4441smile@senoiadental.com",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63c47555006ad477139991bc_Untitled%20(1200%20%C3%97%20628%20px)%20(26).webp",
+    "raw_info": "Senoia Family DentistryServices42 Main St.Suite #bSenoia,GA(770)-599-4441smile@senoiadental.com"
+  },
+  {
+    "name": "Senoia Historical Society",
+    "category": "Entertainment",
+    "address": "Senoia,GA",
+    "phone": "",
+    "email": "",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63c4736f7ceee9fe68d77e06_Untitled%20(1200%20%C3%97%20628%20px)%20(25).webp",
+    "raw_info": "Senoia Historical SocietyEntertainmentSenoia,GA"
+  },
+  {
+    "name": "Senoia United Methodist Church",
+    "category": "Churches",
+    "address": "207 Bridge StreetSenoia,GAoffice@senoiaumc.org",
+    "phone": "(770) 599-3245",
+    "email": "599-3245office@senoiaumc.org",
+    "website": "https://www.facebook.com/pages/Senoia-United-Methodist-Church/397211713806233",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/64f784914e2ec47fdef09279_Untitled%20(1200%20%C3%97%20628%20px)%20(79).webp",
+    "raw_info": "Senoia United Methodist ChurchChurches207 Bridge StreetSenoia,GA(770) 599-3245office@senoiaumc.org"
+  },
+  {
+    "name": "Senoia Welcome Center",
+    "category": "Services",
+    "address": "68 Main StreetSenoia,GAwelcome@enjoysenoia.com",
+    "phone": "(770)-727-9173",
+    "email": "-727-9173welcome@enjoysenoia.com",
+    "website": "https://www.facebook.com/enjoysenoia",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/637cf801ab3bbf9fed33bdcd_Untitled%20(1200%20%C3%97%20628%20px)%20(2).webp",
+    "raw_info": "Senoia Welcome CenterServices68 Main StreetSenoia,GA(770)-727-9173welcome@enjoysenoia.com"
+  },
+  {
+    "name": "Senor Taco",
+    "category": "Food/Drink",
+    "address": "75 Main St.Senoia,GAinfo@senortacoga.com",
+    "phone": "678-723-7255",
+    "email": "GA678-723-7255info@senortacoga.com",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63d1533e0f0f1b533e12155d_Untitled%20(1200%20%C3%97%20628%20px)%20(41).webp",
+    "raw_info": "Senor TacoFood/Drink75 Main St.Senoia,GA678-723-7255info@senortacoga.com"
+  },
+  {
+    "name": "Sip & Cigar",
+    "category": "Retail",
+    "address": "15 Barnes Street Suite 1CSenoia,GAsipncigar@gmail.com",
+    "phone": "(770)-683-5530",
+    "email": "-683-5530sipncigar@gmail.com",
+    "website": "https://www.facebook.com/sipncigar",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63cffacbd7f06402d64c64e1_Untitled%20(1200%20%C3%97%20628%20px)%20(38).webp",
+    "raw_info": "Sip & CigarRetail15 Barnes Street Suite 1CSenoia,GA(770)-683-5530sipncigar@gmail.com"
+  },
+  {
+    "name": "Snap Fitness Senoia",
+    "category": "Health/Beauty",
+    "address": "27 Barnes St.Senoia,GAsenoia@snapfitness.com",
+    "phone": "770-727-1003",
+    "email": "GA770-727-1003senoia@snapfitness.com",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/640f744c65027f1e1e506ded_Untitled%20(1200%20%C3%97%20628%20px)%20(57).webp",
+    "raw_info": "Snap Fitness SenoiaHealth/Beauty27 Barnes St.Senoia,GA770-727-1003senoia@snapfitness.com"
+  },
+  {
+    "name": "Southern Psychiatric Professionals",
+    "category": "Services",
+    "address": "48 Main Street Suite 2ASenoia,GAinfo@southernpsychiatric.com",
+    "phone": "(770)-599-9149",
+    "email": "-599-9149info@southernpsychiatric.com",
+    "website": "https://www.facebook.com/peachtreecitynewnanpsychiatry",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63c023aa5a54ae9acc3fb0c7_Untitled%20(1200%20%C3%97%20628%20px)%20(13).webp",
+    "raw_info": "Southern Psychiatric ProfessionalsServices48 Main Street Suite 2ASenoia,GA(770)-599-9149info@southernpsychiatric.com"
+  },
+  {
+    "name": "Sunset on Main",
+    "category": "Food/Drink",
+    "address": "30 Main StreetSenoia,sunsetonmain@gmail.com",
+    "phone": "770-880-8575",
+    "email": "770-880-8575sunsetonmain@gmail.com",
+    "website": "https://www.facebook.com/profile.php?id=100093598241691",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/68004fb5bab6f4d88c0f0793_Untitled%20(1200%20x%20628%20px)%20(5).jpg",
+    "raw_info": "Sunset on MainFood/Drink30 Main StreetSenoia,770-880-8575sunsetonmain@gmail.com"
+  },
+  {
+    "name": "Table Talk",
+    "category": "Retail",
+    "address": "53 Main St.Ste ASenoia,GAtabletalkofwd@yahoo.com",
+    "phone": "770-599-9700",
+    "email": "GA770-599-9700tabletalkofwd@yahoo.com",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/640f768be499dd6813f1d50a_Untitled%20(1200%20%C3%97%20628%20px)%20(58).webp",
+    "raw_info": "Table TalkRetail53 Main St.Ste ASenoia,GA770-599-9700tabletalkofwd@yahoo.com"
+  },
+  {
+    "name": "The Board Room",
+    "category": "Food/Drink",
+    "address": "30 Main StreetSenoia,GAapril.senoiacoffee@gmail.com",
+    "phone": "(770)-880-3766",
+    "email": "-880-3766april.senoiacoffee@gmail.com",
+    "website": "https://www.facebook.com/theboardroomsenoia",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/649246c24495c4a12897c402_Untitled%20(1200%20%C3%97%20628%20px)%20(75).webp",
+    "raw_info": "The Board RoomFood/Drink30 Main StreetSenoia,GA(770)-880-3766april.senoiacoffee@gmail.com"
+  },
+  {
+    "name": "The Classic Market & Wine Shoppe",
+    "category": "Food/Drink",
+    "address": "15 Main St.Senoia,GAtheclassicmarketsenoia@gmail.com",
+    "phone": "770-727-9140",
+    "email": "GA770-727-9140theclassicmarketsenoia@gmail.com",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63d177a6c92e484b9038b6dc_Untitled%20(1200%20%C3%97%20628%20px)%20(42).webp",
+    "raw_info": "The Classic Market & Wine ShoppeFood/Drink15 Main St.Senoia,GA770-727-9140theclassicmarketsenoia@gmail.com"
+  },
+  {
+    "name": "The Grand Barber",
+    "category": "Services",
+    "address": "31 Barnes Street Suite 1ASenoia,GAinfo@thegrandbarber.com",
+    "phone": "(943) 469-9039",
+    "email": "469-9039info@thegrandbarber.com",
+    "website": "https://www.facebook.com/grandbarberga",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/65ce8a61153cc2b384561947_Untitled%20(1200%20x%20628%20px)%20(10).webp",
+    "raw_info": "The Grand BarberServices31 Barnes Street Suite 1ASenoia,GA(943) 469-9039info@thegrandbarber.com"
+  },
+  {
+    "name": "The Lighting Studio",
+    "category": "Retail",
+    "address": "30 Barnes St.Suite 101Senoia,GAinfo@the-lighting-studio.com",
+    "phone": "770-727-9010",
+    "email": "GA770-727-9010info@the-lighting-studio.com",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63cee273e430681132df064f_Untitled%20(1200%20%C3%97%20628%20px)%20(34).webp",
+    "raw_info": "The Lighting StudioRetail30 Barnes St.Suite 101Senoia,GA770-727-9010info@the-lighting-studio.com"
+  },
+  {
+    "name": "The Parlor Salon and Dry Bar",
+    "category": "Health/Beauty",
+    "address": "90 Main St.Suite 101Senoia,GAtheparlorsalonanddrybar@gmail.com",
+    "phone": "770-727-9091",
+    "email": "GA770-727-9091theparlorsalonanddrybar@gmail.com",
+    "website": "https://www.facebook.com/theparlorsenoia",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63c71d5f4a50b08ec1f1e977_Untitled%20(1200%20%C3%97%20628%20px)%20(31).webp",
+    "raw_info": "The Parlor Salon and Dry BarHealth/Beauty90 Main St.Suite 101Senoia,GA770-727-9091theparlorsalonanddrybar@gmail.com"
+  },
+  {
+    "name": "The Peculiar Blooms",
+    "category": "Retail",
+    "address": "252 Seavy StreetSenoia,",
+    "phone": "",
+    "email": "GAthepeculiarblooms@gmail.com",
+    "website": "https://www.facebook.com/therecklessroost",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/69bb3fd17c3682208c4e02a2_Senoia%E2%80%99s%20Memorial%20Day%20Celebration%20(1200%20x%20628%20px)%20(1).jpg",
+    "raw_info": "The Peculiar BloomsRetail252 Seavy StreetSenoia,GAthepeculiarblooms@gmail.com"
+  },
+  {
+    "name": "The Veranda Historic Inn",
+    "category": "Services",
+    "address": "252 Seavy StreetSenoia,GAreservations@verandahistoricinn.com",
+    "phone": "(770)-599-3905",
+    "email": "-599-3905reservations@verandahistoricinn.com",
+    "website": "https://www.facebook.com/verandahistoricinn",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63891c3985d39d837a550b46_Untitled%20(1200%20%C3%97%20628%20px)%20(8).webp",
+    "raw_info": "The Veranda Historic InnServices252 Seavy StreetSenoia,GA(770)-599-3905reservations@verandahistoricinn.com"
+  },
+  {
+    "name": "The Woodbury Shoppe",
+    "category": "Retail",
+    "address": "48 Main St.LL3Senoia,GATheWoodburyShoppe@gmail.com",
+    "phone": "770-727-9394",
+    "email": "GA770-727-9394TheWoodburyShoppe@gmail.com",
+    "website": "https://www.facebook.com/WoodburyShoppe/",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63c47bde483c3210e9f7ae09_Untitled%20(1200%20%C3%97%20628%20px)%20(28).webp",
+    "raw_info": "The Woodbury ShoppeRetail48 Main St.LL3Senoia,GA770-727-9394TheWoodburyShoppe@gmail.com"
+  },
+  {
+    "name": "TLC Farm to Fork",
+    "category": "Food/Drink",
+    "address": "31 Banres Street Suite 1BSenoia,GAvalerie@valeriewoodall.com",
+    "phone": "678-723-7067",
+    "email": "GA678-723-7067valerie@valeriewoodall.com",
+    "website": "https://www.facebook.com/tlcfarmtofork",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6778972c4132f8166a5103d6_Fat%20tuesday%20(1200%20x%20628%20px)%20(1).jpg",
+    "raw_info": "TLC Farm to ForkFood/Drink31 Banres Street Suite 1BSenoia,GA678-723-7067valerie@valeriewoodall.com"
+  },
+  {
+    "name": "Unhinged Lifestyle Boutique",
+    "category": "Retail",
+    "address": "17 Barnes StreetSenoia,GAunhingedlifestyleboutique@gmail.com",
+    "phone": "(770)-727-9298",
+    "email": "-727-9298unhingedlifestyleboutique@gmail.com",
+    "website": "https://www.facebook.com/unhingedlifestyleboutique",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63c0265babb5ef8ac13c1bce_Untitled%20(1200%20%C3%97%20628%20px)%20(14).webp",
+    "raw_info": "Unhinged Lifestyle BoutiqueRetail17 Barnes StreetSenoia,GA(770)-727-9298unhingedlifestyleboutique@gmail.com"
+  },
+  {
+    "name": "Vaulted Vintage",
+    "category": "Retail",
+    "address": "28 Main StreetSenoia,Georgiavaultedvintage.retail@gmail.com",
+    "phone": "943-469-9005",
+    "email": "Georgia943-469-9005vaultedvintage.retail@gmail.com",
+    "website": "https://www.facebook.com/profile.php?id=61587322589247",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/698dfd979ea12c821c69d4fb_Fat%20tuesday%20(1200%20x%20628%20px)%20(11).jpg",
+    "raw_info": "Vaulted VintageRetail28 Main StreetSenoia,Georgia943-469-9005vaultedvintage.retail@gmail.com"
+  },
+  {
+    "name": "Water Tower Tours",
+    "category": "Entertainment",
+    "address": "48 Main StreetSenoia,",
+    "phone": "",
+    "email": "GAwatertowertours@gmail.com",
+    "website": "https://www.facebook.com/WatertowerTours",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63c71a7dda528d1e76dd4c8d_Untitled%20(1200%20%C3%97%20628%20px)%20(29).webp",
+    "raw_info": "Water Tower ToursEntertainment48 Main StreetSenoia,GAwatertowertours@gmail.com"
+  },
+  {
+    "name": "Wellstar Primary Care Senoia",
+    "category": "Health/Beauty",
+    "address": "42 Main Street Suite 2ASenoia,GeorgiaLatasha.Baisden@wellstar.org",
+    "phone": "(943) 202-8430",
+    "email": "202-8430Latasha.Baisden@wellstar.org",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/69d9971d26b2e2f86ead2450_Senoia%E2%80%99s%20Memorial%20Day%20Celebration%20(1200%20x%20628%20px)%20(3).jpg",
+    "raw_info": "Wellstar Primary Care SenoiaHealth/Beauty42 Main Street Suite 2ASenoia,Georgia(943) 202-8430Latasha.Baisden@wellstar.org"
+  },
+  {
+    "name": "YourTown Health",
+    "category": "Health/Beauty",
+    "address": "48 Main St.Ste 3ASenoia,GA",
+    "phone": "678-723-0400",
+    "email": "",
+    "website": "",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63c46dbf91dfb16b1abe58d9_Untitled%20(1200%20%C3%97%20628%20px)%20(24).webp",
+    "raw_info": "YourTown HealthHealth/Beauty48 Main St.Ste 3ASenoia,GA678-723-0400"
+  },
+  {
+    "name": "Zackie Hart",
+    "category": "Retail",
+    "address": "33 Barnes StreetSenoia,",
+    "phone": "",
+    "email": "GAShopzackiehart@gmail.com",
+    "website": "https://www.facebook.com/zackiehart",
+    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/68f6dfe0b308d1e15c4d6b85_Fat%20tuesday%20(1200%20x%20628%20px)%20(7).jpg",
+    "raw_info": "Zackie HartRetail33 Barnes StreetSenoia,GAShopzackiehart@gmail.com"
+  }
+]
