@@ -38,7 +38,7 @@ export default function Gallery() {
 
   return (
     <section id="gallery" className="py-24 sm:py-32 bg-[var(--masq-ink-soft)] scroll-mt-16">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Previous years"
           title="From Past Masquerades"
@@ -56,7 +56,7 @@ export default function Gallery() {
           onFocus={() => setPlaying(false)}
           className="mt-14 relative rounded-sm border border-[var(--masq-line)] bg-[var(--masq-ink)] focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--masq-gold)]"
         >
-          <div className="h-[clamp(300px,55vh,560px)] flex items-center justify-center overflow-hidden">
+          <div className="h-[clamp(240px,40vh,420px)] flex items-center justify-center overflow-hidden">
             {gallery.map((photo, i) => (
               <img
                 key={photo.src}
