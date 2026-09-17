@@ -5,7 +5,7 @@ import { tiers, ticketing } from '../data/eventDetails';
 
 /**
  * Tiers sell on different rules — dinner closes October 20, the after party is
- * also sold at the door, and a sold-out tier should route to the waitlist — so
+ * also sold at the door, and a sold-out tier points at the follow block — so
  * button state is per tier rather than one site-wide flag.
  */
 function TierAction({ tier }) {
@@ -14,8 +14,8 @@ function TierAction({ tier }) {
 
   if (tier.status === 'waitlist') {
     return (
-      <a href="#waitlist" className={`${base} border border-[var(--masq-gold)] text-[var(--masq-gold)] hover:bg-[var(--masq-gold)] hover:text-[var(--masq-ink)]`}>
-        Join the waitlist
+      <a href="#follow" className={`${base} border border-[var(--masq-gold)] text-[var(--masq-gold)] hover:bg-[var(--masq-gold)] hover:text-[var(--masq-ink)]`}>
+        Follow for updates
       </a>
     );
   }

@@ -8,7 +8,7 @@ import Tickets from './components/Tickets';
 import Schedule from './components/Schedule';
 import Sponsors from './components/Sponsors';
 import Faq from './components/Faq';
-import Waitlist from './components/Waitlist';
+import Follow from './components/Follow';
 import MasqueradeFooter from './components/MasqueradeFooter';
 
 /**
@@ -41,7 +41,7 @@ export default function MasqueradePage() {
         <Schedule />
         <Sponsors />
         <Faq />
-        <Waitlist />
+        <Follow />
       </main>
       <MasqueradeFooter />
     </div>
