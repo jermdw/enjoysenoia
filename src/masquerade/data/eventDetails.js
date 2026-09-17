@@ -217,12 +217,15 @@ export const performers = [
 
 /**
  * The panel beside the dress code. The organizer replaced the original list of
- * activities (scavenger hunt, best dressed, lawn games, boutique) with the run
- * of show, one comment per item, so these are her schedule lines verbatim.
+ * activities with the run of show, one comment per item.
+ *
+ * These match the published preview verbatim, including wording that arrived by
+ * direct edits to that page rather than through a comment — the live page is the
+ * copy of record here, so it is followed rather than overwritten.
  */
 export const happenings = [
-  '5:30 VIP doors open, tasting room open, ambient cirque & magic entertainment, passed appetizers, cash bar and artisan boutique open',
-  '7:00 Seating for dinner',
+  '5:30 VIP doors open with our tasting room, ambient cirque & magic entertainment, passed appetizers, cash bar and artisan boutique open',
+  '7:00 Seating for dinner, ambient entertainment ends, VIP tasting lounge closes',
   '8:30 Fire show, contest winner announcements (best dressed and scavenger hunt) dance party begins',
   '11:30 The evening concludes',
 ];
