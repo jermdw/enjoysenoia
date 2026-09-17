@@ -224,10 +224,10 @@ export const performers = [
  * copy of record here, so it is followed rather than overwritten.
  */
 export const happenings = [
-  '5:30 VIP doors open with our tasting room, ambient cirque & magic entertainment, passed appetizers, cash bar and artisan boutique open',
+  '5:30 VIP doors open with our tasting room, ambient cirque & magic entertainment, with passed appetizers',
   '7:00 Seating for dinner, ambient entertainment ends, VIP tasting lounge closes',
   '8:30 Fire show, contest winner announcements (best dressed and scavenger hunt) dance party begins',
-  '11:30 The evening concludes',
+  'All evening: cash bar, artisan boutique, interactive games',
 ];
 
 /** NEEDED: confirmed sponsor list and logo files. Tiers are confirmed. */
