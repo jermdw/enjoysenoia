@@ -155,7 +155,7 @@ export const schedule = [
 
 export const dressCode = {
   headline: 'The Dress Code',
-  body: `Masks and headpieces are encouraged, with black tie and evening wear. Guests are invited to interpret the theme — an elegant masquerade with character: Alice, the White Rabbit, the Queen of Hearts, the Mad Hatter, the Cheshire Cat. Think an outfit for a whimsical garden party, chess players and playing cards, with a touch of mystery. Creative outfits are highly encouraged, but not required.`,
+  body: `Think masquerade meets Wonderland. Masks and headpieces are encouraged, black tie and evening wear. Guests are invited to interpret the theme — an elegant masquerade with character: Alice, the White Rabbit, Queen of Hearts, Mad Hatter, Cheshire Cat. An outfit for a whimsical garden party, chess players and playing cards with a touch of mystery. Creative outfits are highly encouraged, but not required.`,
   note: 'Masks are not provided or sold on site — bring your own.',
 };
 
