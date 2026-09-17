@@ -41,7 +41,6 @@ CDN_URL_RE = re.compile(r'https?://[^\s"\'<>\\]*website-files\.com/[^\s"\'<>\\]*
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = REPO_ROOT / "data" / "webflow"
 COLLECTIONS_DIR = OUT_DIR / "collections"
-ASSET_DIR = REPO_ROOT / "public" / "assets" / "webflow"
 
 
 # --------------------------------------------------------------------------
