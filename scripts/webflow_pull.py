@@ -282,11 +282,13 @@ def build_download_plan(manifest, referenced):
     point at cdn.prod.website-files.com/<legacy-id>/... Pulling only one of
     them silently loses the other.
     """
+    # Sorted so the committed plan produces stable diffs across runs;
+    # `referenced` is a set and would otherwise reorder every time.
     plan = {}
-    for url, meta in manifest.items():
+    for url, meta in sorted(manifest.items()):
         plan[url] = {"localPath": meta["localPath"], "size": meta["size"],
                      "source": "asset-manager"}
-    for url in referenced:
+    for url in sorted(referenced):
         if url in plan:
             continue
         plan[url] = {"localPath": f"public/assets/webflow/cms/{cms_local_name(url)}",
