@@ -38,7 +38,9 @@ export default function Invitation() {
                     />
                     <div>
                       <p className="text-[var(--masq-cream)] font-semibold">{item.title}</p>
-                      <p className="text-[var(--masq-cream-dim)] leading-snug">{item.detail}</p>
+                      {item.detail && (
+                        <p className="text-[var(--masq-cream-dim)] leading-snug">{item.detail}</p>
+                      )}
                     </div>
                   </li>
                 ))}

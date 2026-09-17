@@ -217,12 +217,12 @@ export const performers = [
 
 export const happenings = [
   {
-    title: 'Scavenger hunt',
-    detail: 'Open to VIP and seated dinner guests. Winners announced at 8:30 PM.',
+    title: '5:30 VIP doors open',
+    detail: 'Tasting room open, ambient cirque & magic entertainment, passed appetizers, cash bar and artisan boutique open.',
   },
   {
-    title: 'Best dressed awards',
-    detail: 'Wear the theme well and the room will notice. Categories and prizes to be announced.', // CONFIRM: contest details marked TBD in intake
+    title: '7:00 Seating for dinner',
+    detail: '',
   },
   {
     title: 'Lawn games',
