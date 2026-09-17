@@ -271,7 +271,7 @@ export const faqs = [
   },
   {
     q: 'What should I wear?',
-    a: 'Black tie and evening wear, with masks and headpieces encouraged. Interpret Wonderland however you like — creative costumes are welcome but never required. Masks are not sold on site.',
+    a: 'Black tie and evening wear, with masks and headpieces encouraged. Interpret Wonderland however you like — creative costumes are welcome but never required.',
   },
   {
     q: 'Can I bring my own food or drinks?',
