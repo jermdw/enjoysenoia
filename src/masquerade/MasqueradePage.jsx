@@ -25,7 +25,7 @@ export default function MasqueradePage() {
     // index.html sets a light background on <body>; without this, overscroll
     // flashes stone-50 behind the dark page.
     const previous = document.body.style.backgroundColor;
-    document.body.style.backgroundColor = '#0b0a0c';
+    document.body.style.backgroundColor = '#24231f'; // keep in sync with --masq-ink
     return () => {
       document.body.style.backgroundColor = previous;
     };

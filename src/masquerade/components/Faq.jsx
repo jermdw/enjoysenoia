@@ -20,7 +20,7 @@ export default function Faq() {
             <details key={faq.q} className="masq-faq group">
               <summary className="flex items-center justify-between gap-6 py-5 text-left">
                 <span className="text-lg sm:text-xl text-[var(--masq-cream)] masq-display">{faq.q}</span>
-                <ChevronDown className="masq-faq-chevron w-5 h-5 shrink-0 text-[var(--masq-gold)] transition-transform duration-300" />
+                <ChevronDown className="masq-faq-chevron w-5 h-5 shrink-0 text-[var(--masq-bone)] transition-transform duration-300" />
               </summary>
               <p className="pb-6 -mt-1 text-[var(--masq-cream-dim)] leading-relaxed">{faq.a}</p>
             </details>

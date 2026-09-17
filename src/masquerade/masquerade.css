@@ -4,28 +4,39 @@
  * Everything lives under `.masq` so none of it leaks into the DDA site, which
  * keeps its own tokens in src/styles/index.css.
  *
+ * PALETTE — matched to the organizer's "Down the Rabbit Hole" title card:
+ * cream and warm charcoal only, no crimson and no gold. The card's signature
+ * is a harlequin diamond border framing a dark panel, so that band is a
+ * reusable class here (.masq-harlequin) rather than a one-off in the hero.
+ *
  * FONTS — PROVISIONAL. The brand fonts are Rumble Brave (titles) and Zenaida
  * (subtitles in caps, copy in lowercase). Neither is on Google Fonts, so they
- * need licensed webfont files from the organizer. Cinzel Decorative and
- * Cormorant Garamond stand in until those arrive: drop the .woff2 files in
+ * need licensed webfont files from the organizer. Bodoni Moda stands in for
+ * the high-contrast display caps on the title card, and Cormorant Garamond for
+ * body copy. To swap in the real thing: drop the .woff2 files in
  * src/masquerade/fonts/, add @font-face rules here, and change the two
  * --masq-font-* variables below. Nothing else needs to change.
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
 
 .masq {
-  --masq-ink: #0b0a0c;
-  --masq-ink-soft: #16131a;
-  --masq-ink-raised: #1e1a22;
-  --masq-cream: #f2e7d5;
-  --masq-cream-dim: #cbbda6;
-  --masq-crimson: #8b0e16;
-  --masq-crimson-bright: #b51823;
-  --masq-gold: #c2a36b;
-  --masq-line: rgba(194, 163, 107, 0.28);
+  /* Warm charcoal, sampled from the title card's inner panel — not a blue-black. */
+  --masq-ink: #24231f;
+  --masq-ink-deep: #171613;
+  --masq-ink-soft: #2c2a25;
+  --masq-ink-raised: #34312b;
+  --masq-cream: #f2ece0;
+  --masq-cream-dim: #b5ad9c;
+  /* Aged paper. Carries every hairline, ornament and small accent that used to
+     be gold — the title card has no metallic in it at all. */
+  --masq-bone: #d8cdb6;
+  --masq-line: rgba(242, 236, 224, 0.22);
+  /* The one chromatic colour left, reserved for form errors. Decoration must
+     never borrow it or a failed submit stops reading as a failure. */
+  --masq-warning: #c76a60;
 
-  --masq-font-display: 'Cinzel Decorative', 'Playfair Display', Georgia, serif;
+  --masq-font-display: 'Bodoni Moda', 'Playfair Display', Georgia, serif;
   --masq-font-body: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
 
   background-color: var(--masq-ink);
@@ -45,6 +56,15 @@
   font-weight: 700;
 }
 
+/* Display caps as the title card sets them: tall, tight, all-caps. */
+.masq .masq-titlecaps {
+  font-family: var(--masq-font-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 0.92;
+}
+
 /* Small caps label used above section headings. */
 .masq .masq-eyebrow {
   font-family: var(--masq-font-body);
@@ -52,24 +72,125 @@
   letter-spacing: 0.34em;
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--masq-gold);
+  color: var(--masq-bone);
+}
+
+/* The wide-tracked serif caps the title card uses for date and venue lines. */
+.masq .masq-spacedcaps {
+  font-family: var(--masq-font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 500;
+}
+
+/*
+ * Harlequin diamonds — the border on the title card. Four corner-to-corner
+ * gradients tile into diamonds; the gradient list is held in a custom property
+ * so the band and the frame below share one definition.
+ *
+ * The tile is only ever shown in whole rows. A strip half a tile tall renders
+ * as a sawtooth of triangles, not as diamonds, which is why every height and
+ * padding here is exactly --masq-diamond.
+ */
+.masq {
+  --masq-diamond: 30px;
+  --masq-harlequin-image:
+    linear-gradient(135deg, var(--masq-ink) 25%, transparent 25%),
+    linear-gradient(225deg, var(--masq-ink) 25%, transparent 25%),
+    linear-gradient(45deg, var(--masq-ink) 25%, transparent 25%),
+    linear-gradient(315deg, var(--masq-ink) 25%, transparent 25%);
+}
+
+.masq .masq-harlequin,
+.masq .masq-harlequin-frame,
+.masq .masq-harlequin-frame::after {
+  background-color: var(--masq-cream);
+  background-image: var(--masq-harlequin-image);
+  background-position:
+    calc(var(--masq-diamond) / 2) 0,
+    calc(var(--masq-diamond) / 2) 0,
+    0 0,
+    0 0;
+  background-size: var(--masq-diamond) var(--masq-diamond);
+  background-repeat: repeat;
+}
+
+/* Horizontal divider: one whole row of diamonds. */
+.masq .masq-harlequin {
+  height: var(--masq-diamond);
+}
+
+/*
+ * Cream mat around a diamond row. Without it the dark diamonds sit against the
+ * equally dark page and dissolve, leaving only the cream between them — which
+ * reads as a zigzag, not as harlequin. The title card mats its border on both
+ * sides for exactly this reason.
+ */
+.masq .masq-harlequin-mat {
+  background-color: var(--masq-cream);
+  padding: 7px;
+}
+
+/*
+ * Border frame. The padding is one tile, so the top edge and both side columns
+ * are whole diamonds. The columns tile downward and would be cut off at the
+ * bottom, so ::after lays a whole row over that edge.
+ */
+.masq .masq-harlequin-frame {
+  position: relative;
+  padding: var(--masq-diamond);
+}
+
+.masq .masq-harlequin-frame::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: var(--masq-diamond);
+}
+
+@media (min-width: 640px) {
+  .masq {
+    --masq-diamond: 52px;
+  }
+}
+
+/* Double hairline frame, as drawn inside the harlequin border on the card. */
+.masq .masq-frame {
+  border: 1px solid var(--masq-line);
+  box-shadow: 0 0 0 1px var(--masq-ink), 0 0 0 5px var(--masq-line);
+}
+
+/*
+ * Solid call-to-action. Defined once because the fill and the label have to
+ * invert together — a cream fill with cream text is invisible, and there are
+ * five of these across the site.
+ */
+.masq .masq-btn-solid {
+  background-color: var(--masq-cream);
+  color: var(--masq-ink);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.masq .masq-btn-solid:hover {
+  background-color: var(--masq-bone);
+  color: var(--masq-ink-deep);
 }
 
 /* Cream "paper" panels — menu card, boutique notes. */
 .masq .masq-paper {
   background:
     radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.55), transparent 55%),
-    linear-gradient(160deg, #f6eede 0%, #e9dcc4 100%);
-  color: #2b2118;
+    linear-gradient(160deg, #f6f1e6 0%, #e6dcc7 100%);
+  color: #2b2822;
 }
 
-/* Vignette + faint card-suit texture behind the hero. */
+/* Vignette behind the hero. */
 .masq .masq-vignette::after {
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(ellipse at center, transparent 35%, rgba(6, 5, 7, 0.85) 100%);
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(23, 22, 19, 0.82) 100%);
 }
 
 .masq .masq-rule {
@@ -91,7 +212,7 @@
   bottom: -2px;
   width: 0;
   height: 1px;
-  background: var(--masq-gold);
+  background: var(--masq-bone);
   transition: width 0.3s ease, left 0.3s ease;
 }
 
@@ -116,7 +237,7 @@
 /* The falling-card drift on the hero. Respects reduced-motion below. */
 @keyframes masq-drift {
   0% { transform: translateY(-8%) rotate(-4deg); opacity: 0; }
-  12% { opacity: 0.5; }
+  12% { opacity: 0.45; }
   100% { transform: translateY(110vh) rotate(200deg); opacity: 0; }
 }
 

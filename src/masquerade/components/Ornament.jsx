@@ -1,9 +1,15 @@
 import React from 'react';
 
 /**
- * Card-suit ornaments drawn inline so the site has its motif without waiting
- * on artwork files. Sizes are set by the caller via className.
+ * Ornaments drawn inline so the site has its motifs without waiting on artwork
+ * files. Sizes are set by the caller via className.
+ *
+ * The key and keyhole come from the organizer's title card and are the primary
+ * motif; the card suits stay as a secondary one, since Wonderland is half
+ * playing cards anyway. All of them take their colour from `currentColor`.
  */
+
+/** Card-suit glyph — solid, since suits read as silhouettes. */
 export function Suit({ suit = 'heart', className = 'w-4 h-4' }) {
   const paths = {
     heart: 'M12 21s-7.5-4.7-9.6-9A5.4 5.4 0 0 1 12 6.6 5.4 5.4 0 0 1 21.6 12c-2.1 4.3-9.6 9-9.6 9Z',
@@ -19,12 +25,74 @@ export function Suit({ suit = 'heart', className = 'w-4 h-4' }) {
   );
 }
 
-/** A thin gold rule with a suit at its center, used between sections. */
-export default function Ornament({ suit = 'diamond', className = '' }) {
+/**
+ * Ornate skeleton key, lying horizontally as it does on the title card:
+ * toothed bit at the left, quatrefoil bow at the right.
+ */
+export function Key({ className = 'w-20 h-7' }) {
   return (
-    <div className={`flex items-center justify-center gap-4 ${className}`} aria-hidden="true">
+    <svg
+      viewBox="0 0 96 32"
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="17" cy="16" r="3.2" />
+      <path d="M21 16h39" />
+      <path d="M24 16.6v7.4M30 16.6v5.6M36 16.6v3.8" />
+      <path d="M60 11.6v8.8M63.6 13.2v5.6" />
+      <circle cx="76" cy="10.8" r="4.6" />
+      <circle cx="76" cy="21.2" r="4.6" />
+      <circle cx="70.8" cy="16" r="4.6" />
+      <circle cx="81.2" cy="16" r="4.6" />
+      <circle cx="76" cy="16" r="2.3" />
+    </svg>
+  );
+}
+
+/** Keyhole set in an arched cartouche, double-ruled like the title card. */
+export function Keyhole({ className = 'w-8 h-12' }) {
+  return (
+    <svg
+      viewBox="0 0 48 72"
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.3"
+      strokeLinejoin="round"
+    >
+      <path d="M5 68V21C5 11 13 4 24 4s19 7 19 17v47Z" />
+      <path d="M9.5 63.5V21c0-7.6 6-12.5 14.5-12.5S38.5 13.4 38.5 21v42.5Z" />
+      <circle cx="24" cy="29" r="5.4" />
+      <path d="M20.4 33.2 17.8 50h12.4l-2.6-16.8Z" />
+    </svg>
+  );
+}
+
+/**
+ * A thin rule with an ornament at its center, used between sections.
+ * `variant` picks the centrepiece: a harlequin diamond by default (echoing the
+ * border on the title card), or the key for a heavier break.
+ */
+export default function Ornament({ variant = 'diamond', className = '' }) {
+  const centre =
+    variant === 'key' ? (
+      <Key className="w-20 h-7 text-[var(--masq-bone)]" />
+    ) : variant === 'keyhole' ? (
+      <Keyhole className="w-6 h-9 text-[var(--masq-bone)]" />
+    ) : (
+      <span className="w-2.5 h-2.5 rotate-45 bg-[var(--masq-bone)]" />
+    );
+
+  return (
+    <div className={`flex items-center justify-center gap-5 ${className}`} aria-hidden="true">
       <span className="masq-rule w-16 sm:w-28" />
-      <Suit suit={suit} className="w-3 h-3 text-[var(--masq-gold)]" />
+      {centre}
       <span className="masq-rule w-16 sm:w-28" />
     </div>
   );

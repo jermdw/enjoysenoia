@@ -48,11 +48,11 @@ export default function Sponsors() {
           {sponsorTiers.map((tier) => (
             <article
               key={tier.id}
-              className="border border-[var(--masq-line)] rounded-sm p-7 text-center bg-[var(--masq-ink-soft)] hover:border-[var(--masq-gold)] transition-colors"
+              className="border border-[var(--masq-line)] rounded-sm p-7 text-center bg-[var(--masq-ink-soft)] hover:border-[var(--masq-bone)] transition-colors"
             >
-              <Suit suit={suitForTier[tier.id]} className="w-5 h-5 mx-auto text-[var(--masq-crimson-bright)]" />
+              <Suit suit={suitForTier[tier.id]} className="w-5 h-5 mx-auto text-[var(--masq-bone)]" />
               <h3 className="mt-4 text-xl text-[var(--masq-cream)]">{tier.name}</h3>
-              <p className="mt-3 masq-display text-3xl text-[var(--masq-gold)]">
+              <p className="mt-3 masq-display text-3xl text-[var(--masq-bone)]">
                 ${tier.price.toLocaleString()}
               </p>
               <p className="mt-3 text-[var(--masq-cream-dim)] leading-snug">{tier.blurb}</p>
@@ -67,7 +67,7 @@ export default function Sponsors() {
           </p>
           <a
             href={`mailto:${contact.email}?subject=${encodeURIComponent('Masquerade sponsorship')}`}
-            className="mt-7 inline-flex items-center gap-2.5 px-8 py-3.5 rounded-sm border border-[var(--masq-gold)] text-[var(--masq-gold)] hover:bg-[var(--masq-gold)] hover:text-[var(--masq-ink)] text-xs font-semibold uppercase tracking-[0.2em] transition-colors"
+            className="mt-7 inline-flex items-center gap-2.5 px-8 py-3.5 rounded-sm border border-[var(--masq-bone)] text-[var(--masq-bone)] hover:bg-[var(--masq-bone)] hover:text-[var(--masq-ink)] text-xs font-semibold uppercase tracking-[0.2em] transition-colors"
           >
             <Mail className="w-4 h-4" />
             <span>Become a sponsor</span>

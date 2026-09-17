@@ -45,13 +45,13 @@ export default function Waitlist() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 60% 70% at 50% 120%, rgba(139, 14, 22, 0.35), transparent 70%)',
+            'radial-gradient(ellipse 60% 70% at 50% 120%, rgba(216, 205, 182, 0.12), transparent 70%)',
         }}
         aria-hidden="true"
       />
 
       <div className="relative max-w-2xl mx-auto px-4 sm:px-6 text-center">
-        <Suit suit="club" className="w-5 h-5 mx-auto text-[var(--masq-gold)]" />
+        <Suit suit="club" className="w-5 h-5 mx-auto text-[var(--masq-bone)]" />
         <h2 className="mt-6 text-3xl sm:text-4xl text-[var(--masq-cream)]">Keep an Ear to the Ground</h2>
         <p className="mt-4 text-lg text-[var(--masq-cream-dim)] leading-relaxed">
           Be first to hear when tickets open, when a tier sells out and a waitlist place
@@ -59,8 +59,8 @@ export default function Waitlist() {
         </p>
 
         {status === 'success' ? (
-          <div className="mt-9 p-6 border border-[var(--masq-gold)] rounded-sm flex items-center justify-center gap-3 text-[var(--masq-cream)]">
-            <CheckCircle2 className="w-5 h-5 text-[var(--masq-gold)] shrink-0" />
+          <div className="mt-9 p-6 border border-[var(--masq-bone)] rounded-sm flex items-center justify-center gap-3 text-[var(--masq-cream)]">
+            <CheckCircle2 className="w-5 h-5 text-[var(--masq-bone)] shrink-0" />
             <span>You are on the list. Watch for an invitation.</span>
           </div>
         ) : (
@@ -78,12 +78,12 @@ export default function Waitlist() {
               }}
               placeholder="your@email.com"
               required
-              className="flex-grow px-5 py-3.5 rounded-sm bg-[var(--masq-ink-soft)] border border-[var(--masq-line)] text-[var(--masq-cream)] placeholder-[rgba(203,189,166,0.6)] focus:outline-none focus:border-[var(--masq-gold)] transition-colors"
+              className="flex-grow px-5 py-3.5 rounded-sm bg-[var(--masq-ink-soft)] border border-[var(--masq-line)] text-[var(--masq-cream)] placeholder-[rgba(181,173,156,0.65)] focus:outline-none focus:border-[var(--masq-bone)] transition-colors"
             />
             <button
               type="submit"
               disabled={status === 'loading'}
-              className="px-8 py-3.5 rounded-sm bg-[var(--masq-crimson)] hover:bg-[var(--masq-crimson-bright)] disabled:opacity-60 text-[var(--masq-cream)] text-xs font-semibold uppercase tracking-[0.2em] transition-colors inline-flex items-center justify-center gap-2 shrink-0"
+              className="px-8 py-3.5 rounded-sm masq-btn-solid disabled:opacity-60 text-xs font-semibold uppercase tracking-[0.2em] transition-colors inline-flex items-center justify-center gap-2 shrink-0"
             >
               <Mail className="w-4 h-4" />
               <span>{status === 'loading' ? 'Sending…' : 'Join the list'}</span>
@@ -92,7 +92,7 @@ export default function Waitlist() {
         )}
 
         {status === 'error' && (
-          <p className="mt-4 flex items-center justify-center gap-2 text-[var(--masq-crimson-bright)]">
+          <p className="mt-4 flex items-center justify-center gap-2 text-[var(--masq-warning)]">
             <AlertCircle className="w-4 h-4" />
             <span>{errorMessage}</span>
           </p>
