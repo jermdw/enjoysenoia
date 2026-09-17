@@ -7,8 +7,12 @@ export default function Invitation() {
     <section id="invitation" className="py-24 sm:py-32 bg-[var(--masq-ink)] scroll-mt-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow="You are cordially invited to"
-          title="An Evening in Senoia"
+          title={
+            <>
+              <span className="block">You are cordially invited to</span>
+              <span className="block">An Evening in Senoia</span>
+            </>
+          }
           lead="For one night, the Stone Lodge at Marimac Lake falls into Wonderland — lantern light through the trees, acrobats overhead, a long table laid under canvas, and fire after dark."
         />
 
