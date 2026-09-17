@@ -24,11 +24,7 @@ export default function MasqueradeFooter() {
             <p className="masq-eyebrow">The Venue</p>
             <p className="text-[var(--masq-cream)] flex items-start gap-2 justify-center sm:justify-start">
               <MapPin className="w-4 h-4 mt-1 shrink-0 text-[var(--masq-gold)]" />
-              <span>
-                {event.venue.name}
-                <br />
-                {event.venue.cityState}
-              </span>
+              <span>{event.venue.label}</span>
             </p>
           </div>
 

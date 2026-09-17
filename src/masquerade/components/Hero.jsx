@@ -43,21 +43,22 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 py-28 text-center">
-        <p className="masq-eyebrow mb-6">{event.edition} · Senoia, Georgia</p>
+        <p className="masq-eyebrow mb-6">Senoia, Georgia</p>
 
-        <h1 className="text-[2.75rem] leading-[1.05] sm:text-6xl lg:text-7xl text-[var(--masq-cream)]">
-          The Masquerade
+        <h1 className="text-[var(--masq-cream)]">
+          <span className="block text-2xl leading-snug sm:text-3xl lg:text-4xl">
+            {event.name}
+          </span>
+          <span className="block mt-3 uppercase text-[2.3rem] leading-[1.05] sm:text-5xl lg:text-6xl text-[var(--masq-gold)]">
+            {event.theme}
+          </span>
         </h1>
 
-        <div className="flex items-center justify-center gap-4 my-6" aria-hidden="true">
+        <div className="flex items-center justify-center gap-4 mt-7" aria-hidden="true">
           <span className="masq-rule w-12 sm:w-24" />
           <Suit suit="heart" className="w-4 h-4 text-[var(--masq-crimson-bright)]" />
           <span className="masq-rule w-12 sm:w-24" />
         </div>
-
-        <p className="masq-display text-2xl sm:text-3xl lg:text-4xl text-[var(--masq-gold)] italic">
-          {event.theme}
-        </p>
 
         <div className="mt-8 max-w-2xl mx-auto space-y-4">
           {heroBlurb.map((para) => (
@@ -83,7 +84,7 @@ export default function Hero() {
           <div className="flex items-center gap-2.5">
             <MapPin className="w-4 h-4 text-[var(--masq-gold)]" />
             <dt className="sr-only">Venue</dt>
-            <dd>{event.venue.name}</dd>
+            <dd>{event.venue.label}</dd>
           </div>
         </dl>
 

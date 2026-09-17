@@ -7,7 +7,7 @@
  */
 
 export const event = {
-  name: 'The 3rd Annual Masquerade',
+  name: 'The 3rd Annual Halloween Masquerade',
   theme: 'Down the Rabbit Hole',
   edition: '3rd Annual',
   // Confirmed against the organizer's title card, which reads
@@ -25,6 +25,9 @@ export const event = {
     // 148 Pylant Street is treated here as parking (see FAQ), not the venue address.
     name: 'The Stone Lodge at Marimac Lake',
     cityState: 'Senoia, Georgia',
+    // How the venue is written on the page. `name` stays clean because the
+    // JSON-LD in MasqueradeSEO pairs it with a structured address.
+    label: 'The Stone Lodge at Marimac Lake, Senoia GA',
     addressLine: null, // NEEDED: street address for the Stone Lodge
     setting: 'An outdoor evening under tent, with the Stone Lodge open indoors for VIP guests.',
   },
@@ -288,7 +291,7 @@ export const contact = {
 };
 
 export const seo = {
-  title: 'The 3rd Annual Masquerade: Down the Rabbit Hole | Senoia, GA',
+  title: 'The 3rd Annual Halloween Masquerade: Down the Rabbit Hole | Senoia, GA',
   description:
     'An elegant Halloween masquerade at the Stone Lodge at Marimac Lake in Senoia, Georgia. Saturday, October 24, 2026 — cirque, fire, a seated dinner and the Wonderland After Party.',
   ogImage: null, // NEEDED: 1200x630 share image
