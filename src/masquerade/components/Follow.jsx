@@ -1,6 +1,6 @@
 import React from 'react';
 import { Instagram } from 'lucide-react';
-import { Key } from './Ornament';
+import { Keyhole } from './Ornament';
 import { contact } from '../data/eventDetails';
 
 /**
@@ -29,7 +29,7 @@ export default function Follow() {
       />
 
       <div className="relative max-w-2xl mx-auto px-4 sm:px-6 text-center">
-        <Key className="w-24 h-8 mx-auto text-[var(--masq-gold)]" />
+        <Keyhole className="w-9 h-14 mx-auto text-[var(--masq-gold)]" />
         <h2 className="mt-6 text-3xl sm:text-4xl text-[var(--masq-cream)]">
           Follow the key. See where curiosity takes you.
         </h2>
