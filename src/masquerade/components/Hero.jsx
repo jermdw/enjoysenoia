@@ -43,8 +43,6 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 py-28 text-center">
-        <p className="masq-eyebrow mb-6">Senoia, Georgia</p>
-
         <h1 className="text-[var(--masq-cream)]">
           <span className="block text-2xl leading-snug sm:text-3xl lg:text-4xl">
             {event.name}
