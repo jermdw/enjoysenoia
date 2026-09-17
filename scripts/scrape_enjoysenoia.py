@@ -16,7 +16,7 @@ os.makedirs(DATA_DIR, exist_ok=True)
 
 import ssl
 
-ssl_context = ssl._create_unverified_context()
+ssl_context = ssl.create_default_context()
 
 def fetch_url(url):
     req = urllib.request.Request(url, headers=HEADERS)

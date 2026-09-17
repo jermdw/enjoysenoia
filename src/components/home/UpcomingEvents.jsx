@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
-import { getEvents } from '../../services/dataService';
+import { getEvents, getEventSlug } from '../../services/dataService';
 
 export default function UpcomingEvents() {
   const allEvents = getEvents();
@@ -38,7 +38,7 @@ export default function UpcomingEvents() {
         {/* Events Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {upcomingEvents.map((evt, idx) => {
-            const slug = evt.link ? evt.link.replace('/events/', '') : `event-${idx}`;
+            const slug = getEventSlug(evt);
             return (
               <div 
                 key={evt.title + idx}

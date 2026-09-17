@@ -1,25 +1,48 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Shield, Lock, Mail, ArrowRight } from 'lucide-react';
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import SEO from '../components/common/SEO';
+import { auth } from '../services/firebase';
+import { isAuthorizedAdmin } from '../services/adminAccess';
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [searchParams] = useSearchParams();
+  const [error, setError] = useState(
+    searchParams.get('denied') ? 'That account is not authorized for the DDA portal.' : ''
+  );
+  const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  // Accounts live in Firebase Authentication. The portal has no credentials of
+  // its own, and Firestore rules decide what an account may write.
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Allow standard admin credentials or simulated passwordless login for authorized emails
-    const authorized = ['jermdw@gmail.com', 'welcome@enjoysenoia.com', 'treasurer@enjoysenoia.com', 'webmaster@enjoysenoia.com', 'admin@enjoysenoia.com'];
-    
-    if (email && (authorized.includes(email.toLowerCase().trim()) || password === 'senoiadda2026' || password === 'admin')) {
-      sessionStorage.setItem('dda_admin_user', email.toLowerCase().trim() || 'admin@enjoysenoia.com');
+    setError('');
+    setSubmitting(true);
+
+    try {
+      const credential = await signInWithEmailAndPassword(auth, email.trim(), password);
+
+      // A valid account is not automatically an administrator.
+      if (!(await isAuthorizedAdmin(credential.user))) {
+        await signOut(auth).catch(() => {});
+        setError('That account is not authorized for the DDA portal.');
+        return;
+      }
+
       navigate('/admin/dashboard');
-    } else {
-      // Demo / preview mode entry for authorized DDA testers
-      sessionStorage.setItem('dda_admin_user', email.toLowerCase().trim() || 'volunteer@enjoysenoia.com');
-      navigate('/admin/dashboard');
+    } catch (err) {
+      console.warn('Admin sign-in failed:', err?.code);
+      setError(
+        err?.code === 'auth/invalid-credential' || err?.code === 'auth/wrong-password' || err?.code === 'auth/user-not-found'
+          ? 'That email and password combination was not recognized.'
+          : 'Sign-in is unavailable right now. Please try again, or contact the webmaster.'
+      );
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -79,15 +102,17 @@ export default function AdminLoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-sm focus:outline-none focus:ring-2 focus:ring-senoia-gold"
+                required
               />
             </div>
           </div>
 
           <button
             type="submit"
-            className="w-full py-3 rounded-xl bg-senoia-red hover:bg-senoia-darkred text-white text-sm font-semibold shadow-md transition-all hover:scale-101 flex items-center justify-center space-x-2"
+            disabled={submitting}
+            className="w-full py-3 rounded-xl bg-senoia-red hover:bg-senoia-darkred disabled:opacity-60 text-white text-sm font-semibold shadow-md transition-all hover:scale-101 flex items-center justify-center space-x-2"
           >
-            <span>Log In to Dashboard</span>
+            <span>{submitting ? 'Signing in…' : 'Log In to Dashboard'}</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </form>

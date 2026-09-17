@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Newspaper, Calendar, ArrowRight } from 'lucide-react';
 import SEO from '../components/common/SEO';
-import { getNews } from '../services/dataService';
+import { getNews, isNewsArticle } from '../services/dataService';
 
 export default function NewsPage() {
   const newsItems = getNews();
@@ -30,7 +30,11 @@ export default function NewsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {newsItems.map((item, idx) => {
-            const slug = item.link ? item.link.replace('/news/', '') : `story-${idx}`;
+            // Legacy photo-gallery records live at /photo-galleries/..., so they
+            // link to the media page instead of a news route that cannot exist.
+            const isArticle = isNewsArticle(item);
+            const slug = isArticle ? item.link.replace('/news/', '') : null;
+            const target = isArticle ? `/news/${slug}` : '/media';
             return (
               <article
                 key={item.title + idx}
@@ -63,10 +67,10 @@ export default function NewsPage() {
 
                   <div className="pt-3 border-t border-stone-100 flex items-center justify-between">
                     <Link
-                      to={`/news/${slug}`}
+                      to={target}
                       className="inline-flex items-center text-xs font-semibold text-senoia-red hover:text-senoia-darkred"
                     >
-                      <span>Read Story</span>
+                      <span>{isArticle ? 'Read Story' : 'View Gallery'}</span>
                       <ArrowRight className="ml-1 w-3.5 h-3.5" />
                     </Link>
                     <span className="text-xs text-stone-400">Senoia DDA</span>

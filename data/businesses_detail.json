@@ -1,17 +1,5 @@
 [
   {
-    "name": "Example Restaurant",
-    "slug": "example-restaurant",
-    "category": "General",
-    "phone": "123-456-7890",
-    "email": "info@exampleresrestaurant.com",
-    "website": "https://goo.gl/maps/Y7Um8CTeVsYdfmdv5",
-    "facebook": "https://www.facebook.com/exampleresrestaurant",
-    "instagram": "https://www.instagram.com/exampleresrestaurant",
-    "image": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6356bff7a67ee7495cff71e6_AdobeStock_249582332_Preview.webp",
-    "path": "/downtown-business/example-restaurant"
-  },
-  {
     "name": "Andreone Sports & Family Chiropractic",
     "slug": "andreone-sports-family-chiropractic",
     "category": "General",

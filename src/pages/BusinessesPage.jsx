@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Building2, Search, Phone, Mail, MapPin, ExternalLink, Utensils, ShoppingBag, Scissors, Stethoscope, Landmark } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import { getBusinesses } from '../services/dataService';
+import { fuzzyMatchAny } from '../utils/fuzzySearch';
 
 const CATEGORY_MAP = [
   { id: 'all', label: 'All Businesses', icon: Building2 },
@@ -24,16 +25,16 @@ export default function BusinessesPage() {
       let matchesCat = true;
       if (selectedCat !== 'all') {
         const catConfig = CATEGORY_MAP.find(c => c.id === selectedCat);
-        const bizCatLower = (biz.category || '').toLowerCase();
-        matchesCat = catConfig?.matches.some(m => bizCatLower.includes(m)) || false;
+        // Every record in the dataset is still categorised "General", so the
+        // business name is also searched for the category's keywords. Filtering
+        // stays approximate until the directory data carries real categories.
+        const haystack = `${biz.category || ''} ${biz.name || ''}`.toLowerCase();
+        matchesCat = catConfig?.matches.some(m => haystack.includes(m)) || false;
       }
 
-      // Search Match
-      const q = searchQuery.toLowerCase().trim();
-      const matchesSearch = !q ||
-        biz.name.toLowerCase().includes(q) ||
-        (biz.category || '').toLowerCase().includes(q) ||
-        (biz.address || '').toLowerCase().includes(q);
+      // Search match, forgiving small typos in the query.
+      const q = searchQuery.trim();
+      const matchesSearch = !q || fuzzyMatchAny([biz.name, biz.category, biz.address], q);
 
       return matchesCat && matchesSearch;
     });

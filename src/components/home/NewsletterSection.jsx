@@ -17,28 +17,21 @@ export default function NewsletterSection() {
     }
 
     setStatus('loading');
+    setErrorMessage('');
     try {
-      // Attempt Firestore capture
-      try {
-        await addDoc(collection(db, 'newsletter_subscribers'), {
-          email: email.trim().toLowerCase(),
-          subscribedAt: serverTimestamp(),
-          source: 'homepage_cta'
-        });
-      } catch (err) {
-        console.warn('Firestore subscription offline or preview mode:', err);
-      }
-
-      // Also persist locally in browser storage for preview demo
-      const existing = JSON.parse(localStorage.getItem('enjoysenoia_subscribers') || '[]');
-      existing.push({ email: email.trim().toLowerCase(), date: new Date().toISOString() });
-      localStorage.setItem('enjoysenoia_subscribers', JSON.stringify(existing));
-
+      await addDoc(collection(db, 'newsletter_subscribers'), {
+        email: email.trim().toLowerCase(),
+        subscribedAt: serverTimestamp(),
+        source: 'homepage_cta'
+      });
       setStatus('success');
       setEmail('');
     } catch (err) {
+      // Never report success for a subscription that was not stored — the
+      // address would be missing from the admin export.
+      console.warn('Newsletter subscription failed:', err);
       setStatus('error');
-      setErrorMessage('Something went wrong. Please try again later.');
+      setErrorMessage('We could not save your subscription. Please try again later.');
     }
   };
 

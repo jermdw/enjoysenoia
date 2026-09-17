@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, Search, ArrowRight } from 'lucide-react';
 import SEO from '../components/common/SEO';
-import { getEvents } from '../services/dataService';
+import { getEvents, getEventSlug } from '../services/dataService';
 
 export default function EventsPage() {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -92,7 +92,7 @@ export default function EventsPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredEvents.map((evt, idx) => {
-              const slug = evt.link ? evt.link.replace('/events/', '') : `event-${idx}`;
+              const slug = getEventSlug(evt);
               return (
                 <div
                   key={evt.title + idx}
