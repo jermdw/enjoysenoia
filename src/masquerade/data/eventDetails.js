@@ -215,23 +215,16 @@ export const performers = [
   },
 ];
 
+/**
+ * The panel beside the dress code. The organizer replaced the original list of
+ * activities (scavenger hunt, best dressed, lawn games, boutique) with the run
+ * of show, one comment per item, so these are her schedule lines verbatim.
+ */
 export const happenings = [
-  {
-    title: '5:30 VIP doors open',
-    detail: 'Tasting room open, ambient cirque & magic entertainment, passed appetizers, cash bar and artisan boutique open.',
-  },
-  {
-    title: '7:00 Seating for dinner',
-    detail: '',
-  },
-  {
-    title: 'Lawn games',
-    detail: 'Croquet and chess, open all night — Wonderland rules apply.',
-  },
-  {
-    title: 'Artisan boutique',
-    detail: 'Local makers and curiosities, open until 9:30 PM.',
-  },
+  '5:30 VIP doors open, tasting room open, ambient cirque & magic entertainment, passed appetizers, cash bar and artisan boutique open',
+  '7:00 Seating for dinner',
+  '8:30 Fire show, contest winner announcements (best dressed and scavenger hunt) dance party begins',
+  '11:30 The evening concludes',
 ];
 
 /** NEEDED: confirmed sponsor list and logo files. Tiers are confirmed. */

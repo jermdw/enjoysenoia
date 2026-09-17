@@ -30,18 +30,13 @@ export default function Invitation() {
             <div className="border border-[var(--masq-line)] rounded-sm p-7 sm:p-8 bg-[var(--masq-ink-soft)]">
               <h3 className="text-xl text-[var(--masq-cream)] mb-6">Curious Happenings</h3>
               <ul className="space-y-5">
-                {happenings.map((item, i) => (
-                  <li key={item.title} className="flex gap-4">
+                {happenings.map((line, i) => (
+                  <li key={line} className="flex gap-4">
                     <Suit
                       suit={['heart', 'spade', 'club', 'diamond'][i % 4]}
                       className="w-3.5 h-3.5 mt-1.5 shrink-0 text-[var(--masq-gold)]"
                     />
-                    <div>
-                      <p className="text-[var(--masq-cream)] font-semibold">{item.title}</p>
-                      {item.detail && (
-                        <p className="text-[var(--masq-cream-dim)] leading-snug">{item.detail}</p>
-                      )}
-                    </div>
+                    <p className="text-[var(--masq-cream-dim)] leading-snug">{line}</p>
                   </li>
                 ))}
               </ul>
