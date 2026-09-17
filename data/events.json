@@ -45,6 +45,18 @@
     "is_recurring": false
   },
   {
+    "title": "The 3rd Annual Halloween Masquerade: Down the Rabbit Hole",
+    "date_time": "October 24, 2026 5:30 PM",
+    "category": "DDA Event",
+    "description": "An elegant Halloween masquerade at the Stone Lodge at Marimac Lake — cirque, fire, a seated dinner and the Wonderland After Party. 18+. Tickets from $25.",
+    "image": "/masquerade/event-card.svg",
+    "link": "/events/masquerade-down-the-rabbit-hole",
+    "is_recurring": false,
+    "location": "The Stone Lodge at Marimac Lake, Senoia, GA",
+    "ticket_url": "/masquerade",
+    "ticket_label": "Visit the Official Masquerade Site"
+  },
+  {
     "title": "Light Up Senoia Parade",
     "date_time": "December 5, 2026 4:00 PM",
     "category": "December 5, 2026 4:00 PM",

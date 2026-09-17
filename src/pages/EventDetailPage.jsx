@@ -20,13 +20,18 @@ export default function EventDetailPage() {
     );
   }
 
-  // Specific ticket/external link handlers
+  // Events with their own site or box office set `ticket_url` in data/events.json.
+  // The two legacy checks below stay until those entries carry the field too.
   const isCarShow = slug?.includes('car-show') || event?.title?.toLowerCase().includes('car show');
   const isPorchfest = slug?.includes('porchfest') || event?.title?.toLowerCase().includes('porchfest');
 
-  let ticketUrl = null;
-  if (isCarShow) ticketUrl = 'https://senoiacar.show';
-  if (isPorchfest) ticketUrl = 'https://senoiaporchfest.org';
+  let ticketUrl = event?.ticket_url || null;
+  if (!ticketUrl && isCarShow) ticketUrl = 'https://senoiacar.show';
+  if (!ticketUrl && isPorchfest) ticketUrl = 'https://senoiaporchfest.org';
+
+  // A ticketed event must never fall through to the "free community event" badge.
+  const isInternalTicketLink = Boolean(ticketUrl && ticketUrl.startsWith('/'));
+  const ticketLabel = event?.ticket_label || 'Official Event & Ticket Website';
 
   return (
     <div className="py-12 sm:py-16 bg-stone-50 min-h-screen">
@@ -73,7 +78,7 @@ export default function EventDetailPage() {
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="w-4 h-4 text-senoia-red" />
-                <span>Historic Downtown Senoia, GA</span>
+                <span>{event?.location || 'Historic Downtown Senoia, GA'}</span>
               </div>
             </div>
           </div>
@@ -90,15 +95,25 @@ export default function EventDetailPage() {
           {/* Action Bar */}
           <div className="pt-6 border-t border-stone-200 flex flex-wrap items-center justify-between gap-4">
             {ticketUrl ? (
-              <a
-                href={ticketUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-3 rounded-xl bg-senoia-red hover:bg-senoia-darkred text-white font-semibold text-sm shadow-md transition-all hover:scale-105"
-              >
-                <Ticket className="mr-2 w-4 h-4" />
-                <span>Official Event & Ticket Website</span>
-              </a>
+              isInternalTicketLink ? (
+                <Link
+                  to={ticketUrl}
+                  className="inline-flex items-center px-6 py-3 rounded-xl bg-senoia-red hover:bg-senoia-darkred text-white font-semibold text-sm shadow-md transition-all hover:scale-105"
+                >
+                  <Ticket className="mr-2 w-4 h-4" />
+                  <span>{ticketLabel}</span>
+                </Link>
+              ) : (
+                <a
+                  href={ticketUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-6 py-3 rounded-xl bg-senoia-red hover:bg-senoia-darkred text-white font-semibold text-sm shadow-md transition-all hover:scale-105"
+                >
+                  <Ticket className="mr-2 w-4 h-4" />
+                  <span>{ticketLabel}</span>
+                </a>
+              )
             ) : (
               <div className="inline-flex items-center space-x-2 text-sm font-semibold text-emerald-700 bg-emerald-50 px-4 py-2 rounded-xl border border-emerald-200">
                 <Sparkles className="w-4 h-4" />

@@ -5,8 +5,21 @@ import { getEvents, getEventSlug } from '../../services/dataService';
 
 export default function UpcomingEvents() {
   const allEvents = getEvents();
-  // Filter for upcoming / signature non-recurring events
-  const upcomingEvents = allEvents.filter(e => !e.is_recurring).slice(0, 4);
+
+  // Show the next four one-off events by date. When nothing is coming up the
+  // section says so — an "Upcoming Events" list of expired dates is worse than
+  // an empty one.
+  const oneOffEvents = allEvents.filter(e => !e.is_recurring);
+  const startOfToday = new Date();
+  startOfToday.setHours(0, 0, 0, 0);
+
+  const stillToCome = oneOffEvents
+    .map(evt => ({ evt, date: new Date(evt.date_time) }))
+    .filter(({ date }) => !Number.isNaN(date.getTime()) && date >= startOfToday)
+    .sort((a, b) => a.date - b.date)
+    .map(({ evt }) => evt);
+
+  const upcomingEvents = stillToCome.slice(0, 4);
 
   return (
     <section id="events" className="py-16 lg:py-24 bg-white border-b border-stone-200">
@@ -36,6 +49,14 @@ export default function UpcomingEvents() {
         </div>
 
         {/* Events Grid */}
+        {upcomingEvents.length === 0 ? (
+          <div className="text-center py-12 bg-stone-50 rounded-2xl border border-stone-200 space-y-3">
+            <p className="text-lg font-serif font-bold text-stone-700">No upcoming events right now</p>
+            <p className="text-sm text-stone-500">
+              New dates are added often — browse the full calendar for what else is planned.
+            </p>
+          </div>
+        ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {upcomingEvents.map((evt, idx) => {
             const slug = getEventSlug(evt);
@@ -91,6 +112,7 @@ export default function UpcomingEvents() {
             );
           })}
         </div>
+        )}
       </div>
     </section>
   );
