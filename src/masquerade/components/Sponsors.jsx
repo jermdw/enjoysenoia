@@ -52,9 +52,6 @@ export default function Sponsors() {
             >
               <Suit suit={suitForTier[tier.id]} className="w-5 h-5 mx-auto text-[var(--masq-crimson-bright)]" />
               <h3 className="mt-4 text-xl text-[var(--masq-cream)]">{tier.name}</h3>
-              <p className="mt-3 masq-display text-3xl text-[var(--masq-gold)]">
-                ${tier.price.toLocaleString()}
-              </p>
               <p className="mt-3 text-[var(--masq-cream-dim)] leading-snug">{tier.blurb}</p>
             </article>
           ))}

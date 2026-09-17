@@ -18,6 +18,7 @@ export const event = {
   timeLabel: '5:30 PM – 11:30 PM',
   ageLabel: '18 and over',
   weatherLabel: 'Rain or shine',
+  // Not rendered — the organizer cut the capacity line from the FAQ intro.
   capacityLabel: 'Limited to roughly 200 guests',
   venue: {
     // CONFIRM: the intake doc gives one string mixing two locations —
@@ -237,6 +238,11 @@ export const happenings = [
 ];
 
 /** NEEDED: confirmed sponsor list and logo files. Tiers are confirmed. */
+/**
+ * Sponsorship tiers. The amounts are no longer shown — the organizer wants the
+ * sponsor's logo in that spot instead — but they are what each package costs,
+ * so they stay here for the conversation that follows the enquiry email.
+ */
 export const sponsorTiers = [
   { id: 'queen', name: 'Queen of Hearts', price: 3000, blurb: 'Title billing across the evening.' },
   { id: 'hatter', name: 'Mad Hatter', price: 1500, blurb: 'Featured presence throughout Wonderland.' },

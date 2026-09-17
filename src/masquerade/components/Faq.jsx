@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
 import { SectionHeading } from './Ornament';
-import { faqs, event } from '../data/eventDetails';
+import { faqs } from '../data/eventDetails';
 
 export default function Faq() {
   return (
@@ -10,7 +10,7 @@ export default function Faq() {
         <SectionHeading
           eyebrow="Know before you go"
           title="Curious Questions"
-          lead={`${event.capacityLabel}. Here is everything else worth knowing before you arrive.`}
+          lead="Here is everything worth knowing before you arrive."
         />
 
         {/* Native <details> keeps this keyboard- and screen-reader-friendly
