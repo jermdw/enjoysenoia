@@ -8,7 +8,7 @@ export default function Schedule() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="The run of show"
-          title="An Evening in Eight Acts"
+          title="The Night Unfolds in Chapters"
           lead="From the first pour in the tasting room to last call under the trees."
         />
 

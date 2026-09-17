@@ -117,7 +117,6 @@ export default function Tickets() {
         <div className="mt-10 max-w-2xl mx-auto text-center space-y-2 text-[var(--masq-cream-dim)]">
           <p>{ticketing.salesNote}</p>
           <p className="text-sm">{ticketing.refundPolicy}</p>
-          <p className="text-sm">Tickets are handled through {ticketing.platform}.</p>
         </div>
       </div>
     </section>

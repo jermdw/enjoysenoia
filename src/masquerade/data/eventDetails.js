@@ -44,6 +44,8 @@ export const heroBlurb = [
 
 /** Ticketing. NEEDED: the live Ticket Tailor box office URL / widget id. */
 export const ticketing = {
+  // Not rendered — the organizer cut the "handled through Ticket Tailor" line
+  // from the sales note. Kept because the box office still has to be built here.
   platform: 'Ticket Tailor',
   url: null, // NEEDED: e.g. https://buytickets.at/thehalloweenmasquerade
   salesNote: 'Dinner and VIP ticket sales close October 20. After Party tickets will also be sold at the door.',
