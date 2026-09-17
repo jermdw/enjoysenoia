@@ -16,7 +16,7 @@ export default function Invitation() {
           lead="For one night, the Stone Lodge at Marimac Lake turns into Wonderland — hand passed Hors D’Oeuvres, artisanal cocktails, VIP tasting room, Cirque style acrobatic entertainment, cardistry and illusions, elegant seated dinner, DJ dance party and so much more."
         />
 
-        <Ornament suit="spade" className="my-14" />
+        <Ornament variant="keyhole" className="my-14" />
 
         <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-start">
           {/* Dress code — the copy the organizer wrote, nearly untouched. */}

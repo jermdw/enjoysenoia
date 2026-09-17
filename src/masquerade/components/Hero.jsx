@@ -1,6 +1,6 @@
 import React from 'react';
 import { CalendarDays, Clock, MapPin } from 'lucide-react';
-import { Suit } from './Ornament';
+import { Suit, Key } from './Ornament';
 import Ordinal from './Ordinal';
 import { event, heroBlurb } from '../data/eventDetails';
 
@@ -55,7 +55,7 @@ export default function Hero() {
 
         <div className="flex items-center justify-center gap-4 mt-7" aria-hidden="true">
           <span className="masq-rule w-12 sm:w-24" />
-          <Suit suit="heart" className="w-4 h-4 text-[var(--masq-crimson-bright)]" />
+          <Key className="w-16 h-6 sm:w-20 sm:h-7 text-[var(--masq-gold)]" />
           <span className="masq-rule w-12 sm:w-24" />
         </div>
 

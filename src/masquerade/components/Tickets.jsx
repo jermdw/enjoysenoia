@@ -112,7 +112,7 @@ export default function Tickets() {
           ))}
         </div>
 
-        <Ornament suit="club" className="mt-16" />
+        <Ornament variant="key" className="mt-16" />
 
         <div className="mt-10 max-w-2xl mx-auto text-center space-y-2 text-[var(--masq-cream-dim)]">
           <p>{ticketing.salesNote}</p>

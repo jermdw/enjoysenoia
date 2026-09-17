@@ -19,12 +19,76 @@ export function Suit({ suit = 'heart', className = 'w-4 h-4' }) {
   );
 }
 
-/** A thin gold rule with a suit at its center, used between sections. */
-export default function Ornament({ suit = 'diamond', className = '' }) {
+/**
+ * Ornate skeleton key, lying horizontally as it does on the organizer's title
+ * card: toothed bit at the left, quatrefoil bow at the right. Stroke-drawn, so
+ * it takes its weight from the surrounding type rather than reading as a solid
+ * blob at small sizes.
+ */
+export function Key({ className = 'w-20 h-7' }) {
+  return (
+    <svg
+      viewBox="0 0 96 32"
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="17" cy="16" r="3.2" />
+      <path d="M21 16h39" />
+      <path d="M24 16.6v7.4M30 16.6v5.6M36 16.6v3.8" />
+      <path d="M60 11.6v8.8M63.6 13.2v5.6" />
+      <circle cx="76" cy="10.8" r="4.6" />
+      <circle cx="76" cy="21.2" r="4.6" />
+      <circle cx="70.8" cy="16" r="4.6" />
+      <circle cx="81.2" cy="16" r="4.6" />
+      <circle cx="76" cy="16" r="2.3" />
+    </svg>
+  );
+}
+
+/** Keyhole set in an arched cartouche, double-ruled as on the title card. */
+export function Keyhole({ className = 'w-8 h-12' }) {
+  return (
+    <svg
+      viewBox="0 0 48 72"
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.3"
+      strokeLinejoin="round"
+    >
+      <path d="M5 68V21C5 11 13 4 24 4s19 7 19 17v47Z" />
+      <path d="M9.5 63.5V21c0-7.6 6-12.5 14.5-12.5S38.5 13.4 38.5 21v42.5Z" />
+      <circle cx="24" cy="29" r="5.4" />
+      <path d="M20.4 33.2 17.8 50h12.4l-2.6-16.8Z" />
+    </svg>
+  );
+}
+
+/**
+ * A thin gold rule with an ornament at its centre, used between sections.
+ * `variant` picks the centrepiece: a card suit by default, or the key / keyhole
+ * from the title card.
+ */
+export default function Ornament({ variant = 'suit', suit = 'diamond', className = '' }) {
+  const centre =
+    variant === 'key' ? (
+      <Key className="w-16 h-6 sm:w-20 sm:h-7 text-[var(--masq-gold)]" />
+    ) : variant === 'keyhole' ? (
+      <Keyhole className="w-5 h-8 text-[var(--masq-gold)]" />
+    ) : (
+      <Suit suit={suit} className="w-3 h-3 text-[var(--masq-gold)]" />
+    );
+
   return (
     <div className={`flex items-center justify-center gap-4 ${className}`} aria-hidden="true">
       <span className="masq-rule w-16 sm:w-28" />
-      <Suit suit={suit} className="w-3 h-3 text-[var(--masq-gold)]" />
+      {centre}
       <span className="masq-rule w-16 sm:w-28" />
     </div>
   );
