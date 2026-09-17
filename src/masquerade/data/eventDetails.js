@@ -71,7 +71,7 @@ export const tiers = [
       'Commemorative photo keepsake',
       'Access to the Stone Lodge tasting room (planned: bourbon & wine)',
       'Passed hors d’oeuvres',
-      'Ambient entertainment throughout (cirque acrobatics, tableside magic)',
+      'Two acts of ambient entertainment throughout (cirque acrobatics, tableside magic)',
       'Seated dinner',
       'Cash bar',
       'After-dark fire experience',
@@ -92,7 +92,7 @@ export const tiers = [
       'An elegant seated dinner beneath the tent, followed by the doors of Wonderland swinging open.',
     includes: [
       'Admission beginning at 6:30 PM',
-      'Ambient entertainment throughout (cirque acrobatics, tableside magic)',
+      'One act of ambient entertainment throughout (cirque acrobatics, tableside magic)',
       'Seated dinner',
       'Cash bar',
       'After-dark fire experience',
