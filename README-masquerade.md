@@ -72,3 +72,35 @@ Firebase Hosting needs a second site, since one hosting site can't route by host
 The simplest build for that second site is the same `dist` output with a rewrite sending
 `**` to `/index.html` and `/` redirecting to `/masquerade`. If the two sites should ever
 diverge, split the micro-site into its own Vite entry point first.
+
+
+## Deploying
+
+The site is on Firebase Hosting in the project `enjoysenoia`, live at
+<https://enjoysenoia.web.app> (`/masquerade` for the micro-site).
+
+Both `.firebaserc` and `.env.production` are gitignored, so a fresh clone needs
+them before a production build:
+
+```bash
+firebase use --add                 # pick `enjoysenoia`, alias it `default`
+cp .env.example .env.production    # fill from the command in that file
+npm run build
+firebase deploy --only hosting
+```
+
+`--only hosting` is deliberate. `firebase deploy` on its own would also push
+`firestore.rules` and `storage.rules`; the hardened versions of those live in
+PR #3 and are not on this branch yet, so deploying them from here would be a
+step backwards.
+
+Still outstanding before this is a real launch:
+
+- **Firestore is not set up** in the project. The newsletter form on the DDA
+  home page writes to `newsletter_subscribers` and will fail until a database
+  exists and rules are deployed. The Masquerade page itself is static and does
+  not touch Firestore.
+- **Restrict the web API key** to HTTP referrers in the Google Cloud console.
+- **The domain** is still `enjoysenoia.web.app`. Serving the micro-site at
+  thehalloweenmasquerade.com needs a second Hosting site and a `hosting` array
+  with targets in firebase.json.

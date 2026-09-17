@@ -26,5 +26,10 @@ dist-ssr
 # Firebase
 .firebase
 .firebaserc
+
+# Local Firebase web config (see .env.example and README-masquerade.md)
+.env
+.env.*
+!.env.example
 firestore-debug.log
 ui-debug.log
