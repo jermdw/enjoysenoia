@@ -25,6 +25,7 @@ export const event = {
     // "Stone Lodge at Marimac Lake, Senoia Library: 148 Pylant Street".
     // 148 Pylant Street is treated here as parking (see FAQ), not the venue address.
     name: 'The Stone Lodge at Marimac Lake',
+    // Not rendered — the organizer deleted the footer, which was its only home.
     cityState: 'Senoia, Georgia',
     // How the venue is written on the page. `name` stays clean because the
     // JSON-LD in MasqueradeSEO pairs it with a structured address.
@@ -33,7 +34,10 @@ export const event = {
     // Not rendered — the organizer cut it from the page; the FAQ carries the fact.
     setting: 'An outdoor evening under tent, with the Stone Lodge open indoors for VIP guests.',
   },
+  // Not rendered — went with the footer. This is the DDA's presenting credit;
+  // worth confirming the event is allowed to run without it.
   host: 'Presented in support of the Senoia Downtown Development Authority',
+  // Not rendered — the organizer deleted the footer, which was its only home.
   hashtag: '#DowntheRabbitHole',
 };
 
@@ -298,6 +302,7 @@ export const contact = {
     handle: '@EnjoySenoia',
     url: 'https://www.instagram.com/enjoysenoia/', // CONFIRM: handle URL
   },
+  // Not rendered — the organizer deleted the footer, which was its only home.
   ddaUrl: 'https://enjoysenoia.com',
 };
 

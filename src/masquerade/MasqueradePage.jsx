@@ -9,7 +9,6 @@ import Schedule from './components/Schedule';
 import Sponsors from './components/Sponsors';
 import Faq from './components/Faq';
 import Follow from './components/Follow';
-import MasqueradeFooter from './components/MasqueradeFooter';
 
 /**
  * The Masquerade micro-site — its own brand, rendered outside the DDA Layout
@@ -43,7 +42,6 @@ export default function MasqueradePage() {
         <Faq />
         <Follow />
       </main>
-      <MasqueradeFooter />
     </div>
   );
 }
