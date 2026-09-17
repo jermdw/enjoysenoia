@@ -24,6 +24,23 @@ export default function Navbar() {
     setEventsDropdown(false);
   }, [location.pathname]);
 
+  // Escape closes whichever dropdown is open, wherever focus sits.
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key !== 'Escape') return;
+      setAboutDropdown(false);
+      setEventsDropdown(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  // Closes a dropdown once focus leaves it entirely, so tabbing past the last
+  // link behaves like moving the pointer away.
+  const closeOnBlur = (setter) => (e) => {
+    if (!e.currentTarget.contains(e.relatedTarget)) setter(false);
+  };
+
   return (
     <header className={`sticky top-0 z-50 transition-all duration-200 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-md py-3' : 'bg-white py-4 border-b border-stone-200'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -51,8 +68,12 @@ export default function Navbar() {
               className="relative"
               onMouseEnter={() => setAboutDropdown(true)}
               onMouseLeave={() => setAboutDropdown(false)}
+              onBlur={closeOnBlur(setAboutDropdown)}
             >
               <button 
+                type="button"
+                onClick={() => setAboutDropdown((open) => !open)}
+                aria-haspopup="true" 
                 className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${location.pathname.startsWith('/about') || location.pathname.includes('senoia-history') || location.pathname.includes('files-forms') || location.pathname.includes('business-portal') ? 'text-senoia-red font-semibold bg-stone-100' : 'text-stone-700 hover:text-senoia-red hover:bg-stone-50'}`}
                 aria-expanded={aboutDropdown}
               >
@@ -91,8 +112,12 @@ export default function Navbar() {
               className="relative"
               onMouseEnter={() => setEventsDropdown(true)}
               onMouseLeave={() => setEventsDropdown(false)}
+              onBlur={closeOnBlur(setEventsDropdown)}
             >
               <button 
+                type="button"
+                onClick={() => setEventsDropdown((open) => !open)}
+                aria-haspopup="true" 
                 className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${location.pathname.startsWith('/events') || location.pathname.startsWith('/past-events') ? 'text-senoia-red font-semibold bg-stone-100' : 'text-stone-700 hover:text-senoia-red hover:bg-stone-50'}`}
                 aria-expanded={eventsDropdown}
               >

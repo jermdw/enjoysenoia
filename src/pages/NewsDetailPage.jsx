@@ -2,12 +2,24 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, ArrowLeft, Share2 } from 'lucide-react';
 import SEO from '../components/common/SEO';
-import { getNews } from '../services/dataService';
+import NotFoundNotice from '../components/common/NotFoundNotice';
+import { getNewsArticles } from '../services/dataService';
 
 export default function NewsDetailPage() {
   const { slug } = useParams();
-  const allNews = getNews();
-  const article = allNews.find(n => n.link && n.link.includes(slug)) || allNews[0];
+  // Only records that actually live at /news/<slug> can answer this route.
+  const article = getNewsArticles().find(n => n.link === `/news/${slug}`);
+
+  if (!article) {
+    return (
+      <NotFoundNotice
+        title="Story not found"
+        message="This story may have moved. Browse the newsroom for the latest from downtown Senoia."
+        backTo="/news"
+        backLabel="Back to News"
+      />
+    );
+  }
 
   return (
     <div className="py-12 sm:py-16 bg-stone-50 min-h-screen">

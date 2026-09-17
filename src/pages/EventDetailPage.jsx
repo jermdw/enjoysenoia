@@ -2,11 +2,23 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Clock, MapPin, ArrowLeft, Ticket, Share2, Sparkles } from 'lucide-react';
 import SEO from '../components/common/SEO';
-import { getEventBySlug, getEvents } from '../services/dataService';
+import NotFoundNotice from '../components/common/NotFoundNotice';
+import { getEventBySlug } from '../services/dataService';
 
 export default function EventDetailPage() {
   const { slug } = useParams();
-  const event = getEventBySlug(slug) || getEvents()[0];
+  const event = getEventBySlug(slug);
+
+  if (!event) {
+    return (
+      <NotFoundNotice
+        title="Event not found"
+        message="This event may have ended or moved. Browse the calendar for what is coming up in downtown Senoia."
+        backTo="/events"
+        backLabel="Back to All Events"
+      />
+    );
+  }
 
   // Specific ticket/external link handlers
   const isCarShow = slug?.includes('car-show') || event?.title?.toLowerCase().includes('car show');

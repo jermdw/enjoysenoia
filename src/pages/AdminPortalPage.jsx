@@ -1,37 +1,74 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Shield, Calendar, Building2, Newspaper, Mail, Plus, Trash2, Download, LogOut } from 'lucide-react';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import SEO from '../components/common/SEO';
 import { getEvents, getBusinesses, getNews } from '../services/dataService';
+import { auth, db } from '../services/firebase';
 
 export default function AdminPortalPage() {
   const [activeTab, setActiveTab] = useState('events');
   const [events, setEvents] = useState(getEvents());
   const [businesses, setBusinesses] = useState(getBusinesses());
   const [news, setNews] = useState(getNews());
-  const [subscribers, setSubscribers] = useState([
-    { email: 'visitor1@gmail.com', date: '2026-08-20' },
-    { email: 'senoia_resident@yahoo.com', date: '2026-08-21' },
-    { email: 'shop_local@hotmail.com', date: '2026-08-22' }
-  ]);
+  const [subscribers, setSubscribers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState('');
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
 
-  const userEmail = sessionStorage.getItem('dda_admin_user') || 'volunteer@enjoysenoia.com';
+  const [userEmail, setUserEmail] = useState(null);
+  const [checkingAuth, setCheckingAuth] = useState(true);
 
+  // The dashboard renders nothing until Firebase confirms who is signed in;
+  // anyone who is not is sent back to the login page.
   useEffect(() => {
-    const saved = localStorage.getItem('enjoysenoia_subscribers');
-    if (saved) {
-      try {
-        setSubscribers(JSON.parse(saved));
-      } catch (e) {}
-    }
-  }, []);
+    return onAuthStateChanged(auth, (user) => {
+      setCheckingAuth(false);
+      if (user) {
+        setUserEmail(user.email);
+      } else {
+        setUserEmail(null);
+        navigate('/admin', { replace: true });
+      }
+    });
+  }, [navigate]);
 
-  const handleLogout = () => {
-    sessionStorage.removeItem('dda_admin_user');
+  // Subscribers come from Firestore, which only administrators may read.
+  useEffect(() => {
+    if (!userEmail) return;
+
+    let cancelled = false;
+    (async () => {
+      try {
+        const snapshot = await getDocs(query(collection(db, 'newsletter_subscribers'), orderBy('subscribedAt', 'desc')));
+        if (cancelled) return;
+        setSubscribers(
+          snapshot.docs.map((docSnap) => {
+            const data = docSnap.data();
+            return {
+              email: data.email,
+              date: data.subscribedAt?.toDate?.().toISOString().slice(0, 10) || '',
+            };
+          })
+        );
+      } catch (err) {
+        console.warn('Could not load newsletter subscribers:', err);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [userEmail]);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+    } catch (err) {
+      console.warn('Sign-out failed:', err);
+    }
     navigate('/admin');
   };
 
@@ -58,6 +95,19 @@ export default function AdminPortalPage() {
     link.click();
     document.body.removeChild(link);
   };
+
+  // Nothing about the portal renders for a visitor who is not signed in.
+  if (checkingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-stone-100 text-sm text-stone-500">
+        Checking your access…
+      </div>
+    );
+  }
+
+  if (!userEmail) {
+    return null;
+  }
 
   return (
     <div className="py-10 bg-stone-100 min-h-screen">
@@ -143,7 +193,7 @@ export default function AdminPortalPage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-stone-100">
-                    {events.slice(0, 15).map((evt, idx) => (
+                    {events.map((evt, idx) => (
                       <tr key={idx} className="hover:bg-stone-50/80">
                         <td className="p-3 font-semibold text-stone-900">{evt.title}</td>
                         <td className="p-3 text-xs">{evt.date_time}</td>
@@ -198,7 +248,7 @@ export default function AdminPortalPage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-stone-100">
-                    {businesses.slice(0, 15).map((b, idx) => (
+                    {businesses.map((b, idx) => (
                       <tr key={idx} className="hover:bg-stone-50/80">
                         <td className="p-3 font-semibold text-stone-900">{b.name}</td>
                         <td className="p-3 text-xs">{b.category}</td>

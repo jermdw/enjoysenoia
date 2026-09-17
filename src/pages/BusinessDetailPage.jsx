@@ -2,11 +2,23 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Phone, Mail, Globe, MapPin, ArrowLeft, Facebook, Instagram, Share2 } from 'lucide-react';
 import SEO from '../components/common/SEO';
-import { getBusinessBySlug, getBusinesses } from '../services/dataService';
+import NotFoundNotice from '../components/common/NotFoundNotice';
+import { getBusinessBySlug } from '../services/dataService';
 
 export default function BusinessDetailPage() {
   const { slug } = useParams();
-  const business = getBusinessBySlug(slug) || getBusinesses()[0];
+  const business = getBusinessBySlug(slug);
+
+  if (!business) {
+    return (
+      <NotFoundNotice
+        title="Business not found"
+        message="This listing may have changed or closed. Browse the directory for businesses in downtown Senoia."
+        backTo="/downtown-businesses"
+        backLabel="Back to the Directory"
+      />
+    );
+  }
 
   return (
     <div className="py-12 sm:py-16 bg-stone-50 min-h-screen">

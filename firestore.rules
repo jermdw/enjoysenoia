@@ -38,7 +38,16 @@ service cloud.firestore {
     }
 
     match /newsletter_subscribers/{subId} {
-      allow create: if true;
+      // Anyone may subscribe, but only with this exact shape: a plausible
+      // email, a server timestamp, and a known source tag.
+      allow create: if request.resource.data.keys().hasOnly(['email', 'subscribedAt', 'source'])
+        && request.resource.data.email is string
+        && request.resource.data.email.size() > 3
+        && request.resource.data.email.size() <= 254
+        && request.resource.data.email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')
+        && request.resource.data.subscribedAt == request.time
+        && request.resource.data.source is string
+        && request.resource.data.source.size() <= 64;
       allow read, update, delete: if isAdmin();
     }
 

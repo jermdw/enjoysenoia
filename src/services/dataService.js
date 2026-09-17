@@ -16,6 +16,19 @@ export const getNews = () => {
   return newsData;
 };
 
+// Some records in news.json are legacy photo galleries whose links point at
+// /photo-galleries/..., not /news/.... Mixing them into the news routes
+// produced URLs like /news//photo-galleries/<slug>.
+export const isNewsArticle = (item) => Boolean(item?.link?.startsWith('/news/'));
+
+export const getNewsArticles = () => {
+  return newsData.filter(isNewsArticle);
+};
+
+export const getPhotoGalleryItems = () => {
+  return newsData.filter((item) => !isNewsArticle(item));
+};
+
 export const getPageContent = (path) => {
   return pagesData[path] || null;
 };
