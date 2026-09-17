@@ -70,7 +70,13 @@ export default function MasqueradeSEO() {
 
     return () => {
       document.title = previousTitle;
-      if (previousDesc) descTag?.setAttribute('content', previousDesc);
+      // An empty previous description is still a value to restore; only a
+      // missing attribute should be removed.
+      if (previousDesc === null || previousDesc === undefined) {
+        descTag?.removeAttribute('content');
+      } else {
+        descTag?.setAttribute('content', previousDesc);
+      }
       created.forEach((tag) => tag.remove());
       ld.remove();
     };
