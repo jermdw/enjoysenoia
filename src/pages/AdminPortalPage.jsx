@@ -6,6 +6,7 @@ import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import SEO from '../components/common/SEO';
 import { getEvents, getBusinesses, getNews } from '../services/dataService';
 import { auth, db } from '../services/firebase';
+import { isAuthorizedAdmin } from '../services/adminAccess';
 
 export default function AdminPortalPage() {
   const [activeTab, setActiveTab] = useState('events');
@@ -21,16 +22,27 @@ export default function AdminPortalPage() {
   const [userEmail, setUserEmail] = useState(null);
   const [checkingAuth, setCheckingAuth] = useState(true);
 
-  // The dashboard renders nothing until Firebase confirms who is signed in;
-  // anyone who is not is sent back to the login page.
+  // Being signed in is not enough: the account must carry the admin claim (or
+  // be on the allowlist the Firebase Rules accept). Anyone else is signed out
+  // and sent back to the login page.
   useEffect(() => {
-    return onAuthStateChanged(auth, (user) => {
+    return onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        setUserEmail(null);
+        setCheckingAuth(false);
+        navigate('/admin', { replace: true });
+        return;
+      }
+
+      const authorized = await isAuthorizedAdmin(user);
       setCheckingAuth(false);
-      if (user) {
+
+      if (authorized) {
         setUserEmail(user.email);
       } else {
         setUserEmail(null);
-        navigate('/admin', { replace: true });
+        await signOut(auth).catch(() => {});
+        navigate('/admin?denied=1', { replace: true });
       }
     });
   }, [navigate]);

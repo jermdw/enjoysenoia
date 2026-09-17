@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Shield, Lock, Mail, ArrowRight } from 'lucide-react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import SEO from '../components/common/SEO';
 import { auth } from '../services/firebase';
+import { isAuthorizedAdmin } from '../services/adminAccess';
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [searchParams] = useSearchParams();
+  const [error, setError] = useState(
+    searchParams.get('denied') ? 'That account is not authorized for the DDA portal.' : ''
+  );
   const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
 
@@ -20,7 +24,15 @@ export default function AdminLoginPage() {
     setSubmitting(true);
 
     try {
-      await signInWithEmailAndPassword(auth, email.trim(), password);
+      const credential = await signInWithEmailAndPassword(auth, email.trim(), password);
+
+      // A valid account is not automatically an administrator.
+      if (!(await isAuthorizedAdmin(credential.user))) {
+        await signOut(auth).catch(() => {});
+        setError('That account is not authorized for the DDA portal.');
+        return;
+      }
+
       navigate('/admin/dashboard');
     } catch (err) {
       console.warn('Admin sign-in failed:', err?.code);
