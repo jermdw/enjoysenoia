@@ -32,6 +32,12 @@ export const event = {
   hashtag: '#DowntheRabbitHole',
 };
 
+/** Hero copy, as written by the organizer. Paragraphs render in order. */
+export const heroBlurb = [
+  'This Halloween, follow the white rabbit through the keyhole in the door for an evening inspired by the strange, elegant, and wonderfully curious world of Wonderland.',
+  'Spend the evening enjoying dinner, drinks, music, dancing, and a few curious surprises along the way.',
+];
+
 /** Ticketing. NEEDED: the live Ticket Tailor box office URL / widget id. */
 export const ticketing = {
   platform: 'Ticket Tailor',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { CalendarDays, Clock, MapPin } from 'lucide-react';
 import { Suit } from './Ornament';
-import { event } from '../data/eventDetails';
+import { event, heroBlurb } from '../data/eventDetails';
 
 /**
  * Falling playing cards. Positions are fixed rather than random so the layout
@@ -59,10 +59,13 @@ export default function Hero() {
           {event.theme}
         </p>
 
-        <p className="mt-8 text-lg sm:text-xl text-[var(--masq-cream-dim)] max-w-2xl mx-auto leading-relaxed">
-          An elegant evening of cirque and fire, a seated dinner beneath the tent, and a
-          Wonderland after party — masks encouraged, curiosity required.
-        </p>
+        <div className="mt-8 max-w-2xl mx-auto space-y-4">
+          {heroBlurb.map((para) => (
+            <p key={para} className="text-lg sm:text-xl text-[var(--masq-cream-dim)] leading-relaxed">
+              {para}
+            </p>
+          ))}
+        </div>
 
         <dl className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-8 text-[var(--masq-cream)]">
           <div className="flex items-center gap-2.5">
