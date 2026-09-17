@@ -164,6 +164,8 @@ export const dressCode = {
   note: 'Masks are not provided or sold on site — bring your own.',
 };
 
+/* Not rendered — the organizer cut the Feast section. Kept: the caterer and
+   bar are still who is booked, and the dietary note is a real commitment. */
 export const menu = {
   caterer: 'Maison Savahge',
   bar: 'Crust & Craft',
@@ -199,6 +201,8 @@ export const menu = {
   dietaryNote: 'A vegetarian option is available by request.',
 };
 
+/* Not rendered — the performer credits went with the Feast section. Kept: these
+   are the acts under contract. */
 export const performers = [
   {
     name: 'DJ Evan',

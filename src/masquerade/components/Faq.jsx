@@ -5,7 +5,7 @@ import { faqs, event } from '../data/eventDetails';
 
 export default function Faq() {
   return (
-    <section id="faq" className="py-24 sm:py-32 bg-[var(--masq-ink-soft)] scroll-mt-16">
+    <section id="faq" className="py-24 sm:py-32 bg-[var(--masq-ink)] scroll-mt-16">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Know before you go"

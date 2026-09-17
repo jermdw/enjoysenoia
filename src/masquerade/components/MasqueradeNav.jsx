@@ -7,7 +7,6 @@ const links = [
   { href: '#invitation', label: 'The Invitation' },
   { href: '#tickets', label: 'Tickets' },
   { href: '#schedule', label: 'The Evening' },
-  { href: '#feast', label: 'The Feast' },
   { href: '#sponsors', label: 'Sponsors' },
   { href: '#faq', label: 'Know Before You Go' },
 ];

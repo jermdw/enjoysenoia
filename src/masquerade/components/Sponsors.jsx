@@ -7,7 +7,7 @@ const suitForTier = { queen: 'heart', hatter: 'club', rabbit: 'diamond', curiosi
 
 export default function Sponsors() {
   return (
-    <section id="sponsors" className="py-24 sm:py-32 bg-[var(--masq-ink)] scroll-mt-16">
+    <section id="sponsors" className="py-24 sm:py-32 bg-[var(--masq-ink-soft)] scroll-mt-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="With thanks to"
