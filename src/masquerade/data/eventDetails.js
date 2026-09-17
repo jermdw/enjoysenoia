@@ -226,7 +226,7 @@ export const performers = [
 export const happenings = [
   '5:30 VIP doors open with our tasting room, ambient cirque & magic entertainment, with passed appetizers',
   '7:00 Seating for dinner, ambient entertainment ends, VIP tasting lounge closes',
-  '8:30 Fire show, contest winner announcements (best dressed and scavenger hunt) dance party begins',
+  '8:30 After dark fire experience, awards for best dressed, winner of scavenger hunt announced, dance party begins',
   'All evening: cash bar, artisan boutique, interactive games',
 ];
 
