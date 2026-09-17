@@ -1,0 +1,540 @@
+{
+  "collection": {
+    "id": "64d251c1c6ff04cab9044918",
+    "displayName": "Event locations",
+    "singularName": "Event location",
+    "slug": "event-locations",
+    "createdOn": "2023-08-08T14:31:29.937Z",
+    "lastUpdated": "2025-07-19T15:53:46.321Z",
+    "fields": [
+      {
+        "id": "9003862883f74cd864df5bd11c120e08",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "PlainText",
+        "slug": "location",
+        "displayName": "physical address address",
+        "helpText": null,
+        "validations": {
+          "singleLine": true
+        }
+      },
+      {
+        "id": "2f0060f123c8a80ca6b30f6bebe8d520",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Link",
+        "slug": "link-to-google-map",
+        "displayName": "link to google map",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "a60f50956a176207598f79ec0e5aeec8",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "PlainText",
+        "slug": "honeowner",
+        "displayName": "Homeowner",
+        "helpText": null,
+        "validations": {
+          "singleLine": true
+        }
+      },
+      {
+        "id": "c0ba710ccf8f603158b9136b2c0be103",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "PlainText",
+        "slug": "location-code",
+        "displayName": "location code",
+        "helpText": null,
+        "validations": {
+          "singleLine": true
+        }
+      },
+      {
+        "id": "47cb2ba075c564aa315e3ec83491cdab",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Reference",
+        "slug": "parent-event-logistics",
+        "displayName": "Parent Event Logistics",
+        "helpText": null,
+        "validations": {
+          "collectionId": "64d0f499f35282c2a9cbafc4"
+        }
+      },
+      {
+        "id": "ab0e9377455841e4f9b0f2c7969db9c6",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "name",
+        "displayName": "address",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256
+        }
+      },
+      {
+        "id": "820562699c86557323e8108aaa7541f8",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "slug",
+        "displayName": "Slug",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256,
+          "pattern": {},
+          "messages": {
+            "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+            "maxLength": "Must be less than 256 characters"
+          }
+        }
+      }
+    ],
+    "fieldGroups": []
+  },
+  "counts": {
+    "total": 24,
+    "published": 24,
+    "draft": 0,
+    "archived": 0
+  },
+  "items": [
+    {
+      "id": "68ad9f30fc476a8bb1b5e3a5",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:04.266Z",
+      "createdOn": "2025-08-26T11:49:04.266Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://maps.app.goo.gl/aNrdCLH1aeG9jcpH8",
+        "honeowner": null,
+        "location-code": "24",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "Travis St & Main St Senoia Ga",
+        "slug": "travis-st-main-st-senoia-ga"
+      }
+    },
+    {
+      "id": "68ad9f2fe1cc8ab441652c9c",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:03.939Z",
+      "createdOn": "2025-08-26T11:49:03.939Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=18+Main+Street,+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "19",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "18 Main Street",
+        "slug": "18-main-street"
+      }
+    },
+    {
+      "id": "68ad9f2f1f31e1e9f328a725",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:03.771Z",
+      "createdOn": "2025-08-26T11:49:03.771Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=30+Main+Street,+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "22",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "30 Main Street",
+        "slug": "30-main-street"
+      }
+    },
+    {
+      "id": "68ad9f2fc2b51d5e48fae95e",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:03.534Z",
+      "createdOn": "2025-08-26T11:49:03.534Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=163+Seavy+Street,+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "16",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "163 Seavy Street",
+        "slug": "163-seavy-street"
+      }
+    },
+    {
+      "id": "68ad9f2f3ee2f6ef741a7bdb",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:03.523Z",
+      "createdOn": "2025-08-26T11:49:03.523Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=19+Lower+Creek+Trail,+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "12",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "19 Lower Creek Trail",
+        "slug": "19-lower-creek-trail"
+      }
+    },
+    {
+      "id": "68ad9f2f7a61bfab74ca8642",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:03.482Z",
+      "createdOn": "2025-08-26T11:49:03.482Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=239+Pylant+Street,+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "8",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "239 Pylant Street",
+        "slug": "239-pylant-street"
+      }
+    },
+    {
+      "id": "68ad9f2f65e2fb3ca4a710ee",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:03.438Z",
+      "createdOn": "2025-08-26T11:49:03.438Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=89+Lower+Creek+Trail,+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "4",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "89 Lower Creek Trail",
+        "slug": "89-lower-creek-trail"
+      }
+    },
+    {
+      "id": "68ad9f2f2a59288992d468f1",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:03.211Z",
+      "createdOn": "2025-08-26T11:49:03.211Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=1+Main+Street,+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "21",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "1 Main Street",
+        "slug": "1-main-street"
+      }
+    },
+    {
+      "id": "68ad9f2fe2e7e437b20d516d",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:03.122Z",
+      "createdOn": "2025-08-26T11:49:03.122Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=371+Pylant+Street,+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "15",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "371 Pylant Street",
+        "slug": "371-pylant-street"
+      }
+    },
+    {
+      "id": "68ad9f2f0cc8b26ead9ee5cf",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:03.044Z",
+      "createdOn": "2025-08-26T11:49:03.044Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=270+Pylant+Street,+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "11",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "270 Pylant Street",
+        "slug": "270-pylant-street"
+      }
+    },
+    {
+      "id": "68ad9f2e949e9460e4adea53",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:02.931Z",
+      "createdOn": "2025-08-26T11:49:02.931Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=57+Morgan+Street,+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "3",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "57 Morgan Street",
+        "slug": "57-morgan-street"
+      }
+    },
+    {
+      "id": "68ad9f2ea2a9ab7bceea4a75",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:02.888Z",
+      "createdOn": "2025-08-26T11:49:02.888Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=230+Pylant+Street,+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "7",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "230 Pylant Street",
+        "slug": "230-pylant-street"
+      }
+    },
+    {
+      "id": "68ad9f2eb54e265ba6bee1ec",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:02.849Z",
+      "createdOn": "2025-08-26T11:49:02.849Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=35+Barnes+Street,+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "23",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "35 Barnes Street",
+        "slug": "35-barnes-street"
+      }
+    },
+    {
+      "id": "68ad9f2eef12425101517327",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:02.742Z",
+      "createdOn": "2025-08-26T11:49:02.742Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=22+Main+Street,+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "18",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "22 Main Street",
+        "slug": "22-main-street"
+      }
+    },
+    {
+      "id": "68ad9f2ec5b941c9a98a6e42",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:02.663Z",
+      "createdOn": "2025-08-26T11:49:02.663Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=180+Seavy+Street,+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "14",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "180 Seavy Street",
+        "slug": "180-seavy-street"
+      }
+    },
+    {
+      "id": "68ad9f2edfed270f50352f23",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:02.558Z",
+      "createdOn": "2025-08-26T11:49:02.558Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=55+Lower+Creek+Trail,+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "10",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "55 Lower Creek Trail",
+        "slug": "55-lower-creek-trail"
+      }
+    },
+    {
+      "id": "68ad9f2e4b8c436be6f796bf",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:02.526Z",
+      "createdOn": "2025-08-26T11:49:02.526Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=258+Pylant+Street,+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "6",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "258 Pylant Street",
+        "slug": "258-pylant-street"
+      }
+    },
+    {
+      "id": "68ad9f2ec1e15b4e49289bf9",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:02.477Z",
+      "createdOn": "2025-08-26T11:49:02.477Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=41+Morgan+Street,+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "2",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "41 Morgan Street",
+        "slug": "41-morgan-street"
+      }
+    },
+    {
+      "id": "68ad9f2d167afa69c30d7bc9",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:01.918Z",
+      "createdOn": "2025-08-26T11:49:01.918Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=31+Morgan+Street,+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "5",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "31 Morgan Street",
+        "slug": "31-morgan-street"
+      }
+    },
+    {
+      "id": "68ad9f2db04bf90be86adf90",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T12:36:20.539Z",
+      "lastUpdated": "2025-08-26T12:32:30.307Z",
+      "createdOn": "2025-08-26T11:49:01.917Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=252+Seavy+Street),+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "17",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "252 Seavy Street",
+        "slug": "252-seavy-street"
+      }
+    },
+    {
+      "id": "68ad9f2d857582de29af0f8f",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:01.882Z",
+      "createdOn": "2025-08-26T11:49:01.882Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=352+Pylant+Street,+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "13",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "352 Pylant Street",
+        "slug": "352-pylant-street"
+      }
+    },
+    {
+      "id": "68ad9f2d5cd3467521e138d3",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:01.874Z",
+      "createdOn": "2025-08-26T11:49:01.874Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=97+Lower+Creek+Trail,+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "1",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "97 Lower Creek Trail",
+        "slug": "97-lower-creek-trail"
+      }
+    },
+    {
+      "id": "68ad9f2de650d5fc1beb09d5",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:01.871Z",
+      "createdOn": "2025-08-26T11:49:01.871Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=291+Pylant+Street,+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "9",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "291 Pylant Street",
+        "slug": "291-pylant-street"
+      }
+    },
+    {
+      "id": "68ad9f2d880a2b5e1a16a42b",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T11:56:21.849Z",
+      "lastUpdated": "2025-08-26T11:49:01.869Z",
+      "createdOn": "2025-08-26T11:49:01.869Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "location": null,
+        "link-to-google-map": "https://www.google.com/maps/search/?api=1&query=40+Travis+Street,+Senoia,+GA",
+        "honeowner": null,
+        "location-code": "20",
+        "parent-event-logistics": "68ad9227e60beed1c7e40d3a",
+        "name": "40 Travis Street",
+        "slug": "40-travis-street"
+      }
+    }
+  ]
+}

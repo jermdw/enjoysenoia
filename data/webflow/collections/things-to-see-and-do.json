@@ -1,0 +1,152 @@
+{
+  "collection": {
+    "id": "63370578865508d720850d1d",
+    "displayName": "Things to see and dos",
+    "singularName": "Things to see and do",
+    "slug": "things-to-see-and-do",
+    "createdOn": "2022-09-30T15:04:24.808Z",
+    "lastUpdated": "2025-07-19T15:53:46.273Z",
+    "fields": [
+      {
+        "id": "37d19f4bf38870e3cb247e3eb74b6d19",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "RichText",
+        "slug": "full-item-description",
+        "displayName": "full item description",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "28e13ce21ac3fe7c7b68fb32042533b3",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "PlainText",
+        "slug": "summary-item-description",
+        "displayName": "summary item description",
+        "helpText": null,
+        "validations": {
+          "singleLine": true
+        }
+      },
+      {
+        "id": "1580307ea3362fe52e9d07be3f3462bc",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Image",
+        "slug": "primary-image",
+        "displayName": "primary image",
+        "helpText": "Ideal image size is 16:9 aspect ratio or 1,200 px wide  x 628 px tall at 72 dpi.  Refer to site documentation for tips on making images web friendly for the site",
+        "validations": null
+      },
+      {
+        "id": "6a5694c0b95ca9811d2c3a86471d29ca",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "VideoLink",
+        "slug": "video",
+        "displayName": "video",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "5023034ab4e01fe0715a17513c2a0765",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "MultiImage",
+        "slug": "image-gallery",
+        "displayName": "image gallery",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "f059b07d6fad374e3c4217de2e9ec447",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Number",
+        "slug": "sort-order",
+        "displayName": "sort order",
+        "helpText": null,
+        "validations": {
+          "format": "integer",
+          "precision": 1,
+          "allowNegative": false
+        }
+      },
+      {
+        "id": "d96fee4aaff90db877bddde1d481119c",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Reference",
+        "slug": "business-category",
+        "displayName": "business category",
+        "helpText": null,
+        "validations": {
+          "collectionId": "63077e9ab8dd5a4bf4c24e17"
+        }
+      },
+      {
+        "id": "5d51a0becd2aa9d31d5b1ac13f4ff22c",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "name",
+        "displayName": "Name",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256
+        }
+      },
+      {
+        "id": "50cd87be9958aaf849285eef105d45f0",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "slug",
+        "displayName": "Slug",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256,
+          "pattern": {},
+          "messages": {
+            "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+            "maxLength": "Must be less than 256 characters"
+          }
+        }
+      }
+    ],
+    "fieldGroups": []
+  },
+  "counts": {
+    "total": 1,
+    "published": 1,
+    "draft": 0,
+    "archived": 0
+  },
+  "items": [
+    {
+      "id": "6347fbd7ed19e106512b867b",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-10-25T11:57:04.690Z",
+      "lastUpdated": "2022-10-24T23:12:51.810Z",
+      "createdOn": "2022-10-13T11:51:51.765Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "full-item-description": "<p id=\"\">The Senoia Area Historical Society (SAHS) is a 501(c)3 non-profit organization dedicated to preserving and promoting the social and cultural history of Senoia, Georgia and its surrounding community.</p><figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div id=\"\"><img id=\"\" src=\"https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/6347fb220d42db1811f42c59_1b22a0fa7f538ef7b6f300a332375623.jpeg\" width=\"auto\" height=\"auto\" loading=\"lazy\"></div></figure><p id=\"\">Senoia Area Historical Society’s (SAHS) offices and museum are housed in the 1870 Carmichael house located at 6 Couch Street in the Historic District of Senoia, Georgia. &nbsp;The SAHS continues to work to preserve one of the oldest and most historic homes in Senoia. </p><figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div id=\"\"><img id=\"\" src=\"https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/6347fb8f4ee0c20a4bd38e7c_887c2a3f801a2fc2c93b12f190a59d60.png\" width=\"auto\" height=\"auto\" loading=\"lazy\"></div></figure><p id=\"\">In 2016, the Society held a Capital Campaign in which proceeds were used to replace the roof as well as shore up the foundation and repair the floor. &nbsp; In 2018, SAHS repaired the porch, porch ceiling, as well as return the railings and posts to their original design and beauty, thanks to a matching $10,000 grant from the General Daniel Newnan Chapter of the Daughters of the American Revolution.</p><p id=\"\">‍</p><figure id=\"\" class=\"w-richtext-figure-type-video w-richtext-align-center\" style=\"padding-bottom:33.723653395784545%\" data-rt-type=\"video\" data-rt-align=\"center\" data-rt-max-width=\"\" data-rt-max-height=\"33.723653395784545%\" data-rt-dimensions=\"854:480\" data-page-url=\"https://youtu.be/liveDt7WFLw\"><div id=\"\"><iframe src=\"https://www.youtube.com/embed/liveDt7WFLw\" title=\"\" scrolling=\"no\" frameborder=\"0\" allowfullscreen=\"true\"></iframe></div></figure><p id=\"\">‍</p><p id=\"\">For more information, please visit the Senoia Historical Society website at: <a href=\"http://www.senoiaareahistoricalsociety.org/\" target=\"_blank\">http://www.senoiaareahistoricalsociety.org/</a></p>",
+        "summary-item-description": "The Senoia Area Historical Society (SAHS) is a 501(c)3 non-profit organization dedicated to preserving and promoting the social and cultural history of Senoia",
+        "primary-image": {
+          "fileId": "6347fb220d42db1811f42c59",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/6347fb220d42db1811f42c59_1b22a0fa7f538ef7b6f300a332375623.jpeg",
+          "alt": null
+        },
+        "video": null,
+        "image-gallery": null,
+        "sort-order": null,
+        "business-category": null,
+        "name": "Senoia Historical Society",
+        "slug": "senoia-historical-society"
+      }
+    }
+  ]
+}

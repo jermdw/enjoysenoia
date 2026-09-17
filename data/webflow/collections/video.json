@@ -1,0 +1,214 @@
+{
+  "collection": {
+    "id": "63067db7d5c398aad84dbc1c",
+    "displayName": "Videos",
+    "singularName": "Video",
+    "slug": "video",
+    "createdOn": "2022-08-24T19:36:23.902Z",
+    "lastUpdated": "2025-07-19T15:53:46.268Z",
+    "fields": [
+      {
+        "id": "e1c8bc95d29319a84f2bd64272ccfa61",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Switch",
+        "slug": "test-video",
+        "displayName": "test video",
+        "helpText": "view testing video items here: https://www.enjoysenoia.com/mediatest",
+        "validations": null
+      },
+      {
+        "id": "10cdd4e986833430f0c6aa374b6f3d12",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "PlainText",
+        "slug": "summary",
+        "displayName": "summary",
+        "helpText": null,
+        "validations": {
+          "singleLine": false
+        }
+      },
+      {
+        "id": "f7c02befe625276169971074c50c7c41",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "RichText",
+        "slug": "description",
+        "displayName": "description",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "462a25f43864bf1bc134abcd6df2f818",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "VideoLink",
+        "slug": "video",
+        "displayName": "video",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "d336be727ee401f7ae9a20bddd4e5296",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "PlainText",
+        "slug": "youtube-id",
+        "displayName": "youtube id",
+        "helpText": null,
+        "validations": {
+          "singleLine": true
+        }
+      },
+      {
+        "id": "c2d381fc4ca0c90c80fb40e5b49e406d",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Reference",
+        "slug": "event",
+        "displayName": "Event",
+        "helpText": null,
+        "validations": {
+          "collectionId": "62c89378d6e129a34ecdda02"
+        }
+      },
+      {
+        "id": "b60e933a08a1a1981a48c6381f36d63c",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "name",
+        "displayName": "Name",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256
+        }
+      },
+      {
+        "id": "16f085f72bf20461688703db887e4a0b",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "slug",
+        "displayName": "Slug",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256,
+          "pattern": {},
+          "messages": {
+            "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+            "maxLength": "Must be less than 256 characters"
+          }
+        }
+      }
+    ],
+    "fieldGroups": []
+  },
+  "counts": {
+    "total": 3,
+    "published": 2,
+    "draft": 1,
+    "archived": 0
+  },
+  "items": [
+    {
+      "id": "65410089c13af9c187c68592",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-11-06T18:21:46.337Z",
+      "lastUpdated": "2023-11-01T12:34:58.959Z",
+      "createdOn": "2023-10-31T13:26:33.384Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "test-video": false,
+        "summary": "What a great event, and many thanks to Max Anderson for taking the time to shoot and produce this fantastic video!",
+        "description": "<p id=\"\">Take a look at Max Anderson's Video Highlight Reel from Senoia PorchFest 2023! What a great event, and many thanks to Max for taking the time to shoot and produce this fantastic video!</p><p>‍</p>",
+        "video": {
+          "url": "https://youtu.be/2_LL-DahRu4",
+          "metadata": {
+            "html": "<iframe class=\"embedly-embed\" src=\"//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2F2_LL-DahRu4%3Ffeature%3Doembed&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D2_LL-DahRu4&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2F2_LL-DahRu4%2Fhqdefault.jpg&key=96f1f04c5f4143bcb0f2e68c87d65feb&type=text%2Fhtml&schema=youtube\" width=\"854\" height=\"480\" scrolling=\"no\" title=\"YouTube embed\" frameborder=\"0\" allow=\"autoplay; fullscreen; encrypted-media; picture-in-picture;\" allowfullscreen=\"true\"></iframe>",
+            "type": "video",
+            "title": "Senoia Porchfest 2023",
+            "width": 854,
+            "height": 480,
+            "aspectRatio": 0,
+            "author_name": "Max Anderson",
+            "description": "A recap of the 2nd annual Senoia Porch Festival. Thank you to all the artists, booths, and vendors for helping put together an amazing experience! Shout out to Enjoy Senoia for putting together an awesome festival and giving me the chance to capture it. Until next year!",
+            "provider_name": "YouTube",
+            "thumbnail_url": "https://i.ytimg.com/vi/2_LL-DahRu4/hqdefault.jpg"
+          }
+        },
+        "youtube-id": null,
+        "event": "6491b50d85a673a232d36f21",
+        "name": "Senoia PorchFest 2023",
+        "slug": "senoia-porchfest-2023"
+      }
+    },
+    {
+      "id": "63589f8343648d9bf08ac4c4",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-10-26T02:50:44.659Z",
+      "lastUpdated": "2022-10-26T02:49:58.437Z",
+      "createdOn": "2022-10-26T02:46:27.427Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "test-video": false,
+        "summary": null,
+        "description": null,
+        "video": {
+          "url": "https://vimeo.com/764002507",
+          "metadata": {
+            "html": "<iframe class=\"embedly-embed\" src=\"//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fplayer.vimeo.com%2Fvideo%2F764002507%3Fh%3D39a02f7397%26app_id%3D122963&dntp=1&display_name=Vimeo&url=https%3A%2F%2Fvimeo.com%2F764002507&image=https%3A%2F%2Fi.vimeocdn.com%2Ffilter%2Foverlay%3Fsrc0%3Dhttps%253A%252F%252Fi.vimeocdn.com%252Fvideo%252F1534216938-cf4b51e43eefd425eec8d7517ddd8beb03c28e9ac10232ef4b48f71f8d21d7bd-d_1280x718%26src1%3Dhttps%253A%252F%252Ff.vimeocdn.com%252Fimages_v6%252Fshare%252Fplay_icon_overlay.png&key=c4e54deccf4d4ec997a64902e9a30300&type=text%2Fhtml&schema=vimeo\" width=\"1080\" height=\"606\" scrolling=\"no\" title=\"Vimeo embed\" frameborder=\"0\" allow=\"autoplay; fullscreen\" allowfullscreen=\"true\"></iframe>",
+            "type": "video",
+            "title": "Porchfest 16x9.mp4",
+            "width": 1080,
+            "height": 606,
+            "aspectRatio": 0,
+            "description": "This is \"Porchfest 16x9.mp4\" by Brian Brewer on Vimeo, the home for high quality videos and the people who love them.",
+            "provider_name": "Vimeo",
+            "thumbnail_url": "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F1534216938-cf4b51e43eefd425eec8d7517ddd8beb03c28e9ac10232ef4b48f71f8d21d7bd-d_1280x718&src1=https%3A%2F%2Ff.vimeocdn.com%2Fimages_v6%2Fshare%2Fplay_icon_overlay.png"
+          }
+        },
+        "youtube-id": null,
+        "event": "62c9a13fe45b2d6e3a9c364d",
+        "name": "2022 Senoia Porchfest",
+        "slug": "2022-senoia-porchfest"
+      }
+    },
+    {
+      "id": "63067e08eb1ce81e91545e3a",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": null,
+      "lastUpdated": "2022-10-26T02:46:38.038Z",
+      "createdOn": "2022-08-24T19:37:44.358Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "test-video": false,
+        "summary": "Senoia the perfect setting for life and filming ",
+        "description": "<p id=\"\"><br></p>",
+        "video": {
+          "url": "https://www.youtube.com/watch?v=9DfBjhDYYQ8",
+          "metadata": {
+            "html": "<iframe class=\"embedly-embed\" src=\"//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2F9DfBjhDYYQ8%3Ffeature%3Doembed&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D9DfBjhDYYQ8&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2F9DfBjhDYYQ8%2Fhqdefault.jpg&key=96f1f04c5f4143bcb0f2e68c87d65feb&type=text%2Fhtml&schema=youtube\" width=\"854\" height=\"480\" scrolling=\"no\" title=\"YouTube embed\" frameborder=\"0\" allow=\"autoplay; fullscreen\" allowfullscreen=\"true\"></iframe>",
+            "type": "video",
+            "title": "Senoia the perfect setting for life and filming",
+            "width": 854,
+            "height": 480,
+            "aspectRatio": 0,
+            "author_name": "Suzanne Helfman",
+            "description": "Senoia the perfect setting for life and filming",
+            "provider_name": "YouTube",
+            "thumbnail_url": "https://i.ytimg.com/vi/9DfBjhDYYQ8/hqdefault.jpg"
+          }
+        },
+        "youtube-id": "9DfBjhDYYQ8",
+        "event": null,
+        "name": "Senoia the perfect setting for life and filming",
+        "slug": "senoia-the-perfect-setting-for-life-and-filming"
+      }
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "collection": {
+    "id": "6359499105217fce8cf0ccae",
+    "displayName": "Categories",
+    "singularName": "Category",
+    "slug": "category",
+    "createdOn": "2022-10-26T14:52:01.894Z",
+    "lastUpdated": "2025-07-19T15:53:46.352Z",
+    "fields": [
+      {
+        "id": "11b365d25efb41ea56db083ccf408dbf",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "name",
+        "displayName": "Name",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256
+        }
+      },
+      {
+        "id": "6ea9d037415b7e67e16bb0ec8fae48dd",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "slug",
+        "displayName": "Slug",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256,
+          "pattern": {},
+          "messages": {
+            "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+            "maxLength": "Must be less than 256 characters"
+          }
+        }
+      }
+    ],
+    "fieldGroups": []
+  },
+  "counts": {
+    "total": 2,
+    "published": 2,
+    "draft": 0,
+    "archived": 0
+  },
+  "items": [
+    {
+      "id": "6376b06096578f4aca6d6e89",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-11-17T22:09:36.364Z",
+      "lastUpdated": "2022-11-17T22:06:24.085Z",
+      "createdOn": "2022-11-17T22:06:24.085Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "name": "Event Tickets",
+        "slug": "event-tickets"
+      }
+    },
+    {
+      "id": "63594bea923e4af636829f54",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-10-26T15:54:40.895Z",
+      "lastUpdated": "2022-10-26T15:26:46.105Z",
+      "createdOn": "2022-10-26T15:02:02.354Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "name": "Wearables",
+        "slug": "wearables"
+      }
+    }
+  ]
+}

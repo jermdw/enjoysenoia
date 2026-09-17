@@ -1,0 +1,93 @@
+{
+  "collection": {
+    "id": "63908b69423aacf18fe6b23f",
+    "displayName": "Notifications",
+    "singularName": "Notification",
+    "slug": "notifications",
+    "createdOn": "2022-12-07T12:47:37.010Z",
+    "lastUpdated": "2025-07-19T15:53:46.314Z",
+    "fields": [
+      {
+        "id": "0e9b5135e3d957e73f743f29d3e5afaa",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "PlainText",
+        "slug": "caption",
+        "displayName": "Caption",
+        "helpText": "Main Caption for the notification - keep concise - plain text only",
+        "validations": {
+          "singleLine": true
+        }
+      },
+      {
+        "id": "be269fce4e274adad60219a52a133c68",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "PlainText",
+        "slug": "sub-caption",
+        "displayName": "Sub-caption",
+        "helpText": "sub-caption content - also plain text - keep concise",
+        "validations": {
+          "singleLine": true
+        }
+      },
+      {
+        "id": "e220592eca1e2d58e6b745a6545bff71",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Image",
+        "slug": "image",
+        "displayName": "image",
+        "helpText": "can be square format similar to Instagram or 1280 x 628 like other main images",
+        "validations": null
+      },
+      {
+        "id": "b2891db8670829a870f29d08ffe62d36",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Link",
+        "slug": "button-link",
+        "displayName": "button link",
+        "helpText": "can be to an external site or page or internal - either way, paste in the complete URL",
+        "validations": null
+      },
+      {
+        "id": "b99bbd2fab375b79aa8e0b36dacd2f85",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "name",
+        "displayName": "Name",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256
+        }
+      },
+      {
+        "id": "dae6594a975f045342586d43248f302d",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "slug",
+        "displayName": "Slug",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256,
+          "pattern": {},
+          "messages": {
+            "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+            "maxLength": "Must be less than 256 characters"
+          }
+        }
+      }
+    ],
+    "fieldGroups": []
+  },
+  "counts": {
+    "total": 0,
+    "published": 0,
+    "draft": 0,
+    "archived": 0
+  },
+  "items": []
+}

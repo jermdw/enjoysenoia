@@ -1,0 +1,128 @@
+{
+  "collection": {
+    "id": "65f2f179a8ccf69b3bb5a7da",
+    "displayName": "Careers",
+    "singularName": "Career",
+    "slug": "careers",
+    "createdOn": "2024-03-14T12:45:45.314Z",
+    "lastUpdated": "2025-07-19T15:53:46.354Z",
+    "fields": [
+      {
+        "id": "d6263753b7d131e3301cba1798546a65",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Switch",
+        "slug": "merchants-only-news-item",
+        "displayName": "Merchants Only News Item",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "d3cb56f7baaa1f1c05c4734689dd9383",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "RichText",
+        "slug": "post-body",
+        "displayName": "Post Body",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "d2a344c77f6a143301374f46e033730c",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "PlainText",
+        "slug": "post-summary",
+        "displayName": "Post Summary",
+        "helpText": "A summary of the blog post that appears on blog post grid",
+        "validations": {
+          "singleLine": false
+        }
+      },
+      {
+        "id": "f6e8df96ac5eff6b48fe2ee205112005",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Image",
+        "slug": "main-image",
+        "displayName": "Main Image",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "1dd4ca661dcef406bc582f7fd0336c55",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "File",
+        "slug": "pdf",
+        "displayName": "PDF",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "6a0c4e6951cd70bf3d0813788d4b525e",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "name",
+        "displayName": "Name",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256
+        }
+      },
+      {
+        "id": "d5eaaea35b1c3f1a531d5332cc316651",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "slug",
+        "displayName": "Slug",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256,
+          "pattern": {},
+          "messages": {
+            "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+            "maxLength": "Must be less than 256 characters"
+          }
+        }
+      }
+    ],
+    "fieldGroups": []
+  },
+  "counts": {
+    "total": 1,
+    "published": 1,
+    "draft": 0,
+    "archived": 0
+  },
+  "items": [
+    {
+      "id": "65f2f2309467bb5a4998185c",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2024-03-14T13:06:37.081Z",
+      "lastUpdated": "2024-03-14T13:04:59.987Z",
+      "createdOn": "2024-03-14T12:48:48.050Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "merchants-only-news-item": false,
+        "post-body": "<p id=\"\">Post Body</p><p id=\"\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In gravida facilisis nibh ut tristique. Praesent placerat aliquet semper. Nam venenatis scelerisque ligula, quis lobortis ex egestas feugiat. Sed malesuada pulvinar nibh, aliquet porta ante interdum in. Praesent rutrum, enim in fringilla rhoncus, tellus nunc convallis turpis, vel vestibulum lectus risus vitae sapien. Suspendisse arcu quam, ultrices et urna a, hendrerit viverra augue. Nulla ut massa id odio ornare eleifend et ut ante. Proin tellus enim, cursus vel ante ac, luctus venenatis ligula. Sed fringilla neque ut turpis sagittis cursus. Nulla sit amet faucibus erat. Donec dapibus porta rhoncus.</p><p id=\"\">Phasellus sit amet lectus massa. Mauris convallis ligula nec gravida facilisis. Morbi vel mi vitae nisl iaculis porttitor. Aliquam vestibulum nec metus at vulputate. In lectus ligula, consequat at fringilla et, auctor vitae ligula. Duis id risus a lectus sollicitudin commodo. Pellentesque sodales dolor dolor, nec eleifend orci consectetur sed. Fusce mollis, purus vitae suscipit volutpat, mauris diam sollicitudin justo, at placerat leo nibh non nibh. Duis mattis volutpat elit ut sollicitudin. Vivamus arcu erat, faucibus et augue vel, pellentesque maximus sapien. Vivamus pretium viverra massa, in sodales arcu mollis porta. Proin ornare posuere arcu, nec commodo libero euismod quis. Curabitur a dui non dui efficitur pharetra nec at urna.</p>",
+        "post-summary": "Post Summary",
+        "main-image": {
+          "fileId": "65f2f306417d852ed3390086",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/65f2f306417d852ed3390086_careers.jpg",
+          "alt": null
+        },
+        "pdf": {
+          "fileId": "65f2f37fccd4fc79e970e6b5",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/65f2f37fccd4fc79e970e6b5_Senoia%20Car%20Show%20Poster%202023%208x12%20w%20Bleed.pdf",
+          "alt": null
+        },
+        "name": "Test Item",
+        "slug": "test-item"
+      }
+    }
+  ]
+}

@@ -1,0 +1,632 @@
+{
+  "collection": {
+    "id": "64d25470778587ddc86a26f4",
+    "displayName": "Slottings",
+    "singularName": "Slotting",
+    "slug": "slotting",
+    "createdOn": "2023-08-08T14:42:56.912Z",
+    "lastUpdated": "2025-08-26T13:15:22.387Z",
+    "fields": [
+      {
+        "id": "103afd9cc140f55fc9ca023bde201d17",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Reference",
+        "slug": "time-slot",
+        "displayName": "time slot",
+        "helpText": null,
+        "validations": {
+          "collectionId": "64d10067336b736815c0c78c"
+        }
+      },
+      {
+        "id": "0890ce61e5a7b42bc97259fb23337dbc",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Reference",
+        "slug": "participant",
+        "displayName": "participant",
+        "helpText": null,
+        "validations": {
+          "collectionId": "64d25053e28f67304d871f32"
+        }
+      },
+      {
+        "id": "6e37a59683c8412a3df6cad6baebff28",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Reference",
+        "slug": "location",
+        "displayName": "location",
+        "helpText": null,
+        "validations": {
+          "collectionId": "64d251c1c6ff04cab9044918"
+        }
+      },
+      {
+        "id": "96f7f938b94f40d49fa110958032490a",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Reference",
+        "slug": "parent",
+        "displayName": "parent",
+        "helpText": null,
+        "validations": {
+          "collectionId": "64d0f499f35282c2a9cbafc4"
+        }
+      },
+      {
+        "id": "f897fed4e635041221a60af057996e6e",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "PlainText",
+        "slug": "genre",
+        "displayName": "Genre",
+        "helpText": null,
+        "validations": {
+          "singleLine": true
+        }
+      },
+      {
+        "id": "e046b5c13f9ef7673fa3f77b57534f3c",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "name",
+        "displayName": "Name",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256
+        }
+      },
+      {
+        "id": "ac3fe3e5af14baad4c37c70d1250396d",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "slug",
+        "displayName": "Slug",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256,
+          "pattern": {},
+          "messages": {
+            "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+            "maxLength": "Must be less than 256 characters"
+          }
+        }
+      }
+    ],
+    "fieldGroups": []
+  },
+  "counts": {
+    "total": 29,
+    "published": 29,
+    "draft": 0,
+    "archived": 0
+  },
+  "items": [
+    {
+      "id": "68adb699fad93ee4c3623b7e",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:29:40.535Z",
+      "createdOn": "2025-08-26T13:28:57.568Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "68ad9c2de348fbdd32133baa",
+        "participant": "68ada6a11123168aff8994ea",
+        "location": "68ad9f30fc476a8bb1b5e3a5",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Funk, Top 40 Hits ",
+        "name": "The Rhythm Major Band",
+        "slug": "the-rhythm-major-band"
+      }
+    },
+    {
+      "id": "68adb60d54c1137305e52b87",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-30T16:23:01.789Z",
+      "lastUpdated": "2025-08-28T12:55:35.193Z",
+      "createdOn": "2025-08-26T13:26:37.354Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25d088fa466bce9186421",
+        "participant": "68ada6a1935ff2fb4d2c0406",
+        "location": "68ad9f2db04bf90be86adf90",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Blues ",
+        "name": "Highway 54 Band",
+        "slug": "highway-54-band"
+      }
+    },
+    {
+      "id": "68adb28ee4014c36602f89b6",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:26:03.986Z",
+      "createdOn": "2025-08-26T13:11:42.406Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25d088fa466bce9186421",
+        "participant": "68ada6a05417514646fcd01b",
+        "location": "68ad9f2eef12425101517327",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Rock, Blues",
+        "name": "Mary Martin ",
+        "slug": "mary-martin-2"
+      }
+    },
+    {
+      "id": "68adb1f2e2c23565dbb42711",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:24:42.103Z",
+      "createdOn": "2025-08-26T13:09:06.281Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25d088fa466bce9186421",
+        "participant": "68ada6a0c25e85a31e1dd4c4",
+        "location": "68ad9f2d880a2b5e1a16a42b",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Country, Southern Rock",
+        "name": "Montgomery Pike",
+        "slug": "montgomery-pike"
+      }
+    },
+    {
+      "id": "68adb1b2715028dfcdf398f4",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:24:20.566Z",
+      "createdOn": "2025-08-26T13:08:02.962Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25cfa8fa466bce91858ef",
+        "participant": "68ada6a0a79d4cd098ffe97e",
+        "location": "68ad9f2f1f31e1e9f328a725",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Alternative, Folk, Shoegaze",
+        "name": "Sarah & Joey (Duo)",
+        "slug": "sarah-joey-duo"
+      }
+    },
+    {
+      "id": "68adb175e71568738052af42",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:24:05.953Z",
+      "createdOn": "2025-08-26T13:07:01.396Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25cfa8fa466bce91858ef",
+        "participant": "68ada6a0947d258f94d780a2",
+        "location": "68ad9f2fe1cc8ab441652c9c",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Pop, Rock, Country ",
+        "name": "Brian Rivers & Geezer",
+        "slug": "brian-rivers-geezer"
+      }
+    },
+    {
+      "id": "68adb13e3461f59d0b4777d1",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:23:50.230Z",
+      "createdOn": "2025-08-26T13:06:06.022Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25cfa8fa466bce91858ef",
+        "participant": "68ada6a0170938c7d3968f53",
+        "location": "68ad9f2fc2b51d5e48fae95e",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Modern Country, Southern Rock ",
+        "name": "Sean Carter Band",
+        "slug": "sean-carter-band"
+      }
+    },
+    {
+      "id": "68adb10235a0c25f178e47e3",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:23:35.787Z",
+      "createdOn": "2025-08-26T13:05:06.494Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25cfa8fa466bce91858ef",
+        "participant": "68ada6a09f0961f9ace05553",
+        "location": "68ad9f2f3ee2f6ef741a7bdb",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Top 40 Pop, Rock, Country",
+        "name": "Chuck X Nick",
+        "slug": "chuck-x-nick"
+      }
+    },
+    {
+      "id": "68adb0c7785b8a3b03bc6a2b",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:23:22.334Z",
+      "createdOn": "2025-08-26T13:04:07.177Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25cfa8fa466bce91858ef",
+        "participant": "68ada6a0178baa4e2ecdc150",
+        "location": "68ad9f2f7a61bfab74ca8642",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Classic Rock, Country",
+        "name": "Third Up Band",
+        "slug": "third-up-band"
+      }
+    },
+    {
+      "id": "68adb081e471cca2eb415230",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:23:06.962Z",
+      "createdOn": "2025-08-26T13:02:57.345Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25cfa8fa466bce91858ef",
+        "participant": "68ada6a0c10f9cedb01555ce",
+        "location": "68ad9f2f65e2fb3ca4a710ee",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Folk Punk",
+        "name": "Kraken’s Release (Trio)",
+        "slug": "krakens-release-trio"
+      }
+    },
+    {
+      "id": "68adb047e415f006c7b2c0e6",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:22:46.544Z",
+      "createdOn": "2025-08-26T13:01:59.034Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25ce5195f722a85c73daa",
+        "participant": "68ada6a06914390c0ce4d494",
+        "location": "68ad9f2f2a59288992d468f1",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Progressive Blues",
+        "name": "Shade Dogz ",
+        "slug": "shade-dogz"
+      }
+    },
+    {
+      "id": "68adaf9b8ffc0785dd295eea",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:22:32.579Z",
+      "createdOn": "2025-08-26T12:59:07.754Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25ce5195f722a85c73daa",
+        "participant": "68ada6a0959fcc2c4b25486d",
+        "location": "68ad9f2d880a2b5e1a16a42b",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Folk, Country",
+        "name": "The Seven Two ",
+        "slug": "the-seven-two"
+      }
+    },
+    {
+      "id": "68adaf5c4765425117e69a9c",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:22:16.283Z",
+      "createdOn": "2025-08-26T12:58:04.440Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25ce5195f722a85c73daa",
+        "participant": "68ada6a09f0961f9ace0552b",
+        "location": "68ad9f2fe2e7e437b20d516d",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Blues, Country, Classic Rock ",
+        "name": "James Michael & TCC ",
+        "slug": "james-michael-tcc"
+      }
+    },
+    {
+      "id": "68adaf25910360a474c3701a",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:22:00.920Z",
+      "createdOn": "2025-08-26T12:57:09.818Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25ce5195f722a85c73daa",
+        "participant": "68ada6a0edaee360c90dbb84",
+        "location": "68ad9f2f0cc8b26ead9ee5cf",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "80s/90s Alternative, Southern Rock ",
+        "name": "Rattled Bones ",
+        "slug": "rattled-bones"
+      }
+    },
+    {
+      "id": "68adaee6d2e2c2547250fd16",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:21:44.260Z",
+      "createdOn": "2025-08-26T12:56:06.284Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25ce5195f722a85c73daa",
+        "participant": "68ada6a0b54e265ba6c207cf",
+        "location": "68ad9f2ea2a9ab7bceea4a75",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Folk, Covers",
+        "name": "Flint River Rev’lers ",
+        "slug": "flint-river-revlers"
+      }
+    },
+    {
+      "id": "68adaeaf68b0363d7718e3c6",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:21:25.433Z",
+      "createdOn": "2025-08-26T12:55:11.424Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25ce5195f722a85c73daa",
+        "participant": "68ada6a0b5ebdbf6f5bcc1de",
+        "location": "68ad9f2e949e9460e4adea53",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Country",
+        "name": "The Duncan Brothers",
+        "slug": "the-duncan-brothers"
+      }
+    },
+    {
+      "id": "68adae73f60867b16c240aa8",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:21:08.384Z",
+      "createdOn": "2025-08-26T12:54:11.081Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25cd0095eb9d61fb61a75",
+        "participant": "68ada69f72cf04c9de401f7f",
+        "location": "68ad9f2eb54e265ba6bee1ec",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "AC/DC to Hank Williams",
+        "name": "Cowboy Noyz",
+        "slug": "cowboy-noyz"
+      }
+    },
+    {
+      "id": "68adadce5be7472b57b3b78d",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:20:53.942Z",
+      "createdOn": "2025-08-26T12:51:26.579Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25cd0095eb9d61fb61a75",
+        "participant": "68ada69fc10f9cedb0155580",
+        "location": "68ad9f2eef12425101517327",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Acoustic Rock",
+        "name": "Conman Boseway",
+        "slug": "conman-boseway"
+      }
+    },
+    {
+      "id": "68adad990c6f84c1d0bc739d",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:20:38.660Z",
+      "createdOn": "2025-08-26T12:50:33.897Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25cd0095eb9d61fb61a75",
+        "participant": "68ada69fc10f9cedb0155562",
+        "location": "68ad9f2ec5b941c9a98a6e42",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "70s-90s Cover Songs ",
+        "name": "Brain Fog",
+        "slug": "brain-fog"
+      }
+    },
+    {
+      "id": "68adababb2939cc252a3925a",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:20:23.150Z",
+      "createdOn": "2025-08-26T12:42:19.495Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25cd0095eb9d61fb61a75",
+        "participant": "68ada69fe6f83ad085d82b1e",
+        "location": "68ad9f2edfed270f50352f23",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Country",
+        "name": "Luke Brown & The Jubilee",
+        "slug": "luke-brown-the-jubilee"
+      }
+    },
+    {
+      "id": "68adab0d398c867ed9745321",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:20:01.536Z",
+      "createdOn": "2025-08-26T12:39:41.936Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25cd0095eb9d61fb61a75",
+        "participant": "68ada69f523f69f53b2c982c",
+        "location": "68ad9f2e4b8c436be6f796bf",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Southern Rock, 60s/70s, Blues ",
+        "name": "Rock Soldered Blues",
+        "slug": "rock-soldered-blues"
+      }
+    },
+    {
+      "id": "68adaac96ab91c049685e9c6",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:19:46.697Z",
+      "createdOn": "2025-08-26T12:38:33.923Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25cd0095eb9d61fb61a75",
+        "participant": "68ada69fead0f5ba73f29002",
+        "location": "68ad9f2ec1e15b4e49289bf9",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Rock, Blues",
+        "name": "The Expectations ",
+        "slug": "the-expectations"
+      }
+    },
+    {
+      "id": "68ada9758efaceb435bce87f",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:19:32.826Z",
+      "createdOn": "2025-08-26T12:32:53.059Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25cbf564c4f01ced492fe",
+        "participant": "68ada69f6d438c4777325fcd",
+        "location": "68ad9f2d880a2b5e1a16a42b",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Yacht Rock ",
+        "name": "Dale Dieckbernd ",
+        "slug": "dale-dieckbernd"
+      }
+    },
+    {
+      "id": "68ada8d6cdf2fd1ec2838c03",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:19:16.915Z",
+      "createdOn": "2025-08-26T12:30:14.395Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25cbf564c4f01ced492fe",
+        "participant": "68ada69f7c8b3d30c85cfd4f",
+        "location": "68ad9f2db04bf90be86adf90",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Rock, Pop, Country, Soul ",
+        "name": "James & The Georgia Peaches",
+        "slug": "james-the-georgia-peaches"
+      }
+    },
+    {
+      "id": "68ada89865e2fb3ca4aac8e8",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:18:51.636Z",
+      "createdOn": "2025-08-26T12:29:12.026Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25cbf564c4f01ced492fe",
+        "participant": "68ada69fc2b51d5e48fde508",
+        "location": "68ad9f2d857582de29af0f8f",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Southern Rock",
+        "name": "Rogan Rogers",
+        "slug": "rogan-rogers-31kfa"
+      }
+    },
+    {
+      "id": "68ada48ffc476a8bb1b84fed",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:18:37.145Z",
+      "createdOn": "2025-08-26T12:11:59.255Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25cbf564c4f01ced492fe",
+        "participant": "68ada69f1c3be164da5e3fb1",
+        "location": "68ad9f2de650d5fc1beb09d5",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "90s Country, Southern Rock ",
+        "name": "Righteous Revolver ",
+        "slug": "righteous-revolver"
+      }
+    },
+    {
+      "id": "68ada39732c909752297b90f",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:18:20.301Z",
+      "createdOn": "2025-08-26T12:07:51.522Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25cbf564c4f01ced492fe",
+        "participant": "68ada69f0e7f25ff4f045dc6",
+        "location": "68ad9f2d167afa69c30d7bc9",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "60s & 70s Rock",
+        "name": "Grass (Jackson & McDaniel) ",
+        "slug": "grass-jackson-mcdaniel"
+      }
+    },
+    {
+      "id": "68ada29ec5f674c57072dc64",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:18:04.674Z",
+      "createdOn": "2025-08-26T12:03:42.541Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "64d25cbf564c4f01ced492fe",
+        "participant": "68ada69f6ab91c0496844b49",
+        "location": "68ad9f2d5cd3467521e138d3",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Beatles Tribute, Classic Rock",
+        "name": "Rongo and Friends",
+        "slug": "rongo-and-friends"
+      }
+    },
+    {
+      "id": "68ada100fa01a28a9aeb985e",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:16:25.863Z",
+      "createdOn": "2025-08-26T11:56:48.442Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "time-slot": "68ad9bfccaf5b9b4cabef8a6",
+        "participant": "68ada69f4f52fc626fb2cfe5",
+        "location": "68ad9f2d880a2b5e1a16a42b",
+        "parent": "68ad9227e60beed1c7e40d3a",
+        "genre": "Classic Rock, R&B, Folk",
+        "name": "Mary Martin",
+        "slug": "mary-martin"
+      }
+    }
+  ]
+}

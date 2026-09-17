@@ -1,0 +1,78 @@
+{
+  "collection": {
+    "id": "6357f6c548abb73a961d6f65",
+    "displayName": "Forms and downloads",
+    "singularName": "Forms and download",
+    "slug": "forms-and-downloads",
+    "createdOn": "2022-10-25T14:46:29.549Z",
+    "lastUpdated": "2025-07-19T15:53:46.326Z",
+    "fields": [
+      {
+        "id": "d4e9a455412ab5e4f2aaad5fc66c79cc",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "File",
+        "slug": "file",
+        "displayName": "file",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "f15f3cb3e54482fe5d49e10385630d1e",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "name",
+        "displayName": "Name",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256
+        }
+      },
+      {
+        "id": "5db9ff2e617746e8575b113cbd9a1983",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "slug",
+        "displayName": "Slug",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256,
+          "pattern": {},
+          "messages": {
+            "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+            "maxLength": "Must be less than 256 characters"
+          }
+        }
+      }
+    ],
+    "fieldGroups": []
+  },
+  "counts": {
+    "total": 1,
+    "published": 1,
+    "draft": 0,
+    "archived": 0
+  },
+  "items": [
+    {
+      "id": "6357f7013dc0042e2d05f2b7",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-10-25T14:53:50.769Z",
+      "lastUpdated": "2022-10-25T14:47:29.802Z",
+      "createdOn": "2022-10-25T14:47:29.802Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "file": {
+          "fileId": "6357f6fd09f5c7497f34ec8b",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/6357f6fd09f5c7497f34ec8b_Light%20Up%20Senoia%202022%20parade%20form.doc",
+          "alt": null
+        },
+        "name": "2022 Light Up Senoia  Parade Form",
+        "slug": "2022-light-up-senoia-parade-form"
+      }
+    }
+  ]
+}

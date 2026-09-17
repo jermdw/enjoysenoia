@@ -1,0 +1,304 @@
+{
+  "collection": {
+    "id": "62c89378d6e12911ffcdda16",
+    "displayName": "Sponsor perks",
+    "singularName": "Sponsor perk",
+    "slug": "sponsor-perks",
+    "createdOn": "2022-06-22T18:07:00.598Z",
+    "lastUpdated": "2025-07-19T15:53:46.242Z",
+    "fields": [
+      {
+        "id": "f10cecb9ada89b7fcda605894d33925c",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Reference",
+        "slug": "parent-event",
+        "displayName": "parent event",
+        "helpText": null,
+        "validations": {
+          "collectionId": "62c89378d6e129a34ecdda02"
+        }
+      },
+      {
+        "id": "5cd0369446bafa16d5db3b35adb76454",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Number",
+        "slug": "rank",
+        "displayName": "rank",
+        "helpText": null,
+        "validations": {
+          "format": "integer",
+          "precision": 1,
+          "allowNegative": false
+        }
+      },
+      {
+        "id": "859f763ab47d219044112010870ac678",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Image",
+        "slug": "primary-signage",
+        "displayName": "primary signage",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "90508b58ba5aba5d4354ef3f6b954a05",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "RichText",
+        "slug": "full-description",
+        "displayName": "full description",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "de1181603bc7bc02eb566093a46a0d02",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "name",
+        "displayName": "Name",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256
+        }
+      },
+      {
+        "id": "dddacd202e31b47bca3e17e0aee94d82",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "slug",
+        "displayName": "Slug",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256,
+          "pattern": {},
+          "messages": {
+            "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+            "maxLength": "Must be less than 256 characters"
+          }
+        }
+      }
+    ],
+    "fieldGroups": []
+  },
+  "counts": {
+    "total": 12,
+    "published": 11,
+    "draft": 1,
+    "archived": 0
+  },
+  "items": [
+    {
+      "id": "62c89378d6e12974a1cdda52",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-07-09T14:39:38.011Z",
+      "lastUpdated": "2022-07-08T21:09:23.364Z",
+      "createdOn": "2022-07-03T12:26:56.346Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "62c89a2c4f9abca755d13cfe",
+        "rank": null,
+        "primary-signage": null,
+        "full-description": "<figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div id=\"\"><img id=\"\" src=\"https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/62c89378d6e12932c3cdda6c_blue.jpg\" width=\"auto\" height=\"auto\" loading=\"auto\"></div><figcaption id=\"\"><strong id=\"\">1/3 Banner WIdth on Venue Signage</strong></figcaption></figure>",
+        "name": "Prime Marketing - Blue Level",
+        "slug": "prime-marketing-blue-level"
+      }
+    },
+    {
+      "id": "62c89378d6e129187ccdda51",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-07-09T14:39:38.011Z",
+      "lastUpdated": "2022-07-08T21:09:23.502Z",
+      "createdOn": "2022-07-03T12:22:40.578Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "62c89a2c4f9abca755d13cfe",
+        "rank": null,
+        "primary-signage": null,
+        "full-description": "<figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div id=\"\"><img id=\"\" src=\"https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/62c89378d6e1290d48cdda6b_white.jpg\" width=\"auto\" height=\"auto\" loading=\"auto\"></div><figcaption id=\"\"><strong id=\"\">Half Banner Width Logo Treatment on Venue Signage - Third Tier Billing</strong></figcaption></figure>",
+        "name": "Prime Marketing - White Level",
+        "slug": "prime-marketing-white-level"
+      }
+    },
+    {
+      "id": "62c89378d6e129bbc5cdda50",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-07-09T14:39:38.011Z",
+      "lastUpdated": "2022-07-08T21:09:23.340Z",
+      "createdOn": "2022-07-03T12:21:47.342Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "62c89a2c4f9abca755d13cfe",
+        "rank": null,
+        "primary-signage": null,
+        "full-description": "<figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div id=\"\"><img id=\"\" src=\"https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/62c89378d6e1297b2fcdda6a_red.jpg\" width=\"auto\" height=\"auto\" loading=\"auto\"></div><figcaption id=\"\"><strong id=\"\">Half Banner Width Logo Treatment on Venue Signage - Second Tier Billing</strong></figcaption></figure>",
+        "name": "Prime Marketing - Red Level",
+        "slug": "prime-marketing-red-level"
+      }
+    },
+    {
+      "id": "62c89378d6e129f76ecdda4f",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-07-09T14:39:38.011Z",
+      "lastUpdated": "2022-07-08T21:09:23.264Z",
+      "createdOn": "2022-07-03T12:14:48.807Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "62c89a2c4f9abca755d13cfe",
+        "rank": null,
+        "primary-signage": null,
+        "full-description": "<figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div id=\"\"><img id=\"\" src=\"https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/62c89378d6e1294b9bcdda69_top.jpg\" width=\"auto\" height=\"auto\" loading=\"auto\"></div><figcaption id=\"\"><strong id=\"\">Full Banner Width Logo Treatment on Venue Signage - Top Billing</strong></figcaption></figure>",
+        "name": "Prime Marketing - Commander & Chief Level",
+        "slug": "prime-marketing-commander-chief-level"
+      }
+    },
+    {
+      "id": "62c89378d6e1297dfccdda4c",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-07-09T14:39:38.011Z",
+      "lastUpdated": "2022-07-08T21:09:23.073Z",
+      "createdOn": "2022-07-01T18:41:58.956Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "62c89a2c4f9abca755d13cfe",
+        "rank": null,
+        "primary-signage": null,
+        "full-description": "<figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div id=\"\"><img id=\"\" src=\"https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/62c89378d6e1296d3acdda72_cards.jpg\" width=\"auto\" height=\"auto\" loading=\"auto\"></div></figure><p id=\"\">‍</p>",
+        "name": "100 Chick-Fil-A digital meal cards",
+        "slug": "100-chick-fil-a-digital-meal-cards"
+      }
+    },
+    {
+      "id": "62c89378d6e129ca43cdda48",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-07-09T14:39:38.011Z",
+      "lastUpdated": "2022-07-08T21:09:23.089Z",
+      "createdOn": "2022-06-22T18:21:22.095Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "62c89a2c4f9abca755d13cfe",
+        "rank": null,
+        "primary-signage": null,
+        "full-description": "<figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div id=\"\"><img id=\"\" src=\"https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/62c89378d6e1296d3acdda72_cards.jpg\" width=\"auto\" height=\"auto\" loading=\"auto\"></div></figure>",
+        "name": "25 Chick-Fil-A digital meal cards",
+        "slug": "25-chick-fil-a-digital-meal-cards"
+      }
+    },
+    {
+      "id": "62c89378d6e12955a9cdda46",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-07-09T14:39:38.011Z",
+      "lastUpdated": "2022-07-08T21:09:23.063Z",
+      "createdOn": "2022-06-22T18:19:20.313Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "62c89a2c4f9abca755d13cfe",
+        "rank": null,
+        "primary-signage": null,
+        "full-description": "<figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div id=\"\"><img id=\"\" src=\"https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/62c89378d6e1296d3acdda72_cards.jpg\" width=\"auto\" height=\"auto\" loading=\"auto\"></div></figure>",
+        "name": "50 Chick-Fil-A digital meal cards",
+        "slug": "50-chick-fil-a-digital-meal-cards"
+      }
+    },
+    {
+      "id": "62c89378d6e12904bccdda5c",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-07-09T14:39:38.011Z",
+      "lastUpdated": "2022-07-08T21:09:23.459Z",
+      "createdOn": "2022-06-22T18:09:39.597Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "62c89a2c4f9abca755d13cfe",
+        "rank": 80,
+        "primary-signage": {
+          "fileId": "62c89d03e45b2d10a88fe447",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/62c89d03e45b2d10a88fe447_62c89378d6e12971becdda68_IMG_0025.jpeg",
+          "alt": null
+        },
+        "full-description": "<figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div id=\"\"><img id=\"\" src=\"https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/62c89378d6e1295363cdda67_IMG_0019.jpg\" width=\"auto\" height=\"auto\" loading=\"auto\"></div><figcaption id=\"\">Last Year's Venue Signage</figcaption></figure><p id=\"\">‍</p><figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div id=\"\"><img id=\"\" src=\"https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/62c89378d6e12971becdda68_IMG_0025.jpg\" width=\"auto\" height=\"auto\" loading=\"auto\"></div><figcaption id=\"\">Last Year's Venue SIgnage</figcaption></figure><p id=\"\">‍</p><p id=\"\">‍</p>",
+        "name": "Primary Signage",
+        "slug": "primary-signage"
+      }
+    },
+    {
+      "id": "62c89378d6e1296d5fcdda45",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-07-09T14:39:38.011Z",
+      "lastUpdated": "2022-07-08T21:09:23.376Z",
+      "createdOn": "2022-06-22T18:08:04.189Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "62c89a2c4f9abca755d13cfe",
+        "rank": 40,
+        "primary-signage": null,
+        "full-description": "<p id=\"\">Complimentary venue entry for your entire team.</p>",
+        "name": "Team entry",
+        "slug": "team-entry"
+      }
+    },
+    {
+      "id": "62c89378d6e1295e79cdda44",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": null,
+      "lastUpdated": "2022-07-08T21:09:23.306Z",
+      "createdOn": "2022-06-22T18:07:47.385Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "parent-event": "62c89a2c4f9abca755d13cfe",
+        "rank": 50,
+        "primary-signage": null,
+        "full-description": "",
+        "name": "Catered Chick-Fil-A office tailgate for 50",
+        "slug": "catered-chick-fil-a-office-tailgate-for-50"
+      }
+    },
+    {
+      "id": "62c89378d6e1291e57cdda43",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-07-09T14:39:38.011Z",
+      "lastUpdated": "2022-07-08T21:09:23.089Z",
+      "createdOn": "2022-06-22T18:07:32.322Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "62c89a2c4f9abca755d13cfe",
+        "rank": 75,
+        "primary-signage": null,
+        "full-description": "<p id=\"\">Whatever description we wish to enter about the personalized corhole board set.</p><figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div id=\"\"><img id=\"\" src=\"https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/62c89378d6e1297993cdda6f_image.png\" width=\"auto\" height=\"auto\" loading=\"auto\"></div></figure><p id=\"\">‍</p><figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div id=\"\"><img id=\"\" src=\"https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/62c89378d6e1299bf6cdda70_image-3.png\" width=\"auto\" height=\"auto\" loading=\"auto\"></div></figure><p id=\"\">‍</p><figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div id=\"\"><img id=\"\" src=\"https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/62c89378d6e1295183cdda71_image-2.png\" width=\"auto\" height=\"auto\" loading=\"auto\"></div></figure>",
+        "name": "Board Sponsor - Personalized cornhole board set",
+        "slug": "board-sponsor-personalized-cornhole-board-set"
+      }
+    },
+    {
+      "id": "62c89378d6e129411dcdda42",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-07-09T14:39:38.011Z",
+      "lastUpdated": "2022-07-08T21:09:23.151Z",
+      "createdOn": "2022-06-22T18:07:16.379Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "62c89a2c4f9abca755d13cfe",
+        "rank": 100,
+        "primary-signage": null,
+        "full-description": "<p id=\"\">Whatever description we wish to enter about the permanent legacy recognition level.</p>",
+        "name": "Permanent legacy recognition",
+        "slug": "permanent-legacy-recognition"
+      }
+    }
+  ]
+}

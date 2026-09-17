@@ -1,0 +1,1330 @@
+{
+  "collection": {
+    "id": "62c89378d6e12926b0cdd9ed",
+    "displayName": "Frequently Asked Questions",
+    "singularName": "Frequently Asked Question",
+    "slug": "frequently-asked-questions",
+    "createdOn": "2022-06-17T18:35:18.918Z",
+    "lastUpdated": "2025-07-19T15:53:46.243Z",
+    "fields": [
+      {
+        "id": "bfe18a0900d38d3159174cb577373f86",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "RichText",
+        "slug": "answer",
+        "displayName": "Answer",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "63a404d4038f9c3c89ee754b86a6cd06",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Number",
+        "slug": "rank",
+        "displayName": "rank",
+        "helpText": null,
+        "validations": {
+          "format": "integer",
+          "precision": 1,
+          "allowNegative": false
+        }
+      },
+      {
+        "id": "97f173a07829d4a77e7f38ecba63d2dd",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Switch",
+        "slug": "featured",
+        "displayName": "featured",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "def2620fc2ecd122e27b17d3c3f72f35",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "MultiReference",
+        "slug": "parent-events",
+        "displayName": "parent events",
+        "helpText": null,
+        "validations": {
+          "collectionId": "62c89378d6e129a34ecdda02"
+        }
+      },
+      {
+        "id": "ce99f8b64dc1bedab3afd911f1fc5d5f",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "MultiReference",
+        "slug": "parent-event-logistics",
+        "displayName": "parent event logistics",
+        "helpText": null,
+        "validations": {
+          "collectionId": "64d0f499f35282c2a9cbafc4"
+        }
+      },
+      {
+        "id": "2c6a7ebdd46e8548a99e4d9bfbc0b826",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "name",
+        "displayName": "Question",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256
+        }
+      },
+      {
+        "id": "8d1ad6dbf877783907328f4c073057ba",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "slug",
+        "displayName": "Slug",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256,
+          "pattern": {},
+          "messages": {
+            "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+            "maxLength": "Must be less than 256 characters"
+          }
+        }
+      }
+    ],
+    "fieldGroups": []
+  },
+  "counts": {
+    "total": 60,
+    "published": 60,
+    "draft": 0,
+    "archived": 0
+  },
+  "items": [
+    {
+      "id": "6567641c6a67156d0923b4b3",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-11-29T16:18:13.898Z",
+      "lastUpdated": "2023-11-29T16:18:07.333Z",
+      "createdOn": "2023-11-29T16:17:32.921Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p>If you've already purchased your Tour of Homes tickets, you will receive a notification when the booklets are ready for pick up at The Senoia Welcome Center. Booklets will be ready the week of the event. The Welcome Center is located at 68 Main Street.</p><p><strong>Welcome Center Hours:</strong></p><p>Monday-Friday: 11am-3pm</p><p>Saturday:&nbsp;10am-4pm</p>",
+        "rank": null,
+        "featured": false,
+        "parent-events": [
+          "63d0234b1c21e052c6bfb97a"
+        ],
+        "parent-event-logistics": null,
+        "name": "When and where do I pick up my Tour of Homes tickets?",
+        "slug": "when-and-where-do-i-pick-up-my-tour-of-homes-tickets"
+      }
+    },
+    {
+      "id": "6567636ce23162768d99390e",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-11-29T16:18:13.898Z",
+      "lastUpdated": "2023-11-29T16:14:36.949Z",
+      "createdOn": "2023-11-29T16:14:36.949Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p>Photos of the selected homes are shown on our website. Addresses are only shared with ticket holders. </p>",
+        "rank": null,
+        "featured": false,
+        "parent-events": [
+          "63d0234b1c21e052c6bfb97a"
+        ],
+        "parent-event-logistics": null,
+        "name": "Which homes are on the Tour of Homes? ",
+        "slug": "which-homes-are-on-the-tour-of-homes"
+      }
+    },
+    {
+      "id": "656763220acc3c7bb1182292",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-11-29T16:18:13.898Z",
+      "lastUpdated": "2023-11-29T16:13:22.296Z",
+      "createdOn": "2023-11-29T16:13:22.296Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p>Yes, this event is rain or shine. Plan accordingly! </p>",
+        "rank": null,
+        "featured": false,
+        "parent-events": [
+          "63d0234b1c21e052c6bfb97a"
+        ],
+        "parent-event-logistics": null,
+        "name": "Is the Tour of Homes rain or shine?",
+        "slug": "is-the-tour-of-homes-rain-or-shine"
+      }
+    },
+    {
+      "id": "656762e08b4886de252063d9",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-11-29T16:18:13.898Z",
+      "lastUpdated": "2023-11-29T16:12:29.624Z",
+      "createdOn": "2023-11-29T16:12:16.375Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p>Yes, tickets can be purchased the day of the tour as long as they are not sold out. </p>",
+        "rank": null,
+        "featured": false,
+        "parent-events": [
+          "63d0234b1c21e052c6bfb97a"
+        ],
+        "parent-event-logistics": null,
+        "name": "Can I buy my tickets the day of the event?",
+        "slug": "can-i-buy-my-tickets-the-day-of-the-event"
+      }
+    },
+    {
+      "id": "6567616606dcaa5d7ab3634e",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-11-29T16:10:27.475Z",
+      "lastUpdated": "2023-11-29T16:09:07.745Z",
+      "createdOn": "2023-11-29T16:05:57.973Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p>Yes, the selected homes to be on the Tour of Homes are relatively within walking distance of one another. You are also able to drive, or golf cart from home to home. </p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "63d0234b1c21e052c6bfb97a"
+        ],
+        "parent-event-logistics": null,
+        "name": "Is the Tour of Homes walkable? ",
+        "slug": "is-the-tour-oh-homes-walkable"
+      }
+    },
+    {
+      "id": "649f1ad43f2be47bb383065c",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:11.379Z",
+      "createdOn": "2023-06-30T18:11:32.282Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">You'll notice there are multiple garbage cans located in the median covering ALL of Main Street. Please utilize the garbage and if you notice one is full and overflowing, the next one is just a few steps away!&nbsp;</p>",
+        "rank": null,
+        "featured": false,
+        "parent-events": null,
+        "parent-event-logistics": null,
+        "name": "Where are the garbage cans?",
+        "slug": "where-are-the-garbage-cans"
+      }
+    },
+    {
+      "id": "649f194ac5a4ba292ebf3658",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:11.241Z",
+      "createdOn": "2023-06-30T18:04:58.740Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Public restrooms are accessible during Alive After Five and located behind City Hall, at 80 Main Street. </p>",
+        "rank": null,
+        "featured": false,
+        "parent-events": null,
+        "parent-event-logistics": null,
+        "name": "Where are the restrooms?",
+        "slug": "where-are-the-restrooms"
+      }
+    },
+    {
+      "id": "649229468de7e401e99cd029",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T15:05:06.968Z",
+      "createdOn": "2023-06-20T22:33:42.362Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Please email <a id=\"\" href=\"mailto:porchfest@enjoysenoia.com\">porchfest@enjoysenoia.com</a>. During the event, volunteers will be in red t-shirts and will be able to answer your questions.</p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [
+          "64d0f71959311e7b6a092f3c"
+        ],
+        "name": "Any other questions?",
+        "slug": "any-other-questions"
+      }
+    },
+    {
+      "id": "64922928a738de17515cf018",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T15:15:12.403Z",
+      "createdOn": "2023-06-20T22:33:12.844Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Volunteers may sign up at <a id=\"\" href=\"https://www.enjoysenoia.com/events/senoia-porchfest-2023\">https://www.enjoysenoia.com/events/senoia-porchfest-2023</a></p><p id=\"\">‍</p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [],
+        "name": "How do I volunteer to help with PorchFest?",
+        "slug": "how-do-i-volunteer-to-help-with-porchfest-2"
+      }
+    },
+    {
+      "id": "64922908c64d01bb59761b80",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T15:05:07.662Z",
+      "createdOn": "2023-06-20T22:32:40.365Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Yes – please use #SenoiaPorchFest on Twitter, Facebook and Instagram! Tell your friends and thanks for helping to promote the event and the bands!</p><p id=\"\">‍</p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [
+          "64d0f71959311e7b6a092f3c"
+        ],
+        "name": "Is there a hashtag?",
+        "slug": "is-there-a-hashtag-2"
+      }
+    },
+    {
+      "id": "649228eb2f8cdf7a1c1ff7bb",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T15:15:03.259Z",
+      "createdOn": "2023-06-20T22:32:11.873Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Sponsorships are available! For additional information please go to <a id=\"\" href=\"https://www.enjoysenoia.com/events/senoia-porchfest-2023\">https://www.enjoysenoia.com/events/senoia-porchfest-2023</a>. All sponsorships and donations are welcome and appreciated. Sharing the news of PorchFest with your friends and neighbors is a great way to insure that we have an awesome turnout.</p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [],
+        "name": "How do I sponsor PorchFest? How can I make sure this event keeps going?",
+        "slug": "how-do-i-sponsor-porchfest-how-can-i-make-sure-this-event-keeps-going-2"
+      }
+    },
+    {
+      "id": "64922891c24cb80fffaae764",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T15:14:57.290Z",
+      "createdOn": "2023-06-20T22:30:41.386Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Bands may submit themselves for consideration at <a id=\"\" href=\"https://www.enjoysenoia.com/events/senoia-porchfest-2023\">https://www.enjoysenoia.com/events/senoia-porchfest-2023</a></p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [],
+        "name": "How do I submit my band for PorchFest?",
+        "slug": "how-do-i-submit-my-band-for-porchfest-2"
+      }
+    },
+    {
+      "id": "6492286ef97b096bff1303f3",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T15:05:07.954Z",
+      "createdOn": "2023-06-20T22:30:06.856Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Rules for Fido are the same as they would be at any other time on the street or sidewalk. All dogs must be leashed and well behaved. Please be aware and respectful of any homeowners’ preferences while on their property as different hosts will likely have different preferences when it comes to dogs.&nbsp;</p><p id=\"\">‍</p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [
+          "64d0f71959311e7b6a092f3c"
+        ],
+        "name": "Are dogs allowed at PorchFest?",
+        "slug": "are-dogs-allowed-at-porchfest"
+      }
+    },
+    {
+      "id": "6492284d87c5ea97c5b94393",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T15:05:07.486Z",
+      "createdOn": "2023-06-20T22:29:33.475Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Yes! People of all ages are encouraged to attend PorchFest. Visit participating porches at your own pace. Feel free to bring strollers, wagons and chairs. Children’s activities will be offered at the Children’s Corner at Pylant and Andrew’s Parkway</p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [
+          "64d0f71959311e7b6a092f3c"
+        ],
+        "name": "Is this a child friendly event?",
+        "slug": "is-this-a-child-friendly-event-2"
+      }
+    },
+    {
+      "id": "649228296053dc4352c857a7",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T15:14:39.170Z",
+      "createdOn": "2023-06-20T22:28:57.962Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Porchfest will take place rain or shine so plan ahead and dress appropriately.</p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [
+          "64d0f71959311e7b6a092f3c"
+        ],
+        "name": "What happens if it rains?",
+        "slug": "what-happens-if-it-rains-2"
+      }
+    },
+    {
+      "id": "649228048de7e401e99bd4e7",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T15:14:28.374Z",
+      "createdOn": "2023-06-20T22:28:20.197Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">VIP tickets are available at <a id=\"\" href=\"https://www.enjoysenoia.com/events/senoia-porchfest-2023\">https://www.enjoysenoia.com/events/senoia-porchfest-2023</a></p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [],
+        "name": "How do I purchase VIP tickets?",
+        "slug": "how-do-i-purchase-vip-tickets-2"
+      }
+    },
+    {
+      "id": "649227e283b36e45e069e961",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-12T15:39:02.909Z",
+      "lastUpdated": "2023-08-12T15:38:39.446Z",
+      "createdOn": "2023-06-20T22:27:46.338Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">The $10 VIP tickets include admission to the VIP performance venue (TBA), access to purchase food and drink from VIP vendors and a spotlight band will entertain from 7:00 PM - 10:00 PM.</p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [
+          "64d0f71959311e7b6a092f3c"
+        ],
+        "name": "What is included with the VIP ticket?",
+        "slug": "what-is-included-with-the-vip-ticket"
+      }
+    },
+    {
+      "id": "6492279759c9c541a7cac125",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T15:05:08.633Z",
+      "createdOn": "2023-06-20T22:26:31.741Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Porta-johns, including an accessible one, will be located throughout the performance area. You can also use the public restrooms behind City Hall on Main Street.&nbsp;</p><p id=\"\">‍</p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [
+          "64d0f71959311e7b6a092f3c"
+        ],
+        "name": "Where can I find a bathroom?",
+        "slug": "where-can-i-find-a-bathroom-2"
+      }
+    },
+    {
+      "id": "649227742c08e8524af2552e",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-30T21:04:25.958Z",
+      "lastUpdated": "2023-08-30T21:04:25.958Z",
+      "createdOn": "2023-06-20T22:25:56.915Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">2023 PorchFest t-shirts will be available at the Senoia Welcome Center through Saturday, 9/2 and during PorchFest at the Information/Merchandise Tent.&nbsp;</p><p id=\"\">Welcome Center Hours: </p><p id=\"\">Tuesday-Friday: 11:00am-3:00pm</p><p id=\"\">Saturday: 10:00am-4:00pm</p><p id=\"\">Closed Sunday &amp; Monday </p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [
+          "64d0f71959311e7b6a092f3c"
+        ],
+        "name": "Where can I purchase a PorchFest t-shirt?",
+        "slug": "where-can-i-purchase-a-porchfest-t-shirt"
+      }
+    },
+    {
+      "id": "649226e183b36e45e069e0aa",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T15:05:07.720Z",
+      "createdOn": "2023-06-20T22:23:29.317Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Food trucks and drink vendors will be on hand to fill your empty tummy. Some local businesses will also be open during PorchFest hours. Please remember that each venue is someone’s porch, so please be sure that you are respectful and clean up after yourself. <strong id=\"\">No outside food, drink or coolers will be allowed inside the PorchFest area. </strong></p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [
+          "64d0f71959311e7b6a092f3c"
+        ],
+        "name": "What about food and drinks?",
+        "slug": "what-about-food-and-drinks"
+      }
+    },
+    {
+      "id": "649226b7559ca109c8b2a726",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T15:05:08.510Z",
+      "createdOn": "2023-06-20T22:22:47.539Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">PorchFest is a rain or shine event. Please dress accordingly. You will want to bring a folding chair to carry to each porch/stage. Food and beverage vendors have paid to participate in this event, therefore there will be <strong id=\"\">no outside food, drink or coolers allowed inside the PorchFest area.&nbsp;</strong></p><p id=\"\">‍</p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [
+          "64d0f71959311e7b6a092f3c"
+        ],
+        "name": "What should I bring to PorchFest?",
+        "slug": "what-should-i-bring-to-porchfest-2"
+      }
+    },
+    {
+      "id": "6492268b559ca109c8b28428",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T15:13:50.913Z",
+      "createdOn": "2023-06-20T22:22:03.224Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">This event is designed for walking. If you need to drive to Senoia, please find a convenient parking spot and walk from there. There will be <strong id=\"\">NO</strong> motorized vehicles, golf carts, bicycles, or skateboards allowed within the PorchFest perimeter. Limited golf cart shuttles will be assisting patrons to and from parking locations within Senoia, but they will only be able to get patrons to and from the perimeter of the event.&nbsp;</p><p id=\"\">‍</p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [],
+        "name": "Should I walk, park, or drive to PorchFest?",
+        "slug": "should-i-walk-park-or-drive-to-porchfest"
+      }
+    },
+    {
+      "id": "649226435799aa94cadb6777",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T15:05:06.962Z",
+      "createdOn": "2023-06-20T22:20:51.795Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Organizers, performers, and porch hosts are all giving freely of their time and talents. If you would like to support a band, please make a donation in the tip jars provided or via the QR codes on the PorchFest signage.</p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [
+          "64d0f71959311e7b6a092f3c"
+        ],
+        "name": "Do the musicians get paid?",
+        "slug": "do-the-musicians-get-paid-2"
+      }
+    },
+    {
+      "id": "6492261ede5bbc6f09d62277",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T15:13:39.165Z",
+      "createdOn": "2023-06-20T22:20:14.535Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">An event map and schedule will be available once the bands and porches have been selected at <a id=\"\" href=\"https://www.enjoysenoia.com/events/senoia-porchfest-2023\">https://www.enjoysenoia.com/events/senoia-porchfest-2023</a> and on the Enjoy Senoia social media. We will also have printed maps and maps posted at the major intersections during PorchFest.</p><p id=\"\">‍</p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [],
+        "name": "Is there a map or a schedule?",
+        "slug": "is-there-a-map-or-a-schedule-2"
+      }
+    },
+    {
+      "id": "649225fad72f9aa0a503a67e",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-30T20:15:01.336Z",
+      "lastUpdated": "2023-08-30T20:15:01.336Z",
+      "createdOn": "2023-06-20T22:19:38.458Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">PorchFest is a FREE event for participants. Tips for the musicians are encouraged. Food and drinks will be available to purchase. Artwork from local artisans will be available for sale. Check out one band or twenty! Stay for 20 minutes or all afternoon! VIP experience tickets are $10 each and are available at <a id=\"\" href=\"https://www.enjoysenoia.com/events/senoia-porchfest-2023\">https://www.enjoysenoia.com/events/senoia-porchfest-2023</a>.&nbsp;</p><p id=\"\">‍</p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [
+          "64d0f71959311e7b6a092f3c"
+        ],
+        "name": "Do I need a ticket? What does PorchFest cost?",
+        "slug": "do-i-need-a-ticket-what-does-porchfest-cost-2"
+      }
+    },
+    {
+      "id": "649225c8d0fe26c2e11a1ee0",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T15:13:27.496Z",
+      "createdOn": "2023-06-20T22:18:48.174Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Anyone and everyone! PorchFest Senoia is family-friendly and features a wide variety of music – so there’s sure to be a band or performance that sparks your interest.</p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [],
+        "name": "Who should attend PorchFest?",
+        "slug": "who-should-attend-porchfest-2"
+      }
+    },
+    {
+      "id": "649225a1a58f2e07400f9fbc",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T15:13:19.357Z",
+      "createdOn": "2023-06-20T22:18:09.423Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">We have bands and solo artists of various genres who will be performing at 20 different venues. Band announcements will be made on <a id=\"\" href=\"https://www.enjoysenoia.com/events/senoia-porchfest-2023\">https://www.enjoysenoia.com/events/senoia-porchfest-2023</a> and on the Enjoy Senoia social media.</p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [],
+        "name": "What music will be performed at PorchFest?",
+        "slug": "what-music-will-be-performed-at-porchfest-2"
+      }
+    },
+    {
+      "id": "64922568b9c05c693e6473ce",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T15:12:56.523Z",
+      "createdOn": "2023-06-20T22:17:12.470Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Neighbors offer their porches or yards, performers and artists volunteer their talents. We pair musicians with porches and yards and artists with street locations. Food trucks and beverage proprietors will provide yummy food and drinks. The Children’s Corner will provide young porchfesters with games and crafts. Music, art, food and drink will be enjoyed between 3:00 PM - 7:00 PM on Sunday, September 3, 2023.</p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [],
+        "name": "How does PorchFest work?",
+        "slug": "how-does-porchfest-work-2"
+      }
+    },
+    {
+      "id": "6492253a26331e713a70a4e9",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T15:05:08.877Z",
+      "createdOn": "2023-06-20T22:16:26.755Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">PorchFest Senoia is organized by volunteers and sponsored by the Senoia Downtown Development Authority and local vendors. A list of the sponsors will be available on signage throughout the event, on the <a id=\"\" href=\"https://www.enjoysenoia.com/events/senoia-porchfest-2023; senoia-porchfest-2023-staging\">Enjoy Senoia</a> website and on the <a id=\"\" href=\"https://www.facebook.com/enjoysenoia\">Enjoy Senoia, Georgia Facebook page</a> and on the <a id=\"\" href=\"https://www.instagram.com/enjoysenoia/\">EnjoySenoia Instagram page</a>.</p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [
+          "64d0f71959311e7b6a092f3c"
+        ],
+        "name": "Who is organizing this event?",
+        "slug": "who-is-organizing-this-event"
+      }
+    },
+    {
+      "id": "649224d73e992130c0de7e44",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T15:12:45.073Z",
+      "createdOn": "2023-06-20T22:14:47.568Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">PorchFest is a hometown neighborhood and community celebration where porches and yards become stages for local and regional bands and musicians. Senoia’s streets become artist galleries and walk-up restaurants</p>",
+        "rank": null,
+        "featured": true,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [],
+        "name": "What is PorchFest?",
+        "slug": "what-is-porchfest-2"
+      }
+    },
+    {
+      "id": "6491dfe069909f72204b7045",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T15:05:07.929Z",
+      "createdOn": "2023-06-20T17:20:32.665Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Outside coolers are not allowed at PorchFest. Food and drinks are available to purchase from the PorchFest vendors.</p>",
+        "rank": null,
+        "featured": false,
+        "parent-events": [
+          "6491b50d85a673a232d36f21"
+        ],
+        "parent-event-logistics": [
+          "64d0f71959311e7b6a092f3c"
+        ],
+        "name": "Are coolers allowed at PorchFest",
+        "slug": "are-coolers-allowed-at-porchfest"
+      }
+    },
+    {
+      "id": "645523a2b593c3e21ef236b7",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:11.448Z",
+      "createdOn": "2023-05-05T15:41:22.685Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">We have a wide variety of food trucks coming to Memorial Day this year! Lots of options between sweet and savory trucks. So far, these are the food trucks that will be attending our Memorial Day event: </p><p id=\"\">Lisa's Creperie, Curious Pig, Knife and Stone, Lepoma's Pizza, Love at Wurst Sight, Crave BBQ, Kettleworks Popcorn, Little Miss Juicy, Sunset Slush Italian Ice, Mama Fannie's Beignets, and Big Daddy's Peanuts. </p><p id=\"\">‍</p>",
+        "rank": null,
+        "featured": false,
+        "parent-events": [
+          "641ed0f582c9bb44553a5703"
+        ],
+        "parent-event-logistics": null,
+        "name": "Which food trucks will be there?",
+        "slug": "which-food-trucks-will-be-there"
+      }
+    },
+    {
+      "id": "645177fb48131cb74576a379",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:09.527Z",
+      "createdOn": "2023-05-02T20:52:11.737Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">If you have purchased a VIP table, you can stop by the Welcome Center at 68 Main Street in downtown Senoia to pick up your VIP table wristbands <strong id=\"\">beginning on Tuesday, May 23rd.</strong> &nbsp;During the week before Memorial Day Weekend, the Welcome Center will be open Tuesday, 05/23, through Friday, 05/26, from 11-3 and on Saturday, 05/27, from 10-4. </p><p id=\"\">Eight (8) wristbands will be provided per VIP table. You will be responsible for distributing wristbands to those sitting at your table. Any VIP ticket purchasers who do not pick up their wristbands before the event can do so at the DDA tent, near the VIP area at the event. You will need either the e-ticket provided via email when you purchased your ticket, or the name, address and contact phone number or email address used when VIP table was purchased online.</p><p id=\"\">‍</p>",
+        "rank": null,
+        "featured": false,
+        "parent-events": [
+          "641ed0f582c9bb44553a5703"
+        ],
+        "parent-event-logistics": null,
+        "name": "I purchased a VIP table, how do I get my VIP Table Wristbands?",
+        "slug": "i-purchased-a-vip-table-how-do-i-get-my-vip-table-wristbands"
+      }
+    },
+    {
+      "id": "6436c358a408d6529e591760",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:08.517Z",
+      "createdOn": "2023-04-12T14:42:32.225Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Yes! You are welcome to bring some patriotic decor for your VIP table.</p>",
+        "rank": null,
+        "featured": false,
+        "parent-events": [
+          "641ed0f582c9bb44553a5703"
+        ],
+        "parent-event-logistics": null,
+        "name": "Can I decorate my VIP table?",
+        "slug": "can-i-decorate-my-vip-table"
+      }
+    },
+    {
+      "id": "642630e1d2fd98bd22052c91",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:09.093Z",
+      "createdOn": "2023-03-31T01:01:21.487Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">There is a paid VIP area, but the rest of the park is open for the public to enjoy.</p>",
+        "rank": null,
+        "featured": false,
+        "parent-events": [
+          "641ed0f582c9bb44553a5703"
+        ],
+        "parent-event-logistics": null,
+        "name": "Can the general public use the park area without purchasing a VIP ticket?",
+        "slug": "can-the-general-public-use-the-park-area-without-purchasing-a-vip-ticket"
+      }
+    },
+    {
+      "id": "64262e5e49a5ed3d05431a0f",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:08.383Z",
+      "createdOn": "2023-03-31T00:50:38.477Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Coolers are not permitted. Alcoholic beverages may not be brought onto the park grounds.</p>",
+        "rank": null,
+        "featured": false,
+        "parent-events": [
+          "641ed0f582c9bb44553a5703"
+        ],
+        "parent-event-logistics": null,
+        "name": "Can I bring a cooler or alcoholic beverages?",
+        "slug": "can-i-bring-a-cooler-or-alcoholic-beverages"
+      }
+    },
+    {
+      "id": "637cff3e6bd281233457b5f5",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:10.403Z",
+      "createdOn": "2022-11-22T16:56:30.646Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">test answer</p>",
+        "rank": null,
+        "featured": false,
+        "parent-events": null,
+        "parent-event-logistics": null,
+        "name": "test item",
+        "slug": "test-item"
+      }
+    },
+    {
+      "id": "62ccd067ed61667cf94620ef",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:10.077Z",
+      "createdOn": "2022-07-12T01:37:43.623Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Please contact Stephanie Reeder at 618-559-8997 or email PorchFestSenoia@gmail.com</p>",
+        "rank": 790,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "How Do I Volunteer To Help With Porchfest?",
+        "slug": "how-do-i-volunteer-to-help-with-porchfest"
+      }
+    },
+    {
+      "id": "62ccd0676869555df2c35576",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:09.150Z",
+      "createdOn": "2022-07-12T01:37:43.458Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Sponsorships are available! For additional information please go to www.EnjoySenoia.net/PorchFest. Donations to assure the future of PorchFest can be made at the information booth at the Senoia Farmer’s Market at 40 Travis Street or on-line at www.EnjoySenoia.net/PorchFest. All donations are welcome and appreciated.</p>",
+        "rank": 810,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "How Do I Sponsor Porchfest? How Can I Make Sure This Event Keeps Going?",
+        "slug": "how-do-i-sponsor-porchfest-how-can-i-make-sure-this-event-keeps-going"
+      }
+    },
+    {
+      "id": "62ccd0673840e08becfd27c5",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:09.811Z",
+      "createdOn": "2022-07-12T01:37:43.436Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Yes – please use #porchfestSenoia on Twitter, Facebook and Instagram! Tell your friends and thanks for helping to promote the event and the bands!</p>",
+        "rank": 800,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "Is There A Hashtag?",
+        "slug": "is-there-a-hashtag"
+      }
+    },
+    {
+      "id": "62ccd0679f34147e3ab0128a",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:09.330Z",
+      "createdOn": "2022-07-12T01:37:43.372Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Please contact Stephanie Reeder at 618-559-8997 or email PorchFestSenoia@gmail.com</p>",
+        "rank": 820,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "How Do I Volunteer My Porch Or Yard For Porchfest?",
+        "slug": "how-do-i-volunteer-my-porch-or-yard-for-porchfest"
+      }
+    },
+    {
+      "id": "62ccd067dd7c816b00486a7a",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:10.580Z",
+      "createdOn": "2022-07-12T01:37:43.324Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Porchfest will take place rain or shine so plan ahead and dress appropriately.</p>",
+        "rank": 860,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "What Happens If It Rains?",
+        "slug": "what-happens-if-it-rains"
+      }
+    },
+    {
+      "id": "62ccd067ed6166fa2f4620d0",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:09.311Z",
+      "createdOn": "2022-07-12T01:37:43.296Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Please email a short recording or a YouTube link of your band performing to PorchFestSenoia@gmail.com by Thursday, August 4, 2022.</p>",
+        "rank": 830,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "How Do I Submit My Band For Porchfest?",
+        "slug": "how-do-i-submit-my-band-for-porchfest"
+      }
+    },
+    {
+      "id": "62ccd067e4b74fbd73727f26",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:08.371Z",
+      "createdOn": "2022-07-12T01:37:43.286Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Rules for Fido are the same as they would be at any other time on the street or sidewalk. All dogs must be leashed and well behaved. Please be aware and respectful of any homeowners’ preferences while on their property as different hosts will likely have different preferences when it comes to dogs.</p>",
+        "rank": 840,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "Are Dogs Allowed?",
+        "slug": "are-dogs-allowed"
+      }
+    },
+    {
+      "id": "62ccd067a6eae63930cb7fbf",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:10.206Z",
+      "createdOn": "2022-07-12T01:37:43.152Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Yes! People of all ages are encouraged to attend Porchfest. Visit participating porches at your own pace. Feel free to bring strollers, wagons and chairs. Children’s activities will be offered on Travis Street, including what activities?</p>",
+        "rank": 850,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "Is This A Child-Friendly Event?",
+        "slug": "is-this-a-child-friendly-event"
+      }
+    },
+    {
+      "id": "62ccd06799719ac37d591b40",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:08.923Z",
+      "createdOn": "2022-07-12T01:37:43.123Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">VIP tickets are available at www.enjoysenoia.net/PorchFest</p>",
+        "rank": 870,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "How Do I Purchase Vip Tickets?",
+        "slug": "how-do-i-purchase-vip-tickets"
+      }
+    },
+    {
+      "id": "62ccd0674277a736dcf26d55",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-12T15:39:02.909Z",
+      "lastUpdated": "2023-08-12T15:38:57.966Z",
+      "createdOn": "2022-07-12T01:37:43.008Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">The $25 VIP tickets include admission to the Senoia Farmer’s Market building, access to the air conditioned indoor bathroom, seating, private VIP bar and a spotlight band will entertain from 7:00 PM - 8:00 PM.</p>",
+        "rank": 880,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "What Is Included With The Vip Tickets?",
+        "slug": "what-is-included-with-the-vip-tickets"
+      }
+    },
+    {
+      "id": "62ccd06686390e0ab212648b",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:11.173Z",
+      "createdOn": "2022-07-12T01:37:42.977Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Porta-johns, including an accessible one, will be located throughout the performance area. You can also use the public restrooms near City Hall on Main Street. VIP ticket holders can use the air conditioned bathroom at the Farmer’s Market.</p>",
+        "rank": 890,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "Where Can I Find A Bathroom?",
+        "slug": "where-can-i-find-a-bathroom"
+      }
+    },
+    {
+      "id": "62ccd066dd7c81f349486a73",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:08.786Z",
+      "createdOn": "2022-07-12T01:37:42.921Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">PorchFest is a FREE event for participants. Tips for the musicians are encouraged. Food and drinks will be available to purchase. Artwork from local artisans will be available for sale. Check out one band or sixteen! Stay for 20 minutes or all afternoon! VIP experience tickets are $25 each and are available at www.enjoysenoia.net/PorchFest</p>",
+        "rank": 960,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "Do I Need A Ticket? What Does PorchFest Cost?",
+        "slug": "do-i-need-a-ticket-what-does-porchfest-cost"
+      }
+    },
+    {
+      "id": "62ccd066dd7c812f40486a74",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:08.616Z",
+      "createdOn": "2022-07-12T01:37:42.921Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Organizers, performers, and porch hosts are all giving freely of their time and talents. If you would like to support a band, you are welcome to make a donation in the tip jars provided or via the QR codes on signage.</p>",
+        "rank": 930,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "Do The Musicians Get Paid?",
+        "slug": "do-the-musicians-get-paid"
+      }
+    },
+    {
+      "id": "62ccd0667f4b4b9cb1dc73b5",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:10.431Z",
+      "createdOn": "2022-07-12T01:37:42.906Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Food trucks and drink vendors will be on hand to fill your empty tummy. Some local businesses will also be open during PorchFest hours. Please remember that each venue is someone’s porch, so please be sure that you are respectful and clean up after yourself. No outside food, drink or coolers will be allowed inside the PorchFest area.</p>",
+        "rank": 900,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "What About Food And Drink?",
+        "slug": "what-about-food-and-drink"
+      }
+    },
+    {
+      "id": "62ccd066aa926ee66fb18635",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:10.088Z",
+      "createdOn": "2022-07-12T01:37:42.813Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">This event is designed for walking. If you need to drive to Senoia, please find a convenient parking spot and walk from there.</p>",
+        "rank": 920,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "Should I Walk, Park, Drive?",
+        "slug": "should-i-walk-park-drive"
+      }
+    },
+    {
+      "id": "62ccd066a6eae615cacb7fb6",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:10.993Z",
+      "createdOn": "2022-07-12T01:37:42.779Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">A folding chair to carry to each porch/stage. Comfortable shoes for walking the historical streets of Senoia. No outside food, drink or coolers will be allowed inside the PorchFest area.</p>",
+        "rank": 910,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "What Should I Bring To Porchfest?",
+        "slug": "what-should-i-bring-to-porchfest"
+      }
+    },
+    {
+      "id": "62ccd066aa926e1582b18633",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:08.960Z",
+      "createdOn": "2022-07-12T01:37:42.731Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Go to the Facebook PorchFest Senoia event page or to www.EnjoySenoia.net/PorchFest (coming soon) page to find out more about the performers.</p>",
+        "rank": 940,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "How Can I Find Out More About The Musicians?",
+        "slug": "how-can-i-find-out-more-about-the-musicians"
+      }
+    },
+    {
+      "id": "62ccd066c505ff6a49a59b62",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:09.805Z",
+      "createdOn": "2022-07-12T01:37:42.716Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">An event map and schedule will be available on our Facebook PorchFest Senoia event page and at www.EnjoySenoia.net/PorchFest (coming soon). Check our listings for the most up-to-date information, as new bands and porches are joining each day. We will also have printed maps available during PorchFest at the Senoia Farmer’s Market located at Travis Street .</p>",
+        "rank": 950,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "Is There A Map Or A Schedule?",
+        "slug": "is-there-a-map-or-a-schedule"
+      }
+    },
+    {
+      "id": "62cccd6b21487d3f6efb012c",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:11.973Z",
+      "createdOn": "2022-07-12T01:24:59.978Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Anyone and everyone! PorchFest Senoia is family-friendly and features a wide variety of music – so there’s sure to be a band or performance that sparks your interest</p>",
+        "rank": 980,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "Who Should Attend PorchFest?",
+        "slug": "who-should-attend-porchfest"
+      }
+    },
+    {
+      "id": "62cccd46e4b74fadf0725149",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:11.251Z",
+      "createdOn": "2022-07-12T01:24:22.366Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">We have bands and solo artists of all ages who will be performing various genres.</p><p id=\"\">‍</p>",
+        "rank": 908,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "What Music will be Performed at PorchFest?",
+        "slug": "what-music-will-be-performed-at-porchfest"
+      }
+    },
+    {
+      "id": "62cccd0b5432e0fb07615c9c",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:09.492Z",
+      "createdOn": "2022-07-12T01:23:23.788Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">Neighborsoffer their porches or yards, performers and artists volunteer their talents.We pair musicians with porches and yards and artists with street locations.Food trucks and beverage proprietors will provide yummy food and drinks. Achildren's area will provide young porchfesters with games and crafts. Music,art, food and drink will be enjoyed between 3:00 PM - 7:00 PM on Sunday,September 4, 2022</p>",
+        "rank": 990,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "How Does PorchFest Work?",
+        "slug": "how-does-porchfest-work"
+      }
+    },
+    {
+      "id": "62cccce599719a361e58ed57",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:11.979Z",
+      "createdOn": "2022-07-12T01:22:45.456Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">PorchFest Senoia is organized by volunteers and sponsored by the Downtown DevelopmentAuthority and local vendors. A list of the sponsors will be available onsignage throughout the event and on our Facebook PorchFest Senoia event page</p>",
+        "rank": 990,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "Who is Organizing PorchFest?",
+        "slug": "who-is-organizing-porchfest"
+      }
+    },
+    {
+      "id": "62ccccbdc505ffd527a56670",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-07T15:31:25.930Z",
+      "lastUpdated": "2023-08-07T14:59:10.857Z",
+      "createdOn": "2022-07-12T01:22:05.200Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "answer": "<p id=\"\">PorchFest is a hometown neighborhood and community celebrationwhere porches and yards become stages for local and regional bands andmusicians. Senoia’s streets become artist galleries and walk-up restaurants.&nbsp;</p><p id=\"\">‍</p>",
+        "rank": 1000,
+        "featured": false,
+        "parent-events": [
+          "62c9a13fe45b2d6e3a9c364d"
+        ],
+        "parent-event-logistics": null,
+        "name": "What is Porchfest",
+        "slug": "what-is-porchfest"
+      }
+    }
+  ]
+}

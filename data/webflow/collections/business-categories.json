@@ -1,0 +1,148 @@
+{
+  "collection": {
+    "id": "63077e9ab8dd5a4bf4c24e17",
+    "displayName": "Business categories",
+    "singularName": "Business category",
+    "slug": "business-categories",
+    "createdOn": "2022-08-25T13:52:26.075Z",
+    "lastUpdated": "2025-07-19T15:53:46.385Z",
+    "fields": [
+      {
+        "id": "f23b7b38dd582ec7da884146d75d3126",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Number",
+        "slug": "rank",
+        "displayName": "rank",
+        "helpText": "the higher the rank, the greater the priority",
+        "validations": {
+          "format": "integer",
+          "precision": 1,
+          "allowNegative": false
+        }
+      },
+      {
+        "id": "e3bee2b76be86c6bb5871d208ac62131",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "name",
+        "displayName": "Name",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256
+        }
+      },
+      {
+        "id": "85cf03203a103fbbeb39b6b55349fb52",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "slug",
+        "displayName": "Slug",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256,
+          "pattern": {},
+          "messages": {
+            "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+            "maxLength": "Must be less than 256 characters"
+          }
+        }
+      }
+    ],
+    "fieldGroups": []
+  },
+  "counts": {
+    "total": 6,
+    "published": 6,
+    "draft": 0,
+    "archived": 0
+  },
+  "items": [
+    {
+      "id": "64f77e3bf964ecf9d0928f84",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-09-05T19:15:52.238Z",
+      "lastUpdated": "2023-09-05T19:15:07.504Z",
+      "createdOn": "2023-09-05T19:15:07.504Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "rank": null,
+        "name": "Churches",
+        "slug": "churches"
+      }
+    },
+    {
+      "id": "6349ba6a0124c054f0abac97",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-10-14T21:27:23.290Z",
+      "lastUpdated": "2022-10-14T19:37:14.500Z",
+      "createdOn": "2022-10-14T19:37:14.500Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "rank": null,
+        "name": "Retail",
+        "slug": "retail"
+      }
+    },
+    {
+      "id": "6349b770920b405c7cd2681f",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-10-14T21:27:23.290Z",
+      "lastUpdated": "2022-10-14T19:24:32.081Z",
+      "createdOn": "2022-10-14T19:24:32.081Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "rank": null,
+        "name": "Services",
+        "slug": "services"
+      }
+    },
+    {
+      "id": "6349b76965e230855f5217a2",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-10-20T14:54:08.525Z",
+      "lastUpdated": "2022-10-20T14:53:35.483Z",
+      "createdOn": "2022-10-14T19:24:25.513Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "rank": null,
+        "name": "Health/Beauty",
+        "slug": "health-beauty"
+      }
+    },
+    {
+      "id": "6349b75f2269c63d0cd7c1a3",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-10-14T21:27:23.290Z",
+      "lastUpdated": "2022-10-14T19:24:15.166Z",
+      "createdOn": "2022-10-14T19:24:15.166Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "rank": null,
+        "name": "Entertainment",
+        "slug": "entertainment"
+      }
+    },
+    {
+      "id": "6349b75824757edaa4220c6b",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-10-20T14:54:08.525Z",
+      "lastUpdated": "2022-10-20T14:53:26.290Z",
+      "createdOn": "2022-10-14T19:24:08.140Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "rank": null,
+        "name": "Food/Drink",
+        "slug": "food-drink"
+      }
+    }
+  ]
+}

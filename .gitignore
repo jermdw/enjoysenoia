@@ -33,3 +33,11 @@ dist-ssr
 !.env.example
 firestore-debug.log
 ui-debug.log
+
+# Secrets
+.env
+*.env
+
+# Webflow migration: downloaded asset binaries (~270MB).
+# Re-fetch with: python3 scripts/webflow_pull.py --download-assets
+public/assets/webflow/

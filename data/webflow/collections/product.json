@@ -1,0 +1,1921 @@
+{
+  "collection": {
+    "id": "6359499105217f3fccf0ccaf",
+    "displayName": "Products",
+    "singularName": "Product",
+    "slug": "product",
+    "createdOn": "2022-10-26T14:52:01.896Z",
+    "lastUpdated": "2025-07-19T15:53:46.355Z",
+    "fields": [
+      {
+        "id": "09bba25b63a33a5106c3ac9df692e6c6",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "SkuSettings",
+        "slug": "sku-properties",
+        "displayName": "SKU Properties",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "a5982e17cf7307c556f1c3e0e00d6b78",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "MultiReference",
+        "slug": "category",
+        "displayName": "Categories",
+        "helpText": "Add this product to one or more categories.",
+        "validations": {
+          "collectionId": "6359499105217fce8cf0ccae"
+        }
+      },
+      {
+        "id": "8a9c4d00b2b07399957ee4443991423e",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "PlainText",
+        "slug": "description",
+        "displayName": "Description",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "02899c17b9650e5f042536febb43f352",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Switch",
+        "slug": "shippable",
+        "displayName": "Requires Shipping",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "5a7433c4111af1a2390b97251beaa9d2",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "TextOption",
+        "slug": "tax-category",
+        "displayName": "Tax Category",
+        "helpText": null,
+        "validations": {
+          "enumName": "TaxCategories"
+        }
+      },
+      {
+        "id": "d45d9e25e60808b92ba7f745cf46c2c2",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Reference",
+        "slug": "default-sku",
+        "displayName": "Default SKU",
+        "helpText": null,
+        "validations": {
+          "collectionId": "6359499105217f67c6f0ccb0"
+        }
+      },
+      {
+        "id": "2e07c8fee949118061c0dc1022293154",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Option",
+        "slug": "ec-product-type",
+        "displayName": "Product type",
+        "helpText": null,
+        "validations": {
+          "options": [
+            {
+              "id": "ff42fee0113744f693a764e3431a9cc2",
+              "name": "Physical"
+            },
+            {
+              "id": "f22027db68002190aef89a4a2b7ac8a1",
+              "name": "Digital"
+            },
+            {
+              "id": "c599e43b1a1c34d5a323aedf75d3adf6",
+              "name": "Service"
+            },
+            {
+              "id": "e348fd487d0102946c9179d2a94bb613",
+              "name": "Membership"
+            },
+            {
+              "id": "b6ccc1830db4b1babeb06a9ac5f6dd76",
+              "name": "Advanced"
+            }
+          ]
+        }
+      },
+      {
+        "id": "7ac070af9baf18a0e666c33071bca68d",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Switch",
+        "slug": "test-product",
+        "displayName": "Test Product",
+        "helpText": "Set to ON to create a test product that can be seen here: https://www.enjoysenoia.com/shoppingtest - password is shoppingtest",
+        "validations": null
+      },
+      {
+        "id": "451ba7a13683cead01ef2bc441729a06",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "PlainText",
+        "slug": "shipping-options",
+        "displayName": "Shipping Options",
+        "helpText": null,
+        "validations": {
+          "singleLine": false
+        }
+      },
+      {
+        "id": "8fca7026121c9e081072d5cca9fbb411",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Reference",
+        "slug": "event",
+        "displayName": "Event",
+        "helpText": "Optional - select an event that this product is related to and the product or item will render on the event page. Note that you also need to select this same product in the event collection.",
+        "validations": {
+          "collectionId": "62c89378d6e129a34ecdda02"
+        }
+      },
+      {
+        "id": "22087fcc38085ba61730a3d7012f8328",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "RichText",
+        "slug": "additional-information",
+        "displayName": "Additional Information",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "44dc559991f7146fb53d4a483fd7e952",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "RichText",
+        "slug": "special-notes",
+        "displayName": "Special Notes",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "a19efb85fa930ba33469b915c7433a2a",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Switch",
+        "slug": "private-product",
+        "displayName": "Private product",
+        "helpText": "Visible via link only, not for general public",
+        "validations": null
+      },
+      {
+        "id": "15604badb29e86811545a1c86ff90810",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "name",
+        "displayName": "Name",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256
+        }
+      },
+      {
+        "id": "df726570eab01845c9b4f2ca59ee3ed3",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "slug",
+        "displayName": "Slug",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256,
+          "pattern": {},
+          "messages": {
+            "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+            "maxLength": "Must be less than 256 characters"
+          }
+        }
+      }
+    ],
+    "fieldGroups": []
+  },
+  "counts": {
+    "total": 27,
+    "published": 6,
+    "draft": 21,
+    "archived": 2
+  },
+  "items": [
+    {
+      "id": "6a1a36b30f18830e928edd67",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2026-05-30T01:02:40.096Z",
+      "lastUpdated": "2026-05-30T01:02:40.096Z",
+      "createdOn": "2026-05-30T01:00:35.011Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "sku-properties": [
+          {
+            "id": "4aa2f84f647dd49977181b3c38af2f0c",
+            "enum": [
+              {
+                "id": "d9b2f6130fbddb288345bceebf8227a9",
+                "name": "SM",
+                "slug": "sm"
+              },
+              {
+                "id": "ecc2850002b454556c9965b866e25777",
+                "name": "MD",
+                "slug": "md"
+              },
+              {
+                "id": "4d68832e5b444c33edd7347b58a4ac3e",
+                "name": "LG",
+                "slug": "lg"
+              },
+              {
+                "id": "1050358cfbccf771ff27f9c4ac9c2c07",
+                "name": "XL",
+                "slug": "xl"
+              },
+              {
+                "id": "515e30c4842757e513aa05278740e579",
+                "name": "2XL",
+                "slug": "2xl"
+              },
+              {
+                "id": "2d10d873af0df4eaeee0ab3a3246bdf4",
+                "name": "3XL",
+                "slug": "3xl"
+              }
+            ],
+            "name": "T-Shirt China Blue"
+          }
+        ],
+        "category": null,
+        "description": "Celebrate our 21st Annual Senoia Car Show with us on Saturday, September 26th, 2026! Collectible T-shirts this year are available in sizes SM-3XL and in the color China Blue! Shirts are a unisex cut",
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "6a1a36b30f18830e928ede43",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": false,
+        "shipping-options": null,
+        "event": "69b1762e83ec00d32ea0df2d",
+        "additional-information": null,
+        "special-notes": "<p>Sizes SM-3XL available online, if sizes 4XL are needed, please email welcome@enjoysenoia.com </p>",
+        "private-product": false,
+        "name": "21st Annual Senoia Car Show T-Shirts ",
+        "slug": "21st-annual-senoia-car-show-t-shirts"
+      }
+    },
+    {
+      "id": "6a1a35d6a3113d82bd4d0002",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": null,
+      "lastUpdated": "2026-05-30T00:56:55.982Z",
+      "createdOn": "2026-05-30T00:56:54.767Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "sku-properties": null,
+        "category": [
+          "63594bea923e4af636829f54"
+        ],
+        "description": "Celebrate our 21st Annual Senoia Car Show with us on Saturday, September 26th in Senoia! 600+ show cars fill the streets of Senoia. Enjoy this years collectible t-shirt available in sizes SM-3XL in the color China Blue!",
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "6a1a35d70f18830e928e9089",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": false,
+        "shipping-options": null,
+        "event": null,
+        "additional-information": null,
+        "special-notes": null,
+        "private-product": false,
+        "name": "21st Annual Senoia Car Show T-Shirt ",
+        "slug": "21st-annual-senoia-car-show-t-shirt"
+      }
+    },
+    {
+      "id": "6a1a2bb1de145d02d8eb934c",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2026-06-29T20:29:34.913Z",
+      "lastUpdated": "2026-06-29T20:29:34.913Z",
+      "createdOn": "2026-05-30T00:13:37.908Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "sku-properties": [
+          {
+            "id": "e26a9f95806c4513e365fb98b2d0098b",
+            "enum": [
+              {
+                "id": "74f31523635ddb76a7dcdf7c176cafdb",
+                "name": "SM",
+                "slug": "sm"
+              },
+              {
+                "id": "71422515cbd96383df86cf84e0841d8a",
+                "name": "MD",
+                "slug": "md"
+              },
+              {
+                "id": "8eaacc9d9985b980b1a9801f1efcfba6",
+                "name": "LG",
+                "slug": "lg"
+              },
+              {
+                "id": "b438527b7720305ca0106fd6aa825673",
+                "name": "XL",
+                "slug": "xl"
+              },
+              {
+                "id": "bcf6faa752b936b95eecd3176a776e7e",
+                "name": "2XL",
+                "slug": "2xl"
+              },
+              {
+                "id": "f7fccf8243617112a16dc2e096c36905",
+                "name": "3XL",
+                "slug": "3xl"
+              }
+            ],
+            "name": "T-Shirt"
+          }
+        ],
+        "category": [
+          "63594bea923e4af636829f54"
+        ],
+        "description": "Celebrate America 250 with a patriotic Freedom Walk & Revere Run 5K! Our July 4th festivities will kick off with a 5K run at 8:00am, followed by a 2.5 mile walk at 8:30am. Bring your family, friends, and patriotic spirit to Downtown Senoia and help us encourage our runners & walkers! T-shirts are a unisex cut and available in the color Vintage White! ",
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "6a1a2bb35274a88feece25fd",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": false,
+        "shipping-options": null,
+        "event": "6a04ee4b81bb4f43930a164f",
+        "additional-information": null,
+        "special-notes": null,
+        "private-product": false,
+        "name": "Freedom Walk & Revere Run 5K T-Shirt",
+        "slug": "freedom-walk-revere-run-5k-t-shirt"
+      }
+    },
+    {
+      "id": "683a5d4f605a50912fc6af36",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-09-27T15:05:38.102Z",
+      "lastUpdated": "2025-09-27T15:05:01.674Z",
+      "createdOn": "2025-05-31T01:37:19.402Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "sku-properties": [
+          {
+            "id": "3fb605a7043676237c1e447e52d340d0",
+            "enum": [
+              {
+                "id": "c60905b1352c26d2bfb90cd288d7eea5",
+                "name": "Pepper Gray",
+                "slug": "pepper-gray"
+              },
+              {
+                "id": "cb5f44346bfcca04be739cf56f82e78b",
+                "name": "White",
+                "slug": "white"
+              }
+            ],
+            "name": "Color"
+          },
+          {
+            "id": "49d5a178935d9c1d025e99be2707e67f",
+            "enum": [
+              {
+                "id": "c5e25ddaed755661af09ba8c41543e25",
+                "name": "SM",
+                "slug": "sm"
+              },
+              {
+                "id": "c23a8cb8479a8ebb5f256dbbbb1c00d6",
+                "name": "MD",
+                "slug": "md"
+              },
+              {
+                "id": "dee3fbac95a34095400cc9bc255a4d5d",
+                "name": "LG",
+                "slug": "lg"
+              },
+              {
+                "id": "46ece6908e93e3cb9472eb8236caf276",
+                "name": "XL",
+                "slug": "xl"
+              },
+              {
+                "id": "9fdc1686fd3fa1fe1cff6dcb377920b8",
+                "name": "2XL",
+                "slug": "2xl"
+              },
+              {
+                "id": "791c8b160da7c4e50656b24d77fb5bbb",
+                "name": "3XL",
+                "slug": "3xl"
+              }
+            ],
+            "name": "Size"
+          }
+        ],
+        "category": [
+          "63594bea923e4af636829f54"
+        ],
+        "description": "Anniversary Logo Shirt: Celebrate our 20th Anniversary with this exculsive logo shirt! Adult sizes small through 3XL. Printed on Comfort Colors Pepper gray and White, it's perfect for fans of all ages. Shirts are $20.",
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "683a5d50605a50912fc6af5b",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": false,
+        "shipping-options": null,
+        "event": "67c64e03e47536f733a6afc6",
+        "additional-information": null,
+        "special-notes": null,
+        "private-product": false,
+        "name": "20th Anniversary Logo T-Shirt ",
+        "slug": "20th-anniversary-logo-t-shirt"
+      }
+    },
+    {
+      "id": "683a549a6f2b7d4db8c5105d",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-09-27T15:05:38.102Z",
+      "lastUpdated": "2025-09-27T15:02:06.079Z",
+      "createdOn": "2025-05-31T01:00:10.905Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "sku-properties": [
+          {
+            "id": "eb98d7ed4f47a5e91c2a4ae4ca7b5498",
+            "enum": [
+              {
+                "id": "b684954e2fed851fd422dcb1a626ad76",
+                "name": "SM",
+                "slug": "sm"
+              },
+              {
+                "id": "9a44cf81eb36ba0a85cc2f7a7ca057d4",
+                "name": "MD",
+                "slug": "md"
+              },
+              {
+                "id": "54f20b2d2cd785e62c0e7f4bc8b2107e",
+                "name": "LG",
+                "slug": "lg"
+              },
+              {
+                "id": "18091aae7862a094d98edbae666aa324",
+                "name": "XL",
+                "slug": "xl"
+              },
+              {
+                "id": "cee9974b940735029e0cb6310e551af1",
+                "name": "2XL",
+                "slug": "2xl"
+              },
+              {
+                "id": "c6a9d7c66e93bc156f632ba0892564e3",
+                "name": "3XL",
+                "slug": "3xl"
+              }
+            ],
+            "name": "Size"
+          }
+        ],
+        "category": [
+          "63594bea923e4af636829f54"
+        ],
+        "description": "2025 Car Show Shirt: Join us for the 2025 Car Show with our Comfort Colors Ice Blue Shirt! Made from soft, breathable fabric, it features a vibrant design perfect for car lovers. Available in sizes small through 3XL. Shirts are $20 each. ",
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "683a549b0a5ac1ed16b7468a",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": false,
+        "shipping-options": null,
+        "event": "67c64e03e47536f733a6afc6",
+        "additional-information": null,
+        "special-notes": null,
+        "private-product": false,
+        "name": "2025 Senoia Car Show T-Shirt ",
+        "slug": "2025-senoia-car-show-t-shirt"
+      }
+    },
+    {
+      "id": "67affd2488e9deb0a041a332",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-02-15T17:09:31.282Z",
+      "lastUpdated": "2025-02-15T17:09:31.282Z",
+      "createdOn": "2025-02-15T02:34:12.369Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "sku-properties": [
+          {
+            "id": "4fdcfa8ffbc76f91036a3210a3983afa",
+            "enum": [
+              {
+                "id": "68077107ca23513af415102023d74527",
+                "name": "V-Neck",
+                "slug": "v-neck"
+              },
+              {
+                "id": "3545a87f9b4293a1866bc1a8ee8897fc",
+                "name": "Crewneck",
+                "slug": "crewneck"
+              }
+            ],
+            "name": "Style"
+          },
+          {
+            "id": "79a0ec6c978d4d451d6411ceb5509c56",
+            "enum": [
+              {
+                "id": "d67e9f59705ba644e0395102d6caa3e8",
+                "name": "XS",
+                "slug": "xs"
+              },
+              {
+                "id": "6e671e4cc54486e42504874bae581b16",
+                "name": "SM",
+                "slug": "sm"
+              },
+              {
+                "id": "490ae06ffd19409fc922cd713926a19d",
+                "name": "MD",
+                "slug": "md"
+              },
+              {
+                "id": "f376733acc8090c5bbc1e03317062e94",
+                "name": "LG",
+                "slug": "lg"
+              },
+              {
+                "id": "08254552eb0b9b80529504634017b9e4",
+                "name": "XL",
+                "slug": "xl"
+              },
+              {
+                "id": "94faa1430c6fd21e68bb7f8184b0a1a3",
+                "name": "2XL",
+                "slug": "2xl"
+              },
+              {
+                "id": "985c4e789eed31fe72ce3381e484c676",
+                "name": "3XL",
+                "slug": "3xl"
+              }
+            ],
+            "name": "Size"
+          }
+        ],
+        "category": [
+          "63594bea923e4af636829f54"
+        ],
+        "description": null,
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "67affd250bf8241b17fd12df",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": true,
+        "shipping-options": null,
+        "event": null,
+        "additional-information": null,
+        "special-notes": "<p id=\"\">For Fat Tuesday's Volunteers </p>",
+        "private-product": true,
+        "name": "Fat Tuesday Volunteer Shirts ",
+        "slug": "fat-tuesday-volunteer-shirts"
+      }
+    },
+    {
+      "id": "677ec4c667052630053cdd72",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-01-08T18:35:46.081Z",
+      "lastUpdated": "2025-01-08T18:35:46.081Z",
+      "createdOn": "2025-01-08T18:32:38.841Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "sku-properties": [
+          {
+            "id": "5c2b9cfbfb7cbc931084444908302ef9",
+            "enum": [
+              {
+                "id": "97e194f8bafbe2e37ba1aa7b920cd235",
+                "name": "V-Neck",
+                "slug": "v-neck"
+              },
+              {
+                "id": "36e440f2736eb2dd24f539b500a52acc",
+                "name": "Crewneck",
+                "slug": "crewneck"
+              }
+            ],
+            "name": "Fat Tuesday T-Shirts"
+          },
+          {
+            "id": "7c575fcb4587966ba409e8542f1f13ef",
+            "enum": [
+              {
+                "id": "c0a94e91115dbcbf2395e4e5aac4050b",
+                "name": "SM",
+                "slug": "sm"
+              },
+              {
+                "id": "34b98ee8a3fc9c2120efeb9cd58178a8",
+                "name": "MD",
+                "slug": "md"
+              },
+              {
+                "id": "0b758a0df1e6442f6e117d79c2dc3839",
+                "name": "LG",
+                "slug": "lg"
+              },
+              {
+                "id": "0f04a438cb9548c0dcdccf745172296a",
+                "name": "XL",
+                "slug": "xl"
+              },
+              {
+                "id": "aa4c296d759c39886684c7fca6ef74c1",
+                "name": "2XL",
+                "slug": "2xl"
+              },
+              {
+                "id": "31fbc31741e45b21f2e4b563883b4cbb",
+                "name": "3XL",
+                "slug": "3xl"
+              }
+            ],
+            "name": "Size"
+          }
+        ],
+        "category": [
+          "63594bea923e4af636829f54"
+        ],
+        "description": "Join in on the Fat Tuesday fun with these custom t-shirts! Get ready to groove to soulful tunes and dance the night away! T-shirts are available in a women's v-neck cut and a men's crewneck tee featuring our Fat Tuesday logo on the front side. T-shirts are available in sizes small-3XL and fit true to size. ",
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "677ec4c8ae180cd307a07e2c",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": true,
+        "shipping-options": null,
+        "event": "675a56ffb39ba5dea9b765b2",
+        "additional-information": null,
+        "special-notes": null,
+        "private-product": false,
+        "name": "Fat Tuesday Shirts",
+        "slug": "fat-tuesday-shirts"
+      }
+    },
+    {
+      "id": "66b170ca06322042b300cc19",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2024-08-29T00:58:07.855Z",
+      "lastUpdated": "2025-02-14T15:38:14.573Z",
+      "createdOn": "2024-08-06T00:39:38.619Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "sku-properties": [
+          {
+            "id": "94aa290ecea4dad5e8aebe1e3559e175",
+            "enum": [
+              {
+                "id": "712b65a876acc9c9efcb9abbba3588ff",
+                "name": "Mint",
+                "slug": "mint"
+              }
+            ],
+            "name": "Color"
+          },
+          {
+            "id": "fe012a8e3a3c7d30879a6126967019e9",
+            "enum": [
+              {
+                "id": "dc9de44796e9b6a0ef8c6f49cb507d97",
+                "name": "XS",
+                "slug": "xs"
+              },
+              {
+                "id": "72aec2d24a00d08afa07c59075080db8",
+                "name": "SM",
+                "slug": "sm"
+              },
+              {
+                "id": "1f859f893b9cee79d903a13ac2b92b42",
+                "name": "MD",
+                "slug": "md"
+              },
+              {
+                "id": "4860787cb4f0db96da55b661be1768ae",
+                "name": "LG",
+                "slug": "lg"
+              },
+              {
+                "id": "ec6e9ecbc1bce235e377b18bea2fb03d",
+                "name": "XL",
+                "slug": "xl"
+              },
+              {
+                "id": "f1aff346958919cc4af5e27c21745875",
+                "name": "2XL",
+                "slug": "2xl"
+              },
+              {
+                "id": "3f957208d2e0048c29aaacee54b225c4",
+                "name": "3XL",
+                "slug": "3xl"
+              }
+            ],
+            "name": "Size"
+          }
+        ],
+        "category": [
+          "63594bea923e4af636829f54"
+        ],
+        "description": "Want to get your PorchFest on? Senoia PorchFest 2024 T-shirts are available for pre-order now. Shirts are $20 each! They will each have the 2024 PorchFest logo on the front and the sponsors and band names will be on the back. Shirts will be available for pick-up in the Senoia Welcome Center the week before PorchFest or the day of the event at the Information Booth. Online sales will close on Monday, August 15th.",
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "66b170cb713d9a6c0b7c49aa",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": false,
+        "shipping-options": null,
+        "event": "65aadde6664e103b680ab482",
+        "additional-information": null,
+        "special-notes": null,
+        "private-product": false,
+        "name": "Senoia PorchFest 2024 V-Neck",
+        "slug": "senoia-porchfest-2024-v-neck"
+      }
+    },
+    {
+      "id": "66ace0f7bf45e585698f5bbb",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2024-08-29T00:58:07.855Z",
+      "lastUpdated": "2025-02-14T15:35:23.034Z",
+      "createdOn": "2024-08-02T13:36:55.905Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "sku-properties": [
+          {
+            "id": "48113b9a5a5cffa354df0a6f52d41f77",
+            "enum": [
+              {
+                "id": "8ad4282c15b3f0f31990e5e351b7d158",
+                "name": "Navy",
+                "slug": "navy"
+              },
+              {
+                "id": "6e650d46b5f01bfefc7b376ce139117d",
+                "name": "Tan",
+                "slug": "tan"
+              }
+            ],
+            "name": "Color"
+          }
+        ],
+        "category": [
+          "63594bea923e4af636829f54",
+          "6376b06096578f4aca6d6e89"
+        ],
+        "description": "Choose bewteen a standard baseball cap or trucker hat! Hats are $20 each and will be available for pick-up in the Senoia Welcome Center the week before PorchFest or the day of the event at the Information Booth. Online sales will close on Monday, August 15th.",
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "66ace0f84f24d4afe5c50617",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": false,
+        "shipping-options": null,
+        "event": "65aadde6664e103b680ab482",
+        "additional-information": null,
+        "special-notes": null,
+        "private-product": false,
+        "name": "2024 Senoia PorchFest Hat",
+        "slug": "2024-senoia-porchfest-hat"
+      }
+    },
+    {
+      "id": "669ebe46fac61931be84d847",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2024-08-29T00:58:07.855Z",
+      "lastUpdated": "2025-02-14T15:35:23.032Z",
+      "createdOn": "2024-07-22T20:17:10.936Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "sku-properties": [
+          {
+            "id": "4c166f1621eddbeed265f8e9bba3a7b6",
+            "enum": [
+              {
+                "id": "09afbbefb304ff3027a78234385df2e9",
+                "name": "Autumn",
+                "slug": "autumn"
+              },
+              {
+                "id": "26cf22eae443a7d9b9da6e7dff5a2779",
+                "name": "Terracotta",
+                "slug": "terracotta"
+              }
+            ],
+            "name": "Color"
+          },
+          {
+            "id": "84985366ffe547ef56cab1a296300a99",
+            "enum": [
+              {
+                "id": "9b5efda65ecdeac49abd5e4509ea680e",
+                "name": "XS",
+                "slug": "xs"
+              },
+              {
+                "id": "458588fb7fb8051dedbbc63ac47bea2d",
+                "name": "SM",
+                "slug": "sm"
+              },
+              {
+                "id": "680f6e537c193b36eee0d13627675bcf",
+                "name": "MD",
+                "slug": "md"
+              },
+              {
+                "id": "c441f0d4e5be28855f099a8c57dd0cd1",
+                "name": "LG",
+                "slug": "lg"
+              },
+              {
+                "id": "6eabfb14ba926c2ac0cb5a86ede1ad83",
+                "name": "XL",
+                "slug": "xl"
+              },
+              {
+                "id": "2cf9d55ed70b7e60f2192677eaf1d445",
+                "name": "2XL",
+                "slug": "2xl"
+              },
+              {
+                "id": "1db17fde92ef40b0c7aa7d849837623b",
+                "name": "3XL",
+                "slug": "3xl"
+              }
+            ],
+            "name": "Size"
+          }
+        ],
+        "category": [
+          "63594bea923e4af636829f54"
+        ],
+        "description": "Want to get your PorchFest on? Senoia PorchFest 2024 T-shirts are available for pre-order now. Shirts are $20 each and are available in 2 colors: Autumn and Terracotta! They will each have the 2024 PorchFest logo on the front and the sponsors and band names will be on the back. Shirts will be available for pick-up in the Senoia Welcome Center the week before PorchFest or the day of the event at the Information Booth. Online sales will close on Monday, August 15th.",
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "669ebe4821a2c8de9d152c82",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": false,
+        "shipping-options": null,
+        "event": "65aadde6664e103b680ab482",
+        "additional-information": null,
+        "special-notes": null,
+        "private-product": false,
+        "name": "2024 Senoia PorchFest T-Shirt",
+        "slug": "2024-senoia-porchfest-t-shirt"
+      }
+    },
+    {
+      "id": "669e7289f179f8aa6a4de6ab",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2024-09-12T18:11:02.624Z",
+      "lastUpdated": "2025-02-14T15:35:23.004Z",
+      "createdOn": "2024-07-22T14:54:01.248Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "sku-properties": [
+          {
+            "id": "30a43d862cacda0bdc4ff4e975ca2be7",
+            "enum": [
+              {
+                "id": "9ef2e1249079d2afc0ef0c4c6560bf30",
+                "name": "Mustard",
+                "slug": "mustard"
+              },
+              {
+                "id": "86ba732b3da5f758e6bb7599c4897cb8",
+                "name": "Granite",
+                "slug": "granite"
+              },
+              {
+                "id": "fb5e8f69b6f2c28d9d0b922f97589220",
+                "name": "Stonewash",
+                "slug": "stonewash"
+              }
+            ],
+            "name": "Color"
+          },
+          {
+            "id": "9eb104c895fc0a95a54305abc2f6f365",
+            "enum": [
+              {
+                "id": "99319ec48699d8ffd71965662495374b",
+                "name": "SM",
+                "slug": "sm"
+              },
+              {
+                "id": "a2a6ed2be4f2beced1cfb9a8fe0c47c2",
+                "name": "MD",
+                "slug": "md"
+              },
+              {
+                "id": "870c2fac47514c4439e394f850a99679",
+                "name": "LG",
+                "slug": "lg"
+              },
+              {
+                "id": "7c1fbb78d697235a8c5e331cb6c60855",
+                "name": "XL",
+                "slug": "xl"
+              },
+              {
+                "id": "bd3e43eb64a69e18c6b7f64f8a2e673f",
+                "name": "2XL",
+                "slug": "2xl"
+              },
+              {
+                "id": "88db2e4a4c4b90a2c1759deabb635843",
+                "name": "3XL",
+                "slug": "3xl"
+              }
+            ],
+            "name": "Size"
+          }
+        ],
+        "category": [
+          "63594bea923e4af636829f54"
+        ],
+        "description": "Comfort color t-shirts for the 19th Annual Senoia Car Show ",
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "669e728a232b4626df1ef444",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": false,
+        "shipping-options": null,
+        "event": "65aae217a873062d22825f57",
+        "additional-information": "<p id=\"\">All pre-ordered shirts will be available for pickup from the Senoia Welcome Center on Main Street starting on Monday, September 9th. &nbsp;Any shirts not picked up before the event will be available at the Merchandise tent during the car show. Please keep a copy of your purchase receipt for pickup. Online sales will close on Sunday, September 15th. </p><p id=\"\">‍</p>",
+        "special-notes": null,
+        "private-product": false,
+        "name": "2024 Senoia Car Show Comfort Color Shirts",
+        "slug": "2024-senoia-car-show-comfort-color-shirts"
+      }
+    },
+    {
+      "id": "6696ad012f879061267ca924",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2024-07-16T17:25:35.638Z",
+      "lastUpdated": "2025-02-14T15:35:23.000Z",
+      "createdOn": "2024-07-16T17:25:21.760Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "sku-properties": null,
+        "category": null,
+        "description": "Porchfest merchandise is coming soon!",
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "6696ad0231a5472000d8ac62",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": false,
+        "shipping-options": null,
+        "event": null,
+        "additional-information": null,
+        "special-notes": null,
+        "private-product": false,
+        "name": "PorchFest 2024",
+        "slug": "porchfest-2024"
+      }
+    },
+    {
+      "id": "665a28a76c9e1eb9bdb3c79f",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2024-09-10T01:33:49.929Z",
+      "lastUpdated": "2025-02-14T15:35:23.169Z",
+      "createdOn": "2024-05-31T19:44:39.357Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "sku-properties": [
+          {
+            "id": "a860a6fef607bd9fa074f724f01b4be8",
+            "enum": [
+              {
+                "id": "d78d3b6ac800891d00680c766bfabe12",
+                "name": "XS",
+                "slug": "xs"
+              },
+              {
+                "id": "33f615bace79d228a907b4e4ad38d50d",
+                "name": "SM",
+                "slug": "sm"
+              },
+              {
+                "id": "9df86609d6e3c4b1d52583b2944586e7",
+                "name": "MD",
+                "slug": "md"
+              },
+              {
+                "id": "549a7e6ea913d512572b72e4b17a4796",
+                "name": "LG",
+                "slug": "lg"
+              },
+              {
+                "id": "43aacd98aec6ca399939be6fcc53e485",
+                "name": "XL",
+                "slug": "xl"
+              },
+              {
+                "id": "2a365ceef2005a1eba36c74473f2ae63",
+                "name": "2XL",
+                "slug": "2xl"
+              },
+              {
+                "id": "9562cf0806b9b23643fffb564f6e1f29",
+                "name": "3XL",
+                "slug": "3xl"
+              }
+            ],
+            "name": "size"
+          }
+        ],
+        "category": [
+          "63594bea923e4af636829f54"
+        ],
+        "description": "Lightweight performance short-sleeve shirt in medium gray with black print. 50 SPF protection. Senoia Car Show logo on the front right chest and larger on the back.",
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "665a28a8e5ed0825b7cdeab9",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": false,
+        "shipping-options": null,
+        "event": "65aae217a873062d22825f57",
+        "additional-information": "<p id=\"\">All pre-ordered shirts will be available for pickup from the Senoia Welcome Center on Main Street starting on Monday, September 9th. &nbsp;Any shirts not picked up before the event will be available at the Merchandise tent during the car show. Please keep a copy of your purchase receipt for pickup. Online sales will close on Sunday, September 15th. </p>",
+        "special-notes": null,
+        "private-product": false,
+        "name": "2024 Senoia Car Show Patron Shirt - Short Sleeve",
+        "slug": "2024-senoia-car-show-patron-shirt-short-sleeve"
+      }
+    },
+    {
+      "id": "6659dec317b3a07c3204072e",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2024-09-12T18:12:29.388Z",
+      "lastUpdated": "2025-02-14T15:35:23.008Z",
+      "createdOn": "2024-05-31T14:29:23.646Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "sku-properties": [
+          {
+            "id": "b8bcab937980b7d6baa7f3c9d9081b34",
+            "enum": [
+              {
+                "id": "c8b8131f9748ebeba1872aab097d05e9",
+                "name": "XS",
+                "slug": "xs"
+              },
+              {
+                "id": "bc690a0211c38a526c74155ebd76c6e1",
+                "name": "SM",
+                "slug": "sm"
+              },
+              {
+                "id": "749fd5a5930be41f4e35d6202f906b32",
+                "name": "MD",
+                "slug": "md"
+              },
+              {
+                "id": "6abf94f3048bac6bf3819853b6840811",
+                "name": "LG",
+                "slug": "lg"
+              },
+              {
+                "id": "564b3be4e2ee7a7a63fc1ff3f9baea35",
+                "name": "XL",
+                "slug": "xl"
+              },
+              {
+                "id": "ea8a8d7a859c65703fb9d23ad7dcf523",
+                "name": "2XL",
+                "slug": "2xl"
+              },
+              {
+                "id": "224b97830cb53af3f043889ae0f5c0ef",
+                "name": "3XL",
+                "slug": "3xl"
+              }
+            ],
+            "name": "size"
+          }
+        ],
+        "category": [
+          "63594bea923e4af636829f54"
+        ],
+        "description": "Lightweight performance long-sleeve shirt in mint green with navy print. 50 SPF protection. Senoia Car Show logo on the front right chest and larger on the back.",
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "6659dec48fab5ab5ae491382",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": false,
+        "shipping-options": null,
+        "event": "65aae217a873062d22825f57",
+        "additional-information": "<p id=\"\">All pre-ordered shirts will be available for pickup from the Senoia Welcome Center on Main Street starting on Monday, September 9th. &nbsp;Any shirts not picked up before the event will be available at the Merchandise tent during the car show. Please keep a copy of your purchase receipt for pickup. Online sales will close on Sunday, September 15th.</p>",
+        "special-notes": null,
+        "private-product": false,
+        "name": "2024 Senoia Car Show Patron Shirt - Long Sleeve",
+        "slug": "2024-senoia-car-show-patron-shirt-long-sleeve"
+      }
+    },
+    {
+      "id": "64bea7ab86bd9a873e0cd7e3",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-09-21T22:50:30.504Z",
+      "lastUpdated": "2025-02-14T15:35:23.011Z",
+      "createdOn": "2023-07-24T16:32:43.750Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "sku-properties": [
+          {
+            "id": "77b447ba9406a27b100045c2a20d63a9",
+            "enum": [
+              {
+                "id": "65e588d49bca7fb063435ae44bd47c1a",
+                "name": "Small",
+                "slug": "small"
+              },
+              {
+                "id": "b9dc7ca37f4ff27e11c9eb7e8e7a780f",
+                "name": "Medium",
+                "slug": "medium"
+              },
+              {
+                "id": "1da658a3b9cba753c188c0952122f390",
+                "name": "Large",
+                "slug": "large"
+              },
+              {
+                "id": "fc53bfa6648035eb9f3955592c307f5a",
+                "name": "X-Large",
+                "slug": "x-large"
+              },
+              {
+                "id": "c6252ad93f9c77b4f28dc6e059e76557",
+                "name": "2-XL",
+                "slug": "2-xl"
+              },
+              {
+                "id": "143087af8581b47ca0fec0a2173779dc",
+                "name": "3-XL",
+                "slug": "3-xl"
+              }
+            ],
+            "name": "Size"
+          }
+        ],
+        "category": [
+          "63594bea923e4af636829f54"
+        ],
+        "description": null,
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "64bea7afdfbc59a601392f37",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": false,
+        "shipping-options": null,
+        "event": "63cc24c0d802df3bb077ab58",
+        "additional-information": null,
+        "special-notes": null,
+        "private-product": true,
+        "name": "Senoia Car Show 2023 Patron Shirts Long Sleeve",
+        "slug": "senoia-car-show-2023-patron-shirts-long-sleeve"
+      }
+    },
+    {
+      "id": "64be9e6f689ebc2d5d922cb1",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2024-05-31T14:04:07.354Z",
+      "lastUpdated": "2025-02-14T15:35:23.014Z",
+      "createdOn": "2023-07-24T15:53:19.980Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "sku-properties": [
+          {
+            "id": "cea6da7b063cfa2c82dc65f0a03cce37",
+            "enum": [
+              {
+                "id": "9c2ce705c7be8ccb2d91fd451a493a89",
+                "name": "Black",
+                "slug": "black"
+              },
+              {
+                "id": "7582357c188cb3b74cb5e883151b627c",
+                "name": "Grey",
+                "slug": "grey"
+              },
+              {
+                "id": "7409502c8da5e5ad50f5a07b83e2a13b",
+                "name": "Sage",
+                "slug": "sage"
+              },
+              {
+                "id": "16b4891e764234221a3468d175dc8f6f",
+                "name": "Blue Jean",
+                "slug": "blue-jean"
+              }
+            ],
+            "name": "Color"
+          },
+          {
+            "id": "5d65560f8e03050e003a588cd10c168e",
+            "enum": [
+              {
+                "id": "e0ff6f9260fe37ea2ec0b87a166facaa",
+                "name": "Small",
+                "slug": "small"
+              },
+              {
+                "id": "e745714ccf614c5248f523ffb6dcf9f2",
+                "name": "Medium",
+                "slug": "medium"
+              },
+              {
+                "id": "bc24c551fe9b584c000cffcd64647d3f",
+                "name": "Large",
+                "slug": "large"
+              },
+              {
+                "id": "f91629944e3da05241a65ebe289ee6af",
+                "name": "X-Large",
+                "slug": "x-large"
+              },
+              {
+                "id": "3aa9202fc0e945ac5ab4a98c1e0b2009",
+                "name": "2-XL",
+                "slug": "2-xl"
+              },
+              {
+                "id": "2cc188c8bbbdd58c3f97e9e205229b31",
+                "name": "3-XL",
+                "slug": "3-xl"
+              }
+            ],
+            "name": "Size"
+          }
+        ],
+        "category": [
+          "63594bea923e4af636829f54"
+        ],
+        "description": null,
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "64be9f3aebf9a01016d4c283",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": false,
+        "shipping-options": null,
+        "event": "63cc24c0d802df3bb077ab58",
+        "additional-information": null,
+        "special-notes": null,
+        "private-product": false,
+        "name": "Senoia Car Show 2023 Patron Shirts Short Sleeve",
+        "slug": "senoia-car-show-2023-patron-shirts-short-sleeve"
+      }
+    },
+    {
+      "id": "649ee40b2d9a926b38ddcd03",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": null,
+      "lastUpdated": "2023-08-24T20:41:38.166Z",
+      "createdOn": "2023-06-30T14:17:47.055Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "sku-properties": [
+          {
+            "id": "74ebc3cbcca085f19a6f2ef9759d44f2",
+            "enum": [
+              {
+                "id": "82bc04d6696a630f610150ca26d7f306",
+                "name": "Crew",
+                "slug": "crew"
+              },
+              {
+                "id": "9deb1e1750978140f0e07650f7811560",
+                "name": "V-Neck",
+                "slug": "v-neck"
+              }
+            ],
+            "name": "Style"
+          },
+          {
+            "id": "1c06f9ca55d2aae33dd8de84a637668d",
+            "enum": [
+              {
+                "id": "f1507e1244a48af2f42930b0500ccb33",
+                "name": "SM",
+                "slug": "sm"
+              },
+              {
+                "id": "c665e9062dda2cb8881af931f6ce2939",
+                "name": "MED",
+                "slug": "med"
+              },
+              {
+                "id": "1177c20514da2d5b6772b8e70be74d02",
+                "name": "LG",
+                "slug": "lg"
+              },
+              {
+                "id": "5ad28b4c267ec65ce29f9654fc22c9b5",
+                "name": "XL",
+                "slug": "xl"
+              },
+              {
+                "id": "be43407ec40e754591784b25bf65e609",
+                "name": "2XL",
+                "slug": "2xl"
+              },
+              {
+                "id": "f9fc1599545faa3513e111f7946cd3b8",
+                "name": "3XL",
+                "slug": "3xl"
+              }
+            ],
+            "name": "Size"
+          }
+        ],
+        "category": [
+          "63594bea923e4af636829f54"
+        ],
+        "description": "Want to get your PorchFest on? Senoia PorchFest 2023 T-shirts are available for pre-order now. Shirts are $20 each. V-neck shirts are available in berry with the 2023 PorchFest logo on the front and the sponsors and band names will be on the back. Crew neck shirts are available in royal blue with the 2023 PorchFest logo on the front and the sponsors (Gold level and above) and band names will be on the back. Shirts will be available for pick-up in the Senoia Welcome Center the week before PorchFest and PorchFest Day in the Information booth. ",
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "649ee4a2c6c9332f4b4da014",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": false,
+        "shipping-options": null,
+        "event": "6491b50d85a673a232d36f21",
+        "additional-information": null,
+        "special-notes": null,
+        "private-product": false,
+        "name": "Senoia PorchFest 2023 Patron T-Shirts ",
+        "slug": "senoia-porchfest-2023-patron-t-shirts"
+      }
+    },
+    {
+      "id": "649ede298c6e79defe2a8cd4",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-12T15:39:02.909Z",
+      "lastUpdated": "2025-02-14T15:35:23.039Z",
+      "createdOn": "2023-06-30T13:52:41.649Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "sku-properties": [
+          {
+            "id": "d0a6ff9d0b7d3a0dcced78011313b029",
+            "enum": [
+              {
+                "id": "668a0b641345403feeed258581403d3c",
+                "name": "Crew",
+                "slug": "crew"
+              },
+              {
+                "id": "d9cb0b3950460632dd33fa14a330632f",
+                "name": "V-Neck",
+                "slug": "v-neck"
+              }
+            ],
+            "name": "Style"
+          },
+          {
+            "id": "cf5e86d9bb36a2be37b7a6c50c1fea5a",
+            "enum": [
+              {
+                "id": "4067283ff635171818c87480b86cca5a",
+                "name": "SM",
+                "slug": "sm"
+              },
+              {
+                "id": "c6db94d12baa232eca23af916b1fa33c",
+                "name": "MED",
+                "slug": "med"
+              },
+              {
+                "id": "9f8550424f974f454165be84492ff14e",
+                "name": "LG",
+                "slug": "lg"
+              },
+              {
+                "id": "17b2d28991ed7343b070ec01b028ac27",
+                "name": "XL",
+                "slug": "xl"
+              },
+              {
+                "id": "79258a2b6517675d0e7edbf87dea21b8",
+                "name": "2XL",
+                "slug": "2xl"
+              },
+              {
+                "id": "ac711d3f1fe7eee4c7c4dd9079b21f46",
+                "name": "3XL",
+                "slug": "3xl"
+              }
+            ],
+            "name": "size"
+          }
+        ],
+        "category": [
+          "63594bea923e4af636829f54"
+        ],
+        "description": null,
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "649ede2cf275ccc84d0efc5c",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": false,
+        "shipping-options": null,
+        "event": null,
+        "additional-information": null,
+        "special-notes": null,
+        "private-product": true,
+        "name": "Senoia PorchFest 2023 Volunteer Shirts",
+        "slug": "senoia-porchfest-2023-volunteer-shirts"
+      }
+    },
+    {
+      "id": "64550b12768f527f9b46a887",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": null,
+      "lastUpdated": "2023-05-17T12:22:21.663Z",
+      "createdOn": "2023-05-05T13:56:34.058Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "sku-properties": [
+          {
+            "id": "483449214d913a36084537a5d38f88e3",
+            "enum": [
+              {
+                "id": "a11c5a0b3c306806eae3aacafcf7ff76",
+                "name": "Med",
+                "slug": "med"
+              },
+              {
+                "id": "09686680780f492ea70248ab7f0db08d",
+                "name": "Lg",
+                "slug": "lg"
+              },
+              {
+                "id": "0d769686f51c33730fdf1eb8def5b723",
+                "name": "XL",
+                "slug": "xl"
+              },
+              {
+                "id": "c7152e139102c2271619831ba686999f",
+                "name": "2XL",
+                "slug": "2xl"
+              }
+            ],
+            "name": "size"
+          }
+        ],
+        "category": null,
+        "description": "Red shirts for volunteers only",
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "64550b1504618f28301ea825",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": false,
+        "shipping-options": null,
+        "event": null,
+        "additional-information": "<p>Orders need to be made no later than 5/17 to allow time for the shirts to be printed</p>",
+        "special-notes": null,
+        "private-product": true,
+        "name": "2023 Memorial Day Volunteer Shirts",
+        "slug": "2023-memorial-day-volunteer-shirts"
+      }
+    },
+    {
+      "id": "63e28838abb5e293c572c7a3",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": null,
+      "lastUpdated": "2024-12-29T01:06:34.118Z",
+      "createdOn": "2023-02-07T17:19:52.862Z",
+      "isArchived": true,
+      "isDraft": true,
+      "fieldData": {
+        "sku-properties": [
+          {
+            "id": "de85235986b1a3287f574fc7bab3f893",
+            "enum": [
+              {
+                "id": "e4628ce81e1028ea8dd42f57d10d9037",
+                "name": "Crew Neck",
+                "slug": "crew-neck"
+              },
+              {
+                "id": "6eacea54289b36afdfdc66f3d7a47f1a",
+                "name": "V-Neck",
+                "slug": "v-neck"
+              }
+            ],
+            "name": "Style"
+          },
+          {
+            "id": "bed8d4ebee6865d15947dc24871bb992",
+            "enum": [
+              {
+                "id": "336372d365bf463ca758fa7b0d259236",
+                "name": "Small",
+                "slug": "small"
+              },
+              {
+                "id": "c68b5fd3b8addae1f5f356001131c6bb",
+                "name": "Medium",
+                "slug": "medium"
+              },
+              {
+                "id": "9d5e8d2f89485c7cebd3f0c554a37c55",
+                "name": "Large",
+                "slug": "large"
+              },
+              {
+                "id": "c9bb84958c77cd8416f7e836485514c2",
+                "name": "XL",
+                "slug": "xl"
+              },
+              {
+                "id": "49c13f52959e8bb76f52474f548356fe",
+                "name": "2XL",
+                "slug": "2xl"
+              }
+            ],
+            "name": "Size"
+          }
+        ],
+        "category": [
+          "63594bea923e4af636829f54"
+        ],
+        "description": "Men's and Women's shirts available in a crewneck and v-neck style! ",
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "63e28839d2978b57b7d8209d",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": true,
+        "shipping-options": null,
+        "event": "65a9c1e30f638a0ea88be6a0",
+        "additional-information": "<p>‍</p><p id=\"\">‍</p>",
+        "special-notes": "<p>‍</p><p>‍</p>",
+        "private-product": true,
+        "name": "3rd Annual Mardi Gras Pub Crawl T-Shirt ",
+        "slug": "pub-crawl-staff-shirts"
+      }
+    },
+    {
+      "id": "63dc2801e4b0a5d58c9b8e3d",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": null,
+      "lastUpdated": "2023-03-20T12:23:39.251Z",
+      "createdOn": "2023-02-02T21:15:45.109Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "sku-properties": null,
+        "category": [
+          "6376b06096578f4aca6d6e89"
+        ],
+        "description": "Includes admission, all you can drink from 12:00- 9:00, covered seating, great view of the band, and St. Patrick’s Day swag. One ticket required for each person entering the VIP area.",
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "63dc2802503291019e872593",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": false,
+        "shipping-options": null,
+        "event": null,
+        "additional-information": null,
+        "special-notes": null,
+        "private-product": false,
+        "name": "VIP Access at Senoia Shenanigans 2023",
+        "slug": "vip-access-at-senoia-shenanigans-2023"
+      }
+    },
+    {
+      "id": "63d0126f94d0223276bd0945",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": null,
+      "lastUpdated": "2024-12-29T01:05:11.904Z",
+      "createdOn": "2023-01-24T17:16:31.926Z",
+      "isArchived": true,
+      "isDraft": true,
+      "fieldData": {
+        "sku-properties": [
+          {
+            "id": "e37090b35fb401e62704b66a83d07f1b",
+            "enum": [
+              {
+                "id": "08a08aa2b4ecd89df0ac8ca0ec691fae",
+                "name": "Crew Neck",
+                "slug": "crew-neck"
+              },
+              {
+                "id": "fba7f4a1c26a53360d87af903d718d38",
+                "name": "V-Neck",
+                "slug": "v-neck"
+              }
+            ],
+            "name": "Style"
+          },
+          {
+            "id": "b3405608d552c443efa144edec3d3ac5",
+            "enum": [
+              {
+                "id": "1161c4834732e3d2ace4bbe020372f2f",
+                "name": "Small",
+                "slug": "small"
+              },
+              {
+                "id": "54ee5b717f4c3581dc364d58e4a01455",
+                "name": "Medium",
+                "slug": "medium"
+              },
+              {
+                "id": "aeec60cf72430bf1e7b6a580720475ff",
+                "name": "Large",
+                "slug": "large"
+              },
+              {
+                "id": "5d816ac9bf9727b28bb677689bc746ee",
+                "name": "XL",
+                "slug": "xl"
+              },
+              {
+                "id": "f66c8f07e63094bc21c0c44676071288",
+                "name": "2XL",
+                "slug": "2xl"
+              }
+            ],
+            "name": "Size"
+          }
+        ],
+        "category": [
+          "6376b06096578f4aca6d6e89"
+        ],
+        "description": "Tickets for the Senoia 2nd Annual Mardi Gras Pub Crawl and Poker Run! Includes collectable t-shirt. Pub Crawl participants will check-in and pick up their t-shirt and wrist band starting at 6 p.m at Senoia Beer Co, 1 Main Street in downtown Senoia. ",
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "63d01273d6f260d6d639ffd5",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": false,
+        "shipping-options": null,
+        "event": "63d00fbf440bc136edad9f34",
+        "additional-information": "<p id=\"\"><strong id=\"\">You must complete your purchase of tickets and t-shirt by February 10th, 2023 to order your selection of style and size t-shirt.<br><br>All orders placed after February 10th will receive a men's large t-shirt at event check-in.<br><br>For clarity - T-shirts WILL NOT be shipped - you will pick up shirts your order when checking in at 6 p.m at Senoia Beer Co.</strong></p><p id=\"\">‍</p><p id=\"\">‍</p>",
+        "special-notes": "<p>‍</p><p>‍</p>",
+        "private-product": false,
+        "name": "2nd Annual Mardi Gras Pub Crawl Tickets and T-Shirt",
+        "slug": "2nd-annual-mardi-gras-pub-crawl-tickets-tickets-and-shirt"
+      }
+    },
+    {
+      "id": "6376b4ad044d7975f913f88b",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": null,
+      "lastUpdated": "2022-11-17T22:27:29.727Z",
+      "createdOn": "2022-11-17T22:24:45.221Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "sku-properties": null,
+        "category": [
+          "6376b06096578f4aca6d6e89"
+        ],
+        "description": "Ticket booklets are $25 and can be picked up starting on Tuesday, December 6th, at the Senoia Welcome Center at 68 Main St, Senoia, GA 30276. Welcome Center Hours are Tues - Fri 11-3 & Saturday 10 – 4. The Welcome Center phone number is 770-727-9173",
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "6376b4ad4e89b77425f6045a",
+        "ec-product-type": "b6ccc1830db4b1babeb06a9ac5f6dd76",
+        "test-product": false,
+        "shipping-options": null,
+        "event": "634802e7ed53493a443a9dff",
+        "additional-information": null,
+        "special-notes": null,
+        "private-product": false,
+        "name": "2022 Candlelight Tour of Homes Tickets Test",
+        "slug": "2022-candlelight-tour-of-homes-tickets-test"
+      }
+    },
+    {
+      "id": "6376b09472b031439f22a358",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": null,
+      "lastUpdated": "2022-12-11T16:19:37.066Z",
+      "createdOn": "2022-11-17T22:07:16.080Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "sku-properties": null,
+        "category": [
+          "6376b06096578f4aca6d6e89"
+        ],
+        "description": "Tour Hours are 4 p.m. - 7 p.m. on Sunday, December 11th, 2022. Ticket booklets are $25 and can be picked up on the day of the event Sunday, December 11th, from 12 p.m.- 6 p.m. at the Senoia Welcome Center, located at 68 Main St in Senoia. You may also pick up ticket booklets through December 11th at Boots-N-Bling located on Main Street. Their business hours are: Monday-Thursday: 10 a.m. - 5 p.m. - Friday & Saturday: 10 a.m. - 6 p.m. - Sunday: 1 p.m.- 5 p.m. Tickets can also be purchased at Table Talk at Senoia located on Main Street. Their business hours are: Sunday - Thursday: 10 a.m. - 5 p.m. and Friday & Saturday: 10 a.m. - 8 p.m.",
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "6376b094a67c6d4143220f02",
+        "ec-product-type": "b6ccc1830db4b1babeb06a9ac5f6dd76",
+        "test-product": false,
+        "shipping-options": null,
+        "event": "634802e7ed53493a443a9dff",
+        "additional-information": null,
+        "special-notes": null,
+        "private-product": false,
+        "name": "2022 Candlelight Tour of Homes Tickets",
+        "slug": "2022-candlelight-tour-of-homes-tickets"
+      }
+    },
+    {
+      "id": "635987ea8deaae11dd3837e8",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": null,
+      "lastUpdated": "2023-02-03T22:30:40.712Z",
+      "createdOn": "2022-10-26T19:18:02.602Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "sku-properties": [
+          {
+            "id": "c957169cc35e1c877211980fd38c99d2",
+            "enum": [
+              {
+                "id": "7d1b2a2fa54c60561f10e770af0159c4",
+                "name": "Small",
+                "slug": "small"
+              },
+              {
+                "id": "c44657dd78d63ec28ae4a4bd39ac854b",
+                "name": "Medium",
+                "slug": "medium"
+              },
+              {
+                "id": "c4be5a7bf04ee60ccfb5dd9eacbcb4c9",
+                "name": "Large",
+                "slug": "large"
+              },
+              {
+                "id": "34dd632b9dec5dffeb8ba9b307813fdb",
+                "name": "X-Large",
+                "slug": "x-large"
+              },
+              {
+                "id": "0b020c222eaa13a40271e84b6c9e4872",
+                "name": "2-XL",
+                "slug": "2-xl"
+              },
+              {
+                "id": "acb88ab287aaf89c0a7c659ba262ebd7",
+                "name": "3-XL",
+                "slug": "3-xl"
+              }
+            ],
+            "name": "Size"
+          }
+        ],
+        "category": [
+          "63594bea923e4af636829f54"
+        ],
+        "description": "Cotton Blend Blue T-Shirt - Please note that shirts will be available by mid-December.",
+        "shippable": true,
+        "tax-category": "standard-exempt",
+        "default-sku": "635987ebe0b2963af32de1d3",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": false,
+        "shipping-options": "Local pick-up at Senoia Welcome Center or Shipping for 1-3 items in the Southeast US. Please note that shirts will be available by mid-December.",
+        "event": "62c9aafe6f68923989334fbb",
+        "additional-information": null,
+        "special-notes": null,
+        "private-product": false,
+        "name": "2022 Senoia Car Show T-Shirts",
+        "slug": "2022-senoia-car-show-t-shirts"
+      }
+    },
+    {
+      "id": "63596aadd67c426b25eadcd1",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": null,
+      "lastUpdated": "2024-05-31T14:05:29.040Z",
+      "createdOn": "2022-10-26T17:13:17.135Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "sku-properties": null,
+        "category": null,
+        "description": "test product description",
+        "shippable": false,
+        "tax-category": "standard-exempt",
+        "default-sku": "63596aad309a020e5916b8af",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": true,
+        "shipping-options": null,
+        "event": null,
+        "additional-information": null,
+        "special-notes": null,
+        "private-product": false,
+        "name": "test product",
+        "slug": "test-product"
+      }
+    },
+    {
+      "id": "63594d982e0bdacaf16155e8",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": null,
+      "lastUpdated": "2023-02-03T22:30:40.714Z",
+      "createdOn": "2022-10-26T15:09:12.863Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "sku-properties": [
+          {
+            "id": "eb53b66c66f9d5efd5319c1d550f95cd",
+            "enum": [
+              {
+                "id": "573d63c264b484a3e01cb1f91416d286",
+                "name": "Extra Small",
+                "slug": "extra-small"
+              },
+              {
+                "id": "a9eb812e8d73e3ce0ae2e1a153893445",
+                "name": "Small",
+                "slug": "small"
+              },
+              {
+                "id": "3e7b1a4d7fa86eb3e97ebd626312f44c",
+                "name": "Medium",
+                "slug": "medium"
+              },
+              {
+                "id": "747e966b21954fdde3c636928fb599d6",
+                "name": "Large",
+                "slug": "large"
+              },
+              {
+                "id": "3e9e3128524d8d966ed5d91722bd981c",
+                "name": "Extra Large",
+                "slug": "extra-large"
+              }
+            ],
+            "name": "Size"
+          },
+          {
+            "id": "92131deeac8f8eb75a64983821a24c02",
+            "enum": [
+              {
+                "id": "0a4c307d86f46fe49a86740e22355c59",
+                "name": "Long Sleeve",
+                "slug": "long-sleeve"
+              },
+              {
+                "id": "f72fc7cbb9b1b246e2eee9cda104a445",
+                "name": "Short Sleeve V-Neck",
+                "slug": "short-sleeve-v-neck"
+              }
+            ],
+            "name": "Style"
+          }
+        ],
+        "category": [
+          "63594bea923e4af636829f54"
+        ],
+        "description": "Cotton Poly Blend T-Shirt - Black",
+        "shippable": true,
+        "tax-category": "standard-exempt",
+        "default-sku": "63594d9f25a64b253010c5da",
+        "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+        "test-product": false,
+        "shipping-options": "Local pick-up at Senoia Welcome Center or Shipping for 1-3 items in the Southeast US",
+        "event": "62c89a2c4f9abca755d13cfe",
+        "additional-information": null,
+        "special-notes": null,
+        "private-product": false,
+        "name": "Senoia Veterans' Memorial Cornhole Tournament T-Shirt",
+        "slug": "senoia-veterans-memorial-cornhole-tournament-t-shirt"
+      }
+    }
+  ]
+}
