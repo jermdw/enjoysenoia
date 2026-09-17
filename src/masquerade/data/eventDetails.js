@@ -304,11 +304,11 @@ export const faqs = [
   },
   {
     q: 'Where do I park?',
-    a: 'Parking is available in the Senoia Library lots at 148 Pylant Street, Senoia, GA 30276, including ADA parking. A shuttle is under consideration and will be announced here if confirmed.',
+    a: 'Parking is available in the Senoia Library lots at 148 Pylant Street, Senoia, GA 30276, including ADA parking.',
   },
   {
     q: 'Is the venue accessible?',
-    a: 'ADA parking is available, and there is ADA access to the Stone Lodge restrooms. Please note the event is largely outdoors on natural terrain — flat or sturdy footwear is a friend to a long evening.',
+    a: 'ADA parking is available, and there is ADA access to the Stone Lodge restrooms.',
   },
   {
     q: 'What is the weather plan?',
@@ -320,7 +320,8 @@ export const faqs = [
   },
   {
     q: 'Can I bring my own food or drinks?',
-    a: 'No outside food or beverages, including alcohol, may be brought in. A cash bar by Crust & Craft is open through the evening.',
+    // The organizer's own wording, taken from the published preview.
+    a: 'No :)',
   },
   {
     q: 'When do tickets stop selling?',
