@@ -5,29 +5,25 @@ import { contact, event } from '../data/eventDetails';
 
 export default function MasqueradeFooter() {
   return (
-    <footer className="bg-[var(--masq-ink)]">
-      {/* The title card's harlequin border, repeated once to close the page. */}
-      <div className="masq-harlequin-mat" aria-hidden="true">
-        <div className="masq-harlequin" />
-      </div>
+    <footer className="bg-[var(--masq-ink)] border-t border-[var(--masq-line)]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center">
           <p className="masq-display text-2xl sm:text-3xl text-[var(--masq-cream)]">
             {event.name}
           </p>
-          <p className="masq-display text-lg text-[var(--masq-bone)] italic mt-1">{event.theme}</p>
+          <p className="masq-display text-lg text-[var(--masq-gold)] italic mt-1">{event.theme}</p>
           <p className="mt-4 text-[var(--masq-cream-dim)]">
             {event.dateLabel} · {event.timeLabel}
           </p>
         </div>
 
-        <Ornament variant="key" className="my-10" />
+        <Ornament suit="heart" className="my-10" />
 
         <div className="grid sm:grid-cols-3 gap-8 text-center sm:text-left">
           <div className="space-y-2">
             <p className="masq-eyebrow">The Venue</p>
             <p className="text-[var(--masq-cream)] flex items-start gap-2 justify-center sm:justify-start">
-              <MapPin className="w-4 h-4 mt-1 shrink-0 text-[var(--masq-bone)]" />
+              <MapPin className="w-4 h-4 mt-1 shrink-0 text-[var(--masq-gold)]" />
               <span>
                 {event.venue.name}
                 <br />
@@ -42,7 +38,7 @@ export default function MasqueradeFooter() {
               href={`mailto:${contact.email}`}
               className="masq-link inline-flex items-center gap-2 text-[var(--masq-cream)]"
             >
-              <Mail className="w-4 h-4 text-[var(--masq-bone)]" />
+              <Mail className="w-4 h-4 text-[var(--masq-gold)]" />
               <span>{contact.email}</span>
             </a>
           </div>
@@ -56,7 +52,7 @@ export default function MasqueradeFooter() {
                 rel="noopener noreferrer"
                 className="masq-link inline-flex items-center gap-2 text-[var(--masq-cream)] justify-center sm:justify-start"
               >
-                <Instagram className="w-4 h-4 text-[var(--masq-bone)]" />
+                <Instagram className="w-4 h-4 text-[var(--masq-gold)]" />
                 <span>{contact.instagram.handle}</span>
               </a>
               <a
@@ -65,7 +61,7 @@ export default function MasqueradeFooter() {
                 rel="noopener noreferrer"
                 className="masq-link inline-flex items-center gap-2 text-[var(--masq-cream)] justify-center sm:justify-start"
               >
-                <Instagram className="w-4 h-4 text-[var(--masq-bone)]" />
+                <Instagram className="w-4 h-4 text-[var(--masq-gold)]" />
                 <span>{contact.partnerInstagram.handle}</span>
               </a>
             </div>

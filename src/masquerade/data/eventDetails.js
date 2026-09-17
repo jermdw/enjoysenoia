@@ -9,8 +9,6 @@
 export const event = {
   name: 'The 3rd Annual Masquerade',
   theme: 'Down the Rabbit Hole',
-  // How the theme is set on the title card: a small line over a large one.
-  titleLockup: { over: 'Down the', under: 'Rabbit Hole' },
   edition: '3rd Annual',
   // Confirmed against the organizer's title card, which reads
   // "SATURDAY, OCTOBER 24, 2026" — the intake doc's "2006" was a typo.

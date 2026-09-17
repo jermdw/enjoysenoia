@@ -22,18 +22,18 @@ export default function Schedule() {
           {schedule.map((item) => (
             <li key={item.time} className="relative flex flex-col sm:flex-row gap-2 sm:gap-8 pb-10 last:pb-0">
               <div className="sm:w-28 sm:text-right shrink-0">
-                <p className="masq-display text-lg text-[var(--masq-bone)] whitespace-nowrap">{item.time}</p>
+                <p className="masq-display text-lg text-[var(--masq-gold)] whitespace-nowrap">{item.time}</p>
               </div>
 
               <span
-                className="hidden sm:block absolute left-[9.4rem] top-2.5 w-2 h-2 rounded-full bg-[var(--masq-bone)] ring-4 ring-[var(--masq-ink)]"
+                className="hidden sm:block absolute left-[9.4rem] top-2.5 w-2 h-2 rounded-full bg-[var(--masq-crimson-bright)] ring-4 ring-[var(--masq-ink)]"
                 aria-hidden="true"
               />
 
               <div className="sm:pl-10">
                 <h3 className="text-xl text-[var(--masq-cream)]">{item.title}</h3>
                 <p className="text-[var(--masq-cream-dim)] leading-relaxed">{item.detail}</p>
-                <p className="mt-1.5 text-[0.7rem] uppercase tracking-[0.18em] text-[rgba(216,205,182,0.8)]">
+                <p className="mt-1.5 text-[0.7rem] uppercase tracking-[0.18em] text-[rgba(194,163,107,0.8)]">
                   {item.tier}
                 </p>
               </div>

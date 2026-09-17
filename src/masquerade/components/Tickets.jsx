@@ -14,7 +14,7 @@ function TierAction({ tier }) {
 
   if (tier.status === 'waitlist') {
     return (
-      <a href="#waitlist" className={`${base} border border-[var(--masq-bone)] text-[var(--masq-bone)] hover:bg-[var(--masq-bone)] hover:text-[var(--masq-ink)]`}>
+      <a href="#waitlist" className={`${base} border border-[var(--masq-gold)] text-[var(--masq-gold)] hover:bg-[var(--masq-gold)] hover:text-[var(--masq-ink)]`}>
         Join the waitlist
       </a>
     );
@@ -45,8 +45,8 @@ function TierAction({ tier }) {
       rel="noopener noreferrer"
       className={`${base} ${
         tier.featured
-          ? 'masq-btn-solid'
-          : 'border border-[var(--masq-line)] hover:border-[var(--masq-bone)] text-[var(--masq-cream)]'
+          ? 'bg-[var(--masq-crimson)] hover:bg-[var(--masq-crimson-bright)] text-[var(--masq-cream)]'
+          : 'border border-[var(--masq-line)] hover:border-[var(--masq-gold)] text-[var(--masq-cream)]'
       } hover:scale-[1.02]`}
     >
       <TicketIcon className="w-4 h-4" />
@@ -72,12 +72,12 @@ export default function Tickets() {
               key={tier.id}
               className={`relative flex flex-col h-full rounded-sm p-7 sm:p-8 transition-transform hover:-translate-y-1 ${
                 tier.featured
-                  ? 'border-2 border-[var(--masq-bone)] bg-[var(--masq-ink-raised)]'
+                  ? 'border-2 border-[var(--masq-gold)] bg-[var(--masq-ink-raised)]'
                   : 'border border-[var(--masq-line)] bg-[var(--masq-ink)]'
               }`}
             >
               {tier.featured && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-[var(--masq-bone)] text-[var(--masq-ink)] text-[0.65rem] font-semibold uppercase tracking-[0.2em] whitespace-nowrap">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-[var(--masq-gold)] text-[var(--masq-ink)] text-[0.65rem] font-semibold uppercase tracking-[0.2em] whitespace-nowrap">
                   The Full Evening
                 </span>
               )}
@@ -85,10 +85,10 @@ export default function Tickets() {
               <header className="text-center pb-6 border-b border-[var(--masq-line)]">
                 <h3 className="text-2xl text-[var(--masq-cream)]">{tier.name}</h3>
                 <p className="masq-eyebrow mt-2">{tier.subtitle}</p>
-                <p className="mt-5 masq-display text-5xl text-[var(--masq-bone)]">${tier.price}</p>
+                <p className="mt-5 masq-display text-5xl text-[var(--masq-gold)]">${tier.price}</p>
                 <p className="mt-2 text-sm text-[var(--masq-cream-dim)]">{tier.doors}</p>
                 {tier.status === 'atDoor' && (
-                  <p className="mt-3 inline-block px-3 py-1 text-[0.7rem] uppercase tracking-[0.15em] text-[var(--masq-bone)] border border-[var(--masq-line)]">
+                  <p className="mt-3 inline-block px-3 py-1 text-[0.7rem] uppercase tracking-[0.15em] text-[var(--masq-gold)] border border-[var(--masq-line)]">
                     Also sold at the door
                   </p>
                 )}
@@ -99,7 +99,7 @@ export default function Tickets() {
               <ul className="space-y-3 flex-grow">
                 {tier.includes.map((line) => (
                   <li key={line} className="flex gap-3 text-[var(--masq-cream)] leading-snug">
-                    <Check className="w-4 h-4 mt-1 shrink-0 text-[var(--masq-bone)]" />
+                    <Check className="w-4 h-4 mt-1 shrink-0 text-[var(--masq-crimson-bright)]" />
                     <span>{line}</span>
                   </li>
                 ))}
@@ -112,7 +112,7 @@ export default function Tickets() {
           ))}
         </div>
 
-        <Ornament variant="diamond" className="mt-16" />
+        <Ornament suit="club" className="mt-16" />
 
         <div className="mt-10 max-w-2xl mx-auto text-center space-y-2 text-[var(--masq-cream-dim)]">
           <p>{ticketing.salesNote}</p>

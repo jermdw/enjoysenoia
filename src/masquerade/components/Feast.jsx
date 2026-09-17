@@ -19,7 +19,7 @@ export default function Feast() {
             <p className="text-center text-[0.7rem] uppercase tracking-[0.3em] text-[#8b6f4e]">
               Menu
             </p>
-            <Ornament variant="diamond" className="my-5 opacity-60" />
+            <Ornament suit="heart" className="my-5 opacity-60" />
 
             <div className="space-y-8">
               {menu.courses.map((course) => (
@@ -65,7 +65,7 @@ export default function Feast() {
                 <li key={performer.name} className="flex gap-5">
                   <Suit
                     suit={['diamond', 'heart', 'club'][i % 3]}
-                    className="w-4 h-4 mt-2 shrink-0 text-[var(--masq-bone)]"
+                    className="w-4 h-4 mt-2 shrink-0 text-[var(--masq-crimson-bright)]"
                   />
                   <div>
                     <h4 className="masq-display text-xl text-[var(--masq-cream)]">{performer.name}</h4>

@@ -12,14 +12,14 @@ export default function Invitation() {
           lead="For one night, the Stone Lodge at Marimac Lake falls into Wonderland — lantern light through the trees, acrobats overhead, a long table laid under canvas, and fire after dark."
         />
 
-        <Ornament variant="keyhole" className="my-14" />
+        <Ornament suit="spade" className="my-14" />
 
         <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-start">
           {/* Dress code — the copy the organizer wrote, nearly untouched. */}
           <div className="lg:col-span-3 space-y-6">
             <h3 className="text-2xl sm:text-3xl text-[var(--masq-cream)]">{dressCode.headline}</h3>
             <p className="text-lg text-[var(--masq-cream-dim)] leading-relaxed">{dressCode.body}</p>
-            <p className="flex items-start gap-3 text-[var(--masq-cream)] border-l-2 border-[var(--masq-bone)] pl-5 py-1">
+            <p className="flex items-start gap-3 text-[var(--masq-cream)] border-l-2 border-[var(--masq-crimson)] pl-5 py-1">
               <span>{dressCode.note}</span>
             </p>
             <p className="text-[var(--masq-cream-dim)]">
@@ -36,7 +36,7 @@ export default function Invitation() {
                   <li key={item.title} className="flex gap-4">
                     <Suit
                       suit={['heart', 'spade', 'club', 'diamond'][i % 4]}
-                      className="w-3.5 h-3.5 mt-1.5 shrink-0 text-[var(--masq-bone)]"
+                      className="w-3.5 h-3.5 mt-1.5 shrink-0 text-[var(--masq-gold)]"
                     />
                     <div>
                       <p className="text-[var(--masq-cream)] font-semibold">{item.title}</p>
