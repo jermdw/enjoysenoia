@@ -113,9 +113,8 @@ export const tiers = [
     name: 'General Admission',
     subtitle: 'The Wonderland After Party',
     price: 25,
-    // CONFIRM: intake doc says "Entry at 8:30 PM" in the tier heading but
-    // "Admission beginning at 8:00 PM" in the inclusions, and the run of show
-    // has after-party doors at 8:00. Showing 8:00 PM.
+    // Confirmed by the organizer: 8:00 PM is the door time. The intake doc's
+    // "8:30 PM" was wrong and she is correcting it on the ticket listing.
     doors: 'Entry at 8:00 PM',
     status: 'atDoor',
     featured: false,
