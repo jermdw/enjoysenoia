@@ -6,6 +6,7 @@ import Hero from './components/Hero';
 import Invitation from './components/Invitation';
 import Tickets from './components/Tickets';
 import Schedule from './components/Schedule';
+import Gallery from './components/Gallery';
 import Sponsors from './components/Sponsors';
 import Faq from './components/Faq';
 import Follow from './components/Follow';
@@ -38,6 +39,7 @@ export default function MasqueradePage() {
         <Invitation />
         <Tickets />
         <Schedule />
+        <Gallery />
         <Sponsors />
         <Faq />
         <Follow />

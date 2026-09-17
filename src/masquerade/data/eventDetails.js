@@ -255,6 +255,48 @@ export const sponsorTiers = [
 
 export const sponsors = []; // NEEDED: [{ name, tierId, logo, url }]
 
+/**
+ * Photographs from the first two Masquerades, ordered so the gallery runs from
+ * late afternoon through to the end of the night.
+ *
+ * The 2025 frames carry EXIF capture times (5:49 PM to 8:49 PM). The 2024 frames
+ * were exported without EXIF, but their numbering runs in order and darkens
+ * steadily, which places them along the same evening. The two years interleave
+ * on purpose: the section is one evening unfolding, not a year-by-year archive.
+ *
+ * EXIF was stripped when these were resized for the web.
+ */
+export const gallery = [
+  { src: '/masquerade/gallery/img_7495.jpg', w: 800, h: 1200, alt: 'Tables laid under the tent in late afternoon light, black and white drapes overhead and red feather centrepieces on the linen.' },
+  { src: '/masquerade/gallery/20241026_dsc_0882.jpg', w: 800, h: 1200, alt: 'A centrepiece of dark roses and berries in a gold vase, lit by candles on a black tablecloth.' },
+  { src: '/masquerade/gallery/img_7498.jpg', w: 800, h: 1200, alt: 'Long tables set beneath the open-sided tent, string lights strung above and pine woods beyond.' },
+  { src: '/masquerade/gallery/img_7504.jpg', w: 800, h: 1200, alt: 'A place setting with a red menu card, gold charger and white roses.' },
+  { src: '/masquerade/gallery/img_7506.jpg', w: 800, h: 1200, alt: 'Table detail — lanterns, white roses and a red runner across black linen.' },
+  { src: '/masquerade/gallery/img_7524.jpg', w: 800, h: 1200, alt: 'The tent seen from the path at dusk, its draped entrance lit by hanging bulbs.' },
+  { src: '/masquerade/gallery/20241026_dsc_0892.jpg', w: 1200, h: 800, alt: 'An aerialist in silver poses inside a suspended hoop above the crowd, autumn trees gold behind her.' },
+  { src: '/masquerade/gallery/img_7639.jpg', w: 800, h: 1200, alt: 'An aerial artist balances on a standing hoop against bare branches and a pale sky.' },
+  { src: '/masquerade/gallery/img_7764.jpg', w: 1024, h: 683, alt: 'Bottles lined along the bar in the tasting room.' },
+  { src: '/masquerade/gallery/20241026_dsc_0899.jpg', w: 1200, h: 800, alt: 'Masked guests laughing together around a cocktail table at sunset.' },
+  { src: '/masquerade/gallery/20241026_dsc_0915.jpg', w: 1200, h: 800, alt: 'An acrobat hangs upside down from a hoop on the lawn while masked guests watch.' },
+  { src: '/masquerade/gallery/img_7893.jpg', w: 800, h: 1200, alt: 'A performer arches backwards through a hoop among the pines.' },
+  { src: '/masquerade/gallery/img_7905.jpg', w: 800, h: 1200, alt: 'Two guests in masks and black tie pose against a red and gold striped backdrop.' },
+  { src: '/masquerade/gallery/20241026_dsc_0921.jpg', w: 1200, h: 800, alt: 'An aerialist in silver steps through a hoop as guests gather on the grass.' },
+  { src: '/masquerade/gallery/20241026_dsc_0934.jpg', w: 800, h: 1200, alt: 'A couple in a feathered mask and blue tuxedo pose at the Moonlight on Marimac backdrop.' },
+  { src: '/masquerade/gallery/img_7980.jpg', w: 1024, h: 683, alt: 'Two guests in top hats and masks pose between red and gold curtains.' },
+  { src: '/masquerade/gallery/20241026_dsc_0938.jpg', w: 800, h: 1200, alt: 'A couple in black tie and masks at the photo backdrop after dark.' },
+  { src: '/masquerade/gallery/20241026_dsc_0999.jpg', w: 800, h: 1200, alt: 'Two guests in red and black gowns and masks pose at the backdrop.' },
+  { src: '/masquerade/gallery/20241026_dsc_1008.jpg', w: 1200, h: 800, alt: 'Guests seated along the candlelit dinner table beneath the trees.' },
+  { src: '/masquerade/gallery/20241026_dsc_1161.jpg', w: 800, h: 1200, alt: 'A fire performer breathes a plume of flame into the dark.' },
+  { src: '/masquerade/gallery/20241026_dsc_1201.jpg', w: 1200, h: 800, alt: 'A fire breather sends a column of flame high above the lawn.' },
+  { src: '/masquerade/gallery/20241026_dsc_1252.jpg', w: 800, h: 1200, alt: 'A fire performer exhales a wide burst of flame against the night.' },
+  { src: '/masquerade/gallery/img_8142.jpg', w: 800, h: 1200, alt: 'An aerial silks artist suspended from a tripod rig above the crowd.' },
+  { src: '/masquerade/gallery/20241026_dsc_1457.jpg', w: 1200, h: 800, alt: 'A fire dancer spins lit fans in front of a watching crowd.' },
+  { src: '/masquerade/gallery/img_8315.jpg', w: 1024, h: 683, alt: 'An aerialist performs in a lyra hoop above a mirrored stage.' },
+  { src: '/masquerade/gallery/20241026_dsc_1531.jpg', w: 1200, h: 800, alt: 'The band plays beside a lit backdrop of bicycle wheels.' },
+  { src: '/masquerade/gallery/20241026_dsc_1549.jpg', w: 1200, h: 800, alt: 'A singer and guitarist perform on the lawn stage late in the night.' },
+  { src: '/masquerade/gallery/img_8505.jpg', w: 1024, h: 683, alt: 'A fire performer raises flaming torches beneath the tent as guests watch from their seats.' },
+];
+
 export const faqs = [
   {
     q: 'Who can attend?',
