@@ -1,5 +1,5 @@
 import React from 'react';
-import { Instagram } from 'lucide-react';
+import { Facebook } from 'lucide-react';
 import { Keyhole } from './Ornament';
 import { contact } from '../data/eventDetails';
 
@@ -11,7 +11,8 @@ import { contact } from '../data/eventDetails';
  * tier with `status: 'waitlist'` has nowhere to send people — its button now
  * points here. If a waitlist is wanted again, this is where it goes.
  */
-const accounts = [contact.instagram, contact.partnerInstagram];
+// The organizer asked for both Instagram buttons out and Facebook in.
+const accounts = [contact.facebook];
 
 export default function Follow() {
   return (
@@ -29,7 +30,7 @@ export default function Follow() {
       />
 
       <div className="relative max-w-2xl mx-auto px-4 sm:px-6 text-center">
-        <Keyhole className="w-9 h-14 mx-auto text-[var(--masq-gold)]" />
+        <Keyhole className="w-14 h-[5.25rem] mx-auto text-[var(--masq-gold)]" />
         <h2 className="mt-6 text-3xl sm:text-4xl text-[var(--masq-cream)]">
           Follow the key. See where curiosity takes you.
         </h2>
@@ -43,7 +44,7 @@ export default function Follow() {
               rel="noopener noreferrer"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-sm border border-[var(--masq-gold)] text-[var(--masq-gold)] hover:bg-[var(--masq-gold)] hover:text-[var(--masq-ink)] text-xs font-semibold uppercase tracking-[0.2em] transition-colors"
             >
-              <Instagram className="w-4 h-4" />
+              <Facebook className="w-4 h-4" />
               <span>{account.handle}</span>
             </a>
           ))}

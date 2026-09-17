@@ -335,6 +335,11 @@ export const faqs = [
 export const contact = {
   // Only the public DDA address goes on the site — never the organizer's personal contact.
   email: 'welcome@enjoysenoia.com',
+  facebook: {
+    handle: 'Follow on Facebook',
+    // Supplied by the organizer. Not opened from here — verify before launch.
+    url: 'https://www.facebook.com/profile.php?id=61594326304265',
+  },
   instagram: {
     handle: '@TheHalloweenMasquerade',
     url: 'https://www.instagram.com/thehalloweenmasquerade/', // CONFIRM: handle URL
