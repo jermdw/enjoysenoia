@@ -1,6 +1,6 @@
 import React from 'react';
 import Ornament, { SectionHeading, Suit } from './Ornament';
-import { dressCode, happenings, event } from '../data/eventDetails';
+import { dressCode, happenings } from '../data/eventDetails';
 
 export default function Invitation() {
   return (
@@ -23,12 +23,6 @@ export default function Invitation() {
           <div className="lg:col-span-3 space-y-6">
             <h3 className="text-2xl sm:text-3xl text-[var(--masq-cream)]">{dressCode.headline}</h3>
             <p className="text-lg text-[var(--masq-cream-dim)] leading-relaxed">{dressCode.body}</p>
-            <p className="flex items-start gap-3 text-[var(--masq-cream)] border-l-2 border-[var(--masq-crimson)] pl-5 py-1">
-              <span>{dressCode.note}</span>
-            </p>
-            <p className="text-[var(--masq-cream-dim)]">
-              {event.venue.setting} {event.weatherLabel}, and {event.ageLabel.toLowerCase()}.
-            </p>
           </div>
 
           {/* What's afoot through the night. */}

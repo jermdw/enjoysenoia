@@ -29,6 +29,7 @@ export const event = {
     // JSON-LD in MasqueradeSEO pairs it with a structured address.
     label: 'The Stone Lodge at Marimac Lake, Senoia GA',
     addressLine: null, // NEEDED: street address for the Stone Lodge
+    // Not rendered — the organizer cut it from the page; the FAQ carries the fact.
     setting: 'An outdoor evening under tent, with the Stone Lodge open indoors for VIP guests.',
   },
   host: 'Presented in support of the Senoia Downtown Development Authority',
@@ -156,6 +157,8 @@ export const schedule = [
 export const dressCode = {
   headline: 'The Dress Code',
   body: `Think masquerade meets Wonderland. Masks and headpieces are encouraged, black tie and evening wear. Guests are invited to interpret the theme — an elegant masquerade with character: Alice, the White Rabbit, Queen of Hearts, Mad Hatter, Cheshire Cat. An outfit for a whimsical garden party, chess players and playing cards with a touch of mystery. Creative outfits are highly encouraged, but not required.`,
+  // Not rendered — the organizer cut it from the page; the FAQ still says masks
+  // are not sold on site.
   note: 'Masks are not provided or sold on site — bring your own.',
 };
 
