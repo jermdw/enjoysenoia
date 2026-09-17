@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Shield, Calendar, Building2, Newspaper, Mail, Plus, Trash2, Download, LogOut } from 'lucide-react';
+import { Shield, Calendar, Building2, Newspaper, Mail, Plus, Trash2, Download, LogOut, AlertTriangle } from 'lucide-react';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import SEO from '../components/common/SEO';
@@ -126,6 +126,25 @@ export default function AdminPortalPage() {
       <SEO title="DDA Content Dashboard" description="Admin dashboard for Senoia DDA volunteers." />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        {/*
+          Events, businesses and news are read from the static JSON in /data and
+          held in component state; nothing here writes back yet. Say so plainly
+          rather than let a volunteer type up an event, refresh, and find it
+          gone. The subscriber list below is real — it is read from Firestore.
+        */}
+        <div
+          role="status"
+          className="flex items-start gap-3 rounded-2xl border border-amber-300 bg-amber-50 px-5 py-4 text-sm text-amber-900"
+        >
+          <AlertTriangle className="w-5 h-5 shrink-0 mt-0.5" aria-hidden="true" />
+          <p>
+            <span className="font-semibold">Changes here are not saved yet.</span>{' '}
+            Events, businesses and news added or removed below last only until you
+            reload the page — publishing them still means editing the site&rsquo;s data
+            files. The newsletter subscriber list is live.
+          </p>
+        </div>
+
         {/* Header Bar */}
         <div className="bg-white p-6 rounded-2xl shadow-xs border border-stone-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center space-x-3">
