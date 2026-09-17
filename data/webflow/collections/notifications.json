@@ -85,7 +85,7 @@
   },
   "counts": {
     "total": 0,
-    "published": 0,
+    "live": 0,
     "draft": 0,
     "archived": 0
   },

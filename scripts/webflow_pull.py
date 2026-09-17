@@ -190,13 +190,22 @@ def pull_collections(wf, site_id, only=None, live_only=False):
             endpoint += "/live"
         items, total = wf.paginate(endpoint, "items")
 
-        published = sum(1 for i in items if not i.get("isDraft") and not i.get("isArchived"))
         drafts = sum(1 for i in items if i.get("isDraft"))
         archived = sum(1 for i in items if i.get("isArchived"))
 
+        # isDraft means "has unpublished edits", which is NOT the same as "not on
+        # the site" - an item edited after publishing is flagged draft while its
+        # last published version stays live. Only /items/live is authoritative
+        # about what visitors actually see, so ask it rather than inferring.
+        if live_only:
+            live = total
+        else:
+            live = wf.get(f"collections/{meta['id']}/items/live",
+                          {"limit": 1}).get("pagination", {}).get("total", 0)
+
         record = {
             "collection": schema,
-            "counts": {"total": total, "published": published,
+            "counts": {"total": total, "live": live,
                        "draft": drafts, "archived": archived},
             "items": items,
         }
@@ -204,8 +213,8 @@ def pull_collections(wf, site_id, only=None, live_only=False):
         (COLLECTIONS_DIR / f"{meta['slug']}.json").write_text(
             json.dumps(record, indent=2, ensure_ascii=False)
         )
-        print(f"  {meta['displayName']:<28} {total:>4} "
-              f"(published {published}, draft {drafts}, archived {archived})")
+        print(f"  {meta['displayName']:<28} {total:>4} total, {live:>4} live "
+              f"(draft {drafts}, archived {archived})")
         results.append(record)
     return results
 
@@ -319,7 +328,9 @@ def download_assets(plan):
 
     for url, meta in plan.items():
         dest = REPO_ROOT / meta["localPath"]
-        if dest.exists() and meta["size"] and dest.stat().st_size == meta["size"]:
+        # Asset-manager entries carry a size to verify against; CMS-field URLs
+        # do not, so for those existence alone is the resume signal.
+        if dest.exists() and (not meta["size"] or dest.stat().st_size == meta["size"]):
             skipped += 1
             continue
         dest.parent.mkdir(parents=True, exist_ok=True)
@@ -371,8 +382,16 @@ def main():
     print("Collections")
     collections = pull_collections(wf, site["id"], args.collections, args.live_only)
 
+    # A scoped run only sees part of the site, so it must not overwrite the
+    # whole-site artifacts - item_index.json is what resolves Reference fields.
+    suffix = ".partial" if args.collections else ""
+    if suffix:
+        print("\n  (scoped run: writing *.partial.json, leaving full-site files alone)")
+
     index = build_item_index(collections)
-    (OUT_DIR / "item_index.json").write_text(json.dumps(index, indent=2, ensure_ascii=False))
+    (OUT_DIR / f"item_index{suffix}.json").write_text(
+        json.dumps(index, indent=2, ensure_ascii=False)
+    )
 
     report = {
         "site": {"id": site["id"], "name": site["displayName"]},
@@ -386,7 +405,7 @@ def main():
     if not args.skip_assets:
         print("\nAssets")
         manifest = pull_assets(wf, site["id"])
-        (OUT_DIR / "assets.json").write_text(json.dumps(manifest, indent=2, ensure_ascii=False))
+        (OUT_DIR / f"assets{suffix}.json").write_text(json.dumps(manifest, indent=2, ensure_ascii=False))
 
         total_bytes = sum(m["size"] for m in manifest.values())
         print(f"  total size {human(total_bytes)}")
@@ -395,7 +414,7 @@ def main():
         # report them separately rather than as one reconciled set.
         referenced = collect_referenced_urls(collections)
         plan = build_download_plan(manifest, referenced)
-        (OUT_DIR / "download_plan.json").write_text(
+        (OUT_DIR / f"download_plan{suffix}.json").write_text(
             json.dumps(plan, indent=2, ensure_ascii=False)
         )
 
@@ -417,7 +436,7 @@ def main():
         else:
             print(f"\n  (manifest only - pass --download-assets to fetch {len(plan)} files)")
 
-    (OUT_DIR / "report.json").write_text(json.dumps(report, indent=2, ensure_ascii=False))
+    (OUT_DIR / f"report{suffix}.json").write_text(json.dumps(report, indent=2, ensure_ascii=False))
     print(f"\nWrote {OUT_DIR.relative_to(REPO_ROOT)}/  ({wf.calls} API calls)\n")
 
 

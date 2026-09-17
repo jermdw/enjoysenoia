@@ -41,3 +41,6 @@ ui-debug.log
 # Webflow migration: downloaded asset binaries (~270MB).
 # Re-fetch with: python3 scripts/webflow_pull.py --download-assets
 public/assets/webflow/
+
+# Scoped Webflow runs (--collections) write partial artifacts
+data/webflow/*.partial.json
