@@ -5,8 +5,21 @@ import { getEvents } from '../../services/dataService';
 
 export default function UpcomingEvents() {
   const allEvents = getEvents();
-  // Filter for upcoming / signature non-recurring events
-  const upcomingEvents = allEvents.filter(e => !e.is_recurring).slice(0, 4);
+
+  // Show the next four one-off events by date. Entries whose date_time can't be
+  // parsed, and the list as a whole once every event is past, fall back to file
+  // order so this section is never empty.
+  const oneOffEvents = allEvents.filter(e => !e.is_recurring);
+  const startOfToday = new Date();
+  startOfToday.setHours(0, 0, 0, 0);
+
+  const stillToCome = oneOffEvents
+    .map(evt => ({ evt, date: new Date(evt.date_time) }))
+    .filter(({ date }) => !Number.isNaN(date.getTime()) && date >= startOfToday)
+    .sort((a, b) => a.date - b.date)
+    .map(({ evt }) => evt);
+
+  const upcomingEvents = (stillToCome.length > 0 ? stillToCome : oneOffEvents).slice(0, 4);
 
   return (
     <section id="events" className="py-16 lg:py-24 bg-white border-b border-stone-200">

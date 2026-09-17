@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import HomePage from './pages/HomePage';
 import AboutDDAPage from './pages/AboutDDAPage';
@@ -18,11 +18,27 @@ import NewsDetailPage from './pages/NewsDetailPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import AdminLoginPage from './pages/AdminLoginPage';
 import AdminPortalPage from './pages/AdminPortalPage';
+import MasqueradePage from './masquerade/MasqueradePage';
+
+/**
+ * The DDA chrome (navbar + footer) as a layout route, so routes that carry
+ * their own branding — the Masquerade micro-site — can opt out of it.
+ */
+function DDALayout() {
+  return (
+    <Layout>
+      <Outlet />
+    </Layout>
+  );
+}
 
 export default function App() {
   return (
-    <Layout>
-      <Routes>
+    <Routes>
+      {/* Standalone micro-site: no Enjoy Senoia navbar or footer. */}
+      <Route path="/masquerade" element={<MasqueradePage />} />
+
+      <Route element={<DDALayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/about-the-dda" element={<AboutDDAPage />} />
         <Route path="/about-the-veterans-memorial" element={<VeteransMemorialPage />} />
@@ -50,10 +66,10 @@ export default function App() {
         {/* Admin Portal */}
         <Route path="/admin" element={<AdminLoginPage />} />
         <Route path="/admin/dashboard" element={<AdminPortalPage />} />
-        
+
         {/* Legacy Fallbacks / Redirects */}
         <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </Layout>
+      </Route>
+    </Routes>
   );
 }
