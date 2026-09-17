@@ -13,7 +13,7 @@ export default function Invitation() {
               <span className="block">An Evening in Senoia</span>
             </>
           }
-          lead="For one night, the Stone Lodge at Marimac Lake falls into Wonderland — lantern light through the trees, acrobats overhead, a long table laid under canvas, and fire after dark."
+          lead="For one night, the Stone Lodge at Marimac Lake turns into Wonderland — lantern light through the trees, acrobats overhead, a long table laid under canvas, and fire after dark."
         />
 
         <Ornament suit="spade" className="my-14" />

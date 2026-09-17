@@ -45,6 +45,24 @@
   font-weight: 700;
 }
 
+/*
+ * The annual line above the theme, set in the body serif so it reads as a
+ * different voice from the display face carrying "Down the Rabbit Hole".
+ */
+.masq .masq-subtitle {
+  font-family: var(--masq-font-body);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+/* Ordinal suffixes. line-height: 0 keeps a raised "rd" from opening up the
+   line it sits on. */
+.masq sup {
+  font-size: 0.55em;
+  vertical-align: super;
+  line-height: 0;
+}
+
 /* Small caps label used above section headings. */
 .masq .masq-eyebrow {
   font-family: var(--masq-font-body);

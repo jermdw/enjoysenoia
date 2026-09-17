@@ -1,6 +1,7 @@
 import React from 'react';
 import { CalendarDays, Clock, MapPin } from 'lucide-react';
 import { Suit } from './Ornament';
+import Ordinal from './Ordinal';
 import { event, heroBlurb } from '../data/eventDetails';
 
 /**
@@ -44,8 +45,8 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 py-28 text-center">
         <h1 className="text-[var(--masq-cream)]">
-          <span className="block text-2xl leading-snug sm:text-3xl lg:text-4xl">
-            {event.name}
+          <span className="masq-subtitle block text-2xl leading-snug sm:text-3xl lg:text-4xl">
+            <Ordinal>{event.name}</Ordinal>
           </span>
           <span className="block mt-3 uppercase text-[2.3rem] leading-[1.05] sm:text-5xl lg:text-6xl text-[var(--masq-gold)]">
             {event.theme}

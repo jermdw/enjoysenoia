@@ -1,6 +1,7 @@
 import React from 'react';
 import { Instagram, Mail, MapPin } from 'lucide-react';
 import Ornament from './Ornament';
+import Ordinal from './Ordinal';
 import { contact, event } from '../data/eventDetails';
 
 export default function MasqueradeFooter() {
@@ -9,7 +10,7 @@ export default function MasqueradeFooter() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center">
           <p className="masq-display text-2xl sm:text-3xl text-[var(--masq-cream)]">
-            {event.name}
+            <Ordinal>{event.name}</Ordinal>
           </p>
           <p className="masq-display text-lg text-[var(--masq-gold)] italic mt-1">{event.theme}</p>
           <p className="mt-4 text-[var(--masq-cream-dim)]">
