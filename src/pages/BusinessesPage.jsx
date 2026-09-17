@@ -1,17 +1,29 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Building2, Search, Phone, Mail, MapPin, ExternalLink, Utensils, ShoppingBag, Scissors, Stethoscope, Landmark } from 'lucide-react';
+import { Building2, Search, Phone, Mail, MapPin, ExternalLink, Utensils, ShoppingBag, Scissors, Stethoscope, Landmark, BedDouble } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import { getBusinesses } from '../services/dataService';
 import { fuzzyMatchAny } from '../utils/fuzzySearch';
 
+/**
+ * The directory's filters. `label` is also the value stored in each record's
+ * `category` in data/businesses_detail.json, so a filter is an exact match on
+ * one field rather than a guess made from the business name.
+ *
+ * A handful of records are still "Downtown Business", which belongs to no
+ * filter on purpose: their category could not be established from the name or
+ * their own website, and inventing one would put a real business under the
+ * wrong heading. They appear under "All Businesses" until the DDA says what
+ * they are.
+ */
 const CATEGORY_MAP = [
   { id: 'all', label: 'All Businesses', icon: Building2 },
-  { id: 'dining', label: 'Dining & Drinks', icon: Utensils, matches: ['food', 'drink', 'restaurant', 'cafe', 'brewery', 'pizza', 'pub'] },
-  { id: 'shopping', label: 'Shopping & Retail', icon: ShoppingBag, matches: ['retail', 'boutique', 'furniture', 'apparel', 'book', 'florist'] },
-  { id: 'services', label: 'Services & Salons', icon: Scissors, matches: ['services', 'salon', 'barber', 'spa', 'tattoo', 'realty', 'insurance'] },
-  { id: 'health', label: 'Health & Medical', icon: Stethoscope, matches: ['health', 'medical', 'chiropractic', 'dentistry', 'psychiatric', 'care'] },
-  { id: 'community', label: 'Civic & Historic', icon: Landmark, matches: ['church', 'museum', 'welcome', 'city', 'historical', 'society'] }
+  { id: 'dining', label: 'Dining & Drinks', icon: Utensils },
+  { id: 'shopping', label: 'Shopping & Retail', icon: ShoppingBag },
+  { id: 'services', label: 'Services & Salons', icon: Scissors },
+  { id: 'health', label: 'Health & Medical', icon: Stethoscope },
+  { id: 'stay', label: 'Stay & Tours', icon: BedDouble },
+  { id: 'community', label: 'Civic & Historic', icon: Landmark }
 ];
 
 export default function BusinessesPage() {
@@ -25,11 +37,7 @@ export default function BusinessesPage() {
       let matchesCat = true;
       if (selectedCat !== 'all') {
         const catConfig = CATEGORY_MAP.find(c => c.id === selectedCat);
-        // Every record in the dataset is still categorised "General", so the
-        // business name is also searched for the category's keywords. Filtering
-        // stays approximate until the directory data carries real categories.
-        const haystack = `${biz.category || ''} ${biz.name || ''}`.toLowerCase();
-        matchesCat = catConfig?.matches.some(m => haystack.includes(m)) || false;
+        matchesCat = biz.category === catConfig?.label;
       }
 
       // Search match, forgiving small typos in the query.
