@@ -69,6 +69,10 @@ build. Firebase can't route by hostname within one site, so the micro-site gets 
 | `main` | `enjoysenoia` | <https://enjoysenoia.web.app> | Full DDA site; `/masquerade` also works here |
 | `masquerade` | `thehalloweenmasquerade` | <https://thehalloweenmasquerade.web.app> | `/` 302-redirects to `/masquerade` |
 
+Only Vite's content-hashed output under `/assets/` is cached as `immutable`. Files from
+`public/` (gallery photos, `event-card.svg`) keep stable URLs and get replaced, so they
+cache for an hour and then revalidate.
+
 The `/` redirect is a 302 on purpose. Browsers cache a 301 more or less permanently, which
 would make it hard to change what the domain root serves later. If the two sites should
 ever diverge, split the micro-site into its own Vite entry point first.
@@ -112,6 +116,6 @@ Still outstanding before this is a real launch:
   exists and rules are deployed. The Masquerade page itself is static and does
   not touch Firestore.
 - **Restrict the web API key** to HTTP referrers in the Google Cloud console.
-- **The domain** is still `enjoysenoia.web.app`. Serving the micro-site at
-  thehalloweenmasquerade.com needs a second Hosting site and a `hosting` array
-  with targets in firebase.json.
+- **The domain.** The `thehalloweenmasquerade` site and targets are in place; the
+  custom domain and Namecheap DNS records still need to go live (see
+  [Custom domain](#custom-domain-thehalloweenmasqueradecom) above).
