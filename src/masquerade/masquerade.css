@@ -1,0 +1,154 @@
+/*
+ * Scoped theme for the Masquerade micro-site.
+ *
+ * Everything lives under `.masq` so none of it leaks into the DDA site, which
+ * keeps its own tokens in src/styles/index.css.
+ *
+ * FONTS — PROVISIONAL. The brand fonts are Rumble Brave (titles) and Zenaida
+ * (subtitles in caps, copy in lowercase). Neither is on Google Fonts, so they
+ * need licensed webfont files from the organizer. Cinzel Decorative and
+ * Cormorant Garamond stand in until those arrive: drop the .woff2 files in
+ * src/masquerade/fonts/, add @font-face rules here, and change the two
+ * --masq-font-* variables below. Nothing else needs to change.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
+
+.masq {
+  --masq-ink: #0b0a0c;
+  --masq-ink-soft: #16131a;
+  --masq-ink-raised: #1e1a22;
+  --masq-cream: #f2e7d5;
+  --masq-cream-dim: #cbbda6;
+  --masq-crimson: #8b0e16;
+  --masq-crimson-bright: #b51823;
+  --masq-gold: #c2a36b;
+  --masq-line: rgba(194, 163, 107, 0.28);
+
+  --masq-font-display: 'Cinzel Decorative', 'Playfair Display', Georgia, serif;
+  --masq-font-body: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+
+  background-color: var(--masq-ink);
+  color: var(--masq-cream);
+  font-family: var(--masq-font-body);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+.masq h1,
+.masq h2,
+.masq h3,
+.masq .masq-display {
+  font-family: var(--masq-font-display);
+  letter-spacing: 0.02em;
+  font-weight: 700;
+}
+
+/*
+ * The annual line above the theme, set in the body serif so it reads as a
+ * different voice from the display face carrying "Down the Rabbit Hole".
+ */
+.masq .masq-subtitle {
+  font-family: var(--masq-font-body);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+/* Ordinal suffixes. line-height: 0 keeps a raised "rd" from opening up the
+   line it sits on. */
+.masq sup {
+  font-size: 0.55em;
+  vertical-align: super;
+  line-height: 0;
+}
+
+/* Small caps label used above section headings. */
+.masq .masq-eyebrow {
+  font-family: var(--masq-font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.34em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--masq-gold);
+}
+
+/* Cream "paper" panels — menu card, boutique notes. */
+.masq .masq-paper {
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.55), transparent 55%),
+    linear-gradient(160deg, #f6eede 0%, #e9dcc4 100%);
+  color: #2b2118;
+}
+
+/* Vignette + faint card-suit texture behind the hero. */
+.masq .masq-vignette::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(6, 5, 7, 0.85) 100%);
+}
+
+.masq .masq-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--masq-line), transparent);
+}
+
+/* Link underline that grows from the center, like a curtain pull. */
+.masq .masq-link {
+  position: relative;
+  color: var(--masq-cream);
+  text-decoration: none;
+}
+
+.masq .masq-link::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: var(--masq-gold);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.masq .masq-link:hover::after {
+  left: 0;
+  width: 100%;
+}
+
+.masq details.masq-faq > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.masq details.masq-faq > summary::-webkit-details-marker {
+  display: none;
+}
+
+.masq details.masq-faq[open] .masq-faq-chevron {
+  transform: rotate(180deg);
+}
+
+/* The falling-card drift on the hero. Respects reduced-motion below. */
+@keyframes masq-drift {
+  0% { transform: translateY(-8%) rotate(-4deg); opacity: 0; }
+  12% { opacity: 0.5; }
+  100% { transform: translateY(110vh) rotate(200deg); opacity: 0; }
+}
+
+.masq .masq-drift {
+  animation: masq-drift linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .masq .masq-drift {
+    animation: none;
+    display: none;
+  }
+
+  .masq * {
+    scroll-behavior: auto;
+  }
+}

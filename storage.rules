@@ -1,0 +1,22 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isAdmin() {
+      return request.auth != null && (
+        request.auth.token.email in [
+          "jermdw@gmail.com",
+          "welcome@enjoysenoia.com",
+          "treasurer@enjoysenoia.com",
+          "webmaster@enjoysenoia.com"
+        ] || request.auth.token.admin == true
+      );
+    }
+
+    match /{allPaths=**} {
+      allow read: if true;
+      // Any signed-in account could previously overwrite or delete every object
+      // in the bucket.
+      allow write: if isAdmin();
+    }
+  }
+}
