@@ -13,11 +13,11 @@ unpublished drafts and archived items are left out. The raw pull still has
 everything.
 
 Usage:
-    python3 scripts/webflow_transform.py
-    python3 scripts/webflow_transform.py --asset-base https://storage.example/webflow
+    python3 scripts/webflow_transform.py                  # local /assets/webflow/... (dev)
+    python3 scripts/webflow_transform.py --storage-bucket enjoysenoia.firebasestorage.app
 
---asset-base is the public URL prefix that replaces /assets/webflow, for when
-the downloaded files move to Firebase Storage or another host.
+With --storage-bucket, asset URLs point at the copies uploaded to Firebase
+Storage by scripts/upload_webflow_assets.sh (under the webflow/ prefix).
 """
 
 import argparse
@@ -25,6 +25,7 @@ import html
 import json
 import re
 import sys
+import urllib.parse
 from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -49,7 +50,13 @@ WEBFLOW_CATEGORY_FALLBACK = {
 }
 
 LOCAL_TZ = ZoneInfo("America/New_York")
-DEFAULT_ASSET_BASE = "/assets/webflow"
+LOCAL_ASSET_ROOT = "public/assets/webflow/"
+LOCAL_ASSET_BASE = "/assets/webflow/"
+# Object prefix in the Storage bucket; must match scripts/upload_webflow_assets.sh.
+STORAGE_PREFIX = "webflow/"
+# Hand-written fields that replace what Webflow has for a given event slug,
+# e.g. an event with its own micro-site and box office.
+EVENT_OVERRIDES_FILE = REPO_ROOT / "data" / "event_overrides.json"
 
 CDN_URL_RE = re.compile(
     r'https?://(?:[a-z0-9.-]*website-files\.com|uploads-ssl\.webflow\.com)/[^\s"\'<>\\]*'
@@ -110,15 +117,25 @@ def option_names(collection):
 # assets and rich text
 # --------------------------------------------------------------------------
 
+def served_url(rel_path, storage_bucket=None):
+    """
+    Where a downloaded file is served from. Locally, Vite serves public/ at the
+    site root. In Firebase Storage the object is webflow/<rel_path>, read through
+    the public download endpoint (storage.rules allows unauthenticated reads).
+    """
+    if not storage_bucket:
+        return LOCAL_ASSET_BASE + rel_path
+    obj = urllib.parse.quote(STORAGE_PREFIX + rel_path, safe="")
+    return f"https://firebasestorage.googleapis.com/v0/b/{storage_bucket}/o/{obj}?alt=media"
+
+
 class AssetResolver:
     """Rewrites Webflow CDN URLs to where the downloaded copy is served from."""
 
-    def __init__(self, asset_base):
+    def __init__(self, storage_bucket=None):
         plan = json.loads((RAW_DIR / "download_plan.json").read_text())
-        base = asset_base.rstrip("/")
-        # localPath is public/assets/webflow/...; Vite serves public/ at the root.
         self._map = {
-            url: base + meta["localPath"][len("public/assets/webflow"):]
+            url: served_url(meta["localPath"][len(LOCAL_ASSET_ROOT):], storage_bucket)
             for url, meta in plan.items()
         }
         self.unresolved = set()
@@ -202,9 +219,11 @@ def display_date(dt):
 # collections
 # --------------------------------------------------------------------------
 
-def build_events(assets, index):
+def build_events(assets, index, report):
     raw = load_collection("events")
     options = option_names(raw)
+    overrides = (json.loads(EVENT_OVERRIDES_FILE.read_text())
+                 if EVENT_OVERRIDES_FILE.is_file() else {})
     events = []
 
     for item in raw["items"]:
@@ -219,7 +238,8 @@ def build_events(assets, index):
             end = None
 
         gallery = index.get(f.get("photo-gallery") or "")
-        events.append({
+        address = text(f.get("address"))
+        event = {
             # --- fields the pages already read ---
             "title": text(f.get("name")),
             "date_time": display_datetime(start) if start else "",
@@ -234,7 +254,10 @@ def build_events(assets, index):
             "start": start.isoformat() if start else None,
             "end": end.isoformat() if end else None,
             "is_active": bool(f.get("active-event")),
-            "address": text(f.get("address")),
+            "address": address,
+            # EventDetailPage shows `location` on one line.
+            "location": ", ".join(line.strip() for line in address.splitlines() if line.strip())
+                        if address else None,
             "hero_image": assets.image(f.get("hero-image")),
             "hero_caption": text(f.get("hero-caption")),
             "hero_sub_caption": text(f.get("hero-sub-caption")),
@@ -254,7 +277,12 @@ def build_events(assets, index):
             "photos": assets.images(f.get("photos")),
             "video_url": (f.get("features-video") or {}).get("url"),
             "gallery_slug": gallery["slug"] if gallery else None,
-        })
+        }
+        event.update(overrides.get(f["slug"], {}))
+        events.append(event)
+
+    for slug in sorted(set(overrides) - {e["slug"] for e in events}):
+        report.append(f"{EVENT_OVERRIDES_FILE.name}: {slug!r} is not a live event; override unused")
 
     # Chronological; undated events sort last.
     events.sort(key=lambda e: (e["start"] is None, e["start"] or ""))
@@ -403,16 +431,17 @@ def build_galleries(assets, index):
 
 def main():
     ap = argparse.ArgumentParser(description="Build app data from the raw Webflow pull.")
-    ap.add_argument("--asset-base", default=DEFAULT_ASSET_BASE,
-                    help=f"public URL prefix for downloaded assets (default {DEFAULT_ASSET_BASE})")
+    ap.add_argument("--storage-bucket", metavar="BUCKET",
+                    help="serve assets from this Firebase Storage bucket instead of "
+                         "public/assets/webflow (e.g. enjoysenoia.firebasestorage.app)")
     args = ap.parse_args()
 
-    assets = AssetResolver(args.asset_base)
+    assets = AssetResolver(args.storage_bucket)
     index = json.loads((RAW_DIR / "item_index.json").read_text())
 
-    category_report = []
+    category_report, override_report = [], []
     outputs = {
-        "events": build_events(assets, index),
+        "events": build_events(assets, index, override_report),
         "businesses": build_businesses(assets, index, category_report),
         "news": build_news(assets, index),
         "galleries": build_galleries(assets, index),
@@ -424,6 +453,9 @@ def main():
             json.dumps(records, indent=2, ensure_ascii=False) + "\n"
         )
         print(f"  {name:<12} {len(records):>3} records -> data/site/{name}.json")
+
+    for line in override_report:
+        print(f"\n  WARNING: {line}")
 
     if category_report:
         print(f"\n  {len(category_report)} businesses need a category in "
