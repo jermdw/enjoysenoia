@@ -35,23 +35,6 @@
           ]
         }
       ],
-      "redirects": [
-        {
-          "source": "/events/senoia-car-show-2",
-          "destination": "/events/senoia-car-show",
-          "type": 301
-        },
-        {
-          "source": "/events/locals-night-2",
-          "destination": "/events/locals-night",
-          "type": 301
-        },
-        {
-          "source": "/events/senoia-porchfest-2026",
-          "destination": "/events/senoia-porchfest",
-          "type": 301
-        }
-      ],
       "rewrites": [
         {
           "source": "**",
