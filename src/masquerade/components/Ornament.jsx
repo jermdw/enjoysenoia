@@ -1,4 +1,6 @@
 import React from 'react';
+import keyArt from '../assets/key.png';
+import keyholeArt from '../assets/keyhole.png';
 
 /**
  * Card-suit ornaments drawn inline so the site has its motif without waiting
@@ -20,54 +22,19 @@ export function Suit({ suit = 'heart', className = 'w-4 h-4' }) {
 }
 
 /**
- * Ornate skeleton key, lying horizontally as it does on the organizer's title
- * card: toothed bit at the left, quatrefoil bow at the right. Stroke-drawn, so
- * it takes its weight from the surrounding type rather than reading as a solid
- * blob at small sizes.
+ * The skeleton key and keyhole are cut from the organizer's title card
+ * ("Down the Rabbit Hole", 1080x1350 Canva export), not redrawn. The card's dark
+ * panel was keyed out to transparency, so each piece sits directly on whatever
+ * section background it's placed on — gradient, vignette or glow.
+ * Sizes are set by the caller via className; keep one dimension auto.
  */
-export function Key({ className = 'w-20 h-7' }) {
-  return (
-    <svg
-      viewBox="0 0 96 32"
-      aria-hidden="true"
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="17" cy="16" r="3.2" />
-      <path d="M21 16h39" />
-      <path d="M24 16.6v7.4M30 16.6v5.6M36 16.6v3.8" />
-      <path d="M60 11.6v8.8M63.6 13.2v5.6" />
-      <circle cx="76" cy="10.8" r="4.6" />
-      <circle cx="76" cy="21.2" r="4.6" />
-      <circle cx="70.8" cy="16" r="4.6" />
-      <circle cx="81.2" cy="16" r="4.6" />
-      <circle cx="76" cy="16" r="2.3" />
-    </svg>
-  );
+export function Key({ className = 'w-20 h-auto' }) {
+  return <img src={keyArt} alt="" aria-hidden="true" draggable="false" className={`select-none ${className}`} />;
 }
 
-/** Keyhole set in an arched cartouche, double-ruled as on the title card. */
-export function Keyhole({ className = 'w-8 h-12' }) {
-  return (
-    <svg
-      viewBox="0 0 48 72"
-      aria-hidden="true"
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.3"
-      strokeLinejoin="round"
-    >
-      <path d="M5 68V21C5 11 13 4 24 4s19 7 19 17v47Z" />
-      <path d="M9.5 63.5V21c0-7.6 6-12.5 14.5-12.5S38.5 13.4 38.5 21v42.5Z" />
-      <circle cx="24" cy="29" r="5.4" />
-      <path d="M20.4 33.2 17.8 50h12.4l-2.6-16.8Z" />
-    </svg>
-  );
+/** Keyhole in its double-ruled arched cartouche, from the same title card. */
+export function Keyhole({ className = 'w-8 h-auto' }) {
+  return <img src={keyholeArt} alt="" aria-hidden="true" draggable="false" className={`select-none ${className}`} />;
 }
 
 /**
@@ -78,9 +45,9 @@ export function Keyhole({ className = 'w-8 h-12' }) {
 export default function Ornament({ variant = 'suit', suit = 'diamond', className = '' }) {
   const centre =
     variant === 'key' ? (
-      <Key className="w-16 h-6 sm:w-20 sm:h-7 text-[var(--masq-gold)]" />
+      <Key className="w-16 sm:w-20 h-auto" />
     ) : variant === 'keyhole' ? (
-      <Keyhole className="w-5 h-8 text-[var(--masq-gold)]" />
+      <Keyhole className="w-5 h-auto" />
     ) : (
       <Suit suit={suit} className="w-3 h-3 text-[var(--masq-gold)]" />
     );
