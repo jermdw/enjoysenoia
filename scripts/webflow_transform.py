@@ -469,7 +469,8 @@ def main():
         for url in sorted(assets.unresolved)[:10]:
             print(f"    {url}")
     else:
-        print("\n  all Webflow CDN URLs rewritten to local assets")
+        target = f"gs://{args.storage_bucket}/webflow" if args.storage_bucket else "public/assets/webflow"
+        print(f"\n  all Webflow CDN URLs rewritten to {target}")
 
 
 if __name__ == "__main__":
