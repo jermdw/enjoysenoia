@@ -31,7 +31,11 @@ jobs:
       VITE_FIREBASE_MESSAGING_SENDER_ID: ${{ vars.VITE_FIREBASE_MESSAGING_SENDER_ID }}
       VITE_FIREBASE_APP_ID: ${{ vars.VITE_FIREBASE_APP_ID }}
     steps:
+      # Neither job pushes, so don't leave the token in .git/config where
+      # npm lifecycle scripts could read it.
       - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v5
         with:
           node-version: 24
@@ -79,6 +83,8 @@ jobs:
         target: [main, masquerade]
     steps:
       - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
       - uses: actions/download-artifact@v4
         with:
           name: dist
@@ -102,7 +108,8 @@ jobs:
           }
           EOF
 
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      # Third-party and handed the service-account key, so pinned to a commit.
+      - uses: FirebaseExtended/action-hosting-deploy@500ac625ca2dd40cbd15f7659af953801858032a # v0.11.0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
