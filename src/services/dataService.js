@@ -1,11 +1,25 @@
-import eventsData from '../../data/events.json';
-import businessesData from '../../data/businesses_detail.json';
-import newsData from '../../data/news.json';
+// Built from the Webflow CMS by scripts/webflow_transform.py - regenerate
+// rather than editing by hand.
+import eventsData from '../../data/site/events.json';
+import businessesData from '../../data/site/businesses.json';
+import newsData from '../../data/site/news.json';
 import pagesData from '../../data/pages.json';
+
+// An event stays upcoming until it ends; recurring events always are.
+// Decided at runtime so the split never goes stale between data rebuilds.
+const isUpcoming = (event, now = new Date()) => {
+  if (event.is_recurring) return true;
+  const last = event.end || event.start;
+  return !last || new Date(last) >= now;
+};
 
 // Local dataset getters with fallback and filtering helpers
 export const getEvents = () => {
-  return eventsData.filter(e => e.title && e.title !== "Upcoming Events");
+  return eventsData.filter((e) => isUpcoming(e));
+};
+
+export const getPastEvents = () => {
+  return eventsData.filter((e) => !isUpcoming(e)).reverse();
 };
 
 export const getBusinesses = () => {
@@ -13,7 +27,7 @@ export const getBusinesses = () => {
 };
 
 export const getNews = () => {
-  return newsData;
+  return newsData.filter((n) => !n.merchants_only);
 };
 
 // Some records in news.json are legacy photo galleries whose links point at
@@ -53,6 +67,7 @@ export const getEventSlug = (event) => {
 export const getEventBySlug = (slug) => {
   if (!slug) return null;
   // Exact match: `includes` previously let a short slug resolve to a different
-  // event whose link merely contained it.
-  return getEvents().find(e => getEventSlug(e) === slug) || null;
+  // event whose link merely contained it. Searches past events too, so recap
+  // links from /past-events resolve.
+  return eventsData.find(e => getEventSlug(e) === slug) || null;
 };

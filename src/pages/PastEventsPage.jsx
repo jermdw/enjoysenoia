@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, ArrowLeft } from 'lucide-react';
 import SEO from '../components/common/SEO';
-import { getEvents } from '../services/dataService';
+import { getPastEvents } from '../services/dataService';
 
 export default function PastEventsPage() {
-  const events = getEvents();
+  const events = getPastEvents();
 
   return (
     <div className="py-12 sm:py-16 bg-stone-50 min-h-screen">
