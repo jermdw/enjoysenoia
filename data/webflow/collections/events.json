@@ -930,8 +930,8 @@
     {
       "id": "6a937d45adf0bb92a673e082",
       "cmsLocaleId": "653ad6cae882f528b33dd03e",
-      "lastPublished": "2026-09-01T00:56:53.727Z",
-      "lastUpdated": "2026-09-01T00:56:53.727Z",
+      "lastPublished": "2026-09-18T01:45:40.530Z",
+      "lastUpdated": "2026-09-18T01:45:40.530Z",
       "createdOn": "2026-08-30T00:45:57.335Z",
       "isArchived": false,
       "isDraft": false,
@@ -995,7 +995,7 @@
         "participant-ticket-button": null,
         "vendor-information": null,
         "vendor-application-embed-code": null,
-        "sponsor-section-intro": null,
+        "sponsor-section-intro": "<h4><strong>Senoia Turkey Trot Sponsorship Opportunities</strong></h4><p>Support the Senoia Turkey Trot and show your commitment to the community you serve. Our sponsors help us create a fun, welcoming race-day experience for runners, families, and neighbors while supporting a growing Senoia tradition.</p><p>‍</p><p><strong>TITLE SPONSOR — FILLED FOR 2026</strong></p><p>The 2026 Title Sponsorship has already been secured.</p><p>‍</p><p><strong>COMMUNITY SPONSOR — $500</strong></p><p>Community Sponsorships are designed for local businesses and organizations that want to be active supporters of community events in Senoia. A sponsorship may be provided through a $500 contribution, approved goods or services of equivalent value, or a combination of both totaling at least $500.</p><p><strong>Community Sponsors receive:</strong></p><p>• Logo placement on the official Senoia Turkey Trot website</p><p>• Logo inclusion on race-day promotional materials and sponsor signage</p><p>• Sponsor recognition and shoutouts on event social media</p><p>• Race-day recognition from the event announcer, including a brief description of your business</p><p>or organization and a sponsor-provided message, promotion, or special offer</p><p>• Opportunity to help craft the announcer message in coordination with event organizers</p><p>• Opportunity to provide approved promotional materials or giveaways to race participants</p><p>• Opportunity to request a promotional table or small activation space in the start/finish area,</p><p>subject to availability</p><p>• Recognition as an official Community Sponsor of the Senoia Turkey Trot. We welcome approved in-kind support when it directly contributes to the event, including</p><p>refreshments, participant giveaways, printing, supplies, equipment, or other needed services. All in-kind contributions must be coordinated with event organizers in advance.</p><p>‍</p><h5><strong>BECOME A SPONSOR!</strong></h5><p>Sponsoring the Senoia Turkey Trot is a simple way to support community events in Senoia, connect with local families, and help us create an event our community can be proud of. Sponsorship commitments should be received by the published deadline to guarantee inclusion on printed race-day materials.</p><p>‍</p>",
         "sponsor-flyer-image": null,
         "sponsor-flyer-pdf": null,
         "show-sponsor-level-section": false,
@@ -1010,7 +1010,7 @@
         "include-kids-area-level-sponsorship": false,
         "kids-1-stars-level-sponsors": null,
         "kids-2-stripes-level-sponsors": null,
-        "sponsor-registration-embed-code": null,
+        "sponsor-registration-embed-code": "<div data-rt-embed-type='true'><!-- Ticket Tailor Widget. Paste this into your website where you want the widget to appear. Do not change the code or the widget may not work properly. -->\n<div class=\"tt-widget\"><div class=\"tt-widget-fallback\"><p><a href=\"https://www.tickettailor.com/checkout/new-session/id/9111535/chk/4ddbd03f1b383d8ba9220daa6c29eaee/?ref=website_widget&show_event_filter=false\" target=\"_blank\">Click here to buy tickets</a><br /><small><a href=\"https://www.tickettailor.com?rf=wdg_121784\" class=\"tt-widget-powered\">Sell tickets online with Ticket Tailor</a></small></p></div><script src=\"https://cdn.tickettailor.com/js/widgets/min/widget.js\" data-url=\"https://www.tickettailor.com/checkout/new-session/id/9111535/chk/4ddbd03f1b383d8ba9220daa6c29eaee/?ref=website_widget&show_event_filter=false\" data-type=\"inline\" data-inline-minimal=\"true\" data-inline-show-logo=\"false\" data-inline-bg-fill=\"false\" data-inline-inherit-ref-from-url-param=\"\" data-inline-ref=\"website_widget\"></script></div><!-- End of Ticket Tailor Widget --></div>",
         "presenting-sponsor-info": null,
         "name": "2026 Senoia Turkey Trot 5k",
         "slug": "2026-senoia-turkey-trot-5k"

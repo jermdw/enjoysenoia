@@ -32,11 +32,16 @@ from pathlib import Path
 API_ROOT = "https://api.webflow.com/v2"
 PAGE_LIMIT = 100          # Webflow's per-request maximum
 API_MIN_INTERVAL = 1.05   # ~57 req/min, just under the 60/min limit
-CDN_HOST = "website-files.com"
+# Webflow has served CMS files from two hostnames over the years:
+# uploads-ssl.webflow.com (older items, incl. every gallery) and
+# cdn.prod.website-files.com. Both serve the same bucket paths.
+CDN_HOSTS = ("website-files.com", "uploads-ssl.webflow.com")
 # URLs are embedded in rich-text HTML, so match them inside surrounding markup.
 # Parentheses are allowed because Webflow filenames routinely contain them
 # (e.g. "...(1200 x 628 px) (8).jpg"); trailing unbalanced ones are trimmed below.
-CDN_URL_RE = re.compile(r'https?://[^\s"\'<>\\]*website-files\.com/[^\s"\'<>\\]*')
+CDN_URL_RE = re.compile(
+    r'https?://(?:[a-z0-9.-]*website-files\.com|uploads-ssl\.webflow\.com)/[^\s"\'<>\\]*'
+)
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = REPO_ROOT / "data" / "webflow"
@@ -256,7 +261,7 @@ def collect_referenced_urls(collections):
         elif isinstance(node, list):
             for value in node:
                 walk(value)
-        elif isinstance(node, str) and CDN_HOST in node:
+        elif isinstance(node, str) and any(h in node for h in CDN_HOSTS):
             urls.update(trim(u) for u in CDN_URL_RE.findall(html.unescape(node)))
 
     for rec in collections:
@@ -266,7 +271,11 @@ def collect_referenced_urls(collections):
 
 
 def cms_local_name(url):
-    """Webflow CDN paths already end in <fileid>_<name.ext>, which is unique."""
+    """
+    Webflow CDN paths already end in <fileid>_<name.ext>, which is unique.
+    Deriving the name from the path alone means the same file referenced via
+    both hostnames maps to one local file, so it is only downloaded once.
+    """
     seg = urllib.parse.unquote(url.split("?")[0].rstrip("/").split("/")[-1])
     clean = "".join(c if c.isalnum() or c in "._- " else "_" for c in seg).strip()
     return clean.replace(" ", "_") or "asset"
