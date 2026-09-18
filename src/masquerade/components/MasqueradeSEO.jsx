@@ -33,8 +33,20 @@ export default function MasqueradeSEO() {
     setMeta('property', 'og:title', seo.title);
     setMeta('property', 'og:description', seo.description);
     setMeta('property', 'og:type', 'website');
+    setMeta('property', 'og:url', seo.url);
     setMeta('property', 'og:image', seo.ogImage);
     setMeta('name', 'twitter:card', seo.ogImage ? 'summary_large_image' : 'summary');
+
+    // Only one canonical may exist, so reuse the DDA one if index.html has it.
+    let canonical = document.head.querySelector('link[rel="canonical"]');
+    const previousCanonical = canonical?.getAttribute('href');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+      created.push(canonical);
+    }
+    canonical.href = seo.url;
 
     // Structured data helps the event surface in search and social previews.
     const ld = document.createElement('script');
@@ -43,6 +55,7 @@ export default function MasqueradeSEO() {
       '@context': 'https://schema.org',
       '@type': 'Event',
       name: `${event.name}: ${event.theme}`,
+      url: seo.url,
       startDate: `${event.dateISO}T17:30:00-04:00`,
       endDate: `${event.dateISO}T23:30:00-04:00`,
       eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
@@ -77,6 +90,7 @@ export default function MasqueradeSEO() {
       } else {
         descTag?.setAttribute('content', previousDesc);
       }
+      if (previousCanonical) canonical.setAttribute('href', previousCanonical);
       created.forEach((tag) => tag.remove());
       ld.remove();
     };

@@ -21,6 +21,15 @@ import AdminPortalPage from './pages/AdminPortalPage';
 import MasqueradePage from './masquerade/MasqueradePage';
 
 /**
+ * The Masquerade has its own domain, served from the same build. There the page
+ * lives at the root, so the address reads thehalloweenmasquerade.com rather than
+ * .../masquerade; every other path folds back to it. Includes the Firebase
+ * default hostnames of the `thehalloweenmasquerade` Hosting site and its
+ * preview channels (thehalloweenmasquerade--<channel>.web.app).
+ */
+const MASQUERADE_HOST = /(^|\.)thehalloweenmasquerade(\.com|\.firebaseapp\.com|(--[\w-]+)?\.web\.app)$/;
+
+/**
  * The DDA chrome (navbar + footer) as a layout route, so routes that carry
  * their own branding — the Masquerade micro-site — can opt out of it.
  */
@@ -33,6 +42,15 @@ function DDALayout() {
 }
 
 export default function App() {
+  if (MASQUERADE_HOST.test(window.location.hostname)) {
+    return (
+      <Routes>
+        <Route path="/" element={<MasqueradePage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    );
+  }
+
   return (
     <Routes>
       {/* Standalone micro-site: no Enjoy Senoia navbar or footer. */}
