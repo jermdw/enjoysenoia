@@ -11,8 +11,9 @@ import NewsletterSection from '../components/home/NewsletterSection';
 export default function HomePage() {
   return (
     <>
+      {/* No title: SEO falls back to the site's own home title. Passing
+          "Enjoy Senoia" here doubled it as "Enjoy Senoia | Enjoy Senoia | …". */}
       <SEO
-        title="Enjoy Senoia"
         description="The mission of the Senoia DDA is to revitalize, enhance, promote, and stimulate the economic development of Senoia while maintaining its historical integrity and charm."
       />
       <Hero />
