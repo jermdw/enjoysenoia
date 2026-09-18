@@ -362,6 +362,9 @@ export const contact = {
 };
 
 export const seo = {
+  // The page's home. Also used as the canonical on enjoysenoia.com/masquerade,
+  // so search engines treat the two addresses as one page.
+  url: 'https://thehalloweenmasquerade.com/',
   title: 'The 3rd Annual Halloween Masquerade: Down the Rabbit Hole | Senoia, GA',
   description:
     'An elegant Halloween masquerade at the Stone Lodge at Marimac Lake in Senoia, Georgia. Saturday, October 24, 2026 — cirque, fire, a seated dinner and the Wonderland After Party.',

@@ -89,9 +89,9 @@
       ],
       "redirects": [
         {
-          "source": "/",
-          "destination": "/masquerade",
-          "type": 302
+          "source": "/masquerade",
+          "destination": "/",
+          "type": 301
         }
       ],
       "rewrites": [

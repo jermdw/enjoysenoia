@@ -17,7 +17,9 @@ Built from the organizer intake questionnaire completed by Shauna Mooney.
 
 Routing: `src/App.jsx` renders `/masquerade` **outside** the DDA `Layout`, so the Enjoy
 Senoia navbar and footer never appear on it. All other routes sit inside a `DDALayout`
-layout route and are unchanged.
+layout route and are unchanged. On the Masquerade's own domain (and its `.web.app` /
+`.firebaseapp.com` hostnames) `App.jsx` renders the page at `/` instead, so the address is
+plain `thehalloweenmasquerade.com`; any other path there redirects to `/`.
 
 ## Before launch — needed from the organizer
 
@@ -67,14 +69,16 @@ build. Firebase can't route by hostname within one site, so the micro-site gets 
 | Target | Site | URL | Behavior |
 | --- | --- | --- | --- |
 | `main` | `enjoysenoia` | <https://enjoysenoia.web.app> | Full DDA site; `/masquerade` also works here |
-| `masquerade` | `thehalloweenmasquerade` | <https://thehalloweenmasquerade.web.app> | `/` 302-redirects to `/masquerade` |
+| `masquerade` | `thehalloweenmasquerade` | <https://thehalloweenmasquerade.web.app> | Page served at `/`; `/masquerade` 301-redirects to `/` |
 
 Only Vite's content-hashed output under `/assets/` is cached as `immutable`. Files from
 `public/` (gallery photos, `event-card.svg`) keep stable URLs and get replaced, so they
 cache for an hour and then revalidate.
 
-The `/` redirect is a 302 on purpose. Browsers cache a 301 more or less permanently, which
-would make it hard to change what the domain root serves later. If the two sites should
+Both sites ship the same bundle, and the app picks the page from the hostname. The
+`/masquerade` → `/` redirect keeps links shared before the move working. It's a 301 because
+the move is permanent. The page sets its canonical URL to `https://thehalloweenmasquerade.com/`
+(`seo.url`), including when it's reached as enjoysenoia.com/masquerade. If the two sites should
 ever diverge, split the micro-site into its own Vite entry point first.
 
 ### Custom domain (thehalloweenmasquerade.com)
