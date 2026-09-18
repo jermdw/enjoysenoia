@@ -47,12 +47,19 @@ export const heroBlurb = [
   'Spend the evening enjoying dinner, drinks, music, dancing, and a few curious surprises along the way.',
 ];
 
-/** Ticketing. NEEDED: the live Ticket Tailor box office URL / widget id. */
+/**
+ * Ticketing. Both links go straight to Ticket Tailor's hosted checkout (the
+ * "Select tickets" step), skipping the Senoia DDA box office and event pages.
+ * They're the targets of each event page's "Buy tickets" button, from the
+ * events at tickettailor.com/events/senoiadda/2391217 (tickets) and
+ * /2391233 (sponsorship). If an event is recreated, its id/chk pair changes.
+ */
 export const ticketing = {
   // Not rendered — the organizer cut the "handled through Ticket Tailor" line
-  // from the sales note. Kept because the box office still has to be built here.
+  // from the sales note.
   platform: 'Ticket Tailor',
-  url: null, // NEEDED: e.g. https://buytickets.at/thehalloweenmasquerade
+  url: 'https://www.tickettailor.com/checkout/view-event/id/9006557/chk/7e8b027ec397999f7d6652520c9ae4b8/',
+  sponsorshipUrl: 'https://www.tickettailor.com/checkout/view-event/id/9006568/chk/6edd76ff76867da0933867f5dff34d54/',
   salesNote: 'Dinner and VIP ticket sales close October 20. After Party tickets will also be sold at the door.',
   // CONFIRM: intake answer was written as a question — "No refunds no transfers?"
   refundPolicy: 'All sales are final. Tickets are non-refundable and non-transferable.',
@@ -342,8 +349,9 @@ export const contact = {
     url: 'https://www.facebook.com/profile.php?id=61594326304265',
   },
   instagram: {
-    handle: '@TheHalloweenMasquerade',
-    url: 'https://www.instagram.com/thehalloweenmasquerade/', // CONFIRM: handle URL
+    handle: 'Follow on Instagram',
+    // Supplied by the organizer, minus the share-sheet tracking parameters.
+    url: 'https://www.instagram.com/thehalloweenmasquerade/',
   },
   partnerInstagram: {
     handle: '@EnjoySenoia',
