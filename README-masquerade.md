@@ -59,37 +59,48 @@ Dinner and VIP close October 20 — flip those two to `closed` (or `waitlist`) t
 homepage uses, tagged `source: 'masquerade_2026'` so masquerade signups can be filtered
 in or out of the main list.
 
-## Deploying to thehalloweenmasquerade.com
+## Hosting: two sites, one build
 
-Today the page is served by the main app at `/masquerade`. To serve it at its own domain,
-Firebase Hosting needs a second site, since one hosting site can't route by hostname:
+The Firebase project `enjoysenoia` has two Hosting sites, both serving the same `dist`
+build. Firebase can't route by hostname within one site, so the micro-site gets its own:
 
-1. In the Firebase console, add a second Hosting site (e.g. `thehalloweenmasquerade`).
-2. Convert `firebase.json`'s `hosting` object into an array, giving each entry a `target`.
-3. `firebase target:apply hosting masquerade thehalloweenmasquerade`
-4. Point the domain's DNS at Firebase and add it as a custom domain on that site.
+| Target | Site | URL | Behavior |
+| --- | --- | --- | --- |
+| `main` | `enjoysenoia` | <https://enjoysenoia.web.app> | Full DDA site; `/masquerade` also works here |
+| `masquerade` | `thehalloweenmasquerade` | <https://thehalloweenmasquerade.web.app> | `/` 302-redirects to `/masquerade` |
 
-The simplest build for that second site is the same `dist` output with a rewrite sending
-`**` to `/index.html` and `/` redirecting to `/masquerade`. If the two sites should ever
-diverge, split the micro-site into its own Vite entry point first.
+The `/` redirect is a 302 on purpose. Browsers cache a 301 more or less permanently, which
+would make it hard to change what the domain root serves later. If the two sites should
+ever diverge, split the micro-site into its own Vite entry point first.
 
+### Custom domain (thehalloweenmasquerade.com)
+
+Registered at Namecheap (BasicDNS). To finish the hookup:
+
+1. Add `thehalloweenmasquerade.com` as a custom domain on the **`thehalloweenmasquerade`**
+   site, not `enjoysenoia`. Add `www.thehalloweenmasquerade.com` as a redirect to the apex.
+2. In Namecheap Advanced DNS, add exactly the A and TXT records the console shows. Add TXT
+   records alongside the existing SPF record rather than replacing it, and leave the MX
+   records alone; they carry Namecheap email forwarding.
 
 ## Deploying
 
-The site is on Firebase Hosting in the project `enjoysenoia`, live at
-<https://enjoysenoia.web.app> (`/masquerade` for the micro-site).
-
-Both `.firebaserc` and `.env.production` are gitignored, so a fresh clone needs
-them before a production build:
+`.firebaserc` and `.env.production` are gitignored, and the target-to-site mapping lives
+in `.firebaserc`, so a fresh clone needs all of this before a production build:
 
 ```bash
 firebase use --add                 # pick `enjoysenoia`, alias it `default`
+firebase target:apply hosting main enjoysenoia
+firebase target:apply hosting masquerade thehalloweenmasquerade
 cp .env.example .env.production    # fill from the command in that file
 npm run build
-firebase deploy --only hosting
+firebase deploy --only hosting:masquerade   # or hosting:main; plain `hosting` deploys both
 ```
 
-`--only hosting` is deliberate. `firebase deploy` on its own would also push
+Check `firebase use` first. The CLI remembers an active project per directory, and
+`target:apply` writes the mapping under whichever project is active, silently.
+
+Stick to `--only hosting` or `--only hosting:<target>`. `firebase deploy` on its own would also push
 `firestore.rules` and `storage.rules`; the hardened versions of those live in
 PR #3 and are not on this branch yet, so deploying them from here would be a
 step backwards.
