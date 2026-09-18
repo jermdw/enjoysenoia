@@ -2,9 +2,8 @@
 """
 Pull the Enjoy Senoia Webflow site (CMS collections + asset manifest) to disk.
 
-Writes everything under data/webflow/ and never touches the existing
-data/*.json produced by scrape_enjoysenoia.py, so the two can be compared
-side by side during the migration.
+Writes everything under data/webflow/; scripts/webflow_transform.py builds
+the app's data from it.
 
 Usage:
     python3 scripts/webflow_pull.py                     # collections + asset manifest

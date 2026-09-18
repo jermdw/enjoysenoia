@@ -4,7 +4,6 @@ import eventsData from '../../data/site/events.json';
 import businessesData from '../../data/site/businesses.json';
 import newsData from '../../data/site/news.json';
 import galleriesData from '../../data/site/galleries.json';
-import pagesData from '../../data/pages.json';
 
 // An event stays upcoming until it ends; recurring events always are.
 // Decided at runtime so the split never goes stale between data rebuilds.
@@ -43,10 +42,6 @@ export const getNewsArticles = () => {
 
 export const getPhotoGalleryItems = () => {
   return galleriesData;
-};
-
-export const getPageContent = (path) => {
-  return pagesData[path] || null;
 };
 
 export const getBusinessBySlug = (slug) => {
