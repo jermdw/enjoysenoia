@@ -1,0 +1,114 @@
+# Builds the site and deploys it to both Firebase Hosting sites:
+#   push to main  -> live on enjoysenoia and thehalloweenmasquerade
+#   pull request  -> a preview channel on each, linked in a PR comment
+#
+# Needs, in Settings > Secrets and variables > Actions:
+#   variables  VITE_FIREBASE_* (the six in .env.example; public web config)
+#   secret     FIREBASE_SERVICE_ACCOUNT (JSON key of a service account that can
+#              deploy Hosting, e.g. roles/firebasehosting.admin)
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  FIREBASE_PROJECT: enjoysenoia
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      VITE_FIREBASE_API_KEY: ${{ vars.VITE_FIREBASE_API_KEY }}
+      VITE_FIREBASE_AUTH_DOMAIN: ${{ vars.VITE_FIREBASE_AUTH_DOMAIN }}
+      VITE_FIREBASE_PROJECT_ID: ${{ vars.VITE_FIREBASE_PROJECT_ID }}
+      VITE_FIREBASE_STORAGE_BUCKET: ${{ vars.VITE_FIREBASE_STORAGE_BUCKET }}
+      VITE_FIREBASE_MESSAGING_SENDER_ID: ${{ vars.VITE_FIREBASE_MESSAGING_SENDER_ID }}
+      VITE_FIREBASE_APP_ID: ${{ vars.VITE_FIREBASE_APP_ID }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      # A missing value doesn't fail vite build: firebase.js only throws in the
+      # visitor's browser, and webflowAsset() quietly falls back to files that
+      # Hosting doesn't serve. Catch it here instead.
+      - name: Check Firebase config
+        run: |
+          missing=$(env | grep -E '^VITE_FIREBASE_[A-Z_]+=$' | cut -d= -f1 || true)
+          if [ -n "$missing" ]; then
+            echo "::error::Unset repository variables: $missing"
+            exit 1
+          fi
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+          retention-days: 7
+
+  deploy:
+    needs: build
+    # Live deploys only from main (a manual run on another branch just builds).
+    # Pull requests from forks get no secrets, so they can build but not preview.
+    if: >-
+      github.ref == 'refs/heads/main' ||
+      (github.event_name == 'pull_request' &&
+       github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+      pull-requests: write
+    concurrency:
+      group: deploy-${{ matrix.target }}-${{ github.event_name == 'pull_request' && github.head_ref || 'live' }}
+      cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+    strategy:
+      matrix:
+        target: [main, masquerade]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      # firebase.json deploys by target name; .firebaserc (gitignored) maps
+      # each target to its Hosting site.
+      - name: Map hosting targets
+        run: |
+          cat > .firebaserc <<EOF
+          {
+            "projects": { "default": "$FIREBASE_PROJECT" },
+            "targets": {
+              "$FIREBASE_PROJECT": {
+                "hosting": {
+                  "main": ["enjoysenoia"],
+                  "masquerade": ["thehalloweenmasquerade"]
+                }
+              }
+            }
+          }
+          EOF
+
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          projectId: ${{ env.FIREBASE_PROJECT }}
+          target: ${{ matrix.target }}
+          # Empty on pull requests, where the action picks a pr-<number> channel.
+          # ('' is falsy in expressions, so the condition must lead with 'live'.)
+          channelId: ${{ github.event_name != 'pull_request' && 'live' || '' }}
+          expires: 7d
