@@ -1,7 +1,7 @@
 import React from 'react';
-import { Mail } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { SectionHeading, Suit } from './Ornament';
-import { sponsorTiers, sponsors, contact } from '../data/eventDetails';
+import { sponsorTiers, sponsors, contact, ticketing } from '../data/eventDetails';
 
 const suitForTier = { queen: 'heart', hatter: 'club', rabbit: 'diamond', curiosities: 'spade' };
 
@@ -63,12 +63,23 @@ export default function Sponsors() {
             brings to town. Packages are available now.
           </p>
           <a
-            href={`mailto:${contact.email}?subject=${encodeURIComponent('Masquerade sponsorship')}`}
+            href={ticketing.sponsorshipUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-7 inline-flex items-center gap-2.5 px-8 py-3.5 rounded-sm border border-[var(--masq-gold)] text-[var(--masq-gold)] hover:bg-[var(--masq-gold)] hover:text-[var(--masq-ink)] text-xs font-semibold uppercase tracking-[0.2em] transition-colors"
           >
-            <Mail className="w-4 h-4" />
             <span>Become a sponsor</span>
+            <ExternalLink className="w-3.5 h-3.5 opacity-70" />
           </a>
+          <p className="mt-5 text-sm text-[var(--masq-cream-dim)]">
+            Questions about a package?{' '}
+            <a
+              href={`mailto:${contact.email}?subject=${encodeURIComponent('Masquerade sponsorship')}`}
+              className="masq-link"
+            >
+              {contact.email}
+            </a>
+          </p>
         </div>
       </div>
     </section>

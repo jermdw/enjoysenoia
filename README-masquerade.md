@@ -21,8 +21,8 @@ layout route and are unchanged.
 
 ## Before launch — needed from the organizer
 
-- [ ] **Ticket Tailor box office URL.** Set `ticketing.url` in `eventDetails.js`. Until then every
-      buy button reads "Tickets open soon" instead of linking nowhere.
+- [x] **Ticket Tailor checkout.** `ticketing.url` (tickets) and `ticketing.sponsorshipUrl` link
+      straight to Ticket Tailor's hosted checkout, not the DDA box office page.
 - [ ] **Venue street address.** The intake gave `Stone Lodge at Marimac Lake, Senoia Library:
       148 Pylant Street`. 148 Pylant is treated as parking. Set `event.venue.addressLine`.
 - [ ] **Confirm the date is 2026** (the intake doc says 2006) and that October 24 is the right Saturday.
@@ -36,7 +36,7 @@ layout route and are unchanged.
 - [ ] **Sponsor logos.** Add to the `sponsors` array as `{ name, tierId, logo, url }`; the tier
       grid renders logos automatically once the array is non-empty.
 - [ ] **Costume contest details** — categories, prizes, judging (intake said TBD).
-- [ ] **Instagram URLs** for @TheHalloweenMasquerade and @EnjoySenoia (guessed from the handles).
+- [x] **Instagram.** @thehalloweenmasquerade is linked in the follow section, confirmed by the organizer.
 - [ ] **Analytics IDs** (Google Analytics / Meta Pixel) — not installed yet.
 - [ ] **Legal wording** — photo release, alcohol disclaimer, anything the city or DDA requires.
 

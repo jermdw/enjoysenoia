@@ -1,5 +1,5 @@
 import React from 'react';
-import { Facebook } from 'lucide-react';
+import { Facebook, Instagram } from 'lucide-react';
 import { Keyhole } from './Ornament';
 import { contact } from '../data/eventDetails';
 
@@ -11,8 +11,11 @@ import { contact } from '../data/eventDetails';
  * tier with `status: 'waitlist'` has nowhere to send people — its button now
  * points here. If a waitlist is wanted again, this is where it goes.
  */
-// The organizer asked for both Instagram buttons out and Facebook in.
-const accounts = [contact.facebook];
+// The event's own accounts only; the partner @EnjoySenoia Instagram stays off.
+const accounts = [
+  { ...contact.facebook, Icon: Facebook },
+  { ...contact.instagram, Icon: Instagram },
+];
 
 export default function Follow() {
   return (
@@ -44,7 +47,7 @@ export default function Follow() {
               rel="noopener noreferrer"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-sm border border-[var(--masq-gold)] text-[var(--masq-gold)] hover:bg-[var(--masq-gold)] hover:text-[var(--masq-ink)] text-xs font-semibold uppercase tracking-[0.2em] transition-colors"
             >
-              <Facebook className="w-4 h-4" />
+              <account.Icon className="w-4 h-4" />
               <span>{account.handle}</span>
             </a>
           ))}

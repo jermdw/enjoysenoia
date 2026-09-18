@@ -28,8 +28,8 @@ function TierAction({ tier }) {
     );
   }
 
-  // Until the Ticket Tailor box office URL arrives, the button can't go
-  // anywhere — say so plainly rather than shipping a dead link.
+  // Without a checkout URL the button can't go anywhere — say so plainly
+  // rather than shipping a dead link.
   if (!ticketing.url) {
     return (
       <span className={`${base} border border-dashed border-[var(--masq-line)] text-[var(--masq-cream-dim)]`}>
