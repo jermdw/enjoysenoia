@@ -30,7 +30,7 @@ export default function Follow() {
       />
 
       <div className="relative max-w-2xl mx-auto px-4 sm:px-6 text-center">
-        <Keyhole className="w-14 h-[5.25rem] mx-auto text-[var(--masq-gold)]" />
+        <Keyhole className="w-14 h-auto mx-auto" />
         <h2 className="mt-6 text-3xl sm:text-4xl text-[var(--masq-cream)]">
           Follow the key. See where curiosity takes you.
         </h2>

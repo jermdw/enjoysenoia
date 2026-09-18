@@ -57,7 +57,7 @@ export default function Hero() {
             organizer asked for, flanking rules would read as stubs, and the
             title card sets the key on its own too. */}
         <div className="flex items-center justify-center mt-8" aria-hidden="true">
-          <Key className="w-44 sm:w-64 h-auto text-[var(--masq-gold)]" />
+          <Key className="w-44 sm:w-64 h-auto" />
         </div>
 
         <div className="mt-8 max-w-2xl mx-auto space-y-4">
