@@ -3,7 +3,7 @@
     "id": "62c89378d6e12946d6cdd965",
     "name": "Enjoy Senoia"
   },
-  "pulledAt": "2026-09-18T12:18:46-0400",
+  "pulledAt": "2026-09-18T12:20:25-0400",
   "liveOnly": false,
   "collections": {
     "partnership-levels": {
@@ -175,5 +175,10 @@
     "cmsReferencedCount": 1903,
     "cmsOnlyCount": 1903,
     "downloadPlanCount": 2117
+  },
+  "download": {
+    "downloaded": 1242,
+    "skipped": 875,
+    "failed": 0
   }
 }
