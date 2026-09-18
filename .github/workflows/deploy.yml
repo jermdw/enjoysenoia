@@ -42,7 +42,7 @@ jobs:
       # Hosting doesn't serve. Catch it here instead.
       - name: Check Firebase config
         run: |
-          missing=$(env | grep -E '^VITE_FIREBASE_[A-Z_]+=$' | cut -d= -f1 || true)
+          missing=$(env | grep -E '^VITE_FIREBASE_[A-Z_]+=$' | cut -d= -f1 | paste -sd' ' - || true)
           if [ -n "$missing" ]; then
             echo "::error::Unset repository variables: $missing"
             exit 1
