@@ -1,0 +1,512 @@
+{
+  "collection": {
+    "id": "62c89378d6e129d8d5cdd998",
+    "displayName": "Partnership levels",
+    "singularName": "Partnership level",
+    "slug": "partnership-levels",
+    "createdOn": "2022-06-17T17:48:44.917Z",
+    "lastUpdated": "2025-07-19T15:53:46.239Z",
+    "fields": [
+      {
+        "id": "0785513013fff7ef97072b687212d350",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Reference",
+        "slug": "parent-event",
+        "displayName": "parent event",
+        "helpText": null,
+        "validations": {
+          "collectionId": "62c89378d6e129a34ecdda02"
+        }
+      },
+      {
+        "id": "2b6d9b1418899bcdb56a6b255e994033",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Number",
+        "slug": "rank",
+        "displayName": "rank",
+        "helpText": null,
+        "validations": {
+          "format": "integer",
+          "precision": 1,
+          "allowNegative": false
+        }
+      },
+      {
+        "id": "f03efb5e9faa823f2bf6e68b5aeb2e9b",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "RichText",
+        "slug": "full-description",
+        "displayName": "full description",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "556dcf057f452620816241eb109e8198",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "PlainText",
+        "slug": "summary-description",
+        "displayName": "summary description",
+        "helpText": null,
+        "validations": {
+          "singleLine": true
+        }
+      },
+      {
+        "id": "0c0b20c7bd24ee88e79413a79c4d776f",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Image",
+        "slug": "graphic",
+        "displayName": "graphic",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "9af56761d9b3435d1cf6014f17914c9d",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "MultiReference",
+        "slug": "perks",
+        "displayName": "perks",
+        "helpText": null,
+        "validations": {
+          "collectionId": "62c89378d6e12911ffcdda16"
+        }
+      },
+      {
+        "id": "a72011a25684e0c129af34af1c08a85a",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "PlainText",
+        "slug": "cost",
+        "displayName": "cost",
+        "helpText": null,
+        "validations": {
+          "singleLine": true
+        }
+      },
+      {
+        "id": "8ddda28dc8a136e2d775850fbe062a1a",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Image",
+        "slug": "level-signage",
+        "displayName": "level signage",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "7b5da1d5d023cb893d4c82cc63960f34",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "MultiReference",
+        "slug": "partners",
+        "displayName": "partners",
+        "helpText": null,
+        "validations": {
+          "collectionId": "62c89378d6e1293508cdd9d8"
+        }
+      },
+      {
+        "id": "011528f974fa9b114454e30be54871f0",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "name",
+        "displayName": "Name",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256
+        }
+      },
+      {
+        "id": "7673fda6b7c19b7f182fc4ea34f9cb41",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "slug",
+        "displayName": "Slug",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256,
+          "pattern": {},
+          "messages": {
+            "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+            "maxLength": "Must be less than 256 characters"
+          }
+        }
+      }
+    ],
+    "fieldGroups": []
+  },
+  "counts": {
+    "total": 13,
+    "live": 13,
+    "draft": 0,
+    "archived": 0
+  },
+  "items": [
+    {
+      "id": "66ca3528fdfb4395bc2bcc22",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2024-08-25T16:11:06.559Z",
+      "lastUpdated": "2024-08-24T19:31:52.888Z",
+      "createdOn": "2024-08-24T19:31:52.888Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": null,
+        "rank": null,
+        "full-description": null,
+        "summary-description": null,
+        "graphic": null,
+        "perks": null,
+        "cost": null,
+        "level-signage": null,
+        "partners": null,
+        "name": "Presenting",
+        "slug": "presenting"
+      }
+    },
+    {
+      "id": "66901f979a5630f33c2dec04",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2024-07-11T18:10:50.545Z",
+      "lastUpdated": "2024-07-11T18:10:45.275Z",
+      "createdOn": "2024-07-11T18:08:23.134Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "65aadde6664e103b680ab482",
+        "rank": null,
+        "full-description": null,
+        "summary-description": null,
+        "graphic": null,
+        "perks": null,
+        "cost": "$200",
+        "level-signage": null,
+        "partners": [
+          "668ec35a4fbb5715ac0c1da1"
+        ],
+        "name": "Kids Corner Sponsors",
+        "slug": "kids-corner-sponsors"
+      }
+    },
+    {
+      "id": "64e61abb9c3234dbabf9f5ec",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-08-23T14:43:13.773Z",
+      "lastUpdated": "2023-08-23T14:42:03.265Z",
+      "createdOn": "2023-08-23T14:42:03.265Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "6491b50d85a673a232d36f21",
+        "rank": null,
+        "full-description": null,
+        "summary-description": null,
+        "graphic": null,
+        "perks": null,
+        "cost": null,
+        "level-signage": null,
+        "partners": null,
+        "name": "Kids Area",
+        "slug": "kids-area"
+      }
+    },
+    {
+      "id": "641f1746915522ea3f820c12",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-03-25T15:57:50.139Z",
+      "lastUpdated": "2023-03-25T15:46:14.492Z",
+      "createdOn": "2023-03-25T15:46:14.492Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "641ed0f582c9bb44553a5703",
+        "rank": 50,
+        "full-description": null,
+        "summary-description": null,
+        "graphic": null,
+        "perks": null,
+        "cost": null,
+        "level-signage": null,
+        "partners": null,
+        "name": "Stripes",
+        "slug": "stripes"
+      }
+    },
+    {
+      "id": "641f172cb0bfff0698e6af69",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2023-03-25T15:57:50.139Z",
+      "lastUpdated": "2023-03-25T15:45:48.005Z",
+      "createdOn": "2023-03-25T15:45:48.005Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "641ed0f582c9bb44553a5703",
+        "rank": 100,
+        "full-description": null,
+        "summary-description": null,
+        "graphic": null,
+        "perks": null,
+        "cost": null,
+        "level-signage": null,
+        "partners": null,
+        "name": "Stars",
+        "slug": "stars"
+      }
+    },
+    {
+      "id": "6305248452a7cc390d2755f0",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-10-13T18:12:30.122Z",
+      "lastUpdated": "2022-10-13T18:12:22.799Z",
+      "createdOn": "2022-08-23T19:03:32.352Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "62c9aafe6f68923989334fbb",
+        "rank": 85,
+        "full-description": null,
+        "summary-description": null,
+        "graphic": null,
+        "perks": null,
+        "cost": null,
+        "level-signage": null,
+        "partners": [
+          "63485075e6b17d22e2311fe6",
+          "634850d1fab6144b55c710b0",
+          "63485105040169f804696753",
+          "6348514557b6fe4935ceced3",
+          "634851bffe1ad3ed0930a3f6",
+          "6348540f2cd0674e80906b0a",
+          "63485455abb003ae1f07c079",
+          "63485489fc0fba2a2f378969"
+        ],
+        "name": "Bronze",
+        "slug": "bronze"
+      }
+    },
+    {
+      "id": "6304fec362a1a15ce4be944d",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-08-23T20:42:27.388Z",
+      "lastUpdated": "2022-08-23T20:15:38.362Z",
+      "createdOn": "2022-08-23T16:22:27.765Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "62c9aafe6f68923989334fbb",
+        "rank": 90,
+        "full-description": null,
+        "summary-description": null,
+        "graphic": null,
+        "perks": null,
+        "cost": null,
+        "level-signage": null,
+        "partners": [
+          "63053199db5130284b721219",
+          "630533507492aa3a8e79e9a8",
+          "63053391e6f190a17327f6ce",
+          "630533cc53e4d180c2550013",
+          "63053418d573e7cd752fc215",
+          "630534601de93d7536db807f",
+          "6305353a697c63790680dd05"
+        ],
+        "name": "Silver",
+        "slug": "silver"
+      }
+    },
+    {
+      "id": "62c9b0349e6ac4bdb7cfdea7",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-10-14T13:28:22.740Z",
+      "lastUpdated": "2022-10-14T13:28:15.854Z",
+      "createdOn": "2022-07-09T16:43:32.144Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "62c9aafe6f68923989334fbb",
+        "rank": 95,
+        "full-description": null,
+        "summary-description": null,
+        "graphic": null,
+        "perks": null,
+        "cost": null,
+        "level-signage": null,
+        "partners": [
+          "63052c11d9b9b1a34df24745",
+          "63052c2a1ff3aa5dcc17e9fc",
+          "63052cde9e9f17a17bc2e01c",
+          "63052d239427283a05151f52",
+          "63052e423cca715f56a680de",
+          "63052e7042f3155248a615a5",
+          "63052ee07492aa30fe79b04e",
+          "634963c5f22b13499c19831b"
+        ],
+        "name": "Gold",
+        "slug": "gold"
+      }
+    },
+    {
+      "id": "62c9b01e4f9abc4e69de58a9",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-08-23T19:56:08.367Z",
+      "lastUpdated": "2022-08-23T19:29:28.808Z",
+      "createdOn": "2022-07-09T16:43:10.841Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "62c9aafe6f68923989334fbb",
+        "rank": 100,
+        "full-description": null,
+        "summary-description": null,
+        "graphic": null,
+        "perks": null,
+        "cost": null,
+        "level-signage": null,
+        "partners": [
+          "62c9afd0bd099a4b06e398db",
+          "62c9d3f8e691b26f1d659f99",
+          "6305278e52a7cc8e6e2771a4"
+        ],
+        "name": "Title",
+        "slug": "title"
+      }
+    },
+    {
+      "id": "62c89378d6e129c372cdda4a",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-11-10T21:44:27.331Z",
+      "lastUpdated": "2022-11-10T21:44:20.886Z",
+      "createdOn": "2022-06-22T18:23:24.929Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "62c89a2c4f9abca755d13cfe",
+        "rank": 70,
+        "full-description": "<p id=\"\">Whatever info you wish to enter about the Blue partnership level.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis posuere dui, ut rutrum ante faucibus vestibulum. Nam porta, odio non porttitor tempus, nisi tortor varius dui, at consequat ex tellus eget ante. Sed fringilla lacus justo, at tempus odio ultricies in. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus nec congue velit, eget gravida diam. Donec sit amet orci ut tortor accumsan vehicula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer ipsum mauris, venenatis et consequat eget, vulputate vitae libero. Aliquam malesuada imperdiet tellus hendrerit pellentesque. Mauris tristique condimentum felis, vitae dictum libero tincidunt in. Vivamus tincidunt augue quis mollis luctus. P<br><br>ellentesque posuere aliquet mauris id scelerisque. Vivamus at venenatis nisi, a scelerisque sem. Nulla quis blandit tellus.Aliquam ac aliquet nisl, vulputate sodales libero. Donec vitae accumsan velit. Integer sed consequat leo. Morbi pretium hendrerit feugiat. Nam vitae condimentum justo, non aliquet augue. Suspendisse dignissim imperdiet lacus. Ut quam justo, ultrices pretium mollis eget, consequat in quam. Sed a lobortis neque, nec ornare velit. Suspendisse vel elit auctor sem ultricies laoreet. Vivamus diam massa, pharetra id cursus vitae, dapibus vitae ligula.‍ <br></p>",
+        "summary-description": "Summary info for Blue level",
+        "graphic": null,
+        "perks": [
+          "62c89378d6e12904bccdda5c",
+          "62c89378d6e12974a1cdda52"
+        ],
+        "cost": "$500",
+        "level-signage": null,
+        "partners": [
+          "6357e693035cee1a020d7699",
+          "6357e95a4131738574f49c1d",
+          "6357e9b60cfd27eff28abcc1",
+          "63593c1bd13b8d68f1fe72ac",
+          "63593cf45ad3fa1e3ce4d549",
+          "63593d8e152cff77ef2b414c",
+          "63593de9583ed8a23a8d184e",
+          "63593e77419abb7a5ac5d4ec",
+          "63593fb56d286518898227fc",
+          "635940ec25a64b222b0fe9ac",
+          "6357eb0e6e544a17e9e16aac",
+          "636c217acfaef21d2d0cde18",
+          "636d70a3ceb061639a6a1a14"
+        ],
+        "name": "Blue",
+        "slug": "blue"
+      }
+    },
+    {
+      "id": "62c89378d6e129d97bcdda49",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-11-10T12:45:11.453Z",
+      "lastUpdated": "2022-11-10T12:45:04.999Z",
+      "createdOn": "2022-06-22T18:22:49.422Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "62c89a2c4f9abca755d13cfe",
+        "rank": 80,
+        "full-description": "<p id=\"\">Whatever info you wish to enter about the White partnership level.</p><p id=\"\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis posuere dui, ut rutrum ante faucibus vestibulum. Nam porta, odio non porttitor tempus, nisi tortor varius dui, at consequat ex tellus eget ante. Sed fringilla lacus justo, at tempus odio ultricies in. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus nec congue velit, eget gravida diam. Donec sit amet orci ut tortor accumsan vehicula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer ipsum mauris, venenatis et consequat eget, vulputate vitae libero. Aliquam malesuada imperdiet tellus hendrerit pellentesque. Mauris tristique condimentum felis, vitae dictum libero tincidunt in. Vivamus tincidunt augue quis mollis luctus. P</p><p id=\"\"><br></p>",
+        "summary-description": "Summary info for White level",
+        "graphic": null,
+        "perks": [
+          "62c89378d6e12904bccdda5c",
+          "62c89378d6e129187ccdda51",
+          "62c89378d6e1291e57cdda43",
+          "62c89378d6e129ca43cdda48"
+        ],
+        "cost": "$2,500.00",
+        "level-signage": null,
+        "partners": [
+          "6363b9ac95d5a5710021df77",
+          "6357e5b300a45002b9fc9afd",
+          "62c89378d6e129454fcdda5d",
+          "6359481a210f8af12011c5dd"
+        ],
+        "name": "White",
+        "slug": "white"
+      }
+    },
+    {
+      "id": "62c89378d6e1290204cdda47",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-11-09T21:37:39.224Z",
+      "lastUpdated": "2022-11-09T21:37:10.422Z",
+      "createdOn": "2022-06-22T18:20:30.321Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "62c89a2c4f9abca755d13cfe",
+        "rank": 90,
+        "full-description": "<p id=\"\">Whatever info you wish to enter about the Red partnership level.</p><p>‍</p><p id=\"\"><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam facilisis posuere dui, ut rutrum ante faucibus vestibulum. Nam porta, odio non porttitor tempus, nisi tortor varius dui, at consequat ex tellus eget ante. Sed fringilla lacus justo, at tempus odio ultricies in. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus nec congue velit, eget gravida diam. Donec sit amet orci ut tortor accumsan vehicula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer ipsum mauris, venenatis et consequat eget, vulputate vitae libero. Aliquam malesuada imperdiet tellus hendrerit pellentesque. Mauris tristique condimentum felis, vitae dictum libero tincidunt in. Vivamus tincidunt augue quis mollis luctus. P<br><br>ellentesque posuere aliquet mauris id scelerisque. Vivamus at venenatis nisi, a scelerisque sem. Nulla quis blandit tellus.Aliquam ac aliquet nisl, vulputate sodales libero. Donec vitae accumsan velit. Integer sed consequat leo. Morbi pretium hendrerit feugiat. Nam vitae condimentum justo, non aliquet augue. Suspendisse dignissim imperdiet lacus. Ut quam justo, ultrices pretium mollis eget, consequat in quam. Sed a lobortis neque, nec ornare velit. Suspendisse vel elit auctor sem ultricies laoreet. Vivamus diam massa, pharetra id cursus vitae, dapibus vitae ligula.‍<br></p>",
+        "summary-description": "Summary info for Red level",
+        "graphic": null,
+        "perks": [
+          "62c89378d6e12904bccdda5c",
+          "62c89378d6e129bbc5cdda50",
+          "62c89378d6e1296d5fcdda45",
+          "62c89378d6e1291e57cdda43",
+          "62c89378d6e12955a9cdda46"
+        ],
+        "cost": "$5,000.00",
+        "level-signage": null,
+        "partners": [],
+        "name": "Red",
+        "slug": "red"
+      }
+    },
+    {
+      "id": "62c89378d6e12938d5cdda41",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-07-09T14:39:38.011Z",
+      "lastUpdated": "2022-07-08T21:09:46.985Z",
+      "createdOn": "2022-06-22T18:06:34.884Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "parent-event": "62c89a2c4f9abca755d13cfe",
+        "rank": 100,
+        "full-description": "<p id=\"\">Whatever info you wish to enter about the Commander in Chief partnership level.<br><br>Ellentesque posuere aliquet mauris id scelerisque. Vivamus at venenatis nisi, a scelerisque sem. Nulla quis blandit tellus.Aliquam ac aliquet nisl, vulputate sodales libero. Donec vitae accumsan velit. Integer sed consequat leo. Morbi pretium hendrerit feugiat. Nam vitae condimentum justo, non aliquet augue. Suspendisse dignissim imperdiet lacus. Ut quam justo, ultrices pretium mollis eget, consequat in quam. Sed a lobortis neque, nec ornare velit. Suspendisse vel elit auctor sem ultricies laoreet. Vivamus diam massa, pharetra id cursus vitae, dapibus vitae ligula.‍<br></p>",
+        "summary-description": "Whatever summary info you wish to enter about this partnership level",
+        "graphic": null,
+        "perks": [
+          "62c89378d6e129411dcdda42",
+          "62c89378d6e12904bccdda5c",
+          "62c89378d6e129f76ecdda4f",
+          "62c89378d6e1296d5fcdda45",
+          "62c89378d6e1291e57cdda43",
+          "62c89378d6e1297dfccdda4c"
+        ],
+        "cost": "$10,000.00",
+        "level-signage": null,
+        "partners": null,
+        "name": "Commander in Chief",
+        "slug": "commander-in-chief"
+      }
+    }
+  ]
+}

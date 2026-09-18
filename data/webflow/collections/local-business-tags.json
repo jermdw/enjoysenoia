@@ -1,0 +1,63 @@
+{
+  "collection": {
+    "id": "63077fe51aae9242d906d642",
+    "displayName": "Local business tags",
+    "singularName": "Local business tag",
+    "slug": "local-business-tags",
+    "createdOn": "2022-08-25T13:57:57.476Z",
+    "lastUpdated": "2025-07-19T15:53:46.276Z",
+    "fields": [
+      {
+        "id": "7d7e869d464c69488e7c6d49f32289e0",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "name",
+        "displayName": "Name",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256
+        }
+      },
+      {
+        "id": "b59392999a4f61a826221b80a39cb047",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "slug",
+        "displayName": "Slug",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256,
+          "pattern": {},
+          "messages": {
+            "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+            "maxLength": "Must be less than 256 characters"
+          }
+        }
+      }
+    ],
+    "fieldGroups": []
+  },
+  "counts": {
+    "total": 1,
+    "live": 1,
+    "draft": 0,
+    "archived": 0
+  },
+  "items": [
+    {
+      "id": "6347fe13f08706762d3a8a6c",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-10-13T12:31:35.613Z",
+      "lastUpdated": "2022-10-13T12:03:50.386Z",
+      "createdOn": "2022-10-13T12:01:23.784Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "name": "thing to see or do",
+        "slug": "thing-to-see-or-do"
+      }
+    }
+  ]
+}

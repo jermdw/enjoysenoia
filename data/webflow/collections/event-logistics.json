@@ -1,0 +1,855 @@
+{
+  "collection": {
+    "id": "64d0f499f35282c2a9cbafc4",
+    "displayName": "Event logistics",
+    "singularName": "Event logistic",
+    "slug": "event-logistics",
+    "createdOn": "2023-08-07T13:41:45.406Z",
+    "lastUpdated": "2025-07-19T15:53:46.316Z",
+    "fields": [
+      {
+        "id": "e66486eeedc80297679cf02a58923359",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Image",
+        "slug": "navbar-logo",
+        "displayName": "navbar logo",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "98d1dea2f9ec4e5e27aae7c7489ed117",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Image",
+        "slug": "hero-logo",
+        "displayName": "hero logo",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "9652fd44a5d4eb2a71bb9dce65c4029e",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Image",
+        "slug": "hero-overlay-background-image",
+        "displayName": "hero overlay background image",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "c59c15787462a8d41513060b109ba46e",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "PlainText",
+        "slug": "hero-caption",
+        "displayName": "Hero Caption",
+        "helpText": null,
+        "validations": {
+          "singleLine": true
+        }
+      },
+      {
+        "id": "797027610754241397221de438b2de90",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Color",
+        "slug": "hero-background-color",
+        "displayName": "Hero background color",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "fdd719324ffa961ee6c465cae2d59892",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Image",
+        "slug": "venue-map",
+        "displayName": "venue map",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "c4e220f45425d946e8efe8a42ade3c48",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "File",
+        "slug": "map-pdf",
+        "displayName": "map pdf",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "0a4607f51f54b3185c6e6ec1d47cc27f",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "RichText",
+        "slug": "highlights",
+        "displayName": "Highlights",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "da6753aa4edf9130ebd7b4c52eb55b32",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Color",
+        "slug": "highlight-background-color",
+        "displayName": "Highlight Background Color",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "1a99366b208dab995746bacccc4bdad8",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Color",
+        "slug": "highlight-text-color",
+        "displayName": "Highlight Text Color",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "faaec790ae7aa41e5d39132f97a5ce86",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Image",
+        "slug": "highlights-background-image",
+        "displayName": "Highlights Background Image",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "b15decafa7bca5c5e080895eb2c0012a",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Image",
+        "slug": "highlight-image",
+        "displayName": "Highlight Image",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "8b10c271ec2e5aee50c1fd4a9ea43a1a",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "File",
+        "slug": "highlight-image-or-map-pdf",
+        "displayName": "Highlight Image or Map PDF",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "f3e544dcfed8d3531448ab7f05d98237",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Color",
+        "slug": "schedule-background-color",
+        "displayName": "schedule background color",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "83e3c14cdbe20e19441365c0874113a6",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Image",
+        "slug": "schedule-section-overlay-background-image",
+        "displayName": "schedule section overlay background image",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "d7e50d143a5a56b95464e8e02c036ab4",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Color",
+        "slug": "faq-background-color",
+        "displayName": "faq background color",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "190b8c6009120b9800a9e2a327278c41",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "MultiImage",
+        "slug": "sponsor-logos",
+        "displayName": "Sponsor Logos",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "6e027c718828d18bb083d2339faa194c",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Image",
+        "slug": "faq-ovrlay-background-image",
+        "displayName": "FAQ ovrlay background image",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "9a2428fc50e1bc34d54e2ca0b4f328d8",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Option",
+        "slug": "sponsor-type",
+        "displayName": "Sponsor Type",
+        "helpText": null,
+        "validations": {
+          "options": [
+            {
+              "name": "Title, Gold, Silver and Bronze",
+              "id": "d75f629cfd7d3d7a4844a4490be4cf7c"
+            },
+            {
+              "name": "Red, White and Blue",
+              "id": "f47b9984809a5d9344872e11061922c1"
+            }
+          ]
+        }
+      },
+      {
+        "id": "49bccb762f1609a0ec4bde38dd409ed3",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "RichText",
+        "slug": "vip-ticket-embed",
+        "displayName": "VIP Ticket Embed",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "d0c452699310f278def8b9289e3c90a1",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "RichText",
+        "slug": "vip-tickets-and-info",
+        "displayName": "VIP Tickets and Info",
+        "helpText": "Optional",
+        "validations": null
+      },
+      {
+        "id": "f9e60993eec9fded6862b7b74473980e",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "RichText",
+        "slug": "general-info",
+        "displayName": "General Info",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "511ed9ee26ec11ac3f40ebbc307fb0bc",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Switch",
+        "slug": "show-lineup-using-event-slottings",
+        "displayName": "Show Lineup using Event Slottings",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "39806477ded8526036b55fecd469ecd6",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Color",
+        "slug": "general-info-background-color",
+        "displayName": "General Info Background Color",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "1dae8610b6c3cbb411d8480d47f1417e",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Color",
+        "slug": "general-info-text-color",
+        "displayName": "General Info Text Color",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "c0f8c370ac368cfd56b739b3f4de9d1f",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Image",
+        "slug": "general-info-background-image",
+        "displayName": "General Info Background Image",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "dab6e773646a41ddc96cfc863ba3ec87",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Switch",
+        "slug": "show-faqs",
+        "displayName": "Show FAQs",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "eb064ca953d983f9f3f2a60c7a39839b",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Switch",
+        "slug": "hide-nav-menu",
+        "displayName": "Hide Nav Menu",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "3572e02b5d475c4b1af7640a0cc773f9",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Image",
+        "slug": "vendor-map",
+        "displayName": "Vendor Map",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "faba1a28b7376e8a36696dd3610e5aeb",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "name",
+        "displayName": "Name",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256
+        }
+      },
+      {
+        "id": "56b3d055b7b59b47ab20b584c4dc5dd8",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "slug",
+        "displayName": "Slug",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256,
+          "pattern": {},
+          "messages": {
+            "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+            "maxLength": "Must be less than 256 characters"
+          }
+        }
+      }
+    ],
+    "fieldGroups": []
+  },
+  "counts": {
+    "total": 5,
+    "live": 4,
+    "draft": 1,
+    "archived": 0
+  },
+  "items": [
+    {
+      "id": "68ad9227e60beed1c7e40d3a",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-30T16:23:01.789Z",
+      "lastUpdated": "2025-08-29T14:53:23.457Z",
+      "createdOn": "2025-08-26T10:53:27.872Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "navbar-logo": {
+          "fileId": "68adbbd3778f52c60d9fa874",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/68adbbd3778f52c60d9fa874_day-of-logo.jpg",
+          "alt": null
+        },
+        "hero-logo": {
+          "fileId": "68ad923420f5bdcc53edb090",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/68ad923420f5bdcc53edb090_pf25logoweb.jpg",
+          "alt": null
+        },
+        "hero-overlay-background-image": {
+          "fileId": "64d140f86b1ed675ff4b43ec",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/64d140f86b1ed675ff4b43ec_instruments-white.webp",
+          "alt": null
+        },
+        "hero-caption": "Welcome to PorchFest!",
+        "hero-background-color": "#fefa71",
+        "venue-map": {
+          "fileId": "68b1bedc21ab6fdc982a8299",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/68b1bedc21ab6fdc982a8299_map%2008_27_25jpeg.jpg",
+          "alt": null
+        },
+        "map-pdf": {
+          "fileId": "68b1bee140e2b32864e48d95",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/68b1bee140e2b32864e48d95_map%2008_27_25.pdf",
+          "alt": null
+        },
+        "highlights": "<h2 id=\"\">Latest Updates....</h2><p id=\"\"><br><br>All PorchFest performances are FREE, with tips for the musicians suggested. The 2pm band is for people who purchased VIP tickets only. From 7-8 pm, four downtown venues will feature spotlight musicians. &nbsp;The event closes with a concert from 8-10 at the South end of Main Street. &nbsp;The full schedule of performance is available in our<a id=\"\" href=\"https://www.enjoysenoia.com/event-logistics/senoia-porchfest-2025#lineup\"> line-up</a>.</p><p>‍</p><p>Artist Alley vendors are located on Pylant Street between Travis and Seavy Streets, <a id=\"\" href=\"https://maps.app.goo.gl/dZiEogCFcGN1UMVb9\" target=\"_blank\">click here</a> for a map/directions.</p><p id=\"\">‍</p><p id=\"\">Food Trucks are located on Gin Street just to the East of Intersection of Gin Street and Lower Creek Trail, <a id=\"\" href=\"https://maps.app.goo.gl/pgaZTJoCBJugmrRM9\" target=\"_blank\">click here</a> for a map/directions.</p><p id=\"\">‍</p><p id=\"\">Handicap Parking is at the US Post Office Parking lot - <a id=\"\" rel=\"handicap parking\" href=\"https://maps.app.goo.gl/Jee49Fk7CWhZVd1r7\" target=\"_blank\">click here</a> for a map/directions.</p><p id=\"\">‍</p><p id=\"\">Restrooms/Portajohns are located on Gin Street just past the food trucks, on Pylant St. near the intersection of Travis Street, at the intersection of Pylant and Morgan Street, at the intersection of Lower Creek Trail and McKnight Drive, intersection of Travis Street and Baggarly Way, intersection of Seavy Street and Baggarly Way, intersection of Seavy Street and Barnes Street, and behind City Hall.‍ </p><p id=\"\">‍</p><p id=\"\">NEED HELP - Please stop by the Merchandise &amp; Information booth on Pylant Street or on Main Street.</p><p id=\"\">‍</p>",
+        "highlight-background-color": "hsla(213.8961038961039, 90.67%, 66.61%, 1.00)",
+        "highlight-text-color": "hsla(48.07692307692307, 0.00%, 100.00%, 1.00)",
+        "highlights-background-image": {
+          "fileId": "64e8b84a831329ff752f7a58",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/64e8b84a831329ff752f7a58_AdobeStock_137860987.webp",
+          "alt": null
+        },
+        "highlight-image": null,
+        "highlight-image-or-map-pdf": null,
+        "schedule-background-color": "#fadb5e",
+        "schedule-section-overlay-background-image": {
+          "fileId": "64d140f86b1ed675ff4b43ec",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/64d140f86b1ed675ff4b43ec_instruments-white.webp",
+          "alt": null
+        },
+        "faq-background-color": "#fadb5e",
+        "sponsor-logos": [
+          {
+            "fileId": "64bbbe354329cd9408e80497",
+            "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/64bbbe354329cd9408e80497_pofs.webp",
+            "alt": null
+          },
+          {
+            "fileId": "63484f5ef2f2e0e066767e33",
+            "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63484f5ef2f2e0e066767e33_JM_Pools_Blue-250x250.webp",
+            "alt": null
+          },
+          {
+            "fileId": "6499a3fd79e76ac880b40b4f",
+            "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6499a3fd79e76ac880b40b4f_peachtree-financial.webp",
+            "alt": null
+          },
+          {
+            "fileId": "6357e67df31f2a2774404ae6",
+            "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6357e67df31f2a2774404ae6_PPD.webp",
+            "alt": null
+          },
+          {
+            "fileId": "636f8236ef41c9f96f163050",
+            "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/636f8236ef41c9f96f163050_LogoWEC.webp",
+            "alt": null
+          },
+          {
+            "fileId": "64a8145d68339109c66fa824",
+            "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/64a8145d68339109c66fa824_kimberly%20peacock%20copy.webp",
+            "alt": null
+          },
+          {
+            "fileId": "64be7cc1ca5cb4b0be441945",
+            "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/64be7cc1ca5cb4b0be441945_Logo.webp",
+            "alt": null
+          },
+          {
+            "fileId": "64d10d480faea2e6ce1d391d",
+            "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/64d10d480faea2e6ce1d391d_644920b01a4d1a26566e462c_renewal%20by%20anderson-p-2000.webp",
+            "alt": null
+          },
+          {
+            "fileId": "646bd5865bf3b9d25c03e9de",
+            "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/646bd5865bf3b9d25c03e9de_shane-logo.webp",
+            "alt": null
+          },
+          {
+            "fileId": "64b9543829858e4bbaf478ec",
+            "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/64b9543829858e4bbaf478ec_TurinLogo-withGlow-2021.webp",
+            "alt": null
+          },
+          {
+            "fileId": "6459086fac0674f295a8fd2d",
+            "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6459086fac0674f295a8fd2d_UB%20Wealth%20Mgmt%20Logo-Vertical.webp",
+            "alt": null
+          }
+        ],
+        "faq-ovrlay-background-image": {
+          "fileId": "64d14103d694ad4d48e8120c",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/64d14103d694ad4d48e8120c_questions.webp",
+          "alt": null
+        },
+        "sponsor-type": "d75f629cfd7d3d7a4844a4490be4cf7c",
+        "vip-ticket-embed": "<div data-rt-embed-type='true'><!-- Ticket Tailor Widget. Paste this into your website where you want the widget to appear. Do not change the code or the widget may not work properly. -->\n<div class=\"tt-widget\"><div class=\"tt-widget-fallback\"><p><a href=\"https://www.tickettailor.com/checkout/new-session/id/2691344/chk/5585/\" target=\"_blank\">Click here to buy tickets</a><br /><small><a href=\"https://www.tickettailor.com?rf=wdg_121784\" class=\"tt-widget-powered\">Sell tickets online with Ticket Tailor</a></small></p></div><script src=\"https://cdn.tickettailor.com/js/widgets/min/widget.js\" data-url=\"https://www.tickettailor.com/checkout/new-session/id/2691344/chk/5585/\" data-type=\"inline\" data-inline-minimal=\"true\" data-inline-show-logo=\"false\" data-inline-bg-fill=\"false\" data-inline-inherit-ref-from-url-param=\"\" data-inline-ref=\"\"></script></div>\n<!-- End of Ticket Tailor Widget --></div>",
+        "vip-tickets-and-info": null,
+        "general-info": "<p>‍</p>",
+        "show-lineup-using-event-slottings": true,
+        "general-info-background-color": null,
+        "general-info-text-color": null,
+        "general-info-background-image": null,
+        "show-faqs": false,
+        "hide-nav-menu": false,
+        "vendor-map": null,
+        "name": "Senoia Porchfest 2025",
+        "slug": "senoia-porchfest-2025"
+      }
+    },
+    {
+      "id": "66ca302c72f1594d10e613fc",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2024-08-25T16:11:06.559Z",
+      "lastUpdated": "2024-08-24T19:45:10.947Z",
+      "createdOn": "2024-08-24T19:10:36.984Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "navbar-logo": {
+          "fileId": "66ca32a8444ef817d9c867ae",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/66ca32a8444ef817d9c867ae_app-nav-logo.png",
+          "alt": null
+        },
+        "hero-logo": {
+          "fileId": "66ca32e5b4bda118c8ca0445",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/66ca32e5b4bda118c8ca0445_PF%20logo%20Jen.jpg",
+          "alt": null
+        },
+        "hero-overlay-background-image": {
+          "fileId": "64d140f86b1ed675ff4b43ec",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64d140f86b1ed675ff4b43ec_instruments-white.webp",
+          "alt": null
+        },
+        "hero-caption": "Welcome to PorchFest!",
+        "hero-background-color": "#fadb5e",
+        "venue-map": {
+          "fileId": "66ca3302b4bda118c8ca182f",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/66ca3302b4bda118c8ca182f_PorchFest%202024%20Map%20revised%20QR%20code.jpg",
+          "alt": null
+        },
+        "map-pdf": {
+          "fileId": "66ca3318fdfb4395bc2a3299",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/66ca3318fdfb4395bc2a3299_PorchFest%202024%20Map%20revised%20QR%20code.pdf",
+          "alt": null
+        },
+        "highlights": "<h2 id=\"\">Latest Updates....</h2><p id=\"\"><br><br>All PorchFest performances from 3 - 6 PM are FREE, with tips for the musicians suggested. You can click on the band name in the <a id=\"\" href=\"/event-logistics/senoia-porchfest-2023#lineup\">line-up</a> to see more info about each band and to leave a tip! The full schedule of performance is available in our <a id=\"\" href=\"/event-logistics/senoia-porchfest-2023#lineup\">line-up</a>.<br><br><strong id=\"\">Twilight Tunes</strong><br><br>If you haven't already purchased your ticket for tonight’s Twilight Tunes concert, you can still do so at the Merchandise Booth . &nbsp;<br><br><strong id=\"\">Artist Alley</strong> vendors are located on Pylant Street between Travis and Seavy Streets, <a id=\"\" href=\"https://goo.gl/maps/wkq2w5HAnTEvqeiz5\" target=\"_blank\">click here</a> for a map/directions.<br><br><strong id=\"\">Food Trucks</strong> are located on Gin Street just to the East of Intersection of Gin Street and Lower Creek Trail, <a id=\"\" href=\"https://goo.gl/maps/HrB7anCj8eejLCUF8\" target=\"_blank\">click here</a> for a map/directions.<br><br><strong id=\"\">Handicap Parking</strong> is at the US&nbsp;Post Office Parking lot - <a id=\"\" href=\"https://goo.gl/maps/oQryxwMaZzLmm2iw8\">click here</a> for a map/directions.<br><br><strong id=\"\">Restrooms/Portajohns</strong> are located on <a id=\"\" href=\"https://goo.gl/maps/oQryxwMaZzLmm2iw8\" target=\"_blank\">Gin Street just past the food trucks</a>, on <a id=\"\" href=\"https://goo.gl/maps/X8MTdXKvgdPP7j917\" target=\"_blank\">Pylant St. near the intersection of Seavy St</a>., at the intersection of <a id=\"\" href=\"https://goo.gl/maps/oQryxwMaZzLmm2iw8\" target=\"_blank\">Pylant and Morgan Streets</a>, and <a id=\"\" href=\"https://goo.gl/maps/X8MTdXKvgdPP7j917\" target=\"_blank\">behind City Hall</a>.‍<strong id=\"\">NEED&nbsp;HELP - Having trouble with VIP&nbsp;ticket purchases, please stop by the Merchandise &amp;&nbsp;Information booth.</strong></p>",
+        "highlight-background-color": "hsla(213.8961038961039, 90.67%, 66.61%, 1.00)",
+        "highlight-text-color": "hsla(48.07692307692307, 0.00%, 100.00%, 1.00)",
+        "highlights-background-image": {
+          "fileId": "64e8b84a831329ff752f7a58",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64e8b84a831329ff752f7a58_AdobeStock_137860987.webp",
+          "alt": null
+        },
+        "highlight-image": null,
+        "highlight-image-or-map-pdf": null,
+        "schedule-background-color": "#fadb5e",
+        "schedule-section-overlay-background-image": {
+          "fileId": "64d140f86b1ed675ff4b43ec",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64d140f86b1ed675ff4b43ec_instruments-white.webp",
+          "alt": null
+        },
+        "faq-background-color": "#fadb5e",
+        "sponsor-logos": [
+          {
+            "fileId": "64bbbe354329cd9408e80497",
+            "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64bbbe354329cd9408e80497_pofs.webp",
+            "alt": null
+          },
+          {
+            "fileId": "63484f5ef2f2e0e066767e33",
+            "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/63484f5ef2f2e0e066767e33_JM_Pools_Blue-250x250.webp",
+            "alt": null
+          },
+          {
+            "fileId": "6499a3fd79e76ac880b40b4f",
+            "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/6499a3fd79e76ac880b40b4f_peachtree-financial.webp",
+            "alt": null
+          },
+          {
+            "fileId": "6357e67df31f2a2774404ae6",
+            "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/6357e67df31f2a2774404ae6_PPD.webp",
+            "alt": null
+          },
+          {
+            "fileId": "636f8236ef41c9f96f163050",
+            "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/636f8236ef41c9f96f163050_LogoWEC.webp",
+            "alt": null
+          },
+          {
+            "fileId": "64a8145d68339109c66fa824",
+            "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64a8145d68339109c66fa824_kimberly%20peacock%20copy.webp",
+            "alt": null
+          },
+          {
+            "fileId": "64be7cc1ca5cb4b0be441945",
+            "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64be7cc1ca5cb4b0be441945_Logo.webp",
+            "alt": null
+          },
+          {
+            "fileId": "64d10d480faea2e6ce1d391d",
+            "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64d10d480faea2e6ce1d391d_644920b01a4d1a26566e462c_renewal%20by%20anderson-p-2000.webp",
+            "alt": null
+          },
+          {
+            "fileId": "646bd5865bf3b9d25c03e9de",
+            "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/646bd5865bf3b9d25c03e9de_shane-logo.webp",
+            "alt": null
+          },
+          {
+            "fileId": "64b9543829858e4bbaf478ec",
+            "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64b9543829858e4bbaf478ec_TurinLogo-withGlow-2021.webp",
+            "alt": null
+          },
+          {
+            "fileId": "6459086fac0674f295a8fd2d",
+            "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/6459086fac0674f295a8fd2d_UB%20Wealth%20Mgmt%20Logo-Vertical.webp",
+            "alt": null
+          }
+        ],
+        "faq-ovrlay-background-image": {
+          "fileId": "64d14103d694ad4d48e8120c",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64d14103d694ad4d48e8120c_questions.webp",
+          "alt": null
+        },
+        "sponsor-type": "d75f629cfd7d3d7a4844a4490be4cf7c",
+        "vip-ticket-embed": "<div data-rt-embed-type='true'><!-- Ticket Tailor Widget. Paste this into your website where you want the widget to appear. Do not change the code or the widget may not work properly. -->\n<div class=\"tt-widget\"><div class=\"tt-widget-fallback\"><p><a href=\"https://www.tickettailor.com/checkout/new-session/id/2691344/chk/5585/\" target=\"_blank\">Click here to buy tickets</a><br /><small><a href=\"https://www.tickettailor.com?rf=wdg_121784\" class=\"tt-widget-powered\">Sell tickets online with Ticket Tailor</a></small></p></div><script src=\"https://cdn.tickettailor.com/js/widgets/min/widget.js\" data-url=\"https://www.tickettailor.com/checkout/new-session/id/2691344/chk/5585/\" data-type=\"inline\" data-inline-minimal=\"true\" data-inline-show-logo=\"false\" data-inline-bg-fill=\"false\" data-inline-inherit-ref-from-url-param=\"\" data-inline-ref=\"\"></script></div>\n<!-- End of Ticket Tailor Widget --></div>",
+        "vip-tickets-and-info": null,
+        "general-info": "<p id=\"\">Artist Alley vendors are located on Pylant Street between Travis and Seavy Streets, <a id=\"\" href=\"https://goo.gl/maps/wkq2w5HAnTEvqeiz5\" target=\"_blank\">click here</a> for a map/directions.<br><br>Food Trucks are located on Gin Street just to the East of Intersection of Gin Street and Lower Creek Trail, <a id=\"\" href=\"https://goo.gl/maps/HrB7anCj8eejLCUF8\" target=\"_blank\">click here</a> for a map/directions.</p><p>‍</p><p id=\"\"><br></p>",
+        "show-lineup-using-event-slottings": true,
+        "general-info-background-color": null,
+        "general-info-text-color": null,
+        "general-info-background-image": null,
+        "show-faqs": false,
+        "hide-nav-menu": false,
+        "vendor-map": null,
+        "name": "Senoia Porchfest 2024",
+        "slug": "senoia-porchfest-2024"
+      }
+    },
+    {
+      "id": "6537bd3576ba6da2685656f4",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": null,
+      "lastUpdated": "2024-08-24T19:11:17.681Z",
+      "createdOn": "2023-10-24T12:48:53.484Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "navbar-logo": null,
+        "hero-logo": null,
+        "hero-overlay-background-image": null,
+        "hero-caption": null,
+        "hero-background-color": null,
+        "venue-map": null,
+        "map-pdf": null,
+        "highlights": null,
+        "highlight-background-color": null,
+        "highlight-text-color": null,
+        "highlights-background-image": null,
+        "highlight-image": null,
+        "highlight-image-or-map-pdf": null,
+        "schedule-background-color": null,
+        "schedule-section-overlay-background-image": null,
+        "faq-background-color": null,
+        "sponsor-logos": null,
+        "faq-ovrlay-background-image": null,
+        "sponsor-type": null,
+        "vip-ticket-embed": null,
+        "vip-tickets-and-info": null,
+        "general-info": null,
+        "show-lineup-using-event-slottings": false,
+        "general-info-background-color": null,
+        "general-info-text-color": null,
+        "general-info-background-image": null,
+        "show-faqs": false,
+        "hide-nav-menu": false,
+        "vendor-map": null,
+        "name": "Light Up Senoia 2023",
+        "slug": "light-up-senoia-2023"
+      }
+    },
+    {
+      "id": "64db9ee59f7f79f8a9dfafb9",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-04-22T01:16:34.189Z",
+      "lastUpdated": "2025-04-22T01:16:34.189Z",
+      "createdOn": "2023-08-15T15:51:01.805Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "navbar-logo": {
+          "fileId": "64db9fac74cb662222308fc1",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64db9fac74cb662222308fc1_navbarlogo.svg",
+          "alt": null
+        },
+        "hero-logo": {
+          "fileId": "645e3373a2462692cea9ab96",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/645e3373a2462692cea9ab96_Senoia%20Car%20Show%20Web%20Graphic.jpg",
+          "alt": null
+        },
+        "hero-overlay-background-image": null,
+        "hero-caption": "Welcome to the Senoia Car Show",
+        "hero-background-color": "white",
+        "venue-map": {
+          "fileId": "6501defd036f656d0f438d02",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/6501defd036f656d0f438d02_venue-map-sand-boards-revised-9-13-23-app-web.jpg",
+          "alt": null
+        },
+        "map-pdf": {
+          "fileId": "6501de6d4e01a1ed893bc328",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/6501de6d4e01a1ed893bc328_venue-map-sand-boards-revised-9-13-23-small.pdf",
+          "alt": null
+        },
+        "highlights": "<h3 id=\"\">Event Highlights</h3><p id=\"\"><br><a id=\"\" href=\"#details\">Click here</a> for the schedule of events....<br><br>Text JOIN to 18334173760 for event updates via text - you can unsubscribe at any time.</p><p id=\"\">‍</p><h3 id=\"\">Show Cars - Reserved and Non-Reserved &amp; General Parking Paid Ticket Holders (Not Spectators or General Public)</h3><p id=\"\">All paid show car parking ticket holders should have received an email with instructions for the day of the event (note there are some changes from last year). Although pre-registered, show car ticket holders <strong id=\"\">still must check in</strong> to complete the registration process. See the email sent to show car ticket holders <a href=\"https://uploads-ssl.webflow.com/62c89378d6e12946d6cdd965/6516a1407614d7887e7126a6_show-car-paid-parking-parking.pdf\" target=\"_blank\">here.</a></p><p id=\"\">‍</p><h3 id=\"\">Downtown Senoia Business Directory</h3><p id=\"\"><a id=\"\" href=\"https://www.enjoysenoia.com/downtown-businesses\" target=\"_blank\">Click here</a> for a directory of downtown Senoia Businesses including restaurants, shops and services.</p><p id=\"\">‍</p><h3 id=\"\">Public Parking - FREE</h3><p id=\"\"><em id=\"\">click on any location for directions</em></p><p id=\"\">‍</p><p id=\"\"><a id=\"\" href=\"https://goo.gl/maps/aT9rNkXZUCq8RDFM6\" target=\"_blank\">Senoia Public Library</a> - shuttle provided</p><p id=\"\"><br><a id=\"\" href=\"https://goo.gl/maps/QTgKtawCLdx4pLdS7\" target=\"_blank\">Seavy Street Park</a> - shuttle provided</p><p id=\"\"><br><a id=\"\" href=\"https://goo.gl/maps/rQBWV8ZXgaUgdaq77\" target=\"_blank\">Main St just north of Ray Street</a> - shuttle provided</p><p id=\"\">‍</p><p id=\"\"><a id=\"\" href=\"https://goo.gl/maps/PSAM1oHuhbbwKYnHA\" target=\"_blank\">Grass Lot at Bridge St. Between Seavy St. and Johnson St.</a></p><p id=\"\"><br><a id=\"\" href=\"https://goo.gl/maps/sSLPnS5DAhGWQb4r9\" target=\"_blank\">All along Pylant Street</a> from the Library up to Gin Street</p><p id=\"\">‍</p><h3 id=\"\">Handicap Parking</h3><p id=\"\"><em id=\"\">click on any location for directions</em></p><p id=\"\">‍</p><p id=\"\"><a id=\"\" href=\"https://goo.gl/maps/f5dDH8W2DPS9pLTs5\" target=\"_blank\">Senoia Post Office</a></p><p id=\"\"><br><a id=\"\" href=\"https://goo.gl/maps/mHT8cesLbYAUyenK7\" target=\"_blank\">Senoia First Baptist Church</a></p><p id=\"\"><br><a id=\"\" href=\"https://goo.gl/maps/aT9rNkXZUCq8RDFM6\" target=\"_blank\">Senoia Library</a></p>",
+        "highlight-background-color": null,
+        "highlight-text-color": null,
+        "highlights-background-image": {
+          "fileId": "6356e3d0cd5b4f1d3647351f",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/6356e3d0cd5b4f1d3647351f_DSCF6011.jpg",
+          "alt": null
+        },
+        "highlight-image": null,
+        "highlight-image-or-map-pdf": null,
+        "schedule-background-color": null,
+        "schedule-section-overlay-background-image": null,
+        "faq-background-color": null,
+        "sponsor-logos": null,
+        "faq-ovrlay-background-image": null,
+        "sponsor-type": "d75f629cfd7d3d7a4844a4490be4cf7c",
+        "vip-ticket-embed": null,
+        "vip-tickets-and-info": null,
+        "general-info": "<h2 id=\"\"><strong id=\"\">Schedule of Events</strong></h2><p id=\"\"><strong id=\"\">(</strong>Times/content subject to change)</p><ul id=\"\"><li id=\"\">7:00am: Gates Open for Show Cars</li><li id=\"\">8:00am: Gates Open for Sponsors/Vendors</li><li id=\"\">10:00am: Car Show Officially Open</li><li id=\"\">10:30am: Pedal Car Silent Auction Begins </li><li id=\"\">11:30am: Valve Cover Race 1</li><li id=\"\">12:00pm: \"Crank your Engines\"</li><li id=\"\">12:30pm: Valve Cover Race 2</li><li id=\"\">1:00pm: Fly Over </li><li id=\"\">1:30pm: Valve Cover Race 3 </li><li id=\"\">2:00p Pedal Car Silent Auction Ends</li><li id=\"\">3:00 Awards Ceremony</li><li id=\"\">4:00 Show Ends</li></ul><p id=\"\">‍</p><p id=\"\">‍</p><h2 id=\"\"><strong id=\"\">Multiple Events Within the Car Show</strong></h2><ul id=\"\"><li id=\"\">500 collector cars</li><li id=\"\">Pedal Car Auction - local shops have customized pedal cars to look like classic cars and hot-rods, bid on these one-of-a-kind collector items! &nbsp;Proceeds to benefit the family of Toby Bowden, a retired marine and father who was killed on duty as a local tow truck driver.</li><li id=\"\">Valve cover races - you've heard of pinewood derby races, well this is similar except with customized valve covers - fun for the kid in all of us! <a id=\"\" href=\"https://www.dropbox.com/s/bfc4ga92bydmwyg/Valve%20Cover%20Races.pdf?dl=0\" target=\"_blank\">Click here</a> for more info about the Valve Cover races.</li><li id=\"\">I-58 Food drive. Please support our efforts by bringing canned goods to the designated collection points at the Senoia Car Show. The I-58 Mission follows the call of Isaiah 58. They meet the physical needs (such as food) and share the love of Christ with the Senoia area community. <a id=\"\" href=\"https://thei58mission.org/\" target=\"_blank\">Click here</a> for more info about the I-58 Mission.</li><li id=\"\">Food Trucks - including the Varsity and other local favorites</li><li id=\"\">Trophies include Gail Downs Memorial (Best in Show Car, Best in Show Truck) and Top 20 in Show</li></ul><p id=\"\">‍</p><p id=\"\">‍</p>",
+        "show-lineup-using-event-slottings": false,
+        "general-info-background-color": "#f8f0d9",
+        "general-info-text-color": null,
+        "general-info-background-image": {
+          "fileId": "64dbb13e4dfa5566f3c3be5e",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64dbb13e4dfa5566f3c3be5e_gear-bg.png",
+          "alt": null
+        },
+        "show-faqs": false,
+        "hide-nav-menu": true,
+        "vendor-map": null,
+        "name": "Senoia Car Show 2023",
+        "slug": "senoia-car-show-2023"
+      }
+    },
+    {
+      "id": "64d0f71959311e7b6a092f3c",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-04-22T01:16:37.691Z",
+      "lastUpdated": "2025-04-22T01:16:37.691Z",
+      "createdOn": "2023-08-07T13:52:25.210Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "navbar-logo": {
+          "fileId": "64d283fbcc3797e0a4a9a9ba",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64d283fbcc3797e0a4a9a9ba_pf-event-logog.svg",
+          "alt": null
+        },
+        "hero-logo": {
+          "fileId": "6490ac5087c387ca1d259718",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/6490ac5087c387ca1d259718_PorchFest.jpg",
+          "alt": null
+        },
+        "hero-overlay-background-image": {
+          "fileId": "64d140f86b1ed675ff4b43ec",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64d140f86b1ed675ff4b43ec_instruments-white.png",
+          "alt": null
+        },
+        "hero-caption": "Welcome to PorchFest!",
+        "hero-background-color": "#fadb5e",
+        "venue-map": {
+          "fileId": "64f0aa0b7d6b690e024fd524",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64f0aa0b7d6b690e024fd524_2023-PorchFest-Map_FINAL.jpg",
+          "alt": null
+        },
+        "map-pdf": {
+          "fileId": "64f0aa83e337c9daedde2a5e",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64f0aa83e337c9daedde2a5e_2023-PorchFest-Map_FINAL.pdf",
+          "alt": null
+        },
+        "highlights": "<h2 id=\"\">Latest Updates....</h2><p id=\"\"><br><br>All PorchFest performances from 3 - 6 PM are FREE, with tips for the musicians suggested. You can click on the band name in the <a id=\"\" href=\"/event-logistics/senoia-porchfest-2023#lineup\">line-up</a> to see more info about each band and to leave a tip! The full schedule of performance is available in our <a id=\"\" href=\"/event-logistics/senoia-porchfest-2023#lineup\">line-up</a>.<br><br><strong id=\"\">VIP&nbsp;Concert</strong><br><br>If you haven't already purchased your VIP ticket for tonight’s VIP concert, you can still do so at <a id=\"\" href=\"#vip\">here</a> . &nbsp;Your $10 ticket gets you into the VIP area, access to the VIP food and beverage vendors and a great concert with Cowboy Noyz as warm-up and FLUX - who will have us dancing the night away. Once you’ve purchased your VIP tickets or if you need to pay with cash, stop by the information booth and pick up your VIP area wristbands at any time up until show time. <br><br><strong>Artist Alley</strong> vendors are located on Pylant Street between Travis and Seavy Streets, <a id=\"\" href=\"https://goo.gl/maps/wkq2w5HAnTEvqeiz5\" target=\"_blank\">click here</a> for a map/directions.<br><br><strong>Food Trucks</strong> are located on Gin Street just to the East of Intersection of Gin Street and Lower Creek Trail, <a id=\"\" href=\"https://goo.gl/maps/HrB7anCj8eejLCUF8\" target=\"_blank\">click here</a> for a map/directions.<a id=\"\"><br><br></a><a id=\"\" href=\"#details\">More info</a> on Food Trucks and Artist Alley.<br><br><strong>Handicap Parking</strong> is at the US&nbsp;Post Office Parking lot - <a href=\"https://goo.gl/maps/oQryxwMaZzLmm2iw8\">click here</a> for a map/directions.<br><br><strong>Restrooms/Portajohns</strong> are located on <a href=\"https://goo.gl/maps/oQryxwMaZzLmm2iw8\" target=\"_blank\">Gin Street just past the food trucks</a>, on <a href=\"https://goo.gl/maps/X8MTdXKvgdPP7j917\" target=\"_blank\">Pylant St. near the intersection of Seavy St</a>., at the intersection of <a href=\"https://goo.gl/maps/oQryxwMaZzLmm2iw8\" target=\"_blank\">Pylant and Morgan Streets</a>, and <a href=\"https://goo.gl/maps/X8MTdXKvgdPP7j917\" target=\"_blank\">behind City Hall</a>.<strong id=\"\"><br><br>Remember to text \"JOIN\" to 18336785617 to receive official PorchFest text notifications. We won't spam you or share your info with anyone else and we won't text you after the event. You can unsubscribe at any time by responding \"STOP\" to any text we send to you.</strong></p><p id=\"\">‍</p><p id=\"\"><strong id=\"\">NEED&nbsp;HELP - Having trouble with VIP&nbsp;ticket purchases, please stop by the information booth on the day of PorchFest or email </strong><a id=\"\" href=\"mailto:webmaster@enjoysenoia.com\"><strong id=\"\">webmaster@enjoysenoia.com</strong></a><strong id=\"\">.</strong></p><p id=\"\">‍</p>",
+        "highlight-background-color": "hsla(213.8961038961039, 90.67%, 66.61%, 1.00)",
+        "highlight-text-color": "hsla(48.07692307692307, 0.00%, 100.00%, 1.00)",
+        "highlights-background-image": {
+          "fileId": "64e8b84a831329ff752f7a58",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64e8b84a831329ff752f7a58_AdobeStock_137860987.jpg",
+          "alt": null
+        },
+        "highlight-image": null,
+        "highlight-image-or-map-pdf": null,
+        "schedule-background-color": "#fadb5e",
+        "schedule-section-overlay-background-image": {
+          "fileId": "64d140f86b1ed675ff4b43ec",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64d140f86b1ed675ff4b43ec_instruments-white.png",
+          "alt": null
+        },
+        "faq-background-color": "#fadb5e",
+        "sponsor-logos": [
+          {
+            "fileId": "64bbbe354329cd9408e80497",
+            "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64bbbe354329cd9408e80497_pofs.JPG",
+            "alt": null
+          },
+          {
+            "fileId": "63484f5ef2f2e0e066767e33",
+            "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/63484f5ef2f2e0e066767e33_JM_Pools_Blue-250x250.jpeg",
+            "alt": null
+          },
+          {
+            "fileId": "6499a3fd79e76ac880b40b4f",
+            "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/6499a3fd79e76ac880b40b4f_peachtree-financial.webp",
+            "alt": null
+          },
+          {
+            "fileId": "6357e67df31f2a2774404ae6",
+            "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/6357e67df31f2a2774404ae6_PPD.jpg",
+            "alt": null
+          },
+          {
+            "fileId": "636f8236ef41c9f96f163050",
+            "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/636f8236ef41c9f96f163050_LogoWEC.jpg",
+            "alt": null
+          },
+          {
+            "fileId": "64a8145d68339109c66fa824",
+            "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64a8145d68339109c66fa824_kimberly%20peacock%20copy.png",
+            "alt": null
+          },
+          {
+            "fileId": "64be7cc1ca5cb4b0be441945",
+            "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64be7cc1ca5cb4b0be441945_Logo.webp",
+            "alt": null
+          },
+          {
+            "fileId": "64d10d480faea2e6ce1d391d",
+            "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64d10d480faea2e6ce1d391d_644920b01a4d1a26566e462c_renewal%20by%20anderson-p-2000.png",
+            "alt": null
+          },
+          {
+            "fileId": "646bd5865bf3b9d25c03e9de",
+            "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/646bd5865bf3b9d25c03e9de_shane-logo.png",
+            "alt": null
+          },
+          {
+            "fileId": "64b9543829858e4bbaf478ec",
+            "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64b9543829858e4bbaf478ec_TurinLogo-withGlow-2021.png",
+            "alt": null
+          },
+          {
+            "fileId": "6459086fac0674f295a8fd2d",
+            "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/6459086fac0674f295a8fd2d_UB%20Wealth%20Mgmt%20Logo-Vertical.jpg",
+            "alt": null
+          }
+        ],
+        "faq-ovrlay-background-image": {
+          "fileId": "64d14103d694ad4d48e8120c",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64d14103d694ad4d48e8120c_questions.png",
+          "alt": null
+        },
+        "sponsor-type": "d75f629cfd7d3d7a4844a4490be4cf7c",
+        "vip-ticket-embed": "<div data-rt-embed-type='true'><!-- Ticket Tailor Widget. Paste this into your website where you want the widget to appear. Do not change the code or the widget may not work properly. -->\n<div class=\"tt-widget\"><div class=\"tt-widget-fallback\"><p><a href=\"https://www.tickettailor.com/checkout/new-session/id/2691344/chk/5585/\" target=\"_blank\">Click here to buy tickets</a><br /><small><a href=\"https://www.tickettailor.com?rf=wdg_121784\" class=\"tt-widget-powered\">Sell tickets online with Ticket Tailor</a></small></p></div><script src=\"https://cdn.tickettailor.com/js/widgets/min/widget.js\" data-url=\"https://www.tickettailor.com/checkout/new-session/id/2691344/chk/5585/\" data-type=\"inline\" data-inline-minimal=\"true\" data-inline-show-logo=\"false\" data-inline-bg-fill=\"false\" data-inline-inherit-ref-from-url-param=\"\" data-inline-ref=\"\"></script></div>\n<!-- End of Ticket Tailor Widget --></div>",
+        "vip-tickets-and-info": "<p id=\"\">Tickets for the VIP concert from 7:00 - 10:00 PM are available for purchase. <br><br>Cowboy Noyz featuring tunes from AC/DC to Hank Williams will be opening the festivities beginning at 7 PM at the Gin Street stage.</p><figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div id=\"\"><img id=\"\" src=\"https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/66ca302c72f1594d10e613a2_64d50d809f9d2041daf8e0bb_cowboy%2520noyz-p-800.jpeg\" width=\"auto\" height=\"auto\" loading=\"lazy\"></div><figcaption id=\"\">Coby Noyz</figcaption></figure><p id=\"\">‍</p><p id=\"\">FLUX will be the main stage act following Cowboy Noyz. FLUX is The Ultimate Live Entertainment Experience playing the best Dance, Rock and New Wave hits.</p><figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div id=\"\"><img id=\"\" src=\"https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/66ca302c72f1594d10e6139b_64bbbee14c40f11a7f0e7d64_Flux.jpeg\" width=\"auto\" height=\"auto\" loading=\"lazy\"></div><figcaption id=\"\">FLUX</figcaption></figure><p id=\"\">Click on the \"Purchase VIP&nbsp;Tickets\"&nbsp;button to reserve your spot.</p><p id=\"\">‍</p>",
+        "general-info": "<p id=\"\">Artist Alley vendors are located on Pylant Street between Travis and Seavy Streets, <a id=\"\" href=\"https://goo.gl/maps/wkq2w5HAnTEvqeiz5\" target=\"_blank\">click here</a> for a map/directions.<br><br>Food Trucks are located on Gin Street just to the East of Intersection of Gin Street and Lower Creek Trail, <a id=\"\" href=\"https://goo.gl/maps/HrB7anCj8eejLCUF8\" target=\"_blank\">click here</a> for a map/directions.</p><p>‍</p><p id=\"\"><br></p>",
+        "show-lineup-using-event-slottings": true,
+        "general-info-background-color": null,
+        "general-info-text-color": null,
+        "general-info-background-image": null,
+        "show-faqs": true,
+        "hide-nav-menu": false,
+        "vendor-map": {
+          "fileId": "64ef3f86183205bee227de3b",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/64ef3f86183205bee227de3b_PorchFestMap2023_PROOF5-2.jpg",
+          "alt": null
+        },
+        "name": "Senoia Porchfest 2023",
+        "slug": "senoia-porchfest-2023"
+      }
+    }
+  ]
+}

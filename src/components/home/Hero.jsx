@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowDown, Calendar, MapPin } from 'lucide-react';
+import { webflowAsset } from '../../utils/webflowAsset';
 
 export default function Hero() {
   return (
@@ -11,15 +12,15 @@ export default function Hero() {
         loop
         muted
         playsInline
-        poster="https://cdn.prod.website-files.com/62c89378d6e12946d6cdd965/63591d0e6197414d4ebc7427_enjoysenoia-hero-r2-poster-00001.jpg"
+        poster={webflowAsset('site/63591d0e6197414d4ebc7427_enjoysenoia-hero-r2-poster-00001.jpg')}
         className="absolute inset-0 w-full h-full object-cover object-center opacity-70"
       >
         <source
-          src="https://cdn.prod.website-files.com/62c89378d6e12946d6cdd965/63591d0e6197414d4ebc7427_enjoysenoia-hero-r2-transcode.mp4"
+          src={webflowAsset('site/63591d0e6197414d4ebc7427_enjoysenoia-hero-r2-transcode.mp4')}
           type="video/mp4"
         />
         <source
-          src="https://cdn.prod.website-files.com/62c89378d6e12946d6cdd965/63591d0e6197414d4ebc7427_enjoysenoia-hero-r2-transcode.webm"
+          src={webflowAsset('site/63591d0e6197414d4ebc7427_enjoysenoia-hero-r2-transcode.webm')}
           type="video/webm"
         />
       </video>

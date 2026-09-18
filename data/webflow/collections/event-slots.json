@@ -1,0 +1,272 @@
+{
+  "collection": {
+    "id": "64d10067336b736815c0c78c",
+    "displayName": "Event slots",
+    "singularName": "Event slot",
+    "slug": "event-slots",
+    "createdOn": "2023-08-07T14:32:07.307Z",
+    "lastUpdated": "2025-07-19T15:53:46.322Z",
+    "fields": [
+      {
+        "id": "512e4ce2c7ed4e4946802fae67844568",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "PlainText",
+        "slug": "sponsor",
+        "displayName": "Sponsor",
+        "helpText": null,
+        "validations": {
+          "singleLine": true
+        }
+      },
+      {
+        "id": "d75fd6cf946c4213c45676949c7b8706",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "RichText",
+        "slug": "schedule",
+        "displayName": "Schedule",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "504f0e4267878bfc4e65995d90af7bc2",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Reference",
+        "slug": "parent-event",
+        "displayName": "Parent Event",
+        "helpText": null,
+        "validations": {
+          "collectionId": "64d0f499f35282c2a9cbafc4"
+        }
+      },
+      {
+        "id": "4f58c8174c1421eab4400edf0dca455f",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Number",
+        "slug": "rank",
+        "displayName": "rank",
+        "helpText": null,
+        "validations": {
+          "format": "integer",
+          "precision": 1,
+          "allowNegative": false
+        }
+      },
+      {
+        "id": "f991e02f48a7e7c34270b682e41d5222",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "MultiReference",
+        "slug": "slottings",
+        "displayName": "slottings",
+        "helpText": null,
+        "validations": {
+          "collectionId": "64d25470778587ddc86a26f4"
+        }
+      },
+      {
+        "id": "0a42f546c818ca403aa4a23c36218990",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "name",
+        "displayName": "Time Slot",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256
+        }
+      },
+      {
+        "id": "984962f73a2ae6f1e5ee2b9ce2b3168b",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "slug",
+        "displayName": "Slug",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256,
+          "pattern": {},
+          "messages": {
+            "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+            "maxLength": "Must be less than 256 characters"
+          }
+        }
+      }
+    ],
+    "fieldGroups": []
+  },
+  "counts": {
+    "total": 7,
+    "live": 7,
+    "draft": 0,
+    "archived": 0
+  },
+  "items": [
+    {
+      "id": "68ad9c2de348fbdd32133baa",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:30:04.148Z",
+      "createdOn": "2025-08-26T11:36:13.651Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "sponsor": null,
+        "schedule": null,
+        "parent-event": "68ad9227e60beed1c7e40d3a",
+        "rank": 7,
+        "slottings": [
+          "68adb699fad93ee4c3623b7e"
+        ],
+        "name": "8:00 PM",
+        "slug": "8-00-pm"
+      }
+    },
+    {
+      "id": "68ad9bfccaf5b9b4cabef8a6",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T12:36:20.539Z",
+      "lastUpdated": "2025-08-26T12:26:19.276Z",
+      "createdOn": "2025-08-26T11:35:24.198Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "sponsor": null,
+        "schedule": null,
+        "parent-event": "68ad9227e60beed1c7e40d3a",
+        "rank": 1,
+        "slottings": [
+          "68ada100fa01a28a9aeb985e"
+        ],
+        "name": "2:00 PM",
+        "slug": "2-00-pm"
+      }
+    },
+    {
+      "id": "64d25d088fa466bce9186421",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:27:42.251Z",
+      "createdOn": "2023-08-08T15:19:36.933Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "sponsor": null,
+        "schedule": null,
+        "parent-event": "68ad9227e60beed1c7e40d3a",
+        "rank": 6,
+        "slottings": [
+          "68adb1f2e2c23565dbb42711",
+          "68adb28ee4014c36602f89b6",
+          "68adb60d54c1137305e52b87"
+        ],
+        "name": "7:00 PM",
+        "slug": "7-00-pm"
+      }
+    },
+    {
+      "id": "64d25cfa8fa466bce91858ef",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:32:58.334Z",
+      "lastUpdated": "2025-08-26T13:08:40.526Z",
+      "createdOn": "2023-08-08T15:19:22.649Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "sponsor": null,
+        "schedule": null,
+        "parent-event": "68ad9227e60beed1c7e40d3a",
+        "rank": 5,
+        "slottings": [
+          "68adb081e471cca2eb415230",
+          "68adb0c7785b8a3b03bc6a2b",
+          "68adb10235a0c25f178e47e3",
+          "68adb13e3461f59d0b4777d1",
+          "68adb175e71568738052af42",
+          "68adb1b2715028dfcdf398f4"
+        ],
+        "name": "6:00 PM",
+        "slug": "6-00"
+      }
+    },
+    {
+      "id": "64d25ce5195f722a85c73daa",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:04:48.435Z",
+      "lastUpdated": "2025-08-26T13:02:33.046Z",
+      "createdOn": "2023-08-08T15:19:01.945Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "sponsor": null,
+        "schedule": null,
+        "parent-event": "68ad9227e60beed1c7e40d3a",
+        "rank": 4,
+        "slottings": [
+          "68adaeaf68b0363d7718e3c6",
+          "68adaee6d2e2c2547250fd16",
+          "68adaf25910360a474c3701a",
+          "68adaf5c4765425117e69a9c",
+          "68adaf9b8ffc0785dd295eea",
+          "68adb047e415f006c7b2c0e6"
+        ],
+        "name": "5:00 PM",
+        "slug": "5-00"
+      }
+    },
+    {
+      "id": "64d25cd0095eb9d61fb61a75",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T13:01:05.305Z",
+      "lastUpdated": "2025-08-26T12:54:49.739Z",
+      "createdOn": "2023-08-08T15:18:40.224Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "sponsor": null,
+        "schedule": null,
+        "parent-event": "68ad9227e60beed1c7e40d3a",
+        "rank": 3,
+        "slottings": [
+          "68adaac96ab91c049685e9c6",
+          "68adab0d398c867ed9745321",
+          "68adababb2939cc252a3925a",
+          "68adad990c6f84c1d0bc739d",
+          "68adadce5be7472b57b3b78d",
+          "68adae73f60867b16c240aa8"
+        ],
+        "name": "4:00 PM",
+        "slug": "4-00"
+      }
+    },
+    {
+      "id": "64d25cbf564c4f01ced492fe",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-08-26T12:36:20.539Z",
+      "lastUpdated": "2025-08-26T12:35:45.302Z",
+      "createdOn": "2023-08-08T15:18:23.946Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "sponsor": null,
+        "schedule": null,
+        "parent-event": "68ad9227e60beed1c7e40d3a",
+        "rank": 2,
+        "slottings": [
+          "68ada29ec5f674c57072dc64",
+          "68ada39732c909752297b90f",
+          "68ada48ffc476a8bb1b84fed",
+          "68ada89865e2fb3ca4aac8e8",
+          "68ada8d6cdf2fd1ec2838c03",
+          "68ada9758efaceb435bce87f"
+        ],
+        "name": "3:00 PM",
+        "slug": "3-00"
+      }
+    }
+  ]
+}

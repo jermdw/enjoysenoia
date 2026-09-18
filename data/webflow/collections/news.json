@@ -1,0 +1,520 @@
+{
+  "collection": {
+    "id": "62c89378d6e12986b1cdd9c2",
+    "displayName": "News",
+    "singularName": "News",
+    "slug": "news",
+    "createdOn": "2021-08-01T21:04:00.083Z",
+    "lastUpdated": "2025-07-19T15:53:46.241Z",
+    "fields": [
+      {
+        "id": "2487c0c8c389ed8abe99f41a387aa96c",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Switch",
+        "slug": "test-item",
+        "displayName": "test news item",
+        "helpText": "view testing news items here: https://www.enjoysenoia.com/newstest password is newstest",
+        "validations": null
+      },
+      {
+        "id": "e29f8e9b428e839f948e8ecc2146ca85",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Switch",
+        "slug": "merchants-only-news-item",
+        "displayName": "Merchants Only News Item",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "a39356505a930aa4886814b250569205",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Reference",
+        "slug": "parent-event",
+        "displayName": "parent event",
+        "helpText": null,
+        "validations": {
+          "collectionId": "62c89378d6e129a34ecdda02"
+        }
+      },
+      {
+        "id": "2a4f3e47cf059318ed38554d5549e244",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "RichText",
+        "slug": "post-body",
+        "displayName": "Post Body",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "c09025cf20ae09f94712b8820ad0cd62",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "PlainText",
+        "slug": "post-summary",
+        "displayName": "Post Summary",
+        "helpText": "A summary of the blog post that appears on blog post grid",
+        "validations": {
+          "singleLine": false
+        }
+      },
+      {
+        "id": "d0400726c47e4438c41f6760f39d3c0e",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Image",
+        "slug": "main-image",
+        "displayName": "Main Image",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "bbea5d46827590063250920b824ee336",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "PlainText",
+        "slug": "main-image-alt-text",
+        "displayName": "Main Image Alt Text",
+        "helpText": null,
+        "validations": {
+          "singleLine": true
+        }
+      },
+      {
+        "id": "a13e996f77282b6aac9fb34935c3a2bf",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Image",
+        "slug": "thumbnail-image",
+        "displayName": "Thumbnail image",
+        "helpText": "Smaller version of main image that is used on blog post grid",
+        "validations": null
+      },
+      {
+        "id": "db67b7f3551974de745f5b7e265bcdbc",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "PlainText",
+        "slug": "thumbnail-image-alt-text",
+        "displayName": "Thumbnail Image Alt Text",
+        "helpText": null,
+        "validations": {
+          "singleLine": true
+        }
+      },
+      {
+        "id": "d67d02ce249b1c8e2e12b8390135c2ad",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Switch",
+        "slug": "featured",
+        "displayName": "Featured?",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "170fc4b1c56b069a99c7a87b53afcb38",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "DateTime",
+        "slug": "publish-date",
+        "displayName": "Publish date",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "7205ec87c4b0a4b0dd302eb5d175ebfb",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "name",
+        "displayName": "Name",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256
+        }
+      },
+      {
+        "id": "8c64ad2251a2b2de05a1b1e9c9971ce8",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "slug",
+        "displayName": "Slug",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256,
+          "pattern": {},
+          "messages": {
+            "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+            "maxLength": "Must be less than 256 characters"
+          }
+        }
+      }
+    ],
+    "fieldGroups": []
+  },
+  "counts": {
+    "total": 12,
+    "live": 6,
+    "draft": 4,
+    "archived": 3
+  },
+  "items": [
+    {
+      "id": "6a543a1d45b14bcbce351f20",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2026-07-13T01:09:29.317Z",
+      "lastUpdated": "2026-07-13T01:09:29.317Z",
+      "createdOn": "2026-07-13T01:06:37.279Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "test-item": false,
+        "merchants-only-news-item": false,
+        "parent-event": null,
+        "post-body": "<p>Thank you to the amazing Senoia community for showing up, celebrating, and making this weekend so special! A huge thank you to the City of Senoia and the Downtown Development Authority for their dedication in making this celebration possible.</p><p>From our moving flag ceremony honoring our new Veterans Memorial, to the Freedom Run 5K, an unforgettable performance by David Lee Murphy, Six Piece Suits, and spectacular fireworks lighting up the sky both nights, every moment reflected what makes Senoia such a special place.</p><p>Thank you to everyone who volunteered, participated, sponsored, attended, and celebrated with us. </p><p>Photos by Emmanuel Brooks</p><p>‍</p><p><a href=\"https://photography-byemmanuel.pixieset.com/250thcelebrationsenoia/\"><code>CLICK&nbsp;HERE TO&nbsp;VIEW&nbsp;THE&nbsp;FULL&nbsp;ALBUM! </code></a></p><p>‍</p>",
+        "post-summary": "Thank you to the amazing Senoia community for showing up, celebrating, and making this weekend so special! Enjoy a few America 250 Weekend Highlights captured by Emmanuel Brooks Photography! ",
+        "main-image": {
+          "fileId": "6a5439e045b14bcbce351050",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6a5439e045b14bcbce351050_Fat%20tuesday%20(1200%20x%20628%20px)%20(25).jpg",
+          "alt": null
+        },
+        "main-image-alt-text": null,
+        "thumbnail-image": {
+          "fileId": "6a5439e045b14bcbce351050",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6a5439e045b14bcbce351050_Fat%20tuesday%20(1200%20x%20628%20px)%20(25).jpg",
+          "alt": null
+        },
+        "thumbnail-image-alt-text": null,
+        "featured": false,
+        "publish-date": null,
+        "name": "America 250 Highlights ",
+        "slug": "america-250-highlights"
+      }
+    },
+    {
+      "id": "68dc8104d13d7106fb1abc42",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-10-01T01:16:52.088Z",
+      "lastUpdated": "2025-10-01T01:16:52.088Z",
+      "createdOn": "2025-10-01T01:16:52.088Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "test-item": false,
+        "merchants-only-news-item": false,
+        "parent-event": "67c64e03e47536f733a6afc6",
+        "post-body": "<h3><a href=\"https://drive.google.com/drive/folders/1-N7-nAcHPxP8BuC4DLulqnhocXnrLfSr?usp=drive_link\">CLICK&nbsp;HERE</a>&nbsp;to view the photo album! </h3>",
+        "post-summary": "Enjoy these photos taken by Star's Mill Photography of our 20th Annual Senoia Car Show! 633 cars in our show this year!",
+        "main-image": {
+          "fileId": "68dc80e9d1020c52e7067256",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/68dc80e9d1020c52e7067256_Fat%20tuesday%20(1920%20x%201080%20px)%20(7).jpg",
+          "alt": null
+        },
+        "main-image-alt-text": null,
+        "thumbnail-image": null,
+        "thumbnail-image-alt-text": null,
+        "featured": false,
+        "publish-date": null,
+        "name": "20th Annual Senoia Car Show Highlights ",
+        "slug": "20th-annual-senoia-car-show-highlights"
+      }
+    },
+    {
+      "id": "68c08425fd581060c8a8c5d2",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-09-09T20:02:29.433Z",
+      "lastUpdated": "2025-09-09T20:02:29.433Z",
+      "createdOn": "2025-09-09T19:46:45.343Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "test-item": false,
+        "merchants-only-news-item": false,
+        "parent-event": null,
+        "post-body": "<p id=\"\"><a id=\"\" href=\"https://photography-byemmanuel.pixieset.com/porchfest2025/\">CLICK&nbsp;HERE</a>&nbsp;to view our full PorchFest album. Photography by Emmanuel Brooks!</p><p>‍</p><p id=\"\">We were blown away to see over 6,000 friends, neighbors, and music lovers out enjoying our town! Porchfest 2025 simply wouldn’t happen without the generosity of our sponsors, and we are so grateful for their support!!</p><p id=\"\">Special thanks to our <strong id=\"\">Presenting Sponsor: </strong>Brent Scarbrough &amp; Company, Inc.</p><p id=\"\">‍<strong id=\"\">Title Sponsors: </strong>TruNorth Pest Control• Peachtree Oral &amp; Facial Surgery • JW Collection</p><p id=\"\"><strong id=\"\">Gold Sponsors: </strong>Turin Pest Control • Senoia Enterprises, Inc. • Jeff Lindsey Communities</p><p id=\"\"><strong id=\"\">Silver Sponsors: </strong>Nic &amp; Norman's • Maguires Irish Pub • JDC Homes, LLC • Renewal by Andersen</p><p id=\"\"><strong id=\"\">Porch Sponsors: </strong>The Classic Market &amp; Wine Shoppe • Wade Law Office • The UPS Store Senoia • Bistro Hilary • Borgo Italia • Red Dahlia Salon • Alsies of Peachtree City • The Grand Barber • Wild Birds Unlimited • Senor Taco • Senoia Family Dentistry • Andreone Sports &amp; Family Chiropractic • Senoia Beer Company • Senoia Coffee</p><p id=\"\"><strong id=\"\">Kids Area Sponsors: </strong>Senoia Bicycle • The UPS Store Senoia</p><p><strong>Water Sponsor: </strong>John Wood Realtor</p><p id=\"\">Show these businesses some love, stop by, shop local, and grab a bite! Visit www.enjoysenoia.com/events for information on upcoming events and email events@enjoysenoia.com for sponsorship opportunities!</p><p id=\"\"> </p>",
+        "post-summary": "A celebration of community, local talent, and neighborly love. Our 4th Annuel PorchFest was a huge success - please enjoy a few highlights from the day!",
+        "main-image": {
+          "fileId": "68c08419a41638d40641ae2a",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/68c08419a41638d40641ae2a_IMG_3519.JPG",
+          "alt": null
+        },
+        "main-image-alt-text": null,
+        "thumbnail-image": null,
+        "thumbnail-image-alt-text": null,
+        "featured": false,
+        "publish-date": null,
+        "name": "Senoia PorchFest 2025 Highlights",
+        "slug": "senoia-porchfest-2025-highlights"
+      }
+    },
+    {
+      "id": "67a2c46ea601848af9b58b43",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-03-15T01:18:21.140Z",
+      "lastUpdated": "2025-03-15T01:18:21.140Z",
+      "createdOn": "2025-02-05T01:52:46.590Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "test-item": false,
+        "merchants-only-news-item": false,
+        "parent-event": null,
+        "post-body": "<h2 id=\"\"><strong id=\"\">We would like to congratulate the Downtown Senoia Business of the Month, Maguire's Irish Pub.</strong></h2><p id=\"\">‍</p><p id=\"\"> </p><p id=\"\"><strong id=\"\">Maguires Family and Friends restaurant and Irish Pub opened its doors on St. Patrick’s Day 2008.</strong></p><p id=\"\"><strong id=\"\"> </strong></p><p id=\"\"><strong id=\"\">Owned by Frank and Wendy Maguire, working along side their three children, they are now in their second generation of this true family business. It is their mission to honor their heritage by always providing the great food, great fun, and great service upon which their Grandmother and Grandfather prided themselves.</strong></p><p id=\"\"><strong id=\"\"> </strong></p><p id=\"\"><strong id=\"\">Maguires has a menu that can make anyone happy, from Fish and Chips, to Cottage Pie, and have you had the Reuben Spring Rolls? ( My personal favorite). &nbsp;Their drink menu also has something for everyone, with a nice variety of beer and wine, and their handrafted cocktails such as the Irish Old Fashioned.</strong></p><p id=\"\"><strong id=\"\"> </strong></p><p id=\"\"><strong id=\"\">Happy Hour is daily from 2-6pm, where you can choose from discounted appetizers, and $4 house wines and cocktails, and select draft beer specials.</strong></p><p id=\"\"><strong id=\"\"> </strong></p><p id=\"\"><strong id=\"\">All of Senoia looks forward to the St. Patrick’s Day Shenanigans, and Maguires does not disappoint! This year the fun begins on Saturday, with Kegs and Eggs at 8am, and finishing the day with a performance by the Kelly Porter Irish Dancers at 6pm. The fun continues into Sunday, and then Monday is the big day, beginning at 8am, with events all day!</strong></p><p id=\"\"><strong id=\"\"> </strong></p><p id=\"\"><strong id=\"\">Downtown Senoia is fortunate to have such a great establishment that truly cares about its customers and their experience.</strong></p><p id=\"\">‍</p><figure class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div><img alt=\"__wf_reserved_inherit\" src=\"https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/67d4d5250cf71edec958ad29_maguires%202.jpg\" loading=\"lazy\"></div></figure><figure class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div><img alt=\"__wf_reserved_inherit\" src=\"https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/67d4d533e049f2658fae0f38_IMG_3752.JPG\" loading=\"lazy\"></div></figure><figure class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div><img alt=\"__wf_reserved_inherit\" src=\"https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/67d4d53ce049f2658fae18fc_IMG_3753.JPG\" loading=\"lazy\"></div></figure><figure class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div><img alt=\"__wf_reserved_inherit\" src=\"https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/67d4d5464631ff9109963ceb_IMG_3754.JPG\" loading=\"lazy\"></div></figure><figure class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div><img alt=\"__wf_reserved_inherit\" src=\"https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/67d4d54e91995539c44565c9_IMG_3755.JPG\" loading=\"lazy\"></div></figure>",
+        "post-summary": "Downtown Senoia's Business of the Month, Maguire's Irish Pub.",
+        "main-image": {
+          "fileId": "67d4d4a50cf71edec95821a9",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/67d4d4a50cf71edec95821a9_Fat%20tuesday%20(1200%20x%20628%20px)%20(6).jpg",
+          "alt": null
+        },
+        "main-image-alt-text": null,
+        "thumbnail-image": {
+          "fileId": "67d4d4a50cf71edec95821a9",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/67d4d4a50cf71edec95821a9_Fat%20tuesday%20(1200%20x%20628%20px)%20(6).jpg",
+          "alt": null
+        },
+        "thumbnail-image-alt-text": null,
+        "featured": false,
+        "publish-date": null,
+        "name": "Senoia's Business of the Month ",
+        "slug": "senoias-business-of-the-month"
+      }
+    },
+    {
+      "id": "66f4b56500484d6e04f41b90",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2024-09-26T17:17:30.449Z",
+      "lastUpdated": "2024-09-26T17:17:21.368Z",
+      "createdOn": "2024-09-26T01:14:13.768Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "test-item": false,
+        "merchants-only-news-item": false,
+        "parent-event": "65aae217a873062d22825f57",
+        "post-body": "<p id=\"\">Please <a id=\"\" href=\"https://drive.google.com/drive/folders/1_mX8Z32_bJj1aw4rzHJICMaoZRhixd1C?usp=sharing\">CLICK&nbsp;HERE</a>&nbsp;to view our 19th Annual Senoia Car Show highlights!&nbsp;</p><p>‍</p><h2 id=\"\">SENOIA CAR SHOW AWARD WINNERS:</h2><p id=\"\">Total Car Count: 620 </p><p id=\"\">Award • Last Name, First Name • Car Model </p><p>‍</p><p id=\"\">Best Car: Woodall Alan, 1951 Nash County Club </p><p id=\"\">Best Truck: Gosdin Brantley, 1957 Chevrolet Pickup</p><p id=\"\">Top 30: Andreone Chris, 1965 BMW Isetta</p><p id=\"\">Top 30: Arrington Alan, 1970 Plymouth Roadrunner</p><p id=\"\">Top 30: Baskette David, 1965 Pontiac Gto</p><p id=\"\">Top 30: Cawley Kent, 1969 Chevrolet Camaro</p><p id=\"\">Top 30: Colson Allen, 1960 Austin Healey 100-6</p><p id=\"\">Top 30: Cotton Randall, 1936 Ford Ramp Truck</p><p id=\"\">Top 30: Dalby Aaron, 1958 VW Beetle</p><p id=\"\">Top 30: Dickson Richard, 1963 mercury marauder</p><p id=\"\">Top 30: Edwards Alan, 1971 VW Bus</p><p id=\"\">Top 30: Farmer Frankie, 1955 Chevrolet Bel Air</p><p id=\"\">Top 30: Fields Jordan, 1935 Custom</p><p id=\"\">Top 30: Frear Charles, 1941 Ford Pickup</p><p id=\"\">Top 30: Griffey Joe, 1969 Volkswagen Beetle</p><p id=\"\">Top 30: Hurndon, Jeff, 1970 Mercury Cougar</p><p id=\"\">Top 30: Morris Michael, 1968 Ford F100</p><p id=\"\">Top 30: Osbourne Tim, 1966 Ford Bronco</p><p id=\"\">Top 30: Oslessy Jack, 1982 Chevy Crew cab</p><p id=\"\">Top 30: Peek Billy, 1969 Chevy Nova</p><p id=\"\">Top 30: Price John, 1968 CHEVY C10</p><p id=\"\">Top 30: Rand Taylor, 1992 Ford Mustang LX</p><p id=\"\">Top 30: Ray Scott, 1971 Dodge Super Bee</p><p id=\"\">Top 30: Robberts Cecil, 1965 Ford F1000</p><p id=\"\">Top 30: Roberts Richard, 1970 Nissan Bluebird Coupe</p><p id=\"\">Top 30: Rucker Greg, 1970 Plymouth Barracuda</p><p id=\"\">Top 30: Ryan Mark, 1966 Chevrolet Chevelle Malibu</p><p id=\"\">Top 30: Sorrells Wade, 1971 Chevrolet Nova</p><p id=\"\">Top 30: Turner Kenneth, 1973 Dodge Challenger</p><p id=\"\">Top 30: Weisel Scott, 1957 Ford Thunderbird</p><p id=\"\">Top 30: Wilson Jerry, 1972 Buick Gran Sport</p><p id=\"\">Top 30: Yokeley David, 1986 Chevrolet C10</p><p>‍</p>",
+        "post-summary": "Enjoy a few highlights from our 19th Annual Senoia Car Show! Over 600 classic cars filled the streets of Senoia. ",
+        "main-image": {
+          "fileId": "66f4b62ca64383b4b19c55bd",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/66f4b62ca64383b4b19c55bd_Untitled%20(1200%20x%20628%20px)%20(15).jpg",
+          "alt": null
+        },
+        "main-image-alt-text": null,
+        "thumbnail-image": null,
+        "thumbnail-image-alt-text": null,
+        "featured": true,
+        "publish-date": null,
+        "name": "Senoia Car Show 2024 Highlight Photos ",
+        "slug": "senoia-car-show-2024-highlight-photos"
+      }
+    },
+    {
+      "id": "66268a3d46d4f064fe67fd13",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": null,
+      "lastUpdated": "2024-09-26T01:07:25.777Z",
+      "createdOn": "2024-04-22T16:03:09.540Z",
+      "isArchived": true,
+      "isDraft": false,
+      "fieldData": {
+        "test-item": true,
+        "merchants-only-news-item": false,
+        "parent-event": "65aae217a873062d22825f57",
+        "post-body": "<p id=\"\">Hi, everyone. Steve Maloy here.&nbsp;Thank you for your interest&nbsp;in the 2024 Senoia Car Show.&nbsp;I'm&nbsp;going to give&nbsp;you a quick overview of your advance ticket options, including both reserved and non-reserved parking.&nbsp;Reserved options include Main Street, of course. To get started, scroll down the page until you see the Advanced Show Car Registrations button.<br><br>Click on this button, and you'll&nbsp;see a map of Main Street showing all the reserved parking spots available on Main Street.&nbsp;You can scroll up and down the map and see all the parking spaces on Upper Main Street and&nbsp;down to&nbsp;the stage on Lower Main Street.&nbsp;You'll be able to&nbsp;scroll the map, hover over any available parking spaces, and reserve up to two spots.<br><br>Each time you hover over a spot and select it, you'll&nbsp;be asked&nbsp;to confirm your selection.&nbsp;<br><br><br>For general non-reserved parking,&nbsp;simply&nbsp;choose the number of&nbsp;spaces you want in that drop-down box.<br><br>Once you have confirmed your selections, scroll to the bottom of the map and click on the green&nbsp;next&nbsp;key.&nbsp;<br><br>Fill&nbsp;out all the&nbsp;information required, including your contact information and information about each vehicle you have reserved.&nbsp;Please&nbsp;make sure&nbsp;you acknowledge that you have read and accepted the terms and conditions before you move on to the next screen and enter your credit or debit card and billing information.<br><br>If you need help, please call this Welcome Center at (770)&nbsp;727-9173.</p><p id=\"\">‍</p><p id=\"\">You can view the short video below for an overview.</p><p id=\"\">‍</p><div data-rt-embed-type='true'><div style=\"padding:56.25% 0 0 0;position:relative;\"><iframe src=\"https://player.vimeo.com/video/937811463?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write\" style=\"position:absolute;top:0;left:0;width:100%;height:100%;\" title=\"Show Car Reserved Parking\"></iframe></div><script src=\"https://player.vimeo.com/api/player.js\"></script></div><p id=\"\">‍</p>",
+        "post-summary": "Read instructions and see a short video on how to reserve show car parking on Main Street for the Senoia Car Show",
+        "main-image": {
+          "fileId": "66268a381b4fdbef1ba301cc",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/66268a381b4fdbef1ba301cc_pre-sale.00_00_28_36.Still007.jpg",
+          "alt": null
+        },
+        "main-image-alt-text": null,
+        "thumbnail-image": null,
+        "thumbnail-image-alt-text": null,
+        "featured": false,
+        "publish-date": null,
+        "name": "How to reserve a show car space for the 2024 Senoia Car Show",
+        "slug": "how-to-reserve-a-show-car-space-for-the-2024-senoia-car-show"
+      }
+    },
+    {
+      "id": "655510744e901ea0eee4467b",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": null,
+      "lastUpdated": "2023-12-11T00:29:57.543Z",
+      "createdOn": "2023-11-15T18:39:48.691Z",
+      "isArchived": true,
+      "isDraft": false,
+      "fieldData": {
+        "test-item": false,
+        "merchants-only-news-item": false,
+        "parent-event": null,
+        "post-body": "<p id=\"\">Thank you all for volunteering to make Light Up Senoia a great event! I sincerely appreciate your Christmas Spirit. We are several weeks away from the big day, but we need a few more volunteers. Many of you volunteer for several of our events during the year and I applaud your willingness to serve. Because our events are getting bigger and more numerous, we need to expand our volunteer core. You as a civic minded person are our best voice for this effort. Please consider asking a friend or a neighbor to join you. It’s fun and we need you. If you have any questions you can call me at anytime. If you need to switch things around so your friend or neighbor can work with you we can do that, just send me a note or call.<br><br>Thank you again for your dedication. See you there!<br><br>Here’s the volunteer link: <a id=\"\" href=\"https://volunteersignup.org/PMWA4\">https://volunteersignup.org/PMWA4<br><br>‍</a>Sincerely,<br>Jack Martin<br>Event Coordinator<br>404-925-2404<br>jackmartin76@gmail.com</p>",
+        "post-summary": "We are several weeks away from the big day, but we need a few more volunteers",
+        "main-image": {
+          "fileId": "65551065d2c33547d3bb6d7a",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/65551065d2c33547d3bb6d7a_VOLUNTEERS%20NEEDED%202.jpg",
+          "alt": null
+        },
+        "main-image-alt-text": null,
+        "thumbnail-image": null,
+        "thumbnail-image-alt-text": null,
+        "featured": false,
+        "publish-date": "2023-11-15T00:00:00.000Z",
+        "name": "Volunteers Needed for Light Up Senoia",
+        "slug": "volunteers-needed-for-light-up-senoia"
+      }
+    },
+    {
+      "id": "655390b291e6448b1f97ec23",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": null,
+      "lastUpdated": "2025-02-23T01:24:21.170Z",
+      "createdOn": "2023-11-14T15:22:26.583Z",
+      "isArchived": true,
+      "isDraft": false,
+      "fieldData": {
+        "test-item": false,
+        "merchants-only-news-item": false,
+        "parent-event": null,
+        "post-body": "<p id=\"\">There are two new photo galleries posted for participants and fans of the Senoia Car Show. There is a gallery for the 2023 Trophy Winners and a Gallery for the \"Best of the 2023 Senoia Car Show\". You'll find these galleries on our <a href=\"https://www.enjoysenoia.com/media\">media page</a>.</p>",
+        "post-summary": "There are two new photo galleries posted for participants and fans of the Senoia Car Show.",
+        "main-image": {
+          "fileId": "65538f9678afce9a45fc64fa",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/65538f9678afce9a45fc64fa_main.webp",
+          "alt": null
+        },
+        "main-image-alt-text": null,
+        "thumbnail-image": null,
+        "thumbnail-image-alt-text": null,
+        "featured": false,
+        "publish-date": "2023-11-01T00:00:00.000Z",
+        "name": "Best of 2023 Senoia Car Show Photo Galleries",
+        "slug": "best-of-2023-senoia-car-show-photo-galleries"
+      }
+    },
+    {
+      "id": "64945b832f1d32b7511591e8",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": null,
+      "lastUpdated": "2023-10-31T13:30:23.798Z",
+      "createdOn": "2023-06-22T14:32:35.467Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "test-item": false,
+        "merchants-only-news-item": false,
+        "parent-event": "6491b50d85a673a232d36f21",
+        "post-body": "<p id=\"\">Senoia PorchFest 2023 is starting to generate a flurry of local press activity. The Thursday, June 22, 2023 edition of <em id=\"\">GRIFFIN&nbsp;DAILY&nbsp;NEWS </em>posted a great article about Senoia&nbsp;PorchFest 2023. Subscribers to the <em id=\"\">GRIFFIN&nbsp;DAILY&nbsp;NEWS</em> can view the artcile <a id=\"\" href=\"https://www.griffindailynews.com/news/leisure/porchfest-returning-to-senoia/article_fe9d9b37-6d7e-5e21-9bcd-737c2b24ed8e.html\" target=\"_blank\">here</a>.</p><figure id=\"\" class=\"w-richtext-figure-type-image w-richtext-align-fullwidth\" style=\"max-width:2111px\" data-rt-type=\"image\" data-rt-align=\"fullwidth\" data-rt-max-width=\"2111px\"><div id=\"\"><img id=\"\" src=\"https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/649457c7f08e5fef2358f3b4_Griffin%20Daily%20News_06-22-23.jpg\" width=\"auto\" height=\"auto\" loading=\"lazy\"></div><figcaption id=\"\">GRIFFIN&nbsp;DAILY&nbsp;NEWS&nbsp;PAGE Featuring Senoia PorchFest 2023</figcaption></figure><p id=\"\">‍</p><p id=\"\"><a id=\"\" href=\"https://thecitizen.com/2023/06/21/porchfest-returns-to-senoia-in-september/\" target=\"_blank\"><em id=\"\">The Citizen</em></a><em id=\"\"> </em>also features a great article on the upcoming PorchFest event, as did the <a href=\"https://www.times-herald.com/arts_and_community/porchfest-returning-to-senoia/article_2e0f89a2-1140-11ee-87fa-b3b168411822.html\" target=\"_blank\">Newnan Times-Herald.</a></p>",
+        "post-summary": "Senoia PorchFest 2023 is starting to generate a flurry of local press activity including the Griffin Daily News, the Citizen, and the Newnan Times-Herald.",
+        "main-image": {
+          "fileId": "6494674c4e82ff02f855fd86",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/6494674c4e82ff02f855fd86_Breaking%20News%20Header%20%20(1200%20%C3%97%20628%20px).jpg",
+          "alt": null
+        },
+        "main-image-alt-text": null,
+        "thumbnail-image": null,
+        "thumbnail-image-alt-text": null,
+        "featured": true,
+        "publish-date": "2023-06-22T00:00:00.000Z",
+        "name": "Press Coverage of Upcoming Senoia PorchFest 2023",
+        "slug": "press-coverage-of-upcoming-senoia-porchfest-2023"
+      }
+    },
+    {
+      "id": "642adea7bebaf40b6e4244a2",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2026-01-20T19:37:31.040Z",
+      "lastUpdated": "2026-02-08T01:53:06.613Z",
+      "createdOn": "2023-04-03T14:11:51.441Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "test-item": false,
+        "merchants-only-news-item": false,
+        "parent-event": null,
+        "post-body": "<figure class=\"w-richtext-figure-type-image w-richtext-align-floatright\" style=\"max-width:200px\" data-rt-type=\"image\" data-rt-align=\"floatright\" data-rt-max-width=\"200px\"><div><img alt=\"\" src=\"https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6761ca307819eec4ae1c0335_642d573a8c2a7b144a41f323_banner-mock.jpeg\" width=\"auto\" height=\"auto\" loading=\"lazy\"></div><figcaption>Illustration of Banner</figcaption></figure><p>The Senoia Downtown Development Authority is proud to announce the availability of special commemorative banners to honor and recognize the valiant service of Veterans in the United States Armed Services. <br><br>Each custom-made banner will feature the Veteran's name, photograph, and branch of service, creating a powerful visual testament to their service. The banners will be displayed proudly, and prominently along Main Street. This initiative is designed to bring our community together in paying respect to the men and women who are serving and have served our nation with honor.<br><br>Each banner is $150<br>‍</p><p>Deadline: April 1st, 2026</p><p>‍<br>Please send a photo of your Veteran to chairman@enjoysenoia.com to be used on their banner. Preferably from Coweta County. </p><p>‍</p><p>Photos below are from previous years. In honor of Veterans Day in November, we host a brief ceremony to present these banners to each Veteran and/or their families.<br></p><figure class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div><img alt=\"__wf_reserved_inherit\" src=\"https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6761ca1353047b29a0fe548b_IMG_9494.JPG\" width=\"auto\" height=\"auto\" loading=\"lazy\"></div></figure><figure class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div><img alt=\"__wf_reserved_inherit\" src=\"https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/696afaca7146bbf942f0c32f_IMG_0900.JPG\" width=\"auto\" height=\"auto\" loading=\"lazy\"></div></figure><figure class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div><img alt=\"__wf_reserved_inherit\" src=\"https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/696afad97146bbf942f0c96f_IMG_0903.JPG\" width=\"auto\" height=\"auto\" loading=\"lazy\"></div></figure><figure class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div><img alt=\"__wf_reserved_inherit\" src=\"https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/696afaed98b357b4d14475d1_IMG_0901.JPG\" width=\"auto\" height=\"auto\" loading=\"lazy\"></div></figure><figure class=\"w-richtext-figure-type-image w-richtext-align-center\" data-rt-type=\"image\" data-rt-align=\"center\"><div><img alt=\"__wf_reserved_inherit\" src=\"https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/696afafd578028d6eb8cde40_IMG_0902.JPG\" width=\"auto\" height=\"auto\" loading=\"lazy\"></div></figure><div data-rt-embed-type='true'><!-- Ticket Tailor Widget. Paste this into your website where you want the widget to appear. Do not change the code or the widget may not work properly. -->\n<div class=\"tt-widget\"><div class=\"tt-widget-fallback\"><p><a href=\"https://www.tickettailor.com/checkout/new-session/id/7512301/chk/741b/\" target=\"_blank\">Click here to buy tickets</a><br /><small><a href=\"https://www.tickettailor.com?rf=wdg_121784\" class=\"tt-widget-powered\">Sell tickets online with Ticket Tailor</a></small></p></div><script src=\"https://cdn.tickettailor.com/js/widgets/min/widget.js\" data-url=\"https://www.tickettailor.com/checkout/new-session/id/7512301/chk/741b/\" data-type=\"inline\" data-inline-minimal=\"true\" data-inline-show-logo=\"false\" data-inline-bg-fill=\"false\" data-inline-inherit-ref-from-url-param=\"\" data-inline-ref=\"\"></script></div><!-- End of Ticket Tailor Widget --></div><p>‍</p>",
+        "post-summary": "The Senoia Downtown Development Authority is proud to announce the availability of special commemorative banners to honor and recognize the valiant service of Veterans in the United States Armed Services ",
+        "main-image": {
+          "fileId": "642d50f75fb1be63954a943c",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/642d50f75fb1be63954a943c_main2.jpg",
+          "alt": null
+        },
+        "main-image-alt-text": null,
+        "thumbnail-image": {
+          "fileId": "6761ca1353047b29a0fe548b",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6761ca1353047b29a0fe548b_IMG_9494.JPG",
+          "alt": null
+        },
+        "thumbnail-image-alt-text": null,
+        "featured": true,
+        "publish-date": "2026-01-20T00:00:00.000Z",
+        "name": "Commemorative Banners to Honor Local Veterans in Senoia",
+        "slug": "commemorative-banners-to-honor-local-veterans-in-senoia-support-future-memorial-project"
+      }
+    },
+    {
+      "id": "63fd617b75fed085871880f5",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": null,
+      "lastUpdated": "2023-06-02T14:19:03.719Z",
+      "createdOn": "2023-02-28T02:05:47.220Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "test-item": false,
+        "merchants-only-news-item": false,
+        "parent-event": null,
+        "post-body": "<p id=\"\">Senoia 2nd Annual Mardi Gras Pub Crawl Was a Smashing Success! The event sold out and a good time was had by all. We're already making plans for next year's event, and it will be bigger than ever with more tickets to sell, more food and more fun.</p><p><a href=\"/photo-galleries/2023-mardi-gras-pub-crawl\">See the photo gallery</a> from the event</p><p id=\"\">‍</p>",
+        "post-summary": "Senoia 2nd Annual Mardi Gras Pub Crawl Was a Smashing Success! The event sold out and a good time was had by all. We're already making plans for next year's event, and it will be bigger than ever with more tickets to sell, more food and more fun.",
+        "main-image": {
+          "fileId": "63fa58c14e9a8c6d496e10bb",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/63fa58c14e9a8c6d496e10bb_IMG_4413.jpg",
+          "alt": null
+        },
+        "main-image-alt-text": "2023 Mardi Gras Pub Crawl Photo Gallery",
+        "thumbnail-image": {
+          "fileId": "63fa58c14e9a8c6d496e10bb",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/63fa58c14e9a8c6d496e10bb_IMG_4413.jpg",
+          "alt": null
+        },
+        "thumbnail-image-alt-text": "2023 Mardi Gras Pub Crawl Photo Gallery",
+        "featured": false,
+        "publish-date": "2023-02-22T00:00:00.000Z",
+        "name": "Senoia 2nd Annual Mardi Gras Pub Crawl Was a Smashing Success!",
+        "slug": "senoia-2nd-annual-mardi-gras-pub-crawl-was-a-smashing-success"
+      }
+    },
+    {
+      "id": "6347f16c55d05a5cb3adff0f",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": null,
+      "lastUpdated": "2023-02-28T02:07:13.133Z",
+      "createdOn": "2022-10-13T11:07:24.987Z",
+      "isArchived": false,
+      "isDraft": true,
+      "fieldData": {
+        "test-item": false,
+        "merchants-only-news-item": false,
+        "parent-event": null,
+        "post-body": "<p id=\"\">The Senoia Downtown Development Authority (DDA) is proud to announce the availability of its new Enjoy Senoia website. This new site, found at both enjoysenoia.net and enjoysenoia.com, will be&nbsp;<em id=\"\">the place&nbsp;</em>to keep up with DDA and community events in downtown Senoia. <br><br>Residents, visitors, and downtown merchants can get the specifics on upcoming and past events, view DDA meeting agenda and minutes, see the latest Instagram posts from EnjoySenoia, and a downtown business directory complete with maps, business hours, contact information, and much more.<br><br>The new site will be growing and evolving as we gather feedback from site visitors and downtown businesses. Please send us your feedback, comments, and suggestions to webmaster@enjoysenoia.com.</p><p id=\"\">‍</p><p id=\"\">‍</p>",
+        "post-summary": "The Senoia Downtown Development Authority is proud to announce the availability of its new Enjoy Senoia website. ",
+        "main-image": {
+          "fileId": "635990a5fb05f74f69893b2b",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/635990a5fb05f74f69893b2b_new-site-responsive-1200-r2.jpg",
+          "alt": null
+        },
+        "main-image-alt-text": "Senoia Downtown Development Authority Website",
+        "thumbnail-image": null,
+        "thumbnail-image-alt-text": null,
+        "featured": true,
+        "publish-date": "2022-11-01T00:00:00.000Z",
+        "name": "Senoia Downtown Development Authority Launches new Website",
+        "slug": "senoia-downtown-development-authority-launches-new-website"
+      }
+    }
+  ]
+}

@@ -30,6 +30,15 @@ dist-ssr
 # Local Firebase web config (see .env.example and README-masquerade.md)
 .env
 .env.*
+*.env
 !.env.example
 firestore-debug.log
 ui-debug.log
+
+
+# Webflow migration: downloaded asset binaries (~560MB).
+# Re-fetch with: python3 scripts/webflow_pull.py --download-assets
+public/assets/webflow/
+
+# Scoped Webflow runs (--collections) write partial artifacts
+data/webflow/*.partial.json

@@ -1,0 +1,99 @@
+{
+  "collection": {
+    "id": "636d15a67d43073c1d44dc65",
+    "displayName": "Instagram posts",
+    "singularName": "Instagram post",
+    "slug": "instagram-posts",
+    "createdOn": "2022-11-10T15:15:50.603Z",
+    "lastUpdated": "2025-07-19T15:53:46.280Z",
+    "fields": [
+      {
+        "id": "64abe6addcc8100f7271f8b46dbcc610",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "RichText",
+        "slug": "caption",
+        "displayName": "caption",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "1d6f5fa84ca7d55d67d14df705c988e5",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Image",
+        "slug": "main-image",
+        "displayName": "main image",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "aa9e8beb610e4fbe8061e7a2f0c6bb01",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Image",
+        "slug": "image-thumbnail",
+        "displayName": "image thumbnail",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "650267c6379047bb9fa9cde8d12c3b41",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "DateTime",
+        "slug": "post-date",
+        "displayName": "post date",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "4ca81fc67077bd1dafa25bfbcee03e48",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Link",
+        "slug": "permalink",
+        "displayName": "permalink",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "e445e629769b508c36e20c225373a93c",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "name",
+        "displayName": "Name",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256
+        }
+      },
+      {
+        "id": "625168091f9de8a8bb29f6ee7ca6c4ce",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "slug",
+        "displayName": "Slug",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256,
+          "pattern": {},
+          "messages": {
+            "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+            "maxLength": "Must be less than 256 characters"
+          }
+        }
+      }
+    ],
+    "fieldGroups": []
+  },
+  "counts": {
+    "total": 0,
+    "live": 0,
+    "draft": 0,
+    "archived": 0
+  },
+  "items": []
+}

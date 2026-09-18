@@ -1,36 +1,47 @@
-import eventsData from '../../data/events.json';
-import businessesData from '../../data/businesses_detail.json';
-import newsData from '../../data/news.json';
-import pagesData from '../../data/pages.json';
+// Built from the Webflow CMS by scripts/webflow_transform.py - regenerate
+// rather than editing by hand.
+import eventsData from '../../data/site/events.json';
+import businessesData from '../../data/site/businesses.json';
+import newsData from '../../data/site/news.json';
+import galleriesData from '../../data/site/galleries.json';
+
+// An event stays upcoming until it ends; recurring events always are.
+// Decided at runtime so the split never goes stale between data rebuilds.
+const isUpcoming = (event, now = new Date()) => {
+  if (event.is_recurring) return true;
+  const last = event.end || event.start;
+  return !last || new Date(last) >= now;
+};
 
 // Local dataset getters with fallback and filtering helpers
 export const getEvents = () => {
-  return eventsData.filter(e => e.title && e.title !== "Upcoming Events");
+  return eventsData.filter((e) => isUpcoming(e));
+};
+
+export const getPastEvents = () => {
+  return eventsData.filter((e) => !isUpcoming(e)).reverse();
 };
 
 export const getBusinesses = () => {
   return businessesData;
 };
 
+// The /news listing shows articles followed by photo galleries. Galleries link
+// to /photo-galleries/..., not /news/..., so pages use isNewsArticle to keep
+// them out of the news routes.
 export const getNews = () => {
-  return newsData;
+  return [...getNewsArticles(), ...galleriesData];
 };
 
-// Some records in news.json are legacy photo galleries whose links point at
-// /photo-galleries/..., not /news/.... Mixing them into the news routes
-// produced URLs like /news//photo-galleries/<slug>.
 export const isNewsArticle = (item) => Boolean(item?.link?.startsWith('/news/'));
 
+// Merchants-only posts belong to the business portal, not the public site.
 export const getNewsArticles = () => {
-  return newsData.filter(isNewsArticle);
+  return newsData.filter((n) => !n.merchants_only);
 };
 
 export const getPhotoGalleryItems = () => {
-  return newsData.filter((item) => !isNewsArticle(item));
-};
-
-export const getPageContent = (path) => {
-  return pagesData[path] || null;
+  return galleriesData;
 };
 
 export const getBusinessBySlug = (slug) => {
@@ -53,6 +64,7 @@ export const getEventSlug = (event) => {
 export const getEventBySlug = (slug) => {
   if (!slug) return null;
   // Exact match: `includes` previously let a short slug resolve to a different
-  // event whose link merely contained it.
-  return getEvents().find(e => getEventSlug(e) === slug) || null;
+  // event whose link merely contained it. Searches past events too, so recap
+  // links from /past-events resolve.
+  return eventsData.find(e => getEventSlug(e) === slug) || null;
 };

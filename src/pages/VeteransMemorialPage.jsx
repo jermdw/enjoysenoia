@@ -1,6 +1,7 @@
 import React from 'react';
 import { Award, Heart, Mail, Flag } from 'lucide-react';
 import SEO from '../components/common/SEO';
+import { webflowAsset } from '../utils/webflowAsset';
 
 export default function VeteransMemorialPage() {
   return (
@@ -28,7 +29,7 @@ export default function VeteransMemorialPage() {
         <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-200">
           <div className="aspect-[21/9] bg-stone-900 overflow-hidden relative">
             <img
-              src="https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/642d50f75fb1be63954a943c_main2.jpg"
+              src={webflowAsset('site/642d50f75fb1be63954a943c_main2.jpg')}
               alt="Senoia Veterans Memorial Banners"
               className="w-full h-full object-cover"
             />

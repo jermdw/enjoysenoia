@@ -4,11 +4,12 @@ import { Building2, Search, Phone, Mail, MapPin, ExternalLink, Utensils, Shoppin
 import SEO from '../components/common/SEO';
 import { getBusinesses } from '../services/dataService';
 import { fuzzyMatchAny } from '../utils/fuzzySearch';
+import { webflowAsset } from '../utils/webflowAsset';
 
 /**
  * The directory's filters. `label` is also the value stored in each record's
- * `category` in data/businesses_detail.json, so a filter is an exact match on
- * one field rather than a guess made from the business name.
+ * `category` (hand-assigned in data/business_categories.json), so a filter is
+ * an exact match on one field rather than a guess made from the business name.
  *
  * A handful of records are still "Downtown Business", which belongs to no
  * filter on purpose: their category could not be established from the name or
@@ -135,7 +136,7 @@ export default function BusinessesPage() {
                 {/* Image / Header */}
                 <div className="relative aspect-[16/10] bg-stone-100 overflow-hidden">
                   <img
-                    src={biz.image || 'https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63c02a9715862f97c89838c5_Untitled%20(1200%20%C3%97%20628%20px)%20(16).webp'}
+                    src={biz.image || webflowAsset('site/63c02a9715862f97c89838c5_Untitled__1200___628_px___16_.webp')}
                     alt={biz.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"

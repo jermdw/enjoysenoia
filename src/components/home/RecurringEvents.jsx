@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Clock, ArrowRight, Utensils, Music } from 'lucide-react';
 import { getEvents } from '../../services/dataService';
+import { webflowAsset } from '../../utils/webflowAsset';
 
 export default function RecurringEvents() {
   const allEvents = getEvents();
@@ -33,7 +34,7 @@ export default function RecurringEvents() {
               >
                 <div className="sm:w-2/5 relative aspect-video sm:aspect-auto overflow-hidden bg-stone-200">
                   <img 
-                    src={evt.image || 'https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/67b7cebe7735727df5de2fe0_Fat%20tuesday%20(1200%20x%20628%20px)%20(4).jpg'} 
+                    src={evt.image || webflowAsset('site/67b7cebe7735727df5de2fe0_Fat_tuesday__1200_x_628_px___4_.jpg')} 
                     alt={evt.title}
                     className="w-full h-full object-cover"
                     loading="lazy"

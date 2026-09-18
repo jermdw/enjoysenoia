@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Sparkles, Building, Coffee, ShoppingBag, Landmark } from 'lucide-react';
+import { webflowAsset } from '../../utils/webflowAsset';
 
 const SLIDES = [
   {
-    url: 'https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6778a2b806669ece4ad44466_IMG_6746.JPG',
+    url: webflowAsset('site/6778a2b806669ece4ad44466_IMG_6746.JPG'),
     caption: 'Historic Downtown Senoia Main Street'
   },
   {
-    url: 'https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6778a2a90307872d8e18eb39_IMG_6744.JPG',
+    url: webflowAsset('site/6778a2a90307872d8e18eb39_IMG_6744.JPG'),
     caption: 'Charming Boutiques & Walkable Sidewalks'
   },
   {
-    url: 'https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6778a295d9caa54fa2900a09_IMG_6740.JPG',
+    url: webflowAsset('site/6778a295d9caa54fa2900a09_IMG_6740.JPG'),
     caption: 'Dining & Southern Hospitality'
   },
   {
-    url: 'https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6778a273acc77e915403cebc_IMG_6743.JPG',
+    url: webflowAsset('site/6778a273acc77e915403cebc_IMG_6743.JPG'),
     caption: 'Vibrant Community Celebrations'
   }
 ];

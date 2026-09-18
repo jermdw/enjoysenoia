@@ -1,0 +1,186 @@
+{
+  "collection": {
+    "id": "6365229b88802c29246456f1",
+    "displayName": "Home slider images",
+    "singularName": "Home slider image",
+    "slug": "home-slider-images",
+    "createdOn": "2022-11-04T14:32:59.330Z",
+    "lastUpdated": "2025-07-19T15:53:46.277Z",
+    "fields": [
+      {
+        "id": "46c34224fbbb095ceb62925b067390fe",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Image",
+        "slug": "image",
+        "displayName": "image",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "be6416f7a96318ea2e66e32a6ad13319",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "name",
+        "displayName": "Name",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256
+        }
+      },
+      {
+        "id": "2939becaf2bb9159bb5dece7a9721519",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "slug",
+        "displayName": "Slug",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256,
+          "pattern": {},
+          "messages": {
+            "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+            "maxLength": "Must be less than 256 characters"
+          }
+        }
+      }
+    ],
+    "fieldGroups": []
+  },
+  "counts": {
+    "total": 7,
+    "live": 7,
+    "draft": 0,
+    "archived": 0
+  },
+  "items": [
+    {
+      "id": "6778a2bb7f16b49b9641b1e3",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-01-04T02:53:47.892Z",
+      "lastUpdated": "2025-01-04T02:53:47.892Z",
+      "createdOn": "2025-01-04T02:53:47.892Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "image": {
+          "fileId": "6778a2b806669ece4ad44466",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6778a2b806669ece4ad44466_IMG_6746.JPG",
+          "alt": null
+        },
+        "name": "Building Photo",
+        "slug": "building-photo"
+      }
+    },
+    {
+      "id": "6778a2ac7f16b49b9641a1dc",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-01-04T02:53:32.434Z",
+      "lastUpdated": "2025-01-04T02:53:32.434Z",
+      "createdOn": "2025-01-04T02:53:32.434Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "image": {
+          "fileId": "6778a2a90307872d8e18eb39",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6778a2a90307872d8e18eb39_IMG_6744.JPG",
+          "alt": null
+        },
+        "name": "Boutique Photo #2",
+        "slug": "boutique-photo-2"
+      }
+    },
+    {
+      "id": "6778a2997d40a1827aa7adbe",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-01-04T02:53:13.266Z",
+      "lastUpdated": "2025-01-04T02:53:13.266Z",
+      "createdOn": "2025-01-04T02:53:13.266Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "image": {
+          "fileId": "6778a295d9caa54fa2900a09",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6778a295d9caa54fa2900a09_IMG_6740.JPG",
+          "alt": null
+        },
+        "name": "Brewery Photo",
+        "slug": "brewery-photo"
+      }
+    },
+    {
+      "id": "6778a288d9caa54fa28ff014",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-01-04T02:52:56.326Z",
+      "lastUpdated": "2025-01-04T02:52:56.326Z",
+      "createdOn": "2025-01-04T02:52:56.326Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "image": {
+          "fileId": "6778a283d9caa54fa28fe8a4",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6778a283d9caa54fa28fe8a4_IMG_6739.JPG",
+          "alt": null
+        },
+        "name": "Courtyard Photo ",
+        "slug": "courtyard-photo"
+      }
+    },
+    {
+      "id": "6778a276ad091ed7a970418b",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-01-04T02:52:38.571Z",
+      "lastUpdated": "2025-01-04T02:52:38.571Z",
+      "createdOn": "2025-01-04T02:52:38.571Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "image": {
+          "fileId": "6778a273acc77e915403cebc",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6778a273acc77e915403cebc_IMG_6743.JPG",
+          "alt": null
+        },
+        "name": "Storefront Photo",
+        "slug": "storefront-photo"
+      }
+    },
+    {
+      "id": "6778a2650307872d8e1898fd",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-01-04T02:52:21.803Z",
+      "lastUpdated": "2025-01-04T02:52:21.803Z",
+      "createdOn": "2025-01-04T02:52:21.803Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "image": {
+          "fileId": "6778a262b9dfdd4fa7a500db",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6778a262b9dfdd4fa7a500db_IMG_6752.JPG",
+          "alt": null
+        },
+        "name": "Boutique Photo",
+        "slug": "boutique-photo"
+      }
+    },
+    {
+      "id": "6778a229d9caa54fa28f8cf4",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-01-04T02:51:21.990Z",
+      "lastUpdated": "2025-01-04T02:51:21.990Z",
+      "createdOn": "2025-01-04T02:51:21.990Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "image": {
+          "fileId": "6778a2247d40a1827aa7424e",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6778a2247d40a1827aa7424e_IMG_6748.JPG",
+          "alt": null
+        },
+        "name": "Downtown Photo",
+        "slug": "downtown-photo"
+      }
+    }
+  ]
+}

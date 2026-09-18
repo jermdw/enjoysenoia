@@ -4,6 +4,7 @@ import { Clock, MapPin, ArrowLeft, Ticket, Share2, Sparkles } from 'lucide-react
 import SEO from '../components/common/SEO';
 import NotFoundNotice from '../components/common/NotFoundNotice';
 import { getEventBySlug } from '../services/dataService';
+import { webflowAsset } from '../utils/webflowAsset';
 
 export default function EventDetailPage() {
   const { slug } = useParams();
@@ -20,7 +21,7 @@ export default function EventDetailPage() {
     );
   }
 
-  // Events with their own site or box office set `ticket_url` in data/events.json.
+  // Events with their own site or box office set `ticket_url` in data/event_overrides.json.
   // The two legacy checks below stay until those entries carry the field too.
   const isCarShow = slug?.includes('car-show') || event?.title?.toLowerCase().includes('car show');
   const isPorchfest = slug?.includes('porchfest') || event?.title?.toLowerCase().includes('porchfest');
@@ -53,7 +54,7 @@ export default function EventDetailPage() {
         {/* Hero Image */}
         <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-xl bg-stone-900">
           <img
-            src={event?.image || 'https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6980f95eb898c8958cd58b4e_Senoia%E2%80%99s%20Memorial%20Day%20Celebration%20(1200%20x%20628%20px)%20(1200%20x%20628%20px)%20(5).jpg'}
+            src={event?.image || webflowAsset('site/6980f95eb898c8958cd58b4e_Senoia_s_Memorial_Day_Celebration__1200_x_628_px___1200_x_628_px___5_.jpg')}
             alt={event?.title}
             className="w-full h-full object-cover"
           />

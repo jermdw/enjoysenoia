@@ -1,0 +1,383 @@
+{
+  "collection": {
+    "id": "632c898888199635a7c70a97",
+    "displayName": "Board members",
+    "singularName": "Board member",
+    "slug": "board-members",
+    "createdOn": "2022-09-22T16:12:56.437Z",
+    "lastUpdated": "2025-07-19T15:53:46.279Z",
+    "fields": [
+      {
+        "id": "0568af350d2cba85f2d5e8a0160e0135",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "PlainText",
+        "slug": "title",
+        "displayName": "Title",
+        "helpText": null,
+        "validations": {
+          "singleLine": true
+        }
+      },
+      {
+        "id": "28bd3287241d9e17ecf410c6c4330608",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Email",
+        "slug": "email",
+        "displayName": "email",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "c82f80b968c8441a3bd65cfc2abbedb3",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Phone",
+        "slug": "office",
+        "displayName": "office",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "2dd98d881afedc3d3fbdd8b48b6ba62d",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Phone",
+        "slug": "mobile",
+        "displayName": "mobile",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "32ea1a9b81fe80c6af2ea89dba5c4bf8",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "RichText",
+        "slug": "full-bio",
+        "displayName": "full bio",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "6674e1adaf8acfb631300b7ae7635eb8",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "PlainText",
+        "slug": "bio-summary",
+        "displayName": "bio summary",
+        "helpText": null,
+        "validations": {
+          "singleLine": false
+        }
+      },
+      {
+        "id": "4cb9a8044ed74ff5fbebc9a27cea75b7",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Image",
+        "slug": "headshot",
+        "displayName": "headshot",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "9f0f2015370a1fee9b7c03a954b2563c",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Number",
+        "slug": "sort-order",
+        "displayName": "sort order",
+        "helpText": null,
+        "validations": {
+          "format": "integer",
+          "precision": 1,
+          "allowNegative": false
+        }
+      },
+      {
+        "id": "92886ef46588014a006a095582131097",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "PlainText",
+        "slug": "term",
+        "displayName": "Term",
+        "helpText": null,
+        "validations": {
+          "singleLine": true
+        }
+      },
+      {
+        "id": "89c9909fd5beb4cbe15080f9944b36ca",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Link",
+        "slug": "linkedin",
+        "displayName": "linkedin",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "4afc17b55f51823400e3fd2a197d4eab",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Link",
+        "slug": "facebook",
+        "displayName": "facebook",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "c45a7f786dab4eaf9f601c8525578ee7",
+        "isEditable": true,
+        "isRequired": false,
+        "type": "Link",
+        "slug": "twitter",
+        "displayName": "twitter",
+        "helpText": null,
+        "validations": null
+      },
+      {
+        "id": "51b3710632ba81da267da50e6ed42dcc",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "name",
+        "displayName": "Name",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256
+        }
+      },
+      {
+        "id": "23842ca894796eaea219cdf3e721e4c1",
+        "isEditable": true,
+        "isRequired": true,
+        "type": "PlainText",
+        "slug": "slug",
+        "displayName": "Slug",
+        "helpText": null,
+        "validations": {
+          "maxLength": 256,
+          "pattern": {},
+          "messages": {
+            "pattern": "Must be alphanumerical and not contain any spaces or special characters",
+            "maxLength": "Must be less than 256 characters"
+          }
+        }
+      }
+    ],
+    "fieldGroups": []
+  },
+  "counts": {
+    "total": 7,
+    "live": 7,
+    "draft": 0,
+    "archived": 0
+  },
+  "items": [
+    {
+      "id": "6850cc0db760f0c4fee4c753",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-06-17T01:59:41.543Z",
+      "lastUpdated": "2025-06-17T01:59:41.543Z",
+      "createdOn": "2025-06-17T01:59:41.543Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "title": "Economic Committee ",
+        "email": null,
+        "office": null,
+        "mobile": null,
+        "full-bio": null,
+        "bio-summary": null,
+        "headshot": {
+          "fileId": "6850cc0acf7db9b9d2365c86",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6850cc0acf7db9b9d2365c86_IMG_8333.jpg",
+          "alt": null
+        },
+        "sort-order": null,
+        "term": null,
+        "linkedin": null,
+        "facebook": null,
+        "twitter": null,
+        "name": "Chris Tigchelaar",
+        "slug": "chris-tigchelaar"
+      }
+    },
+    {
+      "id": "6850cbc08c394b5461268d58",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2025-06-17T01:58:24.781Z",
+      "lastUpdated": "2025-06-17T01:58:24.781Z",
+      "createdOn": "2025-06-17T01:58:24.781Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "title": "Secretary ",
+        "email": null,
+        "office": null,
+        "mobile": null,
+        "full-bio": null,
+        "bio-summary": null,
+        "headshot": {
+          "fileId": "6850cbaecf7db9b9d236324e",
+          "url": "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6850cbaecf7db9b9d236324e_image0%20(2).jpeg",
+          "alt": null
+        },
+        "sort-order": null,
+        "term": null,
+        "linkedin": null,
+        "facebook": null,
+        "twitter": null,
+        "name": "Poppy Lee",
+        "slug": "poppy-lee"
+      }
+    },
+    {
+      "id": "6601748a86c337a760666d39",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2024-07-04T13:13:15.603Z",
+      "lastUpdated": "2024-07-04T13:13:08.807Z",
+      "createdOn": "2024-03-25T12:56:42.679Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "title": "Treasurer",
+        "email": "treasurer@enjoysenoia.com",
+        "office": null,
+        "mobile": null,
+        "full-bio": null,
+        "bio-summary": null,
+        "headshot": {
+          "fileId": "66869fe1e294dc34c2aeba95",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/66869fe1e294dc34c2aeba95_doug.jpg",
+          "alt": null
+        },
+        "sort-order": null,
+        "term": null,
+        "linkedin": null,
+        "facebook": null,
+        "twitter": null,
+        "name": "Doug Lane",
+        "slug": "doug-lane"
+      }
+    },
+    {
+      "id": "6336f8a6c79866231e77ba32",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2024-04-16T00:57:50.165Z",
+      "lastUpdated": "2024-04-16T00:57:41.789Z",
+      "createdOn": "2022-09-30T14:09:42.855Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "title": "At-Large",
+        "email": "social@enjoysenoia.com",
+        "office": null,
+        "mobile": "770-776-9084",
+        "full-bio": null,
+        "bio-summary": null,
+        "headshot": {
+          "fileId": "661dcd03b53cd5f1a3ddb5fc",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/661dcd03b53cd5f1a3ddb5fc_IMG_4405.jpg",
+          "alt": null
+        },
+        "sort-order": 75,
+        "term": "01/2022 - 12/2026",
+        "linkedin": null,
+        "facebook": null,
+        "twitter": null,
+        "name": "Ashley Wood",
+        "slug": "ashley-wood"
+      }
+    },
+    {
+      "id": "6336f8a60240d26df408504a",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2022-10-28T10:06:43.489Z",
+      "lastUpdated": "2022-10-28T10:06:43.489Z",
+      "createdOn": "2022-09-30T14:09:42.832Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "title": "At-Large",
+        "email": "kadnolan@gmail.com",
+        "office": null,
+        "mobile": "404-226-3638",
+        "full-bio": null,
+        "bio-summary": null,
+        "headshot": {
+          "fileId": "635ba9b1a12926aa85137336",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/635ba9b1a12926aa85137336_kn.jpg",
+          "alt": null
+        },
+        "sort-order": 70,
+        "term": "05/2022 - 04/2026",
+        "linkedin": null,
+        "facebook": null,
+        "twitter": null,
+        "name": "Karen Nolan",
+        "slug": "karen-nolan"
+      }
+    },
+    {
+      "id": "6336f8a605f27517de4bc545",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2024-04-16T00:49:51.494Z",
+      "lastUpdated": "2024-04-16T00:49:38.073Z",
+      "createdOn": "2022-09-30T14:09:42.731Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "title": "Vice Chairperson",
+        "email": "georgiareeders@yahoo.com",
+        "office": null,
+        "mobile": "618-559-8997",
+        "full-bio": null,
+        "bio-summary": null,
+        "headshot": {
+          "fileId": "661dcb190ef4f95e2622cb6f",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/661dcb190ef4f95e2622cb6f_IMG_4403.jpg",
+          "alt": null
+        },
+        "sort-order": 80,
+        "term": "12/2019 - 11/2023",
+        "linkedin": null,
+        "facebook": null,
+        "twitter": null,
+        "name": "Steph Reeder",
+        "slug": "steph-reeder"
+      }
+    },
+    {
+      "id": "6336f8a6ad77ba84f7eec7a2",
+      "cmsLocaleId": "653ad6cae882f528b33dd03e",
+      "lastPublished": "2024-04-17T12:32:12.101Z",
+      "lastUpdated": "2024-04-17T12:31:59.507Z",
+      "createdOn": "2022-09-30T14:09:42.589Z",
+      "isArchived": false,
+      "isDraft": false,
+      "fieldData": {
+        "title": "Chairperson",
+        "email": "chairman@enjoysenoia.com",
+        "office": null,
+        "mobile": "770-880-3766",
+        "full-bio": null,
+        "bio-summary": null,
+        "headshot": {
+          "fileId": "661dcce0aa3228176bb81ffc",
+          "url": "https://uploads-ssl.webflow.com/62c89378d6e1292fdfcdd98a/661dcce0aa3228176bb81ffc_DDA-44.jpg",
+          "alt": null
+        },
+        "sort-order": 100,
+        "term": "10/2021 - 09/2025",
+        "linkedin": null,
+        "facebook": null,
+        "twitter": null,
+        "name": "April Anderson",
+        "slug": "april-anderson"
+      }
+    }
+  ]
+}

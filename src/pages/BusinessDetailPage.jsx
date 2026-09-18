@@ -4,6 +4,7 @@ import { Phone, Mail, Globe, MapPin, ArrowLeft, Facebook, Instagram, Share2 } fr
 import SEO from '../components/common/SEO';
 import NotFoundNotice from '../components/common/NotFoundNotice';
 import { getBusinessBySlug } from '../services/dataService';
+import { webflowAsset } from '../utils/webflowAsset';
 
 export default function BusinessDetailPage() {
   const { slug } = useParams();
@@ -40,7 +41,7 @@ export default function BusinessDetailPage() {
           {/* Hero Media */}
           <div className="relative aspect-[21/9] sm:aspect-[2/1] w-full bg-stone-900 overflow-hidden">
             <img
-              src={business?.image || 'https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63c02a9715862f97c89838c5_Untitled%20(1200%20%C3%97%20628%20px)%20(16).webp'}
+              src={business?.image || webflowAsset('site/63c02a9715862f97c89838c5_Untitled__1200___628_px___16_.webp')}
               alt={business?.name}
               className="w-full h-full object-cover"
             />

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Newspaper, Calendar, ArrowRight } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import { getNews, isNewsArticle } from '../services/dataService';
+import { webflowAsset } from '../utils/webflowAsset';
 
 export default function NewsPage() {
   const newsItems = getNews();
@@ -42,7 +43,7 @@ export default function NewsPage() {
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-stone-200">
                   <img
-                    src={item.image || 'https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/642d50f75fb1be63954a943c_main2.jpg'}
+                    src={item.image || webflowAsset('site/642d50f75fb1be63954a943c_main2.jpg')}
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"

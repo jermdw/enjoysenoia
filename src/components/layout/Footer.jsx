@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Clock, Phone, Mail, Facebook, Instagram, ShieldCheck } from 'lucide-react';
+import { webflowAsset } from '../../utils/webflowAsset';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -13,7 +14,7 @@ export default function Footer() {
           <div className="space-y-4">
             <Link to="/" className="inline-block">
               <img 
-                src="https://cdn.prod.website-files.com/62c89378d6e12946d6cdd965/6362abc02ae24e0e53b29093_enjoy%20senoia%20site%20logo%20footer.svg" 
+                src={webflowAsset('site/6362abc02ae24e0e53b29093_enjoy_senoia_site_logo_footer.svg')} 
                 alt="Enjoy Senoia" 
                 className="h-12 w-auto brightness-110"
               />
