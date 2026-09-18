@@ -7,8 +7,8 @@ import { fuzzyMatchAny } from '../utils/fuzzySearch';
 
 /**
  * The directory's filters. `label` is also the value stored in each record's
- * `category` in data/businesses_detail.json, so a filter is an exact match on
- * one field rather than a guess made from the business name.
+ * `category` (hand-assigned in data/business_categories.json), so a filter is
+ * an exact match on one field rather than a guess made from the business name.
  *
  * A handful of records are still "Downtown Business", which belongs to no
  * filter on purpose: their category could not be established from the name or

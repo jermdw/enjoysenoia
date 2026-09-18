@@ -3,6 +3,7 @@
 import eventsData from '../../data/site/events.json';
 import businessesData from '../../data/site/businesses.json';
 import newsData from '../../data/site/news.json';
+import galleriesData from '../../data/site/galleries.json';
 import pagesData from '../../data/pages.json';
 
 // An event stays upcoming until it ends; recurring events always are.
@@ -26,21 +27,22 @@ export const getBusinesses = () => {
   return businessesData;
 };
 
+// The /news listing shows articles followed by photo galleries. Galleries link
+// to /photo-galleries/..., not /news/..., so pages use isNewsArticle to keep
+// them out of the news routes.
 export const getNews = () => {
+  return [...getNewsArticles(), ...galleriesData];
+};
+
+export const isNewsArticle = (item) => Boolean(item?.link?.startsWith('/news/'));
+
+// Merchants-only posts belong to the business portal, not the public site.
+export const getNewsArticles = () => {
   return newsData.filter((n) => !n.merchants_only);
 };
 
-// Some records in news.json are legacy photo galleries whose links point at
-// /photo-galleries/..., not /news/.... Mixing them into the news routes
-// produced URLs like /news//photo-galleries/<slug>.
-export const isNewsArticle = (item) => Boolean(item?.link?.startsWith('/news/'));
-
-export const getNewsArticles = () => {
-  return newsData.filter(isNewsArticle);
-};
-
 export const getPhotoGalleryItems = () => {
-  return newsData.filter((item) => !isNewsArticle(item));
+  return galleriesData;
 };
 
 export const getPageContent = (path) => {

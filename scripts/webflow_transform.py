@@ -32,6 +32,21 @@ from zoneinfo import ZoneInfo
 REPO_ROOT = Path(__file__).resolve().parent.parent
 RAW_DIR = REPO_ROOT / "data" / "webflow"
 OUT_DIR = REPO_ROOT / "data" / "site"
+# Hand-assigned directory categories, keyed by business slug. These are the
+# labels BusinessesPage filters on, and they are finer than Webflow's own
+# taxonomy (which has no "Stay & Tours" or "Civic & Historic").
+CATEGORY_FILE = REPO_ROOT / "data" / "business_categories.json"
+UNCATEGORIZED = "Downtown Business"
+# Only for businesses added in Webflow after the hand-assigned list was made.
+# Entertainment maps to nothing on purpose: it spans tours, inns and venues,
+# and a wrong heading is worse than none.
+WEBFLOW_CATEGORY_FALLBACK = {
+    "Food/Drink": "Dining & Drinks",
+    "Retail": "Shopping & Retail",
+    "Services": "Services & Salons",
+    "Health/Beauty": "Health & Medical",
+    "Churches": "Civic & Historic",
+}
 
 LOCAL_TZ = ZoneInfo("America/New_York")
 DEFAULT_ASSET_BASE = "/assets/webflow"
@@ -246,8 +261,9 @@ def build_events(assets, index):
     return events
 
 
-def build_businesses(assets, index):
+def build_businesses(assets, index, report):
     raw = load_collection("downtown-business")
+    curated = json.loads(CATEGORY_FILE.read_text()) if CATEGORY_FILE.is_file() else {}
     businesses = []
 
     for item in raw["items"]:
@@ -255,7 +271,12 @@ def build_businesses(assets, index):
         if not is_live(item) or f.get("test-item"):
             continue
 
-        category = index.get(f.get("category") or "")
+        webflow_category = (index.get(f.get("category") or "") or {}).get("name") or ""
+        category = curated.get(f["slug"])
+        if category is None:
+            category = WEBFLOW_CATEGORY_FALLBACK.get(webflow_category, UNCATEGORIZED)
+            report.append(f"{f['slug']}: no hand-assigned category, "
+                          f"used {category!r} (Webflow: {webflow_category or 'none'})")
         street = ", ".join(p for p in (text(f.get("street-address-1")),
                                        text(f.get("street-address-2"))) if p)
         region = " ".join(p for p in (text(f.get("state")), text(f.get("zip"))) if p)
@@ -265,7 +286,7 @@ def build_businesses(assets, index):
             # --- fields the pages already read ---
             "name": text(f.get("name")),
             "slug": f["slug"],
-            "category": category["name"] if category else "",
+            "category": category,
             "phone": text(f.get("phone")),
             "email": text(f.get("email")),
             "website": f.get("website-url"),
@@ -276,6 +297,7 @@ def build_businesses(assets, index):
             "address": address,
             # --- additional fields ---
             "id": item["id"],
+            "webflow_category": webflow_category,
             "summary": text(f.get("summary-description")),
             "description_html": clean_html(f.get("full-description"), assets),
             "hours_html": clean_html(f.get("hours"), assets),
@@ -337,6 +359,46 @@ def build_news(assets, index):
     return news
 
 
+def build_galleries(assets, index):
+    """
+    Photo galleries, in the same card shape as news so the /news listing can
+    show them alongside articles (as it did with the scraped data).
+    """
+    raw = load_collection("photo-galleries")
+    galleries = []
+
+    for item in raw["items"]:
+        f = item["fieldData"]
+        if not is_live(item) or f.get("test-photo-gallery"):
+            continue
+
+        # Webflow caps a MultiImage field, so one gallery is split across
+        # gallery-images-1..10; flatten them back into one ordered list.
+        images = []
+        for n in range(1, 11):
+            images.extend(assets.images(f.get(f"gallery-images-{n}")))
+
+        event = index.get(f.get("event") or "")
+        galleries.append({
+            # --- fields the news cards read ---
+            "title": text(f.get("name")),
+            "date": "",
+            "summary": text(f.get("summary-description")) or "",
+            "image": assets.image(f.get("main-image")),
+            "link": f"/photo-galleries/{f['slug']}",
+            # --- additional fields ---
+            "id": item["id"],
+            "slug": f["slug"],
+            "description_html": clean_html(f.get("full-description"), assets),
+            "images": images,
+            "event_slug": event["slug"] if event else None,
+        })
+
+    # rank-order is unset on every gallery, so keep Webflow's collection order,
+    # which is also the order the old site listed them in.
+    return galleries
+
+
 # --------------------------------------------------------------------------
 
 def main():
@@ -348,10 +410,12 @@ def main():
     assets = AssetResolver(args.asset_base)
     index = json.loads((RAW_DIR / "item_index.json").read_text())
 
+    category_report = []
     outputs = {
         "events": build_events(assets, index),
-        "businesses": build_businesses(assets, index),
+        "businesses": build_businesses(assets, index, category_report),
         "news": build_news(assets, index),
+        "galleries": build_galleries(assets, index),
     }
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -360,6 +424,12 @@ def main():
             json.dumps(records, indent=2, ensure_ascii=False) + "\n"
         )
         print(f"  {name:<12} {len(records):>3} records -> data/site/{name}.json")
+
+    if category_report:
+        print(f"\n  {len(category_report)} businesses need a category in "
+              f"{CATEGORY_FILE.relative_to(REPO_ROOT)}:")
+        for line in category_report:
+            print(f"    {line}")
 
     if assets.unresolved:
         print(f"\n  WARNING: {len(assets.unresolved)} CDN URLs are not in the download plan "
