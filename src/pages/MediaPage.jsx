@@ -1,31 +1,32 @@
 import React from 'react';
 import { Camera } from 'lucide-react';
 import SEO from '../components/common/SEO';
+import { webflowAsset } from '../utils/webflowAsset';
 
 const GALLERIES = [
   {
     title: '20th Annual Senoia Car Show',
     date: '2026',
     count: '600+ Cars',
-    image: 'https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/68dc80e9d1020c52e7067256_Fat%20tuesday%20(1920%20x%201080%20px)%20(7).jpg'
+    image: webflowAsset('site/68dc80e9d1020c52e7067256_Fat_tuesday__1920_x_1080_px___7_.jpg')
   },
   {
     title: 'Senoia PorchFest Community Highlights',
     date: '2025 / 2026',
     count: '30+ Bands',
-    image: 'https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/68c08419a41638d40641ae2a_IMG_3519.JPG'
+    image: webflowAsset('site/68c08419a41638d40641ae2a_IMG_3519.JPG')
   },
   {
     title: 'America 250 & Memorial Celebrations',
     date: '2026',
     count: 'Community Gala',
-    image: 'https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6a5439e045b14bcbce351050_Fat%20tuesday%20(1200%20x%20628%20px)%20(25).jpg'
+    image: webflowAsset('site/6a5439e045b14bcbce351050_Fat_tuesday__1200_x_628_px___25_.jpg')
   },
   {
     title: 'Historic Downtown Senoia Streetscapes',
     date: 'Scenic Collection',
     count: 'Architecture & Dining',
-    image: 'https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6778a2b806669ece4ad44466_IMG_6746.JPG'
+    image: webflowAsset('site/6778a2b806669ece4ad44466_IMG_6746.JPG')
   }
 ];
 

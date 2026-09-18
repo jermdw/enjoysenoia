@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Instagram, ExternalLink } from 'lucide-react';
+import { webflowAsset } from '../../utils/webflowAsset';
 
 export default function InstagramEmbed() {
   useEffect(() => {
@@ -45,25 +46,25 @@ export default function InstagramEmbed() {
             {/* Fallback Instagram Teaser Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               <a href="https://www.instagram.com/enjoysenoia" target="_blank" rel="noopener noreferrer" className="group relative aspect-square rounded-xl overflow-hidden bg-stone-200">
-                <img src="https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6778a2b806669ece4ad44466_IMG_6746.JPG" alt="Instagram 1" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                <img src={webflowAsset('site/6778a2b806669ece4ad44466_IMG_6746.JPG')} alt="Instagram 1" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
                   <Instagram className="w-6 h-6" />
                 </div>
               </a>
               <a href="https://www.instagram.com/enjoysenoia" target="_blank" rel="noopener noreferrer" className="group relative aspect-square rounded-xl overflow-hidden bg-stone-200">
-                <img src="https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6778a2a90307872d8e18eb39_IMG_6744.JPG" alt="Instagram 2" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                <img src={webflowAsset('site/6778a2a90307872d8e18eb39_IMG_6744.JPG')} alt="Instagram 2" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
                   <Instagram className="w-6 h-6" />
                 </div>
               </a>
               <a href="https://www.instagram.com/enjoysenoia" target="_blank" rel="noopener noreferrer" className="group relative aspect-square rounded-xl overflow-hidden bg-stone-200">
-                <img src="https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6778a295d9caa54fa2900a09_IMG_6740.JPG" alt="Instagram 3" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                <img src={webflowAsset('site/6778a295d9caa54fa2900a09_IMG_6740.JPG')} alt="Instagram 3" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
                   <Instagram className="w-6 h-6" />
                 </div>
               </a>
               <a href="https://www.instagram.com/enjoysenoia" target="_blank" rel="noopener noreferrer" className="group relative aspect-square rounded-xl overflow-hidden bg-stone-200">
-                <img src="https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6778a273acc77e915403cebc_IMG_6743.JPG" alt="Instagram 4" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                <img src={webflowAsset('site/6778a273acc77e915403cebc_IMG_6743.JPG')} alt="Instagram 4" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
                   <Instagram className="w-6 h-6" />
                 </div>

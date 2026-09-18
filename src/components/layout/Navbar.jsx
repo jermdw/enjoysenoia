@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Calendar, Building2, FileText, Info, Shield, Landmark } from 'lucide-react';
+import { webflowAsset } from '../../utils/webflowAsset';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,7 +49,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
             <img 
-              src="https://cdn.prod.website-files.com/62c89378d6e12946d6cdd965/6362a03acb8c6b389861e276_enjoy%20senoia%20site%20logo.svg" 
+              src={webflowAsset('site/6362a03acb8c6b389861e276_enjoy_senoia_site_logo.svg')} 
               alt="Enjoy Senoia" 
               className="h-10 sm:h-12 w-auto transition-transform group-hover:scale-105"
             />

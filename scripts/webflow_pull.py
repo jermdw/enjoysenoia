@@ -46,6 +46,10 @@ CDN_URL_RE = re.compile(
 REPO_ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = REPO_ROOT / "data" / "webflow"
 COLLECTIONS_DIR = OUT_DIR / "collections"
+# Files the site's own code uses (logos, hero video, fallback images) that were
+# uploaded in the Webflow Designer rather than to the CMS, so neither the Assets
+# API nor any CMS field lists them. Components load them via webflowAsset().
+SITE_ASSETS_FILE = OUT_DIR / "site_assets.json"
 
 
 # --------------------------------------------------------------------------
@@ -301,6 +305,10 @@ def build_download_plan(manifest, referenced):
             continue
         plan[url] = {"localPath": f"public/assets/webflow/cms/{cms_local_name(url)}",
                      "size": 0, "source": "cms-field"}
+    site_assets = json.loads(SITE_ASSETS_FILE.read_text()) if SITE_ASSETS_FILE.is_file() else []
+    for url in sorted(site_assets):
+        plan[url] = {"localPath": f"public/assets/webflow/site/{cms_local_name(url)}",
+                     "size": 0, "source": "site"}
     return plan
 
 

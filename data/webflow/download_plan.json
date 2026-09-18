@@ -1395,9 +1395,9 @@
     "source": "cms-field"
   },
   "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/642d50f75fb1be63954a943c_main2.jpg": {
-    "localPath": "public/assets/webflow/cms/642d50f75fb1be63954a943c_main2.jpg",
+    "localPath": "public/assets/webflow/site/642d50f75fb1be63954a943c_main2.jpg",
     "size": 0,
-    "source": "cms-field"
+    "source": "site"
   },
   "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6435b0f031d30fccac3685ee_oja1.webp": {
     "localPath": "public/assets/webflow/cms/6435b0f031d30fccac3685ee_oja1.webp",
@@ -2305,9 +2305,9 @@
     "source": "cms-field"
   },
   "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6778a273acc77e915403cebc_IMG_6743.JPG": {
-    "localPath": "public/assets/webflow/cms/6778a273acc77e915403cebc_IMG_6743.JPG",
+    "localPath": "public/assets/webflow/site/6778a273acc77e915403cebc_IMG_6743.JPG",
     "size": 0,
-    "source": "cms-field"
+    "source": "site"
   },
   "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6778a283d9caa54fa28fe8a4_IMG_6739.JPG": {
     "localPath": "public/assets/webflow/cms/6778a283d9caa54fa28fe8a4_IMG_6739.JPG",
@@ -2315,19 +2315,19 @@
     "source": "cms-field"
   },
   "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6778a295d9caa54fa2900a09_IMG_6740.JPG": {
-    "localPath": "public/assets/webflow/cms/6778a295d9caa54fa2900a09_IMG_6740.JPG",
+    "localPath": "public/assets/webflow/site/6778a295d9caa54fa2900a09_IMG_6740.JPG",
     "size": 0,
-    "source": "cms-field"
+    "source": "site"
   },
   "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6778a2a90307872d8e18eb39_IMG_6744.JPG": {
-    "localPath": "public/assets/webflow/cms/6778a2a90307872d8e18eb39_IMG_6744.JPG",
+    "localPath": "public/assets/webflow/site/6778a2a90307872d8e18eb39_IMG_6744.JPG",
     "size": 0,
-    "source": "cms-field"
+    "source": "site"
   },
   "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6778a2b806669ece4ad44466_IMG_6746.JPG": {
-    "localPath": "public/assets/webflow/cms/6778a2b806669ece4ad44466_IMG_6746.JPG",
+    "localPath": "public/assets/webflow/site/6778a2b806669ece4ad44466_IMG_6746.JPG",
     "size": 0,
-    "source": "cms-field"
+    "source": "site"
   },
   "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/677ec379ea3826e391f00a3e_IMG_9672.JPEG": {
     "localPath": "public/assets/webflow/cms/677ec379ea3826e391f00a3e_IMG_9672.JPEG",
@@ -2430,9 +2430,9 @@
     "source": "cms-field"
   },
   "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/67b7cebe7735727df5de2fe0_Fat%20tuesday%20(1200%20x%20628%20px)%20(4).jpg": {
-    "localPath": "public/assets/webflow/cms/67b7cebe7735727df5de2fe0_Fat_tuesday__1200_x_628_px___4_.jpg",
+    "localPath": "public/assets/webflow/site/67b7cebe7735727df5de2fe0_Fat_tuesday__1200_x_628_px___4_.jpg",
     "size": 0,
-    "source": "cms-field"
+    "source": "site"
   },
   "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/67ca41556819bddf426e5d19_IMG_3439.jpg": {
     "localPath": "public/assets/webflow/cms/67ca41556819bddf426e5d19_IMG_3439.jpg",
@@ -2940,9 +2940,9 @@
     "source": "cms-field"
   },
   "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/68c08419a41638d40641ae2a_IMG_3519.JPG": {
-    "localPath": "public/assets/webflow/cms/68c08419a41638d40641ae2a_IMG_3519.JPG",
+    "localPath": "public/assets/webflow/site/68c08419a41638d40641ae2a_IMG_3519.JPG",
     "size": 0,
-    "source": "cms-field"
+    "source": "site"
   },
   "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/68d88bc2acf8d48f6e1b037c_Fat%20tuesday%20(1920%20x%201080%20px)%20(5).jpg": {
     "localPath": "public/assets/webflow/cms/68d88bc2acf8d48f6e1b037c_Fat_tuesday__1920_x_1080_px___5_.jpg",
@@ -3040,9 +3040,9 @@
     "source": "cms-field"
   },
   "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/68dc80e9d1020c52e7067256_Fat%20tuesday%20(1920%20x%201080%20px)%20(7).jpg": {
-    "localPath": "public/assets/webflow/cms/68dc80e9d1020c52e7067256_Fat_tuesday__1920_x_1080_px___7_.jpg",
+    "localPath": "public/assets/webflow/site/68dc80e9d1020c52e7067256_Fat_tuesday__1920_x_1080_px___7_.jpg",
     "size": 0,
-    "source": "cms-field"
+    "source": "site"
   },
   "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/68ddd5336393fea8f7393fd1_Movie%20Night%20Website%20(1).png": {
     "localPath": "public/assets/webflow/cms/68ddd5336393fea8f7393fd1_Movie_Night_Website__1_.png",
@@ -3450,9 +3450,9 @@
     "source": "cms-field"
   },
   "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6980f95eb898c8958cd58b4e_Senoia%E2%80%99s%20Memorial%20Day%20Celebration%20(1200%20x%20628%20px)%20(1200%20x%20628%20px)%20(5).jpg": {
-    "localPath": "public/assets/webflow/cms/6980f95eb898c8958cd58b4e_Senoia_s_Memorial_Day_Celebration__1200_x_628_px___1200_x_628_px___5_.jpg",
+    "localPath": "public/assets/webflow/site/6980f95eb898c8958cd58b4e_Senoia_s_Memorial_Day_Celebration__1200_x_628_px___1200_x_628_px___5_.jpg",
     "size": 0,
-    "source": "cms-field"
+    "source": "site"
   },
   "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6987ef133e80f61de25dedcc_Fat%20tuesday%20(1200%20x%20628%20px)%20(10).jpg": {
     "localPath": "public/assets/webflow/cms/6987ef133e80f61de25dedcc_Fat_tuesday__1200_x_628_px___10_.jpg",
@@ -3990,9 +3990,9 @@
     "source": "cms-field"
   },
   "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6a5439e045b14bcbce351050_Fat%20tuesday%20(1200%20x%20628%20px)%20(25).jpg": {
-    "localPath": "public/assets/webflow/cms/6a5439e045b14bcbce351050_Fat_tuesday__1200_x_628_px___25_.jpg",
+    "localPath": "public/assets/webflow/site/6a5439e045b14bcbce351050_Fat_tuesday__1200_x_628_px___25_.jpg",
     "size": 0,
-    "source": "cms-field"
+    "source": "site"
   },
   "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6a597962b38a6a9996706de1_1FD12E33-64B2-4F92-BE46-65526FEF6768.JPEG": {
     "localPath": "public/assets/webflow/cms/6a597962b38a6a9996706de1_1FD12E33-64B2-4F92-BE46-65526FEF6768.JPEG",
@@ -10583,5 +10583,35 @@
     "localPath": "public/assets/webflow/cms/6516a1407614d7887e7126a6_show-car-paid-parking-parking.pdf",
     "size": 0,
     "source": "cms-field"
+  },
+  "https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/63c02a9715862f97c89838c5_Untitled%20(1200%20%C3%97%20628%20px)%20(16).webp": {
+    "localPath": "public/assets/webflow/site/63c02a9715862f97c89838c5_Untitled__1200___628_px___16_.webp",
+    "size": 0,
+    "source": "site"
+  },
+  "https://cdn.prod.website-files.com/62c89378d6e12946d6cdd965/63591d0e6197414d4ebc7427_enjoysenoia-hero-r2-poster-00001.jpg": {
+    "localPath": "public/assets/webflow/site/63591d0e6197414d4ebc7427_enjoysenoia-hero-r2-poster-00001.jpg",
+    "size": 0,
+    "source": "site"
+  },
+  "https://cdn.prod.website-files.com/62c89378d6e12946d6cdd965/63591d0e6197414d4ebc7427_enjoysenoia-hero-r2-transcode.mp4": {
+    "localPath": "public/assets/webflow/site/63591d0e6197414d4ebc7427_enjoysenoia-hero-r2-transcode.mp4",
+    "size": 0,
+    "source": "site"
+  },
+  "https://cdn.prod.website-files.com/62c89378d6e12946d6cdd965/63591d0e6197414d4ebc7427_enjoysenoia-hero-r2-transcode.webm": {
+    "localPath": "public/assets/webflow/site/63591d0e6197414d4ebc7427_enjoysenoia-hero-r2-transcode.webm",
+    "size": 0,
+    "source": "site"
+  },
+  "https://cdn.prod.website-files.com/62c89378d6e12946d6cdd965/6362a03acb8c6b389861e276_enjoy%20senoia%20site%20logo.svg": {
+    "localPath": "public/assets/webflow/site/6362a03acb8c6b389861e276_enjoy_senoia_site_logo.svg",
+    "size": 0,
+    "source": "site"
+  },
+  "https://cdn.prod.website-files.com/62c89378d6e12946d6cdd965/6362abc02ae24e0e53b29093_enjoy%20senoia%20site%20logo%20footer.svg": {
+    "localPath": "public/assets/webflow/site/6362abc02ae24e0e53b29093_enjoy_senoia_site_logo_footer.svg",
+    "size": 0,
+    "source": "site"
   }
 }

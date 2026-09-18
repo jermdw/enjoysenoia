@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Calendar, ArrowLeft } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import { getPastEvents } from '../services/dataService';
+import { webflowAsset } from '../utils/webflowAsset';
 
 export default function PastEventsPage() {
   const events = getPastEvents();
@@ -44,7 +45,7 @@ export default function PastEventsPage() {
             >
               <div className="relative aspect-video bg-stone-200 overflow-hidden">
                 <img
-                  src={evt.image || 'https://cdn.prod.website-files.com/62c89378d6e1292fdfcdd98a/6980f95eb898c8958cd58b4e_Senoia%E2%80%99s%20Memorial%20Day%20Celebration%20(1200%20x%20628%20px)%20(1200%20x%20628%20px)%20(5).jpg'}
+                  src={evt.image || webflowAsset('site/6980f95eb898c8958cd58b4e_Senoia_s_Memorial_Day_Celebration__1200_x_628_px___1200_x_628_px___5_.jpg')}
                   alt={evt.title}
                   className="w-full h-full object-cover"
                   loading="lazy"
