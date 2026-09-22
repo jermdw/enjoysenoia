@@ -52,6 +52,30 @@ The sign-up form tells entrants that residential addresses appear on a public
 map. The brief does not include that disclosure; it is there because the site
 publishes the data.
 
+### Verifying the rules
+
+The split above is only as good as `firestore.rules`, and neither `npm run lint`
+nor `npm run build` reads that file. `scripts/firestore-rules.test.mjs` exercises
+it against the Firestore emulator — 15 assertions, including that the public
+cannot read a sign-up, cannot self-approve onto the map, and that a map point
+cannot carry an email. Run it after touching the rules (needs Java):
+
+```bash
+npm i --no-save @firebase/rules-unit-testing@4.0.1
+npx -y firebase-tools@latest emulators:exec --only firestore --project rules-test "node scripts/firestore-rules.test.mjs"
+```
+
+It is not in `package.json` or CI: the repo has no test runner, and the 4.0.1
+pin is the last release peering `firebase ^11` (latest peers ^12 and npm refuses
+the install). All 15 pass as committed.
+
+### Indexes
+
+`getSignups({ category })` pairs a `where` with an `orderBy`, which Firestore can
+only serve from a composite index. It is declared in `firestore.indexes.json` and
+must be deployed before that path is used. The no-argument call the admin tab
+makes today needs no index.
+
 ## Content — the big one
 
 The brief says *"use existing copy word-for-word where possible"* and repeatedly

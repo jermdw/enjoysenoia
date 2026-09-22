@@ -33,6 +33,7 @@ import {
   doc,
   updateDoc,
   deleteDoc,
+  writeBatch,
 } from 'firebase/firestore';
 import { db } from './firebase';
 
@@ -104,7 +105,13 @@ export async function getMapPoints() {
  * at the rules layer, not here.
  * ------------------------------------------------------------------ */
 
-/** All sign-ups, newest first. Admin portal only. */
+/**
+ * All sign-ups, newest first. Admin portal only.
+ *
+ * Passing `category` adds a `where` alongside the `orderBy`, which Firestore
+ * can only serve from a composite index — it is declared in
+ * firestore.indexes.json and must be deployed before that path is used.
+ */
 export async function getSignups({ category } = {}) {
   const clauses = [collection(db, SIGNUPS)];
   if (category) clauses.push(where('category', '==', category));
@@ -126,7 +133,14 @@ export async function getSignups({ category } = {}) {
 export async function publishMapPoint({ signupId, address, lat = null, lng = null, kind = 'residential', label = null }) {
   if (!POINT_KINDS.includes(kind)) throw new Error(`Unknown map point kind: ${kind}`);
 
-  const ref = await addDoc(collection(db, MAP_POINTS), {
+  // Batched, so the pin and the sign-up's `published` mark land together. Two
+  // sequential writes could leave a live pin against a sign-up still reading
+  // `pending` — the admin would publish again and the same address would
+  // appear on the map twice, with no way to tell the duplicates apart.
+  const pointRef = doc(collection(db, MAP_POINTS));
+  const batch = writeBatch(db);
+
+  batch.set(pointRef, {
     address: address.trim(),
     lat,
     lng,
@@ -135,11 +149,12 @@ export async function publishMapPoint({ signupId, address, lat = null, lng = nul
     createdAt: serverTimestamp(),
   });
 
-  // Mark the source entry so it is not published twice.
   if (signupId) {
-    await updateDoc(doc(db, SIGNUPS, signupId), { status: 'published', mapPointId: ref.id });
+    batch.update(doc(db, SIGNUPS, signupId), { status: 'published', mapPointId: pointRef.id });
   }
-  return ref.id;
+
+  await batch.commit();
+  return pointRef.id;
 }
 
 /** Moves or relabels an existing pin — used for road closures and parking. */

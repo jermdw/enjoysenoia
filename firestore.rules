@@ -82,7 +82,13 @@ service cloud.firestore {
         && request.resource.data.submittedAt == request.time
         && request.resource.data.source is string
         && request.resource.data.source.size() <= 64;
-      allow read, update, delete: if isAdmin();
+      allow read, delete: if isAdmin();
+      // Shape is enforced on this path too, not just on create. The publish
+      // flow adds `mapPointId`, which is why it is listed here and not above:
+      // an admin may set it, a member of the public may not.
+      allow update: if isAdmin()
+        && request.resource.data.keys().hasOnly(
+             ['name', 'address', 'email', 'category', 'status', 'submittedAt', 'source', 'mapPointId']);
     }
 
     /*
