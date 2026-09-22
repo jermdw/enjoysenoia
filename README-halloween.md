@@ -7,7 +7,7 @@ treat, and the trick-or-treat map.
 Built from the "Senoia Halloween Website" brief by Shauna Mooney
 ([doc](https://docs.google.com/document/d/1N1ccK2zQT5IKVjAUL62nsvjZiPWrd9LWkPlwvWsSv-g/edit)).
 
-> **Live at <https://senoiahalloween.web.app>.** The structure, styling, form,
+> **Live at <https://senoiahalloween.com>.** The structure, styling, form,
 > map, Firestore rules, and deploy wiring are real, deployed, and verified.
 > What is *not* done is the copy — almost none of the words are the organizer's.
 > See [Content](#content-the-big-one) below.
@@ -150,20 +150,31 @@ build; the app picks the page from the hostname.
    in `enjoysenoia` and serves <https://senoiahalloween.web.app>. The name
    matches `.github/workflows/deploy.yml` and the `HALLOWEEN_HOST` regex in
    `src/App.jsx`.
-2. **The domain.** `senoiahalloween.com` is registered at Porkbun. The code
-   already expects exactly that name — the `HALLOWEEN_HOST` regex in
-   `src/App.jsx` and `seo.url` in `halloweenDetails.js` both match it, so **no
-   code change is needed.** What remains is console + DNS:
+2. ~~**The domain.**~~ **Live.** <https://senoiahalloween.com> serves the site
+   over HTTPS. `HALLOWEEN_HOST` in `src/App.jsx` and `seo.url` in
+   `halloweenDetails.js` already matched the name, so no code change was needed.
 
-   - Firebase console → Hosting → the **`senoiahalloween`** site (not
-     `enjoysenoia`) → Add custom domain → `senoiahalloween.com`. It issues a
-     one-off TXT verification token that cannot be known ahead of time.
-   - In Porkbun → Details → DNS for `senoiahalloween.com`, add exactly the A and
-     TXT records the console shows. Firebase Hosting's A record is
-     `199.36.158.100`; the TXT is the token from the step above.
-   - Add `www.senoiahalloween.com` as a redirect to the apex.
-   - Certificate issuance usually takes 15–60 minutes, occasionally up to 24
-     hours. The `.web.app` URL works throughout.
+   DNS at Porkbun, for reference:
+
+   | Type | Host | Value |
+   | --- | --- | --- |
+   | A | *(apex)* | `199.36.158.100` |
+   | TXT | *(apex)* | `hosting-site=senoiahalloween` |
+   | CNAME | `www` | `senoiahalloween.web.app` |
+
+   `www.senoiahalloween.com` is registered in Firebase as a **redirect** to the
+   apex rather than a second copy of the site. Its certificate is issued by
+   Firebase once its checker sees the CNAME, which can lag the DNS by up to 24
+   hours; until then `www` throws a certificate warning while the apex is fine.
+   Re-check with **Verify** on the site's Domains page in the console.
+
+   **Editing DNS at Porkbun — read this first.** Adding a record drops you into
+   a bulk editor whose warning reads: *"By unchecking this option your current
+   DNS records will be **deleted** and the records shown below will **replace**
+   your existing records."* The guard is a checkbox, `Do not delete existing
+   records`. If it is unchecked, submitting a single new record wipes the apex A
+   and TXT and takes the site down. Confirm it is ticked, and that the staged
+   table holds only the rows you meant to add, before submitting.
 3. ~~**Firestore must exist.**~~ **Done.** The `(default)` database (nam5,
    Standard edition, free tier) was created in `enjoysenoia` on 2026-09-18, and
    these rules and indexes were deployed on 2026-09-22. Verified against
