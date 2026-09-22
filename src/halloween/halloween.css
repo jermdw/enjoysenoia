@@ -1,0 +1,693 @@
+/*
+ * Scoped theme for the Senoia Halloween micro-site.
+ *
+ * Everything lives under `.hallo` so none of it leaks into the DDA site (which
+ * keeps its tokens in src/styles/index.css) or the Masquerade (`.masq`).
+ *
+ * FONTS — PROVISIONAL. The brief asks for a title face "as similar to Jeepers
+ * as possible". Jeepers is a commercial display font and is not web-licensed,
+ * so Creepster (Google Fonts, via @fontsource) stands in: same 1950s spooky-
+ * comic register, free to serve. To swap in the real thing, drop the .woff2 in
+ * src/halloween/fonts/, add an @font-face rule here, and repoint
+ * --hallo-font-display. Nothing else needs to change.
+ *
+ * PALETTE — purple / orange / black / white, per the brief.
+ */
+
+@import '@fontsource/creepster/400.css';
+
+.hallo {
+  --hallo-ink: #12091c;
+  --hallo-ink-soft: #1c1030;
+  --hallo-ink-raised: #271640;
+  --hallo-purple: #7b3ff2;
+  --hallo-purple-deep: #4c1d95;
+  --hallo-orange: #ff7518;
+  --hallo-orange-bright: #ff9a3c;
+  --hallo-white: #ffffff;
+  --hallo-bone: #f3ece2;
+  --hallo-mist: #b9a9d4;
+  --hallo-lime: #8fd14f;
+  --hallo-line: rgba(255, 117, 24, 0.28);
+
+  --hallo-font-display: 'Creepster', 'Jeepers', 'Chiller', cursive;
+  --hallo-font-body: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  background-color: var(--hallo-ink);
+  color: var(--hallo-bone);
+  font-family: var(--hallo-font-body);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+.hallo h1,
+.hallo h2,
+.hallo h3,
+.hallo .hallo-display {
+  font-family: var(--hallo-font-display);
+  font-weight: 400;
+  /* Creepster is drawn tight; a little tracking keeps caps legible at size. */
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+  color: var(--hallo-orange);
+}
+
+.hallo h1 {
+  font-size: clamp(2.75rem, 9vw, 6rem);
+  color: var(--hallo-white);
+  text-shadow: 0 0 24px rgba(123, 63, 242, 0.55);
+}
+
+.hallo h2 {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+}
+
+.hallo section {
+  padding: clamp(3rem, 8vw, 6rem) 1.25rem;
+  scroll-margin-top: 4.5rem;
+}
+
+.hallo .hallo-wrap {
+  max-width: 68rem;
+  margin-inline: auto;
+}
+
+.hallo .hallo-lede {
+  color: var(--hallo-mist);
+  font-size: 1.125rem;
+  max-width: 44rem;
+}
+
+/* Alternating section grounds, so five stacked sections don't read as one slab. */
+.hallo .hallo-band {
+  background-color: var(--hallo-ink-soft);
+}
+
+.hallo .hallo-card {
+  background-color: var(--hallo-ink-raised);
+  border: 1px solid var(--hallo-line);
+  border-radius: 0.875rem;
+  padding: 1.25rem;
+}
+
+/* ---- Buttons ---- */
+.hallo .hallo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--hallo-orange);
+  color: var(--hallo-ink);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.hallo .hallo-btn:hover:not(:disabled) {
+  background-color: var(--hallo-orange-bright);
+  transform: translateY(-1px);
+}
+
+.hallo .hallo-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.hallo .hallo-btn-ghost {
+  background-color: transparent;
+  color: var(--hallo-orange);
+  border: 1px solid var(--hallo-orange);
+}
+
+.hallo .hallo-btn-ghost:hover:not(:disabled) {
+  background-color: rgba(255, 117, 24, 0.12);
+  color: var(--hallo-orange-bright);
+}
+
+/* ---- Forms ---- */
+.hallo label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  margin-bottom: 0.35rem;
+  color: var(--hallo-bone);
+}
+
+.hallo input[type='text'],
+.hallo input[type='email'],
+.hallo textarea {
+  width: 100%;
+  background-color: var(--hallo-ink);
+  color: var(--hallo-bone);
+  border: 1px solid var(--hallo-line);
+  border-radius: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  font: inherit;
+}
+
+.hallo input:focus-visible,
+.hallo textarea:focus-visible,
+.hallo .hallo-btn:focus-visible,
+.hallo a:focus-visible {
+  outline: 2px solid var(--hallo-orange-bright);
+  outline-offset: 2px;
+}
+
+.hallo .hallo-field-note {
+  color: var(--hallo-mist);
+  font-size: 0.875rem;
+  margin-top: 0.35rem;
+}
+
+.hallo .hallo-error {
+  color: #ff9d9d;
+  font-size: 0.875rem;
+  margin-top: 0.35rem;
+}
+
+/* ---- Calendar ---- */
+.hallo .hallo-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.375rem;
+}
+
+.hallo .hallo-cal-dow {
+  text-align: center;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--hallo-mist);
+  padding-bottom: 0.25rem;
+}
+
+.hallo .hallo-cal-cell {
+  background-color: var(--hallo-ink-raised);
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  min-height: 4.75rem;
+  padding: 0.375rem;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+}
+
+.hallo .hallo-cal-cell.is-empty {
+  background-color: transparent;
+}
+
+.hallo .hallo-cal-cell.has-events {
+  border-color: var(--hallo-line);
+  cursor: pointer;
+}
+
+.hallo .hallo-cal-cell.is-halloween {
+  border-color: var(--hallo-orange);
+  box-shadow: 0 0 16px rgba(255, 117, 24, 0.3);
+}
+
+.hallo .hallo-cal-cell.is-selected {
+  border-color: var(--hallo-white);
+}
+
+.hallo .hallo-cal-num {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--hallo-mist);
+}
+
+.hallo .hallo-cal-dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  margin-top: 0.3rem;
+}
+
+.hallo .hallo-cal-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+}
+
+/* ---- Map ---- */
+.hallo .hallo-map {
+  height: clamp(20rem, 60vh, 34rem);
+  border-radius: 0.875rem;
+  border: 1px solid var(--hallo-line);
+  overflow: hidden;
+}
+
+/* Leaflet paints its own light chrome; tone the attribution to the theme. */
+.hallo .leaflet-container {
+  background-color: var(--hallo-ink-soft);
+  font-family: var(--hallo-font-body);
+}
+
+.hallo .hallo-pin {
+  border-radius: 50%;
+  border: 2px solid var(--hallo-white);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hallo * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---- Nav ----
+ * The link list is a row on desktop and a drawer under the bar on narrow
+ * screens; the toggle only exists in the second case.
+ */
+.hallo .hallo-nav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background-color: rgba(18, 9, 28, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--hallo-line);
+}
+
+.hallo .hallo-nav-inner {
+  max-width: 68rem;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  position: relative;
+}
+
+.hallo .hallo-nav-brand {
+  font-size: 1.5rem;
+  color: var(--hallo-orange);
+  text-decoration: none;
+}
+
+.hallo .hallo-nav-toggle {
+  display: none;
+  padding: 0.4rem 0.6rem;
+}
+
+.hallo .hallo-nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9375rem;
+}
+
+.hallo .hallo-nav-links a {
+  color: var(--hallo-bone);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.hallo .hallo-nav-links a:hover {
+  color: var(--hallo-orange);
+  border-bottom-color: var(--hallo-orange);
+}
+
+@media (max-width: 52rem) {
+  .hallo .hallo-nav-toggle {
+    display: inline-flex;
+  }
+
+  .hallo .hallo-nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background-color: var(--hallo-ink-soft);
+    border-bottom: 1px solid var(--hallo-line);
+  }
+
+  .hallo .hallo-nav-links[data-open='true'] {
+    display: flex;
+  }
+
+  .hallo .hallo-nav-links li {
+    border-top: 1px solid var(--hallo-line);
+  }
+
+  .hallo .hallo-nav-links a {
+    display: block;
+    padding: 0.85rem 1.25rem;
+  }
+}
+
+/* ---- Hero ----
+ * NEEDED: artwork from the organizer's slides. Until it arrives the hero is a
+ * gradient and a CSS moon, so the section has a shape to sit in.
+ */
+.hallo .hallo-hero {
+  background:
+    radial-gradient(circle at 78% 22%, rgba(255, 154, 60, 0.22), transparent 42%),
+    radial-gradient(circle at 20% 80%, rgba(123, 63, 242, 0.3), transparent 48%),
+    linear-gradient(170deg, var(--hallo-ink-soft), var(--hallo-ink));
+  text-align: center;
+  padding-block: clamp(4rem, 12vw, 8rem);
+}
+
+.hallo .hallo-hero-inner > * + * {
+  margin-top: 1rem;
+}
+
+.hallo .hallo-hero-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.8125rem;
+  color: var(--hallo-mist);
+}
+
+.hallo .hallo-hero-year {
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  color: var(--hallo-purple);
+}
+
+.hallo .hallo-hero-inner .hallo-lede {
+  margin-inline: auto;
+}
+
+.hallo .hallo-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 1.75rem;
+}
+
+.hallo .hallo-hero-actions a {
+  text-decoration: none;
+}
+
+/* ---- Legend ---- */
+.hallo .hallo-legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+  color: var(--hallo-mist);
+}
+
+.hallo .hallo-legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ---- Calendar detail panel ---- */
+.hallo .hallo-cal-detail {
+  margin-top: 1.5rem;
+}
+
+.hallo .hallo-cal-detail h3 {
+  color: var(--hallo-bone);
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.hallo .hallo-cal-detail ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.hallo .hallo-cal-detail strong {
+  color: var(--hallo-orange);
+}
+
+.hallo .hallo-cal-detail a {
+  color: var(--hallo-orange);
+}
+
+/* ---- Two-column section (contest) ---- */
+.hallo .hallo-split {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+@media (min-width: 56rem) {
+  .hallo .hallo-split {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+}
+
+/* ---- Form ---- */
+.hallo .hallo-form {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.hallo .hallo-fieldset {
+  border: 1px solid var(--hallo-line);
+  border-radius: 0.5rem;
+  padding: 0.85rem;
+}
+
+.hallo .hallo-fieldset legend {
+  padding-inline: 0.4rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.hallo .hallo-radio {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  font-weight: 400;
+  margin-bottom: 0.6rem;
+  cursor: pointer;
+}
+
+.hallo .hallo-radio:last-of-type {
+  margin-bottom: 0;
+}
+
+.hallo .hallo-radio input {
+  margin-top: 0.3rem;
+  accent-color: var(--hallo-orange);
+}
+
+.hallo .hallo-radio .hallo-field-note {
+  display: block;
+  margin-top: 0.1rem;
+}
+
+.hallo .hallo-privacy {
+  border-left: 3px solid var(--hallo-purple);
+  padding-left: 0.75rem;
+}
+
+/* ---- Fact lists (teaser, toddler) ---- */
+.hallo .hallo-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1rem;
+  margin: 1.75rem 0;
+}
+
+.hallo .hallo-facts dt {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  color: var(--hallo-mist);
+  margin-bottom: 0.25rem;
+}
+
+.hallo .hallo-facts dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* ---- Masquerade teaser ---- */
+.hallo .hallo-teaser {
+  border: 1px solid var(--hallo-line);
+  border-radius: 1rem;
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+  background:
+    radial-gradient(circle at 85% 0%, rgba(123, 63, 242, 0.25), transparent 55%),
+    var(--hallo-ink-soft);
+}
+
+.hallo .hallo-teaser-theme {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  color: var(--hallo-purple);
+  margin-top: 0.25rem;
+}
+
+.hallo .hallo-teaser a.hallo-btn {
+  text-decoration: none;
+}
+
+/* ---- Placeholder for sections still awaiting organizer content ---- */
+.hallo .hallo-todo {
+  color: var(--hallo-mist);
+  border-style: dashed;
+}
+
+/* ---- Map ---- */
+.hallo .hallo-map-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--hallo-mist);
+  background-color: var(--hallo-ink-soft);
+}
+
+.hallo .hallo-point-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.hallo .hallo-point-list strong {
+  display: block;
+  color: var(--hallo-orange);
+  text-transform: capitalize;
+}
+
+.hallo .hallo-prizes {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+
+/* ---- Footer ---- */
+.hallo .hallo-footer {
+  border-top: 1px solid var(--hallo-line);
+  padding: 2rem 1.25rem;
+  text-align: center;
+  color: var(--hallo-mist);
+  font-size: 0.9375rem;
+}
+
+.hallo .hallo-footer a {
+  color: var(--hallo-orange);
+}
+
+/* ---- Slide-content blocks ---- */
+.hallo .hallo-when {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--hallo-orange);
+  margin-top: 0.25rem;
+}
+
+.hallo .hallo-kicker {
+  font-weight: 700;
+  color: var(--hallo-white);
+}
+
+.hallo .hallo-keydates {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin: 1.25rem 0;
+  padding-left: 0.85rem;
+  border-left: 3px solid var(--hallo-orange);
+}
+
+.hallo .hallo-keydates strong {
+  color: var(--hallo-orange);
+}
+
+.hallo .hallo-keydates span {
+  color: var(--hallo-mist);
+  font-size: 0.9375rem;
+}
+
+.hallo h3 {
+  font-size: 1.375rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.hallo .hallo-bullets {
+  padding-left: 1.1rem;
+  margin: 0;
+  color: var(--hallo-bone);
+}
+
+.hallo .hallo-bullets li {
+  margin-bottom: 0.4rem;
+}
+
+.hallo .hallo-cat {
+  margin-top: 1.25rem;
+}
+
+.hallo .hallo-cat h3 {
+  margin-top: 0;
+}
+
+.hallo .hallo-cat p {
+  margin: 0;
+  color: var(--hallo-mist);
+}
+
+.hallo .hallo-winners {
+  margin-top: 1.5rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--hallo-lime);
+}
+
+.hallo .hallo-biz-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+}
+
+.hallo .hallo-biz-list li {
+  text-align: center;
+  font-weight: 600;
+}
+
+.hallo .hallo-perk {
+  margin-top: 1.5rem;
+  font-weight: 700;
+  font-style: italic;
+  border-color: var(--hallo-lime);
+}
+
+.hallo .hallo-closures {
+  margin: 1.5rem 0;
+  border-color: #e11d48;
+}
+
+.hallo .hallo-closures h3 {
+  margin-top: 0;
+  color: #ff9d9d;
+}
+
+.hallo .hallo-closures ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--hallo-mist);
+}

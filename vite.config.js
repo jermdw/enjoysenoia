@@ -17,7 +17,10 @@ export default defineConfig({
         manualChunks: {
           'vendor-react': ['react', 'react-dom', 'react-router-dom'],
           'vendor-firebase': ['firebase/app', 'firebase/firestore', 'firebase/auth', 'firebase/storage'],
-          'vendor-icons': ['lucide-react']
+          'vendor-icons': ['lucide-react'],
+          // Only reached through the lazy import in TrickOrTreating, so this
+          // chunk stays out of the initial load for every other page.
+          'vendor-map': ['leaflet', 'react-leaflet']
         }
       }
     },
