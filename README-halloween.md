@@ -7,9 +7,10 @@ treat, and the trick-or-treat map.
 Built from the "Senoia Halloween Website" brief by Shauna Mooney
 ([doc](https://docs.google.com/document/d/1N1ccK2zQT5IKVjAUL62nsvjZiPWrd9LWkPlwvWsSv-g/edit)).
 
-> **This is a scaffold, not a launch.** The structure, the styling, the form,
-> the map, and the deploy wiring are real and working. Almost none of the
-> *words* are the organizer's — see [Content](#content-the-big-one) below.
+> **Live at <https://senoiahalloween.web.app>.** The structure, styling, form,
+> map, Firestore rules, and deploy wiring are real, deployed, and verified.
+> What is *not* done is the copy — almost none of the words are the organizer's.
+> See [Content](#content-the-big-one) below.
 
 ## Where things live
 
@@ -145,27 +146,47 @@ build; the app picks the page from the hostname.
 
 ### Before this deploys
 
-1. **Create the Hosting site.** In the Firebase console, add a site to the
-   `enjoysenoia` project. `senoiahalloween` is the placeholder name used in
-   `.github/workflows/deploy.yml` and in the `HALLOWEEN_HOST` regex in
-   `src/App.jsx` — if you name it something else, change both.
-2. **The domain.** Being registered at Porkbun; the name is not chosen yet.
-   Once it is, update **three** places: the `HALLOWEEN_HOST` regex in
-   `src/App.jsx`, `seo.url` in `halloweenDetails.js`, and the Hosting custom
-   domain in the console. In Porkbun's DNS, add exactly the A and TXT records
-   the Firebase console shows, and point `www` at the apex.
-3. **Firestore must exist.** It still is not provisioned in this project — the
-   DDA newsletter form has the same problem. Until a database is created and
-   `firestore.rules` is deployed, every sign-up fails and the admin tab shows an
-   error. The form never reports success for an entry that was not stored.
+1. ~~**Create the Hosting site.**~~ **Done.** The `senoiahalloween` site exists
+   in `enjoysenoia` and serves <https://senoiahalloween.web.app>. The name
+   matches `.github/workflows/deploy.yml` and the `HALLOWEEN_HOST` regex in
+   `src/App.jsx`.
+2. **The domain.** `senoiahalloween.com` is registered at Porkbun. The code
+   already expects exactly that name — the `HALLOWEEN_HOST` regex in
+   `src/App.jsx` and `seo.url` in `halloweenDetails.js` both match it, so **no
+   code change is needed.** What remains is console + DNS:
+
+   - Firebase console → Hosting → the **`senoiahalloween`** site (not
+     `enjoysenoia`) → Add custom domain → `senoiahalloween.com`. It issues a
+     one-off TXT verification token that cannot be known ahead of time.
+   - In Porkbun → Details → DNS for `senoiahalloween.com`, add exactly the A and
+     TXT records the console shows. Firebase Hosting's A record is
+     `199.36.158.100`; the TXT is the token from the step above.
+   - Add `www.senoiahalloween.com` as a redirect to the apex.
+   - Certificate issuance usually takes 15–60 minutes, occasionally up to 24
+     hours. The `.web.app` URL works throughout.
+3. ~~**Firestore must exist.**~~ **Done.** The `(default)` database (nam5,
+   Standard edition, free tier) was created in `enjoysenoia` on 2026-09-18, and
+   these rules and indexes were deployed on 2026-09-22. Verified against
+   production: a public read of `halloween_map_points` returns 200, and a public
+   read of `halloween_signups` returns 403 PERMISSION_DENIED.
 
 Local target mapping, if you deploy by hand rather than through Actions:
 
 ```bash
 firebase target:apply hosting halloween senoiahalloween
+cp .env.example .env.production    # fill from the command in that file
 npm run build
 firebase deploy --only hosting:halloween
 ```
+
+`.env.production` matters: without it the build still succeeds, but the deployed
+site carries an empty Firebase config and every read and write fails in the
+visitor's browser. `vite build` does not catch this; only the CI check does.
+
+**Check `firebase use` first.** The CLI remembers an active project per
+directory and `.firebaserc` is gitignored, so a fresh clone or a new worktree can
+silently default to a *different project*. This bit during setup — the worktree
+defaulted to an unrelated project. Pass `--project enjoysenoia` explicitly.
 
 Stick to `--only hosting:<target>`. A bare `firebase deploy` would also push
 `firestore.rules` and `storage.rules` — check what is in them first.
