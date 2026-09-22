@@ -1,5 +1,5 @@
-# Builds the site and deploys it to both Firebase Hosting sites:
-#   push to main  -> live on enjoysenoia and thehalloweenmasquerade
+# Builds the site and deploys it to all three Firebase Hosting sites:
+#   push to main  -> live on enjoysenoia, thehalloweenmasquerade, senoiahalloween
 #   pull request  -> a preview channel on each, linked in a PR comment
 #
 # Needs, in Settings > Secrets and variables > Actions:
@@ -80,7 +80,7 @@ jobs:
       cancel-in-progress: ${{ github.event_name == 'pull_request' }}
     strategy:
       matrix:
-        target: [main, masquerade]
+        target: [main, masquerade, halloween]
     steps:
       - uses: actions/checkout@v5
         with:
@@ -101,7 +101,8 @@ jobs:
               "$FIREBASE_PROJECT": {
                 "hosting": {
                   "main": ["enjoysenoia"],
-                  "masquerade": ["thehalloweenmasquerade"]
+                  "masquerade": ["thehalloweenmasquerade"],
+                  "halloween": ["senoiahalloween"]
                 }
               }
             }

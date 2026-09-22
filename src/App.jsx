@@ -19,6 +19,7 @@ import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import AdminLoginPage from './pages/AdminLoginPage';
 import AdminPortalPage from './pages/AdminPortalPage';
 import MasqueradePage from './masquerade/MasqueradePage';
+import HalloweenPage from './halloween/HalloweenPage';
 
 /**
  * The Masquerade has its own domain, served from the same build. There the page
@@ -28,6 +29,19 @@ import MasqueradePage from './masquerade/MasqueradePage';
  * preview channels (thehalloweenmasquerade--<channel>.web.app).
  */
 const MASQUERADE_HOST = /(^|\.)thehalloweenmasquerade(\.com|\.firebaseapp\.com|(--[\w-]+)?\.web\.app)$/;
+
+/**
+ * The Senoia Halloween site works the same way: its own domain, served from the
+ * same build, page at the root so the address stays clean.
+ *
+ * TODO(domain): the apex is being registered at Porkbun and is not chosen yet.
+ * `senoiahalloween` below is a placeholder matching the Firebase Hosting site
+ * name — update BOTH this pattern and `seo.url` in
+ * src/halloween/data/halloweenDetails.js once the real domain is live.
+ * Until then the page is reachable at /halloween on the main site and on each
+ * PR preview channel, so it can be reviewed before any DNS exists.
+ */
+const HALLOWEEN_HOST = /(^|\.)senoiahalloween(\.com|\.firebaseapp\.com|(--[\w-]+)?\.web\.app)$/;
 
 /**
  * The DDA chrome (navbar + footer) as a layout route, so routes that carry
@@ -42,6 +56,15 @@ function DDALayout() {
 }
 
 export default function App() {
+  if (HALLOWEEN_HOST.test(window.location.hostname)) {
+    return (
+      <Routes>
+        <Route path="/" element={<HalloweenPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    );
+  }
+
   if (MASQUERADE_HOST.test(window.location.hostname)) {
     return (
       <Routes>
@@ -55,6 +78,7 @@ export default function App() {
     <Routes>
       {/* Standalone micro-site: no Enjoy Senoia navbar or footer. */}
       <Route path="/masquerade" element={<MasqueradePage />} />
+      <Route path="/halloween" element={<HalloweenPage />} />
 
       <Route element={<DDALayout />}>
         <Route path="/" element={<HomePage />} />

@@ -55,5 +55,55 @@ service cloud.firestore {
       allow read: if true;
       allow write: if isAdmin();
     }
+
+    /*
+     * Senoia Halloween — decorating contest sign-ups.
+     *
+     * Public create, NO public read. The document holds a name, a home address
+     * and an email together; anyone able to read it could harvest the lot. Only
+     * the address is ever published, and only via halloween_map_points below.
+     */
+    match /halloween_signups/{signupId} {
+      allow create: if request.resource.data.keys().hasOnly(
+          ['name', 'address', 'email', 'category', 'status', 'submittedAt', 'source'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 2
+        && request.resource.data.name.size() <= 120
+        && request.resource.data.address is string
+        && request.resource.data.address.size() >= 5
+        && request.resource.data.address.size() <= 200
+        && request.resource.data.email is string
+        && request.resource.data.email.size() > 3
+        && request.resource.data.email.size() <= 254
+        && request.resource.data.email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')
+        && request.resource.data.category in ['residential', 'business']
+        // Pinned, so a submitter cannot approve their own entry onto the map.
+        && request.resource.data.status == 'pending'
+        && request.resource.data.submittedAt == request.time
+        && request.resource.data.source is string
+        && request.resource.data.source.size() <= 64;
+      allow read, update, delete: if isAdmin();
+    }
+
+    /*
+     * Senoia Halloween — the public trick-or-treat map.
+     *
+     * Readable by everyone, writable only by an admin. An admin publishes an
+     * approved residential address here (address only — never the name or
+     * email from the sign-up) and adds road closures and parking directly.
+     *
+     * lat/lng may be null: an unplaced pin is skipped by the map, which is what
+     * lets the site run without a geocoding service.
+     */
+    match /halloween_map_points/{pointId} {
+      allow read: if true;
+      allow create, update: if isAdmin()
+        && request.resource.data.keys().hasOnly(
+             ['address', 'lat', 'lng', 'kind', 'label', 'createdAt'])
+        && request.resource.data.kind in ['residential', 'closure', 'parking']
+        && request.resource.data.address is string
+        && request.resource.data.address.size() <= 200;
+      allow delete: if isAdmin();
+    }
   }
 }

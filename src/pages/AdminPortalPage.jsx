@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Shield, Calendar, Building2, Newspaper, Mail, Plus, Trash2, Download, LogOut, AlertTriangle } from 'lucide-react';
+import { Shield, Calendar, Building2, Newspaper, Mail, Plus, Trash2, Download, LogOut, AlertTriangle, Ghost } from 'lucide-react';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import SEO from '../components/common/SEO';
 import { getEvents, getBusinesses, getNews } from '../services/dataService';
 import { auth, db } from '../services/firebase';
 import { isAuthorizedAdmin } from '../services/adminAccess';
+import HalloweenAdmin from './admin/HalloweenAdmin';
 
 export default function AdminPortalPage() {
   const [activeTab, setActiveTab] = useState('events');
@@ -174,7 +175,8 @@ export default function AdminPortalPage() {
             { id: 'events', label: `Events (${events.length})`, icon: Calendar },
             { id: 'businesses', label: `Merchant Directory (${businesses.length})`, icon: Building2 },
             { id: 'news', label: `News & Stories (${news.length})`, icon: Newspaper },
-            { id: 'subscribers', label: `Newsletter (${subscribers.length})`, icon: Mail }
+            { id: 'subscribers', label: `Newsletter (${subscribers.length})`, icon: Mail },
+            { id: 'halloween', label: 'Halloween', icon: Ghost }
           ].map(tab => {
             const Icon = tab.icon;
             return (
@@ -375,6 +377,9 @@ export default function AdminPortalPage() {
               </div>
             </div>
           )}
+
+          {/* HALLOWEEN TAB */}
+          {activeTab === 'halloween' && <HalloweenAdmin />}
         </div>
       </div>
 
