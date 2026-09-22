@@ -1,28 +1,25 @@
 /**
  * Single source of truth for the Senoia Halloween micro-site.
  *
- * Source: the "Senoia Halloween Website" brief from Shauna Mooney
- * (docs.google.com/document/d/1N1ccK2zQT5IKVjAUL62nsvjZiPWrd9LWkPlwvWsSv-g).
+ * Copy is transcribed from the organizer's slide deck (Shauna Mooney), five
+ * slides: title, decorating contest, toddler trick-or-treat, trick or treating,
+ * masquerade ball. The brief asked for the slide copy word-for-word, so most
+ * strings here are verbatim.
  *
  * Comment convention, same as src/masquerade/data/eventDetails.js:
- *   CONFIRM — the brief is ambiguous or self-contradictory; verify before launch.
- *   NEEDED  — waiting on an asset, account, or fact from the organizer.
- *
- * !! READ THIS BEFORE EDITING COPY !!
- * The brief says "use existing copy word-for-word where possible" and points at
- * slides. Those slides are images pasted inside the brief document itself —
- * there is no separate deck in Drive (searched by owner, by title, and across
- * shared presentations). Nothing here is the organizer's wording yet. Every
- * string marked NEEDED is placeholder written to be replaced, not approved copy.
+ *   CONFIRM — the source is ambiguous, contradictory, or looks like a typo.
+ *   NEEDED  — waiting on an asset or fact the slides do not carry.
  */
 
 export const event = {
   name: 'Senoia Halloween',
   year: 2026,
-  // October 2026 begins on a Thursday and Halloween falls on a Saturday.
-  // Cross-checked against the Masquerade's confirmed Saturday, October 24, 2026.
+  // October 2026 begins on a Thursday and Halloween falls on a Saturday, which
+  // matches every weekday the slides state (Fri Oct 16, Sat Oct 17, Sat Oct 24,
+  // Fri Oct 30, Sat Oct 31).
   halloweenISO: '2026-10-31',
-  tagline: 'A month of haunts, hayrides, and happy ghosts in downtown Senoia.', // NEEDED
+  // Verbatim from the title slide.
+  tagline: 'Masquerade // Home & Business Decorating Contest // Trick or Treating',
   town: 'Senoia, Georgia',
 };
 
@@ -30,94 +27,131 @@ export const event = {
  * Drives the October calendar grid. `date` is ISO; `kind` picks the dot colour
  * and legend grouping. Add a `href` to make the entry clickable.
  *
- * NEEDED: every entry below except the Masquerade is a placeholder standing in
- * for a date on the organizer's slides. Delete what isn't real.
+ * Every date below comes from the slides.
  */
 export const CALENDAR_KINDS = {
   masquerade: { label: 'Masquerade Ball', color: 'var(--hallo-purple)' },
   trickOrTreat: { label: 'Trick or Treating', color: 'var(--hallo-orange)' },
-  toddler: { label: 'Toddler Trick or Treat', color: 'var(--hallo-lime)' },
+  toddler: { label: 'Toddler Trick-or-Treat', color: 'var(--hallo-lime)' },
   contest: { label: 'Decorating Contest', color: 'var(--hallo-bone)' },
-  other: { label: 'Around Town', color: 'var(--hallo-mist)' },
 };
 
 export const calendarEvents = [
-  // Confirmed — pulled from the Masquerade micro-site's own data module.
+  {
+    date: '2026-10-16',
+    kind: 'contest',
+    title: 'Decorating contest entries close',
+    detail: 'Last day to submit your address for the home & business decorating contest.',
+    href: '#contest',
+  },
+  {
+    date: '2026-10-17',
+    kind: 'contest',
+    title: 'Decorating contest judged',
+    detail: 'Judges tour the entries.',
+    href: '#contest',
+  },
   {
     date: '2026-10-24',
     kind: 'masquerade',
-    title: 'The 3rd Annual Halloween Masquerade',
-    detail: 'Down the Rabbit Hole — The Stone Lodge at Marimac Lake',
+    title: '3rd Annual Masquerade Ball',
+    detail: 'Down the Rabbit Hole — drinks, dinner, and dancing.',
     href: 'https://thehalloweenmasquerade.com/',
   },
-  // NEEDED — placeholder dates. Confirm all of these against the slides.
   {
-    date: '2026-10-01',
-    kind: 'contest',
-    title: 'Decorating contest sign-ups open',
-    detail: 'Homes and businesses within golf-cart distance of Main Street.',
-  },
-  {
-    date: '2026-10-23',
-    kind: 'contest',
-    title: 'Decorating contest sign-ups close', // CONFIRM: deadline not in the brief
-    detail: 'Last day to be added to the map.',
-  },
-  {
-    date: '2026-10-29',
-    kind: 'contest',
-    title: 'Judging night', // CONFIRM
-    detail: 'Judges tour the route after dark.',
-  },
-  {
-    date: '2026-10-31',
+    date: '2026-10-30',
     kind: 'toddler',
-    title: 'Toddler Trick or Treat',
-    detail: 'Downtown merchants, early afternoon.', // CONFIRM: time not in the brief
+    title: 'Toddler Trick-or-Treat',
+    detail: '11am – 1pm around Main Street & Barnes Street, for ages 0–5.',
+    href: '#toddler',
   },
   {
     date: '2026-10-31',
     kind: 'trickOrTreat',
     title: 'Trick or Treating',
-    detail: 'Neighbourhood route — see the map.', // CONFIRM: time not in the brief
+    detail: 'Starting at dusk. Parking and the detailed map are on this site.',
+    href: '#trick-or-treating',
   },
 ];
 
 /**
  * Section 2 — the decorating contest and its sign-up form.
  *
- * The address note is quoted from the brief and should stay close to verbatim:
- * it is the eligibility rule, not decoration.
+ * Two independent choices on the form:
+ *   category        residential | business — who you are. Drives whether the
+ *                   address is eligible for the trick-or-treat map.
+ *   contestCategory spooky | pumpkinPals   — which judging lane you enter.
+ * They are separate fields precisely because they are separate questions; a
+ * business can enter either lane.
  */
 export const decoratingContest = {
-  heading: 'Home & Business Decorating Contest',
-  blurb: 'Deck out your porch, your storefront, or your whole front yard — then get yourself on the trick-or-treat map.', // NEEDED
-  addressNote: 'Must be within legal golf carting distance from Main Street.',
-  // Shown above the submit button. The brief does not include a disclosure, but
-  // residential entries are published on a public map, so entrants are told.
-  privacyNote:
-    'Residential entries appear as a pin on the public trick-or-treat map. Only the street address is shown — never your name or email.',
-  categories: [
-    { id: 'residential', label: 'Residential', hint: 'Your home. Appears on the trick-or-treat map.' },
-    { id: 'business', label: 'Business', hint: 'Your storefront. Judged separately from homes.' },
+  heading: 'Decorating Contest',
+  blurb: 'Celebrate the spooky season by decorating your home or business!',
+  judgedLabel: 'Judged Saturday October 17th',
+  deadlineLabel: 'Submit your address by Friday October 16th',
+  eligibility: [
+    'Any home or brick & mortar business within a 2 mile radius of historic Senoia',
+    'In other words - anyone within legal golf carting distance from Main Street',
   ],
-  prizes: [], // NEEDED: the brief mentions no prizes or judging criteria.
+  // The short form of the rule, shown under the address field.
+  addressNote: 'Must be within a 2 mile radius of historic Senoia — anyone within legal golf carting distance from Main Street.',
+  // The slides say "Winners will be featured on Enjoy Senoia and on the official
+  // Trick or Treating map!", while the written brief says every *residential*
+  // entry goes on the map. CONFIRM which is intended. Either works without a
+  // code change: an admin publishes addresses to the map one at a time, so the
+  // organizer can publish all residential entries or only the winners.
+  winnersNote: 'Winners will be featured on Enjoy Senoia and on the official Trick or Treating map!',
+  privacyNote:
+    'Residential entries may appear as a pin on the public trick-or-treat map. Only the street address is shown — never your name or email.',
+  categories: [
+    { id: 'residential', label: 'Home', hint: 'A residence. Eligible for the trick-or-treat map.' },
+    { id: 'business', label: 'Business', hint: 'A brick & mortar business.' },
+  ],
+  // Verbatim from the slide, including the "Category:" framing.
+  contestCategories: [
+    {
+      id: 'spooky',
+      label: 'Spooky',
+      blurb: 'This one’s for the horror fans - if your home/business is a real “Nightmare on Elm Street” and your decor is a bit more hide-your-eyes creepy zombie and scary stuff, this is your lane!',
+    },
+    {
+      id: 'pumpkinPals',
+      label: 'Pumpkin Pals',
+      blurb: 'Okay Charlie Brown, do you love all things fall and Great Pumpkin? Are black cats, jack-o-lanterns and bedsheet ghosts your style? Classic Halloween decorators should enter here!',
+    },
+  ],
 };
 
 /** Section 3 — teaser only. The Masquerade is its own site; do not restate facts here. */
 export const masqueradeTeaser = {
   heading: '3rd Annual Masquerade Ball',
-  blurb: 'An 18-and-over evening of dinner, dancing, and a few curious surprises.', // NEEDED
+  blurb: 'Drinks, dinner, and dancing! Senoia’s annual 18+ Halloween soiree.',
   ctaLabel: 'Visit the Masquerade site',
   url: 'https://thehalloweenmasquerade.com/',
 };
 
-/** Section 4 — toddler trick or treat. */
+/** Section 4 — toddler trick or treat. All verbatim from the slide. */
 export const toddlerTrickOrTreat = {
-  heading: 'Toddler Trick or Treat',
-  blurb: 'A daylight lap of downtown for the littlest ghosts, before the big kids come out.', // NEEDED
-  detailsNeeded: true, // NEEDED: date, time, route, participating merchants, age range.
-  facts: [], // Fill as { label, value } once the slides are transcribed.
+  heading: 'Toddler Trick-or-Treat',
+  whenLabel: 'Friday, October 30th 11am - 1pm',
+  kicker: 'Calling All Tiny Ghouls & Goblins!',
+  blurb: [
+    'Join us for Toddler Trick-or-Treating in Senoia, a Halloween celebration for our littlest residents ages 0-5!',
+    'Come dressed in your cutest, silliest, or spookiest Halloween costume for a trip trick-or treating around Main Street & Barnes Street!',
+  ],
+  // CONFIRM: the slide spells the last one "Greenhouse Mercntile" — corrected to
+  // "Mercantile" here. "Caycies" is left exactly as written; it may be the
+  // business's own styling rather than a missing apostrophe.
+  participatingBusinesses: [
+    'Classic Market',
+    'Caycies Boutique',
+    'Zackie Hart',
+    'Borgo Italia',
+    'The Parlor Salon',
+    'Greenhouse Mercantile',
+  ],
+  // CONFIRM: the slide reads "recieve" — corrected to "receive" here.
+  perk: 'First 100 visitors to The Peculiar Blooms (inside The Veranda) receive a free Trick-or-Treat tote!',
 };
 
 /**
@@ -129,20 +163,23 @@ export const toddlerTrickOrTreat = {
  */
 export const trickOrTreating = {
   heading: 'Trick or Treating',
-  blurb: 'Every pin is a house that signed up to hand out candy. Tap one for the address.', // NEEDED
+  whenLabel: 'Saturday October 31st, starting at dusk',
+  blurb: 'Parking and the detailed map are right here. Every pin is a stop on the route.',
+  roadClosures: [
+    'Please note: for safety, Willow Dell neighborhood will have traffic mitigation efforts and “No Parking” areas',
+  ],
   mapDefaults: {
     // Downtown Senoia, GA — the Main Street the eligibility rule is measured from.
     center: [33.302, -84.554],
     zoom: 15,
   },
-  emptyState: 'The map fills in as sign-ups come in. Check back closer to Halloween.',
+  emptyState: 'The map fills in as entries come in. Check back closer to Halloween.',
 };
 
 export const seo = {
   title: 'Senoia Halloween 2026',
   description:
-    'Trick-or-treat map, the decorating contest, the Masquerade Ball, and every October date in downtown Senoia, Georgia.', // NEEDED
-  // CONFIRM: domain is being registered at Porkbun; update once it is chosen.
+    'Trick-or-treat map, the home & business decorating contest, Toddler Trick-or-Treat, and the Masquerade Ball — every October date in downtown Senoia, Georgia.',
   url: 'https://senoiahalloween.com/',
   ogImage: null, // NEEDED: 1200x630 share image.
 };

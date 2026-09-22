@@ -11,13 +11,26 @@ export default function DecoratingContest() {
           <h2>{decoratingContest.heading}</h2>
           <p className="hallo-lede">{decoratingContest.blurb}</p>
 
-          {decoratingContest.prizes.length > 0 && (
-            <ul className="hallo-prizes">
-              {decoratingContest.prizes.map((prize, i) => (
-                <li key={i} className="hallo-card">{prize}</li>
-              ))}
-            </ul>
-          )}
+          <p className="hallo-keydates">
+            <strong>{decoratingContest.judgedLabel}</strong>
+            <span>{decoratingContest.deadlineLabel}</span>
+          </p>
+
+          <h3>Who can participate?</h3>
+          <ul className="hallo-bullets">
+            {decoratingContest.eligibility.map((line, i) => (
+              <li key={i}>{line}</li>
+            ))}
+          </ul>
+
+          {decoratingContest.contestCategories.map((cat) => (
+            <div key={cat.id} className="hallo-card hallo-cat">
+              <h3>Category: {cat.label}</h3>
+              <p>{cat.blurb}</p>
+            </div>
+          ))}
+
+          <p className="hallo-winners">{decoratingContest.winnersNote}</p>
         </div>
 
         <SignupForm />

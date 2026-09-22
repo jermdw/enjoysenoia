@@ -42,6 +42,7 @@ const validSignup = (over = {}) => ({
   address: '12 Main Street, Senoia GA',
   email: 'jane@example.com',
   category: 'residential',
+  contestCategory: 'spooky',
   status: 'pending',
   submittedAt: serverTimestamp(),
   source: 'halloween_2026',
@@ -65,12 +66,19 @@ await check('public may NOT create with a bad category',
   () => assertFails(addDoc(collection(pub, 'halloween_signups'), validSignup({ category: 'church' }))));
 await check('public may NOT create with a malformed email',
   () => assertFails(addDoc(collection(pub, 'halloween_signups'), validSignup({ email: 'nope' }))));
+await check('public may NOT create with a bad contestCategory',
+  () => assertFails(addDoc(collection(pub, 'halloween_signups'), validSignup({ contestCategory: 'scariest' }))));
+await check('public may NOT omit contestCategory',
+  () => assertFails(addDoc(collection(pub, 'halloween_signups'), (() => {
+    const v = validSignup(); delete v.contestCategory; return v;
+  })())));
 
 // Seed with rules disabled so reads and updates have a target.
 await env.withSecurityRulesDisabled(async (ctx) => {
   await setDoc(doc(ctx.firestore(), 'halloween_signups/s1'), {
     name: 'Jane Doe', address: '12 Main Street', email: 'jane@example.com',
-    category: 'residential', status: 'pending', submittedAt: new Date(), source: 'halloween_2026',
+    category: 'residential', contestCategory: 'spooky', status: 'pending',
+    submittedAt: new Date(), source: 'halloween_2026',
   });
   await setDoc(doc(ctx.firestore(), 'halloween_map_points/p1'), {
     address: '12 Main Street', lat: 33.3, lng: -84.5, kind: 'residential', label: null, createdAt: new Date(),

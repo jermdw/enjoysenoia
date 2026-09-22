@@ -588,3 +588,106 @@
 .hallo .hallo-footer a {
   color: var(--hallo-orange);
 }
+
+/* ---- Slide-content blocks ---- */
+.hallo .hallo-when {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--hallo-orange);
+  margin-top: 0.25rem;
+}
+
+.hallo .hallo-kicker {
+  font-weight: 700;
+  color: var(--hallo-white);
+}
+
+.hallo .hallo-keydates {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin: 1.25rem 0;
+  padding-left: 0.85rem;
+  border-left: 3px solid var(--hallo-orange);
+}
+
+.hallo .hallo-keydates strong {
+  color: var(--hallo-orange);
+}
+
+.hallo .hallo-keydates span {
+  color: var(--hallo-mist);
+  font-size: 0.9375rem;
+}
+
+.hallo h3 {
+  font-size: 1.375rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.hallo .hallo-bullets {
+  padding-left: 1.1rem;
+  margin: 0;
+  color: var(--hallo-bone);
+}
+
+.hallo .hallo-bullets li {
+  margin-bottom: 0.4rem;
+}
+
+.hallo .hallo-cat {
+  margin-top: 1.25rem;
+}
+
+.hallo .hallo-cat h3 {
+  margin-top: 0;
+}
+
+.hallo .hallo-cat p {
+  margin: 0;
+  color: var(--hallo-mist);
+}
+
+.hallo .hallo-winners {
+  margin-top: 1.5rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--hallo-lime);
+}
+
+.hallo .hallo-biz-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+}
+
+.hallo .hallo-biz-list li {
+  text-align: center;
+  font-weight: 600;
+}
+
+.hallo .hallo-perk {
+  margin-top: 1.5rem;
+  font-weight: 700;
+  font-style: italic;
+  border-color: var(--hallo-lime);
+}
+
+.hallo .hallo-closures {
+  margin: 1.5rem 0;
+  border-color: #e11d48;
+}
+
+.hallo .hallo-closures h3 {
+  margin-top: 0;
+  color: #ff9d9d;
+}
+
+.hallo .hallo-closures ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--hallo-mist);
+}

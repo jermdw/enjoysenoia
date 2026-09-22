@@ -44,7 +44,17 @@ export default function TrickOrTreating() {
     <section id="trick-or-treating">
       <div className="hallo-wrap">
         <h2>{trickOrTreating.heading}</h2>
+        <p className="hallo-when">{trickOrTreating.whenLabel}</p>
         <p className="hallo-lede">{trickOrTreating.blurb}</p>
+
+        {trickOrTreating.roadClosures.length > 0 && (
+          <div className="hallo-card hallo-closures">
+            <h3>Road Closures</h3>
+            <ul>
+              {trickOrTreating.roadClosures.map((line, i) => <li key={i}>{line}</li>)}
+            </ul>
+          </div>
+        )}
 
         <ul className="hallo-legend">
           <li><span className="hallo-cal-dot" style={{ backgroundColor: '#ff7518' }} aria-hidden="true" />Handing out candy</li>

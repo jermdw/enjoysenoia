@@ -65,7 +65,7 @@ service cloud.firestore {
      */
     match /halloween_signups/{signupId} {
       allow create: if request.resource.data.keys().hasOnly(
-          ['name', 'address', 'email', 'category', 'status', 'submittedAt', 'source'])
+          ['name', 'address', 'email', 'category', 'contestCategory', 'status', 'submittedAt', 'source'])
         && request.resource.data.name is string
         && request.resource.data.name.size() >= 2
         && request.resource.data.name.size() <= 120
@@ -77,6 +77,8 @@ service cloud.firestore {
         && request.resource.data.email.size() <= 254
         && request.resource.data.email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')
         && request.resource.data.category in ['residential', 'business']
+        // The judging lane, separate from who is entering.
+        && request.resource.data.contestCategory in ['spooky', 'pumpkinPals']
         // Pinned, so a submitter cannot approve their own entry onto the map.
         && request.resource.data.status == 'pending'
         && request.resource.data.submittedAt == request.time
@@ -88,7 +90,7 @@ service cloud.firestore {
       // an admin may set it, a member of the public may not.
       allow update: if isAdmin()
         && request.resource.data.keys().hasOnly(
-             ['name', 'address', 'email', 'category', 'status', 'submittedAt', 'source', 'mapPointId']);
+             ['name', 'address', 'email', 'category', 'contestCategory', 'status', 'submittedAt', 'source', 'mapPointId']);
     }
 
     /*

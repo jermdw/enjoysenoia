@@ -40,8 +40,16 @@ import { db } from './firebase';
 export const SIGNUPS = 'halloween_signups';
 export const MAP_POINTS = 'halloween_map_points';
 
-/** Sign-up categories, mirrored in firestore.rules. */
+/** Who is entering, mirrored in firestore.rules. Drives map eligibility. */
 export const CATEGORIES = ['residential', 'business'];
+
+/**
+ * Which judging lane the entry is in, mirrored in firestore.rules.
+ * Deliberately separate from CATEGORIES: they are orthogonal questions, and a
+ * business can enter either lane. Collapsing them into one four-value enum
+ * would break every `category === 'residential'` check that gates the map.
+ */
+export const CONTEST_CATEGORIES = ['spooky', 'pumpkinPals'];
 
 /** Map point categories, mirrored in firestore.rules. */
 export const POINT_KINDS = ['residential', 'closure', 'parking'];
@@ -53,7 +61,7 @@ const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
  * firestore.rules — this exists to give a useful message, not to secure
  * anything. Returns a map of field -> message; empty means valid.
  */
-export function validateSignup({ name, address, email, category }) {
+export function validateSignup({ name, address, email, category, contestCategory }) {
   const errors = {};
   if (!name || name.trim().length < 2) errors.name = 'Please enter your name.';
   if (name && name.trim().length > 120) errors.name = 'That name is too long.';
@@ -61,7 +69,8 @@ export function validateSignup({ name, address, email, category }) {
   if (address && address.trim().length > 200) errors.address = 'That address is too long.';
   if (!email || !EMAIL_RE.test(email.trim())) errors.email = 'Please enter a valid email address.';
   if (email && email.trim().length > 254) errors.email = 'That email address is too long.';
-  if (!CATEGORIES.includes(category)) errors.category = 'Choose residential or business.';
+  if (!CATEGORIES.includes(category)) errors.category = 'Choose home or business.';
+  if (!CONTEST_CATEGORIES.includes(contestCategory)) errors.contestCategory = 'Choose Spooky or Pumpkin Pals.';
   return errors;
 }
 
@@ -72,8 +81,8 @@ export function validateSignup({ name, address, email, category }) {
  * `status: 'pending'` is what keeps the entry off the map until an admin
  * publishes it. Rules pin this value on create so a caller cannot self-approve.
  */
-export async function submitSignup({ name, address, email, category }) {
-  const errors = validateSignup({ name, address, email, category });
+export async function submitSignup({ name, address, email, category, contestCategory }) {
+  const errors = validateSignup({ name, address, email, category, contestCategory });
   if (Object.keys(errors).length > 0) {
     const err = new Error('Invalid sign-up');
     err.fieldErrors = errors;
@@ -85,6 +94,7 @@ export async function submitSignup({ name, address, email, category }) {
     address: address.trim(),
     email: email.trim().toLowerCase(),
     category,
+    contestCategory,
     status: 'pending',
     submittedAt: serverTimestamp(),
     source: 'halloween_2026',
@@ -176,7 +186,7 @@ export async function deleteMapPoint(id) {
  * for the Function-based upgrade if the organizer wants it automatic.
  */
 export function signupsToCsv(signups) {
-  const header = ['Name', 'Address', 'Email Address', 'Type', 'Submitted'];
+  const header = ['Name', 'Address', 'Email Address', 'Type', 'Contest Category', 'Submitted'];
   // Excel and Sheets both treat a leading =, +, - or @ as a formula. Prefixing
   // with a quote neutralises it without changing what a human reads.
   const cell = (value) => {
@@ -189,6 +199,7 @@ export function signupsToCsv(signups) {
     s.address,
     s.email,
     s.category,
+    s.contestCategory,
     s.submittedAt?.toDate ? s.submittedAt.toDate().toISOString().slice(0, 10) : '',
   ]);
   return [header, ...rows].map((r) => r.map(cell).join(',')).join('\r\n');

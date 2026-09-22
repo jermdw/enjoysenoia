@@ -180,12 +180,13 @@ export default function HalloweenAdmin() {
                   <th className="p-3">Address</th>
                   <th className="p-3">Email</th>
                   <th className="p-3">Type</th>
+                  <th className="p-3">Category</th>
                   <th className="p-3">On map</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-stone-100">
                 {signups.length === 0 && (
-                  <tr><td colSpan={5} className="p-3 text-xs text-stone-500">No sign-ups yet.</td></tr>
+                  <tr><td colSpan={6} className="p-3 text-xs text-stone-500">No sign-ups yet.</td></tr>
                 )}
                 {signups.map((s) => (
                   <tr key={s.id} className="hover:bg-stone-50/80">
@@ -193,6 +194,7 @@ export default function HalloweenAdmin() {
                     <td className="p-3">{s.address}</td>
                     <td className="p-3 text-xs">{s.email}</td>
                     <td className="p-3 text-xs capitalize">{s.category}</td>
+                    <td className="p-3 text-xs">{s.contestCategory === 'pumpkinPals' ? 'Pumpkin Pals' : 'Spooky'}</td>
                     <td className="p-3">
                       {s.category !== 'residential' ? (
                         <span className="text-xs text-stone-400">Business — not mapped</span>

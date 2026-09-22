@@ -2,7 +2,7 @@ import React, { useId, useState } from 'react';
 import { decoratingContest } from '../data/halloweenDetails';
 import { submitSignup, validateSignup } from '../../services/halloweenService';
 
-const EMPTY = { name: '', address: '', email: '', category: 'residential' };
+const EMPTY = { name: '', address: '', email: '', category: 'residential', contestCategory: 'spooky' };
 
 /**
  * Decorating contest sign-up.
@@ -122,7 +122,7 @@ export default function SignupForm() {
       </div>
 
       <fieldset className="hallo-form-row hallo-fieldset">
-        <legend>This entry is a&hellip;</legend>
+        <legend>Are you entering a home or a business?</legend>
         {decoratingContest.categories.map((cat) => (
           <label key={cat.id} className="hallo-radio">
             <input
@@ -139,6 +139,26 @@ export default function SignupForm() {
           </label>
         ))}
         {errors.category && <p className="hallo-error">{errors.category}</p>}
+      </fieldset>
+
+      <fieldset className="hallo-form-row hallo-fieldset">
+        <legend>Which category?</legend>
+        {decoratingContest.contestCategories.map((cat) => (
+          <label key={cat.id} className="hallo-radio">
+            <input
+              type="radio"
+              name={field('contestCategory')}
+              value={cat.id}
+              checked={values.contestCategory === cat.id}
+              onChange={update('contestCategory')}
+            />
+            <span>
+              <strong>{cat.label}</strong>
+              <span className="hallo-field-note">{cat.blurb}</span>
+            </span>
+          </label>
+        ))}
+        {errors.contestCategory && <p className="hallo-error">{errors.contestCategory}</p>}
       </fieldset>
 
       {/* The brief does not include a disclosure, but residential addresses are
