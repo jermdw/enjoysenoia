@@ -18,9 +18,9 @@ export default function HalloweenNav() {
 
   return (
     <header className="hallo-nav">
-      <nav className="hallo-nav-inner" aria-label="Senoia Halloween sections">
+      <nav className="hallo-nav-inner" aria-label="Halloween in Senoia sections">
         <a href="#top" className="hallo-display hallo-nav-brand">
-          Senoia Halloween
+          Halloween in Senoia
         </a>
 
         <button

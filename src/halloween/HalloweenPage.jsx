@@ -8,9 +8,10 @@ import DecoratingContest from './components/DecoratingContest';
 import MasqueradeTeaser from './components/MasqueradeTeaser';
 import ToddlerTrickOrTreat from './components/ToddlerTrickOrTreat';
 import TrickOrTreating from './components/TrickOrTreating';
+import { PatternBackground } from './components/Art';
 
 /**
- * The Senoia Halloween micro-site — its own brand, rendered outside the DDA
+ * The Halloween in Senoia micro-site — its own brand, rendered outside the DDA
  * Layout (see App.jsx), so no Enjoy Senoia navbar or footer appears here.
  *
  * Section order follows the brief: October calendar, decorating contest,
@@ -19,9 +20,9 @@ import TrickOrTreating from './components/TrickOrTreating';
 export default function HalloweenPage() {
   useEffect(() => {
     // index.html sets a light background on <body>; without this, overscroll
-    // flashes stone-50 behind the dark page.
+    // flashes stone-50 behind the purple page. Matches --hallo-purple.
     const previous = document.body.style.backgroundColor;
-    document.body.style.backgroundColor = '#12091c';
+    document.body.style.backgroundColor = '#846589';
     return () => {
       document.body.style.backgroundColor = previous;
     };
@@ -29,6 +30,7 @@ export default function HalloweenPage() {
 
   return (
     <div className="hallo">
+      <PatternBackground />
       <HalloweenSEO />
       <HalloweenNav />
       <main>

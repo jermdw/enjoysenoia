@@ -1,10 +1,11 @@
 /**
  * Single source of truth for the Senoia Halloween micro-site.
  *
- * Copy is transcribed from the organizer's slide deck (Shauna Mooney), five
- * slides: title, decorating contest, toddler trick-or-treat, trick or treating,
+ * Copy is transcribed from the organizer's slides (Shauna Mooney), five of
+ * them: title, decorating contest, toddler trick-or-treat, trick or treating,
  * masquerade ball. The brief asked for the slide copy word-for-word, so most
- * strings here are verbatim.
+ * strings here are verbatim. The "9/22 Edits" in the brief replaced the slides
+ * with a new set, and every string below was re-checked against those.
  *
  * Comment convention, same as src/masquerade/data/eventDetails.js:
  *   CONFIRM — the source is ambiguous, contradictory, or looks like a typo.
@@ -12,34 +13,41 @@
  */
 
 export const event = {
-  name: 'Senoia Halloween',
+  // Per the 9/22 edits: the title is "Halloween in Senoia", with no town line
+  // and no year on the page. `year` still drives the calendar grid.
+  name: 'Halloween in Senoia',
   year: 2026,
   // October 2026 begins on a Thursday and Halloween falls on a Saturday, which
   // matches every weekday the slides state (Fri Oct 16, Sat Oct 17, Sat Oct 24,
   // Fri Oct 30, Sat Oct 31).
   halloweenISO: '2026-10-31',
-  // Verbatim from the title slide.
-  tagline: 'Masquerade // Home & Business Decorating Contest // Trick or Treating',
-  town: 'Senoia, Georgia',
+  // Verbatim from the title slide, one line each.
+  tagline: ['Masquerade Ball', 'Home & Business Decorating Contest', 'Trick or Treating'],
 };
 
 /**
- * Drives the October calendar grid. `date` is ISO; `kind` picks the dot colour
- * and legend grouping. Add a `href` to make the entry clickable.
+ * Drives the October calendar grid. `date` is ISO; `kind` picks the fill colour
+ * of the day and the legend grouping. `label` is what is printed inside the day
+ * itself, so keep it to two or three short words: a phone gives a day about
+ * 40px. Add a `href` to make the entry clickable.
+ *
+ * `color` and `ink` are pairs: `ink` is the text colour that stays readable on
+ * that fill. Change them together.
  *
  * Every date below comes from the slides.
  */
 export const CALENDAR_KINDS = {
-  masquerade: { label: 'Masquerade Ball', color: 'var(--hallo-purple)' },
-  trickOrTreat: { label: 'Trick or Treating', color: 'var(--hallo-orange)' },
-  toddler: { label: 'Toddler Trick-or-Treat', color: 'var(--hallo-lime)' },
-  contest: { label: 'Decorating Contest', color: 'var(--hallo-bone)' },
+  masquerade: { label: 'Masquerade Ball', color: 'var(--hallo-purple-deep)', ink: 'var(--hallo-cream)' },
+  trickOrTreat: { label: 'Trick or Treating', color: 'var(--hallo-orange)', ink: 'var(--hallo-black)' },
+  toddler: { label: 'Toddler Trick-or-Treat', color: 'var(--hallo-yellow)', ink: 'var(--hallo-black)' },
+  contest: { label: 'Decorating Contest', color: 'var(--hallo-black)', ink: 'var(--hallo-cream)' },
 };
 
 export const calendarEvents = [
   {
     date: '2026-10-16',
     kind: 'contest',
+    label: 'Contest entries due',
     title: 'Decorating contest entries close',
     detail: 'Last day to submit your address for the home & business decorating contest.',
     href: '#contest',
@@ -47,6 +55,7 @@ export const calendarEvents = [
   {
     date: '2026-10-17',
     kind: 'contest',
+    label: 'Contest judging',
     title: 'Decorating contest judged',
     detail: 'Judges tour the entries.',
     href: '#contest',
@@ -54,13 +63,17 @@ export const calendarEvents = [
   {
     date: '2026-10-24',
     kind: 'masquerade',
+    // Soft hyphens (\u00AD): invisible unless the word has to break, which it
+    // does in a phone-width day. Screen readers get `title`, not this.
+    label: 'Mas\u00ADquer\u00ADade Ball',
     title: '3rd Annual Masquerade Ball',
-    detail: 'Down the Rabbit Hole — drinks, dinner, and dancing.',
+    detail: 'Down the Rabbit Hole — cocktails, magical entertainment, dinner, and dancing.',
     href: 'https://thehalloweenmasquerade.com/',
   },
   {
     date: '2026-10-30',
     kind: 'toddler',
+    label: 'Toddler Trick-or-Treat',
     title: 'Toddler Trick-or-Treat',
     detail: '11am – 1pm around Main Street & Barnes Street, for ages 0–5.',
     href: '#toddler',
@@ -68,8 +81,9 @@ export const calendarEvents = [
   {
     date: '2026-10-31',
     kind: 'trickOrTreat',
+    label: 'Trick or Treating',
     title: 'Trick or Treating',
-    detail: 'Starting at dusk. Parking and the detailed map are on this site.',
+    detail: '5:30pm – 8:30pm in the historic district and Willow Dell. Road closures and the detailed map are on this site.',
     href: '#trick-or-treating',
   },
 ];
@@ -125,7 +139,7 @@ export const decoratingContest = {
 /** Section 3 — teaser only. The Masquerade is its own site; do not restate facts here. */
 export const masqueradeTeaser = {
   heading: '3rd Annual Masquerade Ball',
-  blurb: 'Drinks, dinner, and dancing! Senoia’s annual 18+ Halloween soiree.',
+  blurb: 'Cocktails, magical entertainment, dinner, and dancing! Senoia’s annual 18+ Halloween soiree',
   ctaLabel: 'Visit the Masquerade site',
   url: 'https://thehalloweenmasquerade.com/',
 };
@@ -137,11 +151,12 @@ export const toddlerTrickOrTreat = {
   kicker: 'Calling All Tiny Ghouls & Goblins!',
   blurb: [
     'Join us for Toddler Trick-or-Treating in Senoia, a Halloween celebration for our littlest residents ages 0-5!',
-    'Come dressed in your cutest, silliest, or spookiest Halloween costume for a trip trick-or treating around Main Street & Barnes Street!',
+    'Come dressed in your cutest, silliest, or spookiest Halloween costume for a trick-or treating around town:',
   ],
-  // CONFIRM: the slide spells the last one "Greenhouse Mercntile" — corrected to
-  // "Mercantile" here. "Caycies" is left exactly as written; it may be the
-  // business's own styling rather than a missing apostrophe.
+  // The slide sets the route on its own line, as a subtitle.
+  where: 'Main Street & Barnes Street',
+  // "Caycies" is left exactly as written; it may be the business's own styling
+  // rather than a missing apostrophe.
   participatingBusinesses: [
     'Classic Market',
     'Caycies Boutique',
@@ -149,6 +164,7 @@ export const toddlerTrickOrTreat = {
     'Borgo Italia',
     'The Parlor Salon',
     'Greenhouse Mercantile',
+    'Senoia Bicycle',
   ],
   // CONFIRM: the slide reads "recieve" — corrected to "receive" here.
   perk: 'First 100 visitors to The Peculiar Blooms (inside The Veranda) receive a free Trick-or-Treat tote!',
@@ -163,8 +179,11 @@ export const toddlerTrickOrTreat = {
  */
 export const trickOrTreating = {
   heading: 'Trick or Treating',
-  whenLabel: 'Saturday October 31st, starting at dusk',
-  blurb: 'Parking and the detailed map are right here. Every pin is a stop on the route.',
+  dateLabel: 'October 31st',
+  // Per the 9/22 edits. The slide prints the same hours under "Road Closures".
+  whenLabel: '5:30pm - 8:30pm',
+  blurb: 'Senoia kids & families can collect candy from private homeowners in the historic district and Willow Dell neighborhoods!',
+  mapNote: 'For updates and detailed map',
   roadClosures: [
     'Please note: for safety, Willow Dell neighborhood will have traffic mitigation efforts and “No Parking” areas',
   ],
@@ -173,11 +192,18 @@ export const trickOrTreating = {
     center: [33.302, -84.554],
     zoom: 15,
   },
+  // Pin colours, shared by the map and its legend. `fill` must read against both
+  // the OpenStreetMap tiles and the cream page.
+  mapKinds: {
+    residential: { fill: '#e27925', label: 'Handing out candy' },
+    closure: { fill: '#c81e1e', label: 'Road closed' },
+    parking: { fill: '#5a4466', label: 'Parking' },
+  },
   emptyState: 'The map fills in as entries come in. Check back closer to Halloween.',
 };
 
 export const seo = {
-  title: 'Senoia Halloween 2026',
+  title: 'Halloween in Senoia',
   description:
     'Trick-or-treat map, the home & business decorating contest, Toddler Trick-or-Treat, and the Masquerade Ball — every October date in downtown Senoia, Georgia.',
   url: 'https://senoiahalloween.com/',

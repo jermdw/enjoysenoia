@@ -1,39 +1,42 @@
 import React from 'react';
 import { decoratingContest } from '../data/halloweenDetails';
 import SignupForm from './SignupForm';
+import { WavyFrame } from './Art';
 
 /** Section 2 — the decorating contest and its sign-up form. */
 export default function DecoratingContest() {
   return (
-    <section id="contest" className="hallo-band">
-      <div className="hallo-wrap hallo-split">
-        <div>
-          <h2>{decoratingContest.heading}</h2>
-          <p className="hallo-lede">{decoratingContest.blurb}</p>
+    <section id="contest">
+      <div className="hallo-wrap">
+        <WavyFrame className="hallo-split">
+          <div>
+            <h2>{decoratingContest.heading}</h2>
+            <p className="hallo-lede">{decoratingContest.blurb}</p>
 
-          <p className="hallo-keydates">
-            <strong>{decoratingContest.judgedLabel}</strong>
-            <span>{decoratingContest.deadlineLabel}</span>
-          </p>
+            <p className="hallo-keydates">
+              <strong>{decoratingContest.judgedLabel}</strong>
+              <span>{decoratingContest.deadlineLabel}</span>
+            </p>
 
-          <h3>Who can participate?</h3>
-          <ul className="hallo-bullets">
-            {decoratingContest.eligibility.map((line, i) => (
-              <li key={i}>{line}</li>
+            <h3>Who can participate?</h3>
+            <ul className="hallo-bullets">
+              {decoratingContest.eligibility.map((line, i) => (
+                <li key={i}>{line}</li>
+              ))}
+            </ul>
+
+            {decoratingContest.contestCategories.map((cat) => (
+              <div key={cat.id} className="hallo-card hallo-cat">
+                <h3>Category: {cat.label}</h3>
+                <p>{cat.blurb}</p>
+              </div>
             ))}
-          </ul>
 
-          {decoratingContest.contestCategories.map((cat) => (
-            <div key={cat.id} className="hallo-card hallo-cat">
-              <h3>Category: {cat.label}</h3>
-              <p>{cat.blurb}</p>
-            </div>
-          ))}
+            <p className="hallo-winners">{decoratingContest.winnersNote}</p>
+          </div>
 
-          <p className="hallo-winners">{decoratingContest.winnersNote}</p>
-        </div>
-
-        <SignupForm />
+          <SignupForm />
+        </WavyFrame>
       </div>
     </section>
   );
