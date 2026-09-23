@@ -16,7 +16,7 @@ export default function Hero() {
           <Icon icon={Ghost} className="hallo-corner hallo-corner-br" />
 
           <h1>
-            <span className="hallo-hero-title">Halloween</span>
+            <span className="hallo-hero-title">Halloween</span>{' '}
             <span className="hallo-hero-sub">in Senoia</span>
           </h1>
 

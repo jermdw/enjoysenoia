@@ -121,7 +121,8 @@ and the trick-or-treating blurb about the historic district and Willow Dell.
       *"Winners will be featured … on the official Trick or Treating map!"*;
       the written brief says every residential entry goes on the map. No code
       change is needed either way — an admin publishes pins one at a time.
-- [ ] **"Recieve"** on the toddler slide is corrected to "receive" on the site.
+- [ ] **"Recieve"** and **"trick-or treating"** on the toddler slide are
+      corrected to "receive" and "trick-or-treating" on the site.
 - [ ] **Share image.** `seo.ogImage` is still empty; the title slide would do.
 - [ ] **Title font.** Jeepers is a commercial font and is not web-licensed.
       To use the real thing, drop the `.woff2` in `src/halloween/fonts/`, add an

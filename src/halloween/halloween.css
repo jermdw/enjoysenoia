@@ -299,8 +299,15 @@
 .hallo textarea:focus-visible,
 .hallo button:focus-visible,
 .hallo a:focus-visible {
-  outline: 3px solid var(--hallo-orange);
+  /* Deep orange: the slide orange is only 2.5:1 on cream, under the 3:1 a
+     focus indicator needs. The nav, on black, overrides this below. */
+  outline: 3px solid var(--hallo-orange-deep);
   outline-offset: 2px;
+}
+
+.hallo .hallo-nav a:focus-visible,
+.hallo .hallo-nav button:focus-visible {
+  outline-color: var(--hallo-orange);
 }
 
 .hallo .hallo-field-note {
@@ -414,7 +421,7 @@
 }
 
 .hallo .hallo-cal-cell.is-selected {
-  outline: 3px solid var(--hallo-orange);
+  outline: 3px solid var(--hallo-orange-deep);
   outline-offset: 2px;
 }
 

@@ -151,7 +151,8 @@ export const toddlerTrickOrTreat = {
   kicker: 'Calling All Tiny Ghouls & Goblins!',
   blurb: [
     'Join us for Toddler Trick-or-Treating in Senoia, a Halloween celebration for our littlest residents ages 0-5!',
-    'Come dressed in your cutest, silliest, or spookiest Halloween costume for a trick-or treating around town:',
+    // CONFIRM: the slide reads "trick-or treating" — hyphenated here.
+    'Come dressed in your cutest, silliest, or spookiest Halloween costume for a trick-or-treating around town:',
   ],
   // The slide sets the route on its own line, as a subtitle.
   where: 'Main Street & Barnes Street',

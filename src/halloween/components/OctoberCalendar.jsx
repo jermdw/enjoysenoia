@@ -135,9 +135,12 @@ export default function OctoberCalendar() {
                     <li key={i} className="hallo-card">
                       <strong>{item.title}</strong>
                       {item.detail && <p>{item.detail}</p>}
-                      {item.href && (
+                      {/* In-page anchors scroll; only an external site opens a new tab. */}
+                      {item.href && (item.href.startsWith('#') ? (
+                        <a href={item.href}>Details →</a>
+                      ) : (
                         <a href={item.href} target="_blank" rel="noreferrer">Details →</a>
-                      )}
+                      ))}
                     </li>
                   ))}
                 </ul>
