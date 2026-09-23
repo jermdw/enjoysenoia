@@ -143,7 +143,8 @@ Two ways, and they coexist:
   lives in the sheet and pulls sign-ups from Firestore every 5 minutes,
   upserting by document ID. It reads as the Google account that authorized it
   (IAM, not these rules), so that account needs Firestore read on
-  `enjoysenoia`. No Cloud Function or Blaze plan. Setup is in that folder's
+  `enjoysenoia`. Anyone who can edit the sheet can edit the script and so
+  borrow that access: give sheet edit rights only to project-level trust. No Cloud Function or Blaze plan. Setup is in that folder's
   README.
 - **Manual:** the admin tab exports a CSV (the same columns minus ID and Status), which imports
   into Sheets with **File → Import → Upload**.
@@ -152,8 +153,9 @@ An instant, push-based sync would be a Firestore `onCreate` Cloud Function
 appending through the Sheets API — a Blaze project, a service account, and the
 sheet shared with it. The 5-minute pull made that unnecessary.
 
-Both paths neutralise a leading `=`, `+`, `-`, or `@`, so a sign-up cannot
-smuggle a formula into the organizer's spreadsheet.
+Both paths neutralise a leading `=`, `+`, `-`, or `@` (and their full-width
+forms, tab, carriage return and line feed), so a sign-up cannot smuggle a
+formula into the organizer's spreadsheet.
 
 ## Hosting: three sites, one build
 

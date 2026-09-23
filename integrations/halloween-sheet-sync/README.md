@@ -43,10 +43,20 @@ another.
 - Leaves any columns you add alone, formulas included. Reordering columns is
   fine; they are found by header text.
 - Leaves a row in place if its sign-up is deleted in Firestore.
-- Prefixes any value starting with `=`, `+`, `-` or `@` with `'`, so an entry
-  cannot plant a formula.
+- Prefixes any value starting with `=`, `+`, `-`, `@` (or a full-width form,
+  tab or line break) with `'`, so an entry cannot plant a formula.
 
-The sheet holds every entrant's name and email. Keep its sharing restricted.
+## Who can edit the sheet
+
+**Anyone with edit access to the sheet can edit its script**, and the timer
+runs that script as the account that set it up — with that account's full
+Firestore access, write and delete included (there is no read-only Firestore
+scope). An editor therefore holds the owner's database access. Give **edit**
+only to people you would trust with the Firebase project itself; everyone else
+gets **view**.
+
+The sheet also holds every entrant's name and email, so share it by name, never
+"anyone with the link".
 
 If a run fails (for example the 403 above), Google emails the account that owns
 the trigger with the error.

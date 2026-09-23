@@ -186,11 +186,12 @@ export async function deleteMapPoint(id) {
  */
 export function signupsToCsv(signups) {
   const header = ['Name', 'Address', 'Email Address', 'Type', 'Contest Category', 'Submitted'];
-  // Excel and Sheets both treat a leading =, +, - or @ as a formula. Prefixing
-  // with a quote neutralises it without changing what a human reads.
+  // Excel and Sheets both treat a leading =, +, - or @ as a formula (and some
+  // locales their full-width forms). Prefixing with a quote neutralises it
+  // without changing what a human reads.
   const cell = (value) => {
     const s = value == null ? '' : String(value);
-    const safe = /^[=+\-@\t\r]/.test(s) ? `'${s}` : s;
+    const safe = /^[=+\-@\t\r\n\uFF1D\uFF0B\uFF0D\uFF20]/.test(s) ? `'${s}` : s;
     return `"${safe.replace(/"/g, '""')}"`;
   };
   const rows = signups.map((s) => [

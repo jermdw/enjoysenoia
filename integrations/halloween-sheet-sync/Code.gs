@@ -133,7 +133,8 @@ function writeSignups_(sheet, signups) {
 
   const lastRow = sheet.getLastRow();
   const ids = lastRow > 1 ? sheet.getRange(2, colOf.ID + 1, lastRow - 1, 1).getValues().map((r) => String(r[0])) : [];
-  const rowOfId = {};
+  // Prototype-free: a document ID such as `constructor` must read as absent.
+  const rowOfId = Object.create(null);
   ids.forEach((id, i) => {
     if (id) rowOfId[id] = i;
   });
@@ -158,10 +159,11 @@ function writeSignups_(sheet, signups) {
 
 /**
  * setValues parses a leading = + - @ as a formula, so a sign-up could plant
- * one in the organizer's sheet. Same rule as signupsToCsv in
+ * one in the organizer's sheet. Line feed and the full-width forms are covered
+ * too, per OWASP's CSV-injection list. Same rule as signupsToCsv in
  * src/services/halloweenService.js.
  */
 function safeCell_(value) {
   const s = value == null ? '' : String(value);
-  return /^[=+\-@\t\r]/.test(s) ? `'${s}` : s;
+  return /^[=+\-@\t\r\n\uFF1D\uFF0B\uFF0D\uFF20]/.test(s) ? `'${s}` : s;
 }
