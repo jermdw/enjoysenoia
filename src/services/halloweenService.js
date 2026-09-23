@@ -179,11 +179,10 @@ export async function deleteMapPoint(id) {
 /**
  * The Google Sheets half of the brief.
  *
- * The brief asks for sign-ups to land in a Google Sheet. A live Firestore ->
- * Sheets sync needs a Cloud Function and the Blaze plan; this repo has neither.
- * A CSV with the three requested columns imports into Sheets in one step
- * (File > Import > Upload), so that is the default. See README-halloween.md
- * for the Function-based upgrade if the organizer wants it automatic.
+ * The brief asks for sign-ups to land in a Google Sheet. The automatic path is
+ * the Apps Script in integrations/halloween-sheet-sync/, which pulls from
+ * Firestore every few minutes; this CSV is the manual fallback and imports in
+ * one step (File > Import > Upload). Keep the two column sets in step.
  */
 export function signupsToCsv(signups) {
   const header = ['Name', 'Address', 'Email Address', 'Type', 'Contest Category', 'Submitted'];

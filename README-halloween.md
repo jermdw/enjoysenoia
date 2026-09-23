@@ -137,17 +137,23 @@ and the trick-or-treating blurb about the historic district and Willow Dell.
 The brief asks for sign-ups to land in a Google Sheet with columns for name,
 address, and email.
 
-A live Firestore → Sheets sync needs a Cloud Function and the Blaze plan; this
-repo has neither. So the admin tab exports a CSV with exactly those columns,
-which imports into Sheets in one step (**File → Import → Upload**). That
-satisfies the requirement at zero infrastructure cost.
+Two ways, and they coexist:
 
-If the organizer wants it automatic later, the upgrade is a Firestore `onCreate`
-trigger appending to a sheet through the Sheets API — a Blaze project, a service
-account, and the sheet shared with it.
+- **Automatic:** `integrations/halloween-sheet-sync/` is an Apps Script that
+  lives in the sheet and pulls sign-ups from Firestore every 5 minutes,
+  upserting by document ID. It reads as the Google account that authorized it
+  (IAM, not these rules), so that account needs Firestore read on
+  `enjoysenoia`. No Cloud Function or Blaze plan. Setup is in that folder's
+  README.
+- **Manual:** the admin tab exports a CSV (the same columns minus ID and Status), which imports
+  into Sheets with **File → Import → Upload**.
 
-The export quotes every field and neutralises leading `=`, `+`, `-`, and `@`, so
-a sign-up cannot smuggle a formula into the organizer's spreadsheet.
+An instant, push-based sync would be a Firestore `onCreate` Cloud Function
+appending through the Sheets API — a Blaze project, a service account, and the
+sheet shared with it. The 5-minute pull made that unnecessary.
+
+Both paths neutralise a leading `=`, `+`, `-`, or `@`, so a sign-up cannot
+smuggle a formula into the organizer's spreadsheet.
 
 ## Hosting: three sites, one build
 

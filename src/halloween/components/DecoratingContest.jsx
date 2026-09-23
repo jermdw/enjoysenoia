@@ -2,6 +2,7 @@ import React from 'react';
 import { decoratingContest } from '../data/halloweenDetails';
 import SignupForm from './SignupForm';
 import { WavyFrame } from './Art';
+import peacockLogo from '../assets/kimberly-peacock-realtor.png';
 
 /** Section 2 — the decorating contest and its sign-up form. */
 export default function DecoratingContest() {
@@ -33,6 +34,14 @@ export default function DecoratingContest() {
             ))}
 
             <p className="hallo-winners">{decoratingContest.winnersNote}</p>
+            <img
+              className="hallo-contest-logo"
+              src={peacockLogo}
+              alt={decoratingContest.logoAlt}
+              width="720"
+              height="348"
+              loading="lazy"
+            />
           </div>
 
           <SignupForm />
