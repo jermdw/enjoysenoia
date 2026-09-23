@@ -7,10 +7,10 @@ treat, and the trick-or-treat map.
 Built from the "Senoia Halloween Website" brief by Shauna Mooney
 ([doc](https://docs.google.com/document/d/1N1ccK2zQT5IKVjAUL62nsvjZiPWrd9LWkPlwvWsSv-g/edit)).
 
-> **Live at <https://senoiahalloween.com>.** The structure, styling, form,
-> map, Firestore rules, and deploy wiring are real, deployed, and verified.
-> What is *not* done is the copy — almost none of the words are the organizer's.
-> See [Content](#content-the-big-one) below.
+> **Live at <https://senoiahalloween.com>.** Structure, styling, form, map,
+> Firestore rules, and deploy wiring are real, deployed, and verified. The copy
+> is the organizer's own, transcribed from her slides; see
+> [Content](#content) for the few open questions.
 
 ## Where things live
 
@@ -18,6 +18,7 @@ Built from the "Senoia Halloween Website" brief by Shauna Mooney
 | --- | --- |
 | `src/halloween/data/halloweenDetails.js` | **Every fact on the site.** Calendar dates, copy, map centre, SEO. Edit here, not in components. |
 | `src/halloween/halloween.css` | Scoped theme (`.hallo`), palette, fonts. Nothing leaks into the DDA site or the Masquerade. |
+| `src/halloween/components/Art.jsx` | All artwork, as SVG: the icons, the page pattern, and the cream wavy frame every section sits in. |
 | `src/halloween/HalloweenPage.jsx` | Page shell and section order. |
 | `src/halloween/components/` | SEO, nav, hero, calendar, contest + form, Masquerade teaser, toddler, trick-or-treating + map. |
 | `src/services/halloweenService.js` | Firestore reads/writes and the CSV export. **Read the header comment before changing the collections.** |
@@ -77,44 +78,59 @@ only serve from a composite index. It is declared in `firestore.indexes.json` an
 must be deployed before that path is used. The no-argument call the admin tab
 makes today needs no index.
 
-## Content — the big one
+## Content
 
-The brief says *"use existing copy word-for-word where possible"* and repeatedly
-refers to "the slides". **Those slides are images pasted inside the brief
-document itself.** There is no separate deck in Drive (searched by owner, by
-title, and across every shared presentation), and the images cannot be read out
-of the doc through the Drive text API.
+The brief says *"use existing copy word-for-word where possible"*. The slides it
+refers to are images pasted inside the brief document; the Drive text API
+cannot read them, but exporting the doc as a zipped web page
+(`download_file_content` with `exportMimeType: application/zip`) yields every
+image as a JPEG. That is how the copy was transcribed.
 
-So: **every string in `halloweenDetails.js` marked `NEEDED` is placeholder text
-written to be thrown away.** Nothing on this site is approved copy yet.
+### 9/22 edits
 
-To finish the content, the fastest path is for the organizer to export the
-slides — File → Download → PNG, or just send the original deck — after which
-the calendar dates, section copy, and artwork can be filled in from them.
+The organizer added a "9/22 Edits" section to the brief with a new set of five
+slides and these notes, all applied:
 
-### Needed from the organizer
+- Colour scheme and style to match the new slides: purple, black, orange,
+  yellow, cream; a patterned ground of ghosts, witch hats, candy corn, black
+  cats, stars, bats and jack-o-lanterns; each section in a cream frame with a
+  wavy black outline and a dashed inner line. Hexes were sampled from the
+  slide JPEGs. The artwork is drawn as SVG in `Art.jsx`, not cropped from the
+  slides, so it stays sharp and tiles cleanly.
+- Title face stays Creepster (standing in for Jeepers). Subtitles and
+  highlighted details use Oswald, the nearest free match for "Marquis Sans".
+- Title is "Halloween in Senoia"; "Senoia, Georgia" and "2026" are gone from
+  the page.
+- The "Every date on the calendar…" line is removed.
+- Calendar markers fill the whole day and carry a printed label.
+- Toddler participating businesses are a run of names, like the slide, rather
+  than button-like tiles.
+- Trick-or-treating time is 5:30pm – 8:30pm.
+- The "Every stop on the route" heading is removed. The list under the map
+  stays, because it is the only keyboard-reachable form of the pins; it keeps
+  an `aria-label` instead.
 
-- [ ] **The slides**, as images or the original deck. Everything below comes from them.
-- [ ] **October dates.** Only the Masquerade (Oct 24) is confirmed; every other
-      calendar entry is a guess at what the slides show. Sign-up open/close,
-      judging night, and both trick-or-treat times are unconfirmed.
-- [ ] **Toddler trick or treat details** — date, time, route, participating
-      merchants, age range. The brief names the section and says nothing more.
-- [ ] **Decorating contest prizes and judging criteria** — not in the brief.
-- [ ] **Sign-up deadline** — not in the brief.
-- [ ] **Artwork.** The brief asks for classic 2D American Halloween imagery:
-      ghosts, pumpkins, spiders, a haunted house, a graveyard, kids in costume.
-      The hero is type on a gradient until these arrive. Also needs a 1200×630
-      share image (`seo.ogImage`).
-- [ ] **Title font.** The brief asks for something close to "Jeepers", which is
-      a commercial font and is not web-licensed. Creepster stands in — same
-      1950s spooky-comic register, free to serve. To use the real thing, drop the
-      `.woff2` in `src/halloween/fonts/`, add an `@font-face` rule to
-      `halloween.css`, and repoint `--hallo-font-display`.
-- [ ] **The domain** (see below).
+The new slides also changed some copy, now reflected on the site: the
+Masquerade blurb ("Cocktails, magical entertainment, dinner, and dancing!"),
+Senoia Bicycle added as a seventh toddler business, the toddler route line,
+and the trick-or-treating blurb about the historic district and Willow Dell.
+
+### Still open
+
+- [ ] **Winners vs. every entry on the map.** The contest slide says
+      *"Winners will be featured … on the official Trick or Treating map!"*;
+      the written brief says every residential entry goes on the map. No code
+      change is needed either way — an admin publishes pins one at a time.
+- [ ] **"Recieve"** and **"trick-or treating"** on the toddler slide are
+      corrected to "receive" and "trick-or-treating" on the site.
+- [ ] **Share image.** `seo.ogImage` is still empty; the title slide would do.
+- [ ] **Title font.** Jeepers is a commercial font and is not web-licensed.
+      To use the real thing, drop the `.woff2` in `src/halloween/fonts/`, add an
+      `@font-face` rule to `halloween.css`, and repoint `--hallo-font-display`.
+      Same for Marquis Sans and `--hallo-font-sub`.
 - [ ] **Where the golf-cart boundary actually is.** The eligibility rule is
-      quoted verbatim from the brief, but nothing enforces or shows it. A drawn
-      boundary on the map would be a natural addition.
+      quoted verbatim, but nothing enforces or shows it. A drawn boundary on the
+      map would be a natural addition.
 
 ## The Google Sheets requirement
 

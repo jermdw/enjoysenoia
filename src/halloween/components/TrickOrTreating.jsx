@@ -1,6 +1,7 @@
 import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { trickOrTreating } from '../data/halloweenDetails';
 import { getMapPoints } from '../../services/halloweenService';
+import { WavyFrame, Icon, JackOLantern } from './Art';
 
 // Leaflet plus react-leaflet is a heavy dependency for a page whose first
 // screen is type. Split it out so it loads when this section is reached rather
@@ -43,45 +44,52 @@ export default function TrickOrTreating() {
   return (
     <section id="trick-or-treating">
       <div className="hallo-wrap">
-        <h2>{trickOrTreating.heading}</h2>
-        <p className="hallo-when">{trickOrTreating.whenLabel}</p>
-        <p className="hallo-lede">{trickOrTreating.blurb}</p>
-
-        {trickOrTreating.roadClosures.length > 0 && (
-          <div className="hallo-card hallo-closures">
-            <h3>Road Closures</h3>
-            <ul>
-              {trickOrTreating.roadClosures.map((line, i) => <li key={i}>{line}</li>)}
-            </ul>
+        <WavyFrame>
+          <div className="hallo-center">
+            <h2>{trickOrTreating.heading}</h2>
+            <p className="hallo-pill hallo-pill-orange">{trickOrTreating.dateLabel}</p>
+            <p className="hallo-when">{trickOrTreating.whenLabel}</p>
+            <p className="hallo-lede hallo-strong">{trickOrTreating.blurb}</p>
           </div>
-        )}
 
-        <ul className="hallo-legend">
-          <li><span className="hallo-cal-dot" style={{ backgroundColor: '#ff7518' }} aria-hidden="true" />Handing out candy</li>
-          <li><span className="hallo-cal-dot" style={{ backgroundColor: '#e11d48' }} aria-hidden="true" />Road closed</li>
-          <li><span className="hallo-cal-dot" style={{ backgroundColor: '#7b3ff2' }} aria-hidden="true" />Parking</li>
-        </ul>
+          {trickOrTreating.roadClosures.length > 0 && (
+            <div className="hallo-closures">
+              <h3>Road Closures</h3>
+              <ul>
+                {trickOrTreating.roadClosures.map((line, i) => <li key={i}>{line}</li>)}
+              </ul>
+            </div>
+          )}
 
-        {state === 'error' ? (
-          <p className="hallo-card hallo-todo">
-            The map isn&rsquo;t available right now. Please check back soon.
-          </p>
-        ) : (
-          <Suspense fallback={<div className="hallo-map hallo-map-loading">Loading the map&hellip;</div>}>
-            <TrickOrTreatMap points={points} />
-          </Suspense>
-        )}
+          <p className="hallo-center hallo-map-note">{trickOrTreating.mapNote}</p>
 
-        {state === 'ready' && points.length === 0 && (
-          <p className="hallo-field-note">{trickOrTreating.emptyState}</p>
-        )}
+          <ul className="hallo-legend">
+            {Object.entries(trickOrTreating.mapKinds).map(([kind, { fill, label }]) => (
+              <li key={kind}>
+                <span className="hallo-map-dot" style={{ backgroundColor: fill }} aria-hidden="true" />
+                {label}
+              </li>
+            ))}
+          </ul>
 
-        {/* The map is not reachable by keyboard in any useful way, so the same
-            information is listed underneath it. */}
-        {points.length > 0 && (
-          <>
-            <h3>Every stop on the route</h3>
-            <ul className="hallo-point-list">
+          {state === 'error' ? (
+            <p className="hallo-card hallo-todo">
+              The map isn&rsquo;t available right now. Please check back soon.
+            </p>
+          ) : (
+            <Suspense fallback={<div className="hallo-map hallo-map-loading">Loading the map&hellip;</div>}>
+              <TrickOrTreatMap points={points} />
+            </Suspense>
+          )}
+
+          {state === 'ready' && points.length === 0 && (
+            <p className="hallo-field-note">{trickOrTreating.emptyState}</p>
+          )}
+
+          {/* The map is not reachable by keyboard in any useful way, so the same
+              information is listed underneath it. */}
+          {points.length > 0 && (
+            <ul className="hallo-point-list" aria-label="Every stop on the map">
               {points.map((p) => (
                 <li key={p.id} className="hallo-card">
                   <strong>{p.label || p.kind}</strong>
@@ -89,8 +97,10 @@ export default function TrickOrTreating() {
                 </li>
               ))}
             </ul>
-          </>
-        )}
+          )}
+
+          <Icon icon={JackOLantern} className="hallo-section-icon" />
+        </WavyFrame>
       </div>
     </section>
   );

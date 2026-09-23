@@ -16,14 +16,9 @@ import { trickOrTreating } from '../data/halloweenDetails';
  * live without anyone provisioning a maps product. Note OSM's tile usage policy
  * if traffic ever gets heavy.
  */
-const STYLES = {
-  residential: { color: '#ffffff', fillColor: '#ff7518', label: 'Handing out candy' },
-  closure: { color: '#ffffff', fillColor: '#e11d48', label: 'Road closed' },
-  parking: { color: '#ffffff', fillColor: '#7b3ff2', label: 'Parking' },
-};
-
 export default function TrickOrTreatMap({ points }) {
   const { center, zoom } = trickOrTreating.mapDefaults;
+  const kinds = trickOrTreating.mapKinds;
 
   // A point with no coordinates has not been placed by an admin yet. Skipping
   // it here is what lets the site run without a geocoding service.
@@ -37,13 +32,13 @@ export default function TrickOrTreatMap({ points }) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {placed.map((point) => {
-          const style = STYLES[point.kind] ?? STYLES.residential;
+          const style = kinds[point.kind] ?? kinds.residential;
           return (
             <CircleMarker
               key={point.id}
               center={[point.lat, point.lng]}
               radius={9}
-              pathOptions={{ color: style.color, weight: 2, fillColor: style.fillColor, fillOpacity: 0.9 }}
+              pathOptions={{ color: '#0e0c0c', weight: 2, fillColor: style.fill, fillOpacity: 0.95 }}
             >
               <Popup>
                 <strong>{point.label || style.label}</strong>
