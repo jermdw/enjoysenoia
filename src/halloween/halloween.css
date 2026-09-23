@@ -866,15 +866,15 @@
   line-height: 1.6;
 }
 
+/* Each name is an unbreakable box, so a line breaks between names, never
+   inside one, and the dash stays at the end of the line it belongs to. */
 .hallo .hallo-biz-list li {
-  display: inline;
-  /* A line may break between names, never inside one. */
-  white-space: nowrap;
+  display: inline-block;
+  margin-inline-end: 0.3em;
 }
 
-.hallo .hallo-biz-list li + li::before {
-  content: ' - ';
-  white-space: pre;
+.hallo .hallo-biz-list li:not(:last-child)::after {
+  content: '\00a0-';
 }
 
 .hallo .hallo-perk {
