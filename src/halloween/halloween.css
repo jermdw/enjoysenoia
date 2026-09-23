@@ -851,6 +851,13 @@
   font-style: italic;
 }
 
+.hallo .hallo-contest-logo {
+  display: block;
+  width: min(100%, 17.5rem);
+  height: auto;
+  margin-top: 1rem;
+}
+
 /* Toddler: the participating businesses, set as a run of names like the slide
    ("Classic Market - Caycies Boutique - ..."), not as tiles. */
 .hallo .hallo-biz-heading {
