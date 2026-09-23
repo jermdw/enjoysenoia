@@ -851,11 +851,18 @@
   font-style: italic;
 }
 
+.hallo .hallo-sponsor-label {
+  margin-top: 1.75rem;
+  font-family: var(--hallo-font-sub);
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+}
+
 .hallo .hallo-contest-logo {
   display: block;
   width: min(100%, 17.5rem);
   height: auto;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 /* Toddler: the participating businesses, set as a run of names like the slide

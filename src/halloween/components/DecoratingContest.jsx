@@ -34,6 +34,7 @@ export default function DecoratingContest() {
             ))}
 
             <p className="hallo-winners">{decoratingContest.winnersNote}</p>
+            <p className="hallo-sponsor-label">{decoratingContest.sponsorLabel}</p>
             <img
               className="hallo-contest-logo"
               src={peacockLogo}
