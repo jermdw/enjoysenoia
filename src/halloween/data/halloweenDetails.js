@@ -116,6 +116,7 @@ export const decoratingContest = {
   // organizer can publish all residential entries or only the winners.
   winnersNote: 'Winners will be featured on Enjoy Senoia and on the official Trick or Treating map!',
   // Shown under winnersNote. src/halloween/assets/kimberly-peacock-realtor.png
+  sponsorLabel: 'Thank You to Our Sponsor:',
   logoAlt: 'Kimberly Peacock, REALTOR®',
   privacyNote:
     'Residential entries may appear as a pin on the public trick-or-treat map. Only the street address is shown — never your name or email.',
