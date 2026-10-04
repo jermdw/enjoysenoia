@@ -1,4 +1,5 @@
 import { initializeApp, getApps } from 'firebase/app';
+import { initializeAppCheck, ReCaptchaEnterpriseProvider } from 'firebase/app-check';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
@@ -37,7 +38,28 @@ const firebaseConfig = {
   projectId: requiredConfig.projectId || 'enjoysenoia-preview'
 };
 
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+const isFirstInit = getApps().length === 0;
+const app = isFirstInit ? initializeApp(firebaseConfig) : getApps()[0];
+
+// App Check attaches a reCAPTCHA Enterprise token to Firestore and Storage
+// requests so Firebase can tell the real site from scripts replaying the
+// public web config. The site key is public. It is skipped (not thrown on)
+// when unset so local previews and builds without it keep working; turn on
+// enforcement in the console only once tokens are flowing.
+const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
+if (isFirstInit && recaptchaSiteKey) {
+  if (import.meta.env.DEV) {
+    // Lets localhost through App Check; the console prints the token to register.
+    self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
+  }
+  initializeAppCheck(app, {
+    provider: new ReCaptchaEnterpriseProvider(recaptchaSiteKey),
+    isTokenAutoRefreshEnabled: true
+  });
+} else if (!recaptchaSiteKey) {
+  console.warn('VITE_RECAPTCHA_SITE_KEY is unset; App Check is off, so requests carry no attestation token.');
+}
+
 export const db = getFirestore(app);
 export const auth = getAuth(app);
 export const storage = getStorage(app);
