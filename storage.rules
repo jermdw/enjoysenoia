@@ -14,9 +14,22 @@ service firebase.storage {
 
     match /{allPaths=**} {
       allow read: if true;
-      // Any signed-in account could previously overwrite or delete every object
-      // in the bucket.
-      allow write: if isAdmin();
+      // The site itself writes only under news/ (below). The migrated Webflow
+      // assets were uploaded with admin credentials, which bypass these rules,
+      // as does the Firebase console. Before this an admin's browser session
+      // could overwrite or delete any object in the bucket.
+    }
+
+    // Images the News editor uploads: admin-only, new images only, 10 MB cap
+    // (MAX_IMAGE_BYTES in src/services/newsService.js).
+    match /news/{slug}/{fileName} {
+      // New files only (resource == null): uploads get timestamped names, so
+      // an overwrite would only ever replace a photo a live story points at.
+      allow create: if isAdmin()
+        && resource == null
+        && request.resource.contentType.matches('image/.*')
+        && request.resource.size < 10 * 1024 * 1024;
+      allow delete: if isAdmin();
     }
   }
 }

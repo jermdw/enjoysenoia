@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import HomePage from './pages/HomePage';
@@ -16,8 +16,10 @@ import MediaPage from './pages/MediaPage';
 import NewsPage from './pages/NewsPage';
 import NewsDetailPage from './pages/NewsDetailPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
-import AdminLoginPage from './pages/AdminLoginPage';
-import AdminPortalPage from './pages/AdminPortalPage';
+// The admin pages, and the story editor they carry, load only when someone
+// opens /admin, so visitors never download them.
+const AdminLoginPage = lazy(() => import('./pages/AdminLoginPage'));
+const AdminPortalPage = lazy(() => import('./pages/AdminPortalPage'));
 import MasqueradePage from './masquerade/MasqueradePage';
 import HalloweenPage from './halloween/HalloweenPage';
 
@@ -47,6 +49,14 @@ const HALLOWEEN_HOST = /(^|\.)senoiahalloween(\.com|\.firebaseapp\.com|(--[\w-]+
  * The DDA chrome (navbar + footer) as a layout route, so routes that carry
  * their own branding — the Masquerade micro-site — can opt out of it.
  */
+function AdminLoading() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-stone-100 text-sm text-stone-500" role="status">
+      Loading the portal…
+    </div>
+  );
+}
+
 function DDALayout() {
   return (
     <Layout>
@@ -106,8 +116,8 @@ export default function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         
         {/* Admin Portal */}
-        <Route path="/admin" element={<AdminLoginPage />} />
-        <Route path="/admin/dashboard" element={<AdminPortalPage />} />
+        <Route path="/admin" element={<Suspense fallback={<AdminLoading />}><AdminLoginPage /></Suspense>} />
+        <Route path="/admin/dashboard" element={<Suspense fallback={<AdminLoading />}><AdminPortalPage /></Suspense>} />
 
         {/* Legacy Fallbacks / Redirects */}
         <Route path="*" element={<Navigate to="/" replace />} />

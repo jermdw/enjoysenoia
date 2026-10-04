@@ -172,6 +172,8 @@ await check('admin may NOT omit publishedAt',
   () => assertFails(setDoc(doc(admin, 'news/odd-story'), (() => {
     const v = story('odd-story'); delete v.publishedAt; return v;
   })())));
+await check('admin MAY record firstPublishedAt when publishing',
+  () => assertSucceeds(updateDoc(doc(admin, 'news/new-story'), { status: 'published', firstPublishedAt: new Date() })));
 await check('admin MAY delete a story',
   () => assertSucceeds(deleteDoc(doc(admin, 'news/new-story'))));
 

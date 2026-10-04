@@ -1,8 +1,8 @@
 import { initializeApp, getApps } from 'firebase/app';
 import { initializeAppCheck, ReCaptchaEnterpriseProvider } from 'firebase/app-check';
 import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
-import { getStorage } from 'firebase/storage';
+import { getAuth, connectAuthEmulator } from 'firebase/auth';
+import { getStorage, connectStorageEmulator } from 'firebase/storage';
 
 // Configuration comes from the environment. A production build that is missing
 // any of it fails loudly rather than silently pointing at a placeholder project
@@ -62,14 +62,28 @@ if (isFirstInit && recaptchaSiteKey) {
 
 export const db = getFirestore(app);
 
-// Local development against the Firestore emulator, so testing writes never
-// touches the live database (PR previews share it). Opt in with
-// VITE_FIRESTORE_EMULATOR_HOST=127.0.0.1:8080 in .env.local; dev builds only.
-const firestoreEmulator = import.meta.env.DEV && import.meta.env.VITE_FIRESTORE_EMULATOR_HOST;
-if (isFirstInit && firestoreEmulator) {
-  const [host, port] = firestoreEmulator.split(':');
-  connectFirestoreEmulator(db, host, Number(port));
-}
+// Local development against the emulators, so testing writes never touches
+// the live project (PR previews share it). Opt in per service in .env.local,
+// dev builds only:
+//   VITE_FIRESTORE_EMULATOR_HOST=127.0.0.1:8080
+//   VITE_AUTH_EMULATOR_HOST=127.0.0.1:9099
+//   VITE_STORAGE_EMULATOR_HOST=127.0.0.1:9199
+const emulatorHost = (name) => {
+  const value = import.meta.env.DEV && import.meta.env[name];
+  if (!value) return null;
+  const [host, port] = value.split(':');
+  return [host, Number(port)];
+};
+const firestoreEmulator = emulatorHost('VITE_FIRESTORE_EMULATOR_HOST');
+if (isFirstInit && firestoreEmulator) connectFirestoreEmulator(db, ...firestoreEmulator);
+
 export const auth = getAuth(app);
 export const storage = getStorage(app);
+
+const authEmulator = emulatorHost('VITE_AUTH_EMULATOR_HOST');
+if (isFirstInit && authEmulator) {
+  connectAuthEmulator(auth, `http://${authEmulator[0]}:${authEmulator[1]}`, { disableWarnings: true });
+}
+const storageEmulator = emulatorHost('VITE_STORAGE_EMULATOR_HOST');
+if (isFirstInit && storageEmulator) connectStorageEmulator(storage, ...storageEmulator);
 export default app;
