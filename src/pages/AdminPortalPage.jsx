@@ -5,16 +5,15 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import SEO from '../components/common/SEO';
 import { getEvents, getBusinesses } from '../services/dataService';
-import { getPublishedNews } from '../services/newsService';
 import { auth, db } from '../services/firebase';
 import { isAuthorizedAdmin } from '../services/adminAccess';
 import HalloweenAdmin from './admin/HalloweenAdmin';
+import NewsAdmin from './admin/NewsAdmin';
 
 export default function AdminPortalPage() {
   const [activeTab, setActiveTab] = useState('events');
   const [events, setEvents] = useState(getEvents());
   const [businesses, setBusinesses] = useState(getBusinesses());
-  const [news, setNews] = useState([]);
   const [subscribers, setSubscribers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState('');
@@ -48,19 +47,6 @@ export default function AdminPortalPage() {
       }
     });
   }, [navigate]);
-
-  // News lives in Firestore. This tab lists what is published and still only
-  // edits a local copy; the real editor replaces it.
-  useEffect(() => {
-    if (!userEmail) return;
-    let cancelled = false;
-    getPublishedNews()
-      .then((articles) => { if (!cancelled) setNews(articles); })
-      .catch((err) => console.warn('Could not load news:', err));
-    return () => {
-      cancelled = true;
-    };
-  }, [userEmail]);
 
   // Subscribers come from Firestore, which only administrators may read.
   useEffect(() => {
@@ -105,8 +91,6 @@ export default function AdminPortalPage() {
       setEvents([{ ...formData, is_recurring: false }, ...events]);
     } else if (modalType === 'business') {
       setBusinesses([{ ...formData, slug: formData.name.toLowerCase().replace(/\s+/g, '-') }, ...businesses]);
-    } else if (modalType === 'news') {
-      setNews([{ ...formData, date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) }, ...news]);
     }
     setShowModal(false);
     setFormData({});
@@ -142,10 +126,10 @@ export default function AdminPortalPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         {/*
-          Events, businesses and news are read from the static JSON in /data and
-          held in component state; nothing here writes back yet. Say so plainly
-          rather than let a volunteer type up an event, refresh, and find it
-          gone. The subscriber list below is real — it is read from Firestore.
+          Events and businesses are read from the static JSON in /data and held
+          in component state; nothing on those tabs writes back yet. Say so
+          plainly rather than let a volunteer type up an event, refresh, and find
+          it gone. News, the subscriber list and Halloween are real Firestore data.
         */}
         <div
           role="status"
@@ -153,10 +137,10 @@ export default function AdminPortalPage() {
         >
           <AlertTriangle className="w-5 h-5 shrink-0 mt-0.5" aria-hidden="true" />
           <p>
-            <span className="font-semibold">Changes here are not saved yet.</span>{' '}
-            Events, businesses and news added or removed below last only until you
-            reload the page — publishing them still means editing the site&rsquo;s data
-            files. The newsletter subscriber list is live.
+            <span className="font-semibold">Events and businesses are not saved yet.</span>{' '}
+            Changes on those two tabs last only until you reload the page —
+            publishing them still means editing the site&rsquo;s data files. News,
+            the newsletter list and Halloween are live.
           </p>
         </div>
 
@@ -188,7 +172,7 @@ export default function AdminPortalPage() {
           {[
             { id: 'events', label: `Events (${events.length})`, icon: Calendar },
             { id: 'businesses', label: `Merchant Directory (${businesses.length})`, icon: Building2 },
-            { id: 'news', label: `News & Stories (${news.length})`, icon: Newspaper },
+            { id: 'news', label: 'News & Stories', icon: Newspaper },
             { id: 'subscribers', label: `Newsletter (${subscribers.length})`, icon: Mail },
             { id: 'halloween', label: 'Halloween', icon: Ghost }
           ].map(tab => {
@@ -319,40 +303,7 @@ export default function AdminPortalPage() {
           )}
 
           {/* NEWS TAB */}
-          {activeTab === 'news' && (
-            <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h2 className="text-lg font-bold font-serif text-stone-900">News & Announcements</h2>
-                  <p className="text-xs text-stone-500">Publish community updates and event recaps</p>
-                </div>
-                <button
-                  onClick={() => { setModalType('news'); setFormData({}); setShowModal(true); }}
-                  className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-senoia-red hover:bg-senoia-darkred text-white text-xs font-semibold shadow-xs"
-                >
-                  <Plus className="w-4 h-4" />
-                  <span>Publish Story</span>
-                </button>
-              </div>
-
-              <div className="space-y-3">
-                {news.map((item, idx) => (
-                  <div key={idx} className="p-4 rounded-xl bg-stone-50 border border-stone-200 flex items-center justify-between gap-4">
-                    <div>
-                      <h3 className="font-bold text-stone-900 text-sm font-serif">{item.title}</h3>
-                      <p className="text-xs text-stone-500 line-clamp-1">{item.summary}</p>
-                    </div>
-                    <button
-                      onClick={() => setNews(news.filter((_, i) => i !== idx))}
-                      className="p-1.5 rounded-lg text-rose-600 hover:bg-rose-50 shrink-0"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+          {activeTab === 'news' && <NewsAdmin />}
 
           {/* SUBSCRIBERS TAB */}
           {activeTab === 'subscribers' && (
@@ -471,7 +422,7 @@ export default function AdminPortalPage() {
                 <textarea
                   rows={3}
                   value={formData.description || formData.summary || ''}
-                  onChange={(e) => setFormData({ ...formData, [modalType === 'news' ? 'summary' : 'description']: e.target.value })}
+                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm focus:ring-2 focus:ring-senoia-gold focus:outline-none"
                 />
               </div>

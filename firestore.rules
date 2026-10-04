@@ -33,7 +33,7 @@ service cloud.firestore {
       return d.keys().hasOnly([
           'title', 'slug', 'summary', 'bodyHtml', 'image', 'imageAlt',
           'status', 'publishedAt', 'showDate', 'featured', 'eventSlug',
-          'createdAt', 'updatedAt', 'updatedBy', 'webflowId'
+          'createdAt', 'updatedAt', 'updatedBy', 'webflowId', 'firstPublishedAt'
         ])
         && d.keys().hasAll(['title', 'slug', 'status', 'publishedAt'])
         && d.slug == slug
