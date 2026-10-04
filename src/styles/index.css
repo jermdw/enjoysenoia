@@ -102,6 +102,22 @@ h1, h2, h3, .font-serif {
   float: left;
   margin: 0 1.5em 1em 0;
 }
+/*
+ * Business hours: short lines that read as one block. Webflow hours use
+ * paragraphs, lists and the odd h4/h5, so headings drop to body size too.
+ */
+.rich-text.rich-text-compact > * + * {
+  margin-top: 0.35em;
+}
+.rich-text.rich-text-compact :is(h2, h3, h4, h5, h6) {
+  font-size: 1em;
+  margin-top: 0;
+}
+/* Hours pasted from Google put each day's times in a list, some without <li>;
+   without bullets every day's times line up the same way. */
+.rich-text.rich-text-compact ul {
+  list-style: none;
+}
 .rich-text::after {
   content: "";
   display: table;

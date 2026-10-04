@@ -10,6 +10,22 @@ const WEBFLOW_PLACEHOLDER_ALT = '__wf_reserved_inherit';
 const purifier = DOMPurify();
 
 purifier.addHook('afterSanitizeAttributes', (node) => {
+  // Webflow video figures wrap an iframe, which is stripped. Without it the
+  // figure's inline padding leaves a blank box, so a link to the video stands
+  // in, or the figure goes if it names no web address.
+  if (node.tagName === 'FIGURE' && node.getAttribute('data-rt-type') === 'video') {
+    const url = node.getAttribute('data-page-url') || '';
+    if (!/^https?:\/\//i.test(url)) {
+      node.remove();
+      return;
+    }
+    const link = node.ownerDocument.createElement('a');
+    link.setAttribute('href', url);
+    link.textContent = 'Watch the video';
+    node.removeAttribute('style');
+    node.replaceChildren(link);
+    return;
+  }
   if (node.tagName === 'IMG' && node.getAttribute('alt') === WEBFLOW_PLACEHOLDER_ALT) {
     node.setAttribute('alt', '');
   }
@@ -21,7 +37,8 @@ purifier.addHook('afterSanitizeAttributes', (node) => {
 });
 
 /**
- * Renders stored rich text (article bodies) as HTML.
+ * Renders stored rich text (article bodies, business descriptions and hours)
+ * as HTML.
  *
  * Bodies come from the Webflow export today and from the admin editor later;
  * either can carry markup pasted from elsewhere, so every render is sanitized.
