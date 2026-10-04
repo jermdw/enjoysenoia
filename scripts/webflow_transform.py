@@ -49,6 +49,21 @@ WEBFLOW_CATEGORY_FALLBACK = {
     "Churches": "Civic & Historic",
 }
 
+# Typos in Webflow business text, keyed by slug and Webflow field:
+# (text as Webflow has it, correction). Exact matches only, applied after the
+# field is cleaned; if Webflow is fixed, the run warns so the entry can go.
+BUSINESS_TEXT_FIXES = {
+    # Two sentences run together where a line break was lost.
+    ("georgia-tours", "summary-description"): (
+        "Senoia, GAExplore the World",
+        "Senoia, GA. Explore the World",
+    ),
+    ("georgia-tours", "full-description"): (
+        "Senoia, GAExplore the World",
+        "Senoia, GA. Explore the World",
+    ),
+}
+
 LOCAL_TZ = ZoneInfo("America/New_York")
 LOCAL_ASSET_ROOT = "public/assets/webflow/"
 LOCAL_ASSET_BASE = "/assets/webflow/"
@@ -184,6 +199,19 @@ def text(value):
     return value.strip() if isinstance(value, str) else value
 
 
+def fix_text(value, slug, key, report):
+    """Apply the BUSINESS_TEXT_FIXES correction, if any, to a cleaned field."""
+    fix = BUSINESS_TEXT_FIXES.get((slug, key))
+    if not fix:
+        return value
+    wrong, right = fix
+    if not value or wrong not in value:
+        report.append(f"BUSINESS_TEXT_FIXES: {slug} {key} no longer contains "
+                      f"{wrong!r}; remove the entry")
+        return value
+    return value.replace(wrong, right)
+
+
 # --------------------------------------------------------------------------
 # dates
 # --------------------------------------------------------------------------
@@ -289,7 +317,7 @@ def build_events(assets, index, report):
     return events
 
 
-def build_businesses(assets, index, report):
+def build_businesses(assets, index, report, warnings):
     raw = load_collection("downtown-business")
     curated = json.loads(CATEGORY_FILE.read_text()) if CATEGORY_FILE.is_file() else {}
     businesses = []
@@ -326,8 +354,10 @@ def build_businesses(assets, index, report):
             # --- additional fields ---
             "id": item["id"],
             "webflow_category": webflow_category,
-            "summary": text(f.get("summary-description")),
-            "description_html": clean_html(f.get("full-description"), assets),
+            "summary": fix_text(text(f.get("summary-description")),
+                                f["slug"], "summary-description", warnings),
+            "description_html": fix_text(clean_html(f.get("full-description"), assets),
+                                         f["slug"], "full-description", warnings),
             "hours_html": clean_html(f.get("hours"), assets),
             "street_address_1": text(f.get("street-address-1")),
             "street_address_2": text(f.get("street-address-2")),
@@ -439,10 +469,10 @@ def main():
     assets = AssetResolver(args.storage_bucket)
     index = json.loads((RAW_DIR / "item_index.json").read_text())
 
-    category_report, override_report = [], []
+    category_report, warnings = [], []
     outputs = {
-        "events": build_events(assets, index, override_report),
-        "businesses": build_businesses(assets, index, category_report),
+        "events": build_events(assets, index, warnings),
+        "businesses": build_businesses(assets, index, category_report, warnings),
         "news": build_news(assets, index),
         "galleries": build_galleries(assets, index),
     }
@@ -454,7 +484,7 @@ def main():
         )
         print(f"  {name:<12} {len(records):>3} records -> data/site/{name}.json")
 
-    for line in override_report:
+    for line in warnings:
         print(f"\n  WARNING: {line}")
 
     if category_report:
