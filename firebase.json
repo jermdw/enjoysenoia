@@ -36,6 +36,198 @@
           ]
         }
       ],
+      "redirects": [
+        {
+          "source": "/partners/andreone-sports-family-chiropractic",
+          "destination": "/downtown-business/andreone-sports-family-chiropractic",
+          "type": 301
+        },
+        {
+          "source": "/partners/bistro-hilary",
+          "destination": "/downtown-business/bistro-hilary",
+          "type": 301
+        },
+        {
+          "source": "/partners/borgo-italia",
+          "destination": "/downtown-business/borgo-italia",
+          "type": 301
+        },
+        {
+          "source": "/partners/lisas-creperie-cafe",
+          "destination": "/downtown-business/lisas-creperie-cafe",
+          "type": 301
+        },
+        {
+          "source": "/partners/matts-smalltown-pizza",
+          "destination": "/downtown-business/matts-smalltown-pizza",
+          "type": 301
+        },
+        {
+          "source": "/partners/pearl-pine-brewery",
+          "destination": "/downtown-business/pearl-pine-brewery",
+          "type": 301
+        },
+        {
+          "source": "/partners/red-dahlia-salon",
+          "destination": "/downtown-business/red-dahlia-salon",
+          "type": 301
+        },
+        {
+          "source": "/partners/senoia-beer-company",
+          "destination": "/downtown-business/senoia-beer-company",
+          "type": 301
+        },
+        {
+          "source": "/partners/senoia-bridal-company",
+          "destination": "/downtown-business/senoia-bridal-company",
+          "type": 301
+        },
+        {
+          "source": "/partners/senoia-family-dentistry",
+          "destination": "/downtown-business/senoia-family-dentistry",
+          "type": 301
+        },
+        {
+          "source": "/partners/senor-taco",
+          "destination": "/downtown-business/senor-taco",
+          "type": 301
+        },
+        {
+          "source": "/partners/sunset-on-main",
+          "destination": "/downtown-business/sunset-on-main",
+          "type": 301
+        },
+        {
+          "source": "/partners/the-grand-barber",
+          "destination": "/downtown-business/the-grand-barber",
+          "type": 301
+        },
+        {
+          "source": "/partners/the-woodbury-shoppe",
+          "destination": "/downtown-business/the-woodbury-shoppe",
+          "type": 301
+        },
+        {
+          "source": "/partners/**",
+          "destination": "/downtown-businesses",
+          "type": 301
+        },
+        {
+          "source": "/event-logistics/senoia-porchfest-2023",
+          "destination": "/events/senoia-porchfest-2023",
+          "type": 301
+        },
+        {
+          "source": "/event-logistics/senoia-porchfest-2024",
+          "destination": "/events/senoia-porchfest-2024",
+          "type": 301
+        },
+        {
+          "source": "/event-logistics/senoia-porchfest-2025",
+          "destination": "/events/senoia-porchfest-2025",
+          "type": 301
+        },
+        {
+          "source": "/event-logistics/senoia-car-show-2023",
+          "destination": "/events/18th-annual-senoia-car-show-2023",
+          "type": 301
+        },
+        {
+          "source": "/event-logistics/**",
+          "destination": "/events",
+          "type": 301
+        },
+        {
+          "source": "/photo-galleries/**",
+          "destination": "/media",
+          "type": 301
+        },
+        {
+          "source": "/events/moonlight-on-marimac",
+          "destination": "/past-events",
+          "type": 301
+        },
+        {
+          "source": "/events/mardi-gras-pub-crawl-2024",
+          "destination": "/past-events",
+          "type": 301
+        },
+        {
+          "source": "/events/2024-memorial-day-celebration",
+          "destination": "/past-events",
+          "type": 301
+        },
+        {
+          "source": "/events/senoia-porchfest-2025-testing---delete-later",
+          "destination": "/events",
+          "type": 301
+        },
+        {
+          "source": "/downtown-business/example-restaurant",
+          "destination": "/downtown-businesses",
+          "type": 301
+        },
+        {
+          "source": "/downtown-businesses-map",
+          "destination": "/downtown-businesses",
+          "type": 301
+        },
+        {
+          "source": "/product/**",
+          "destination": "/events",
+          "type": 301
+        },
+        {
+          "source": "/partnership-levels/**",
+          "destination": "/events",
+          "type": 301
+        },
+        {
+          "source": "/checkout",
+          "destination": "/",
+          "type": 301
+        },
+        {
+          "source": "/paypal-checkout",
+          "destination": "/",
+          "type": 301
+        },
+        {
+          "source": "/order-confirmation",
+          "destination": "/",
+          "type": 301
+        },
+        {
+          "source": "/log-in",
+          "destination": "/",
+          "type": 301
+        },
+        {
+          "source": "/sign-up",
+          "destination": "/",
+          "type": 301
+        },
+        {
+          "source": "/reset-password",
+          "destination": "/",
+          "type": 301
+        },
+        {
+          "source": "/update-password",
+          "destination": "/",
+          "type": 301
+        },
+        {
+          "source": "/user-account",
+          "destination": "/",
+          "type": 301
+        },
+        {
+          "source": "/access-denied",
+          "destination": "/",
+          "type": 301
+        }
+      ],
       "rewrites": [
         {
           "source": "**",
