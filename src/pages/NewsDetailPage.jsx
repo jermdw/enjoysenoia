@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Calendar, ArrowLeft, Share2 } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import NotFoundNotice from '../components/common/NotFoundNotice';
+import RichText from '../components/common/RichText';
 import { getNewsArticles } from '../services/dataService';
 
 export default function NewsDetailPage() {
@@ -54,23 +55,24 @@ export default function NewsDetailPage() {
             <div className="rounded-xl overflow-hidden aspect-[16/10] bg-stone-100 shadow-sm">
               <img
                 src={article.image}
-                alt={article.title}
+                alt={article.image_alt || article.title}
                 className="w-full h-full object-cover"
               />
             </div>
           )}
 
-          <div className="prose prose-stone max-w-none text-stone-700 leading-relaxed text-base sm:text-lg space-y-4">
-            <p className="font-medium text-stone-900 leading-relaxed">
-              {article?.summary}
+          {/* The summary is usually the body's opening line, so it only
+              stands in when a story has no body. */}
+          {article.body_html ? (
+            <RichText
+              html={article.body_html}
+              className="text-stone-700 leading-relaxed text-base sm:text-lg"
+            />
+          ) : (
+            <p className="text-stone-700 leading-relaxed text-base sm:text-lg">
+              {article.summary}
             </p>
-            <p>
-              The Senoia Downtown Development Authority continues its mission to support local economic development, enhance community life, and foster historic preservation throughout the town of Senoia.
-            </p>
-            <p>
-              For more information about upcoming projects, board meetings, or downtown events, please visit the Welcome Center at 68 Main St or explore our public records in the Files & Downloads section.
-            </p>
-          </div>
+          )}
 
           <div className="pt-6 border-t border-stone-100 flex items-center justify-between">
             <span className="text-xs text-stone-400">Published by Senoia DDA</span>

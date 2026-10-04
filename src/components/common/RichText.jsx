@@ -1,0 +1,45 @@
+import React, { useMemo } from 'react';
+import DOMPurify from 'dompurify';
+
+// Webflow writes this as the alt text of images whose alt it inherits from the
+// asset; read aloud it is noise, so it becomes decorative.
+const WEBFLOW_PLACEHOLDER_ALT = '__wf_reserved_inherit';
+
+// One purifier for article HTML, so its hooks never leak into another caller
+// of the shared DOMPurify instance.
+const purifier = DOMPurify();
+
+purifier.addHook('afterSanitizeAttributes', (node) => {
+  if (node.tagName === 'IMG' && node.getAttribute('alt') === WEBFLOW_PLACEHOLDER_ALT) {
+    node.setAttribute('alt', '');
+  }
+  // Links off the site open in a new tab, without handing it window.opener.
+  if (node.tagName === 'A' && /^https?:\/\//i.test(node.getAttribute('href') || '')) {
+    node.setAttribute('target', '_blank');
+    node.setAttribute('rel', 'noopener noreferrer');
+  }
+});
+
+/**
+ * Renders stored rich text (article bodies) as HTML.
+ *
+ * Bodies come from the Webflow export today and from the admin editor later;
+ * either can carry markup pasted from elsewhere, so every render is sanitized.
+ * Scripts and embeds are stripped. The Ticket Tailor embed in the banner story,
+ * for one, falls back to the plain checkout link it ships with.
+ */
+export default function RichText({ html, className = '' }) {
+  const clean = useMemo(
+    () => purifier.sanitize(html || '', { ADD_ATTR: ['target'] }),
+    [html]
+  );
+
+  if (!clean.trim()) return null;
+
+  return (
+    <div
+      className={`rich-text ${className}`}
+      dangerouslySetInnerHTML={{ __html: clean }}
+    />
+  );
+}
