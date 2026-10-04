@@ -4,12 +4,30 @@ import { Calendar, ArrowLeft, Share2 } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import NotFoundNotice from '../components/common/NotFoundNotice';
 import RichText from '../components/common/RichText';
-import { getNewsArticles } from '../services/dataService';
+import { useNewsStory } from '../hooks/useNews';
 
 export default function NewsDetailPage() {
   const { slug } = useParams();
-  // Only records that actually live at /news/<slug> can answer this route.
-  const article = getNewsArticles().find(n => n.link === `/news/${slug}`);
+  const { article, loading, error } = useNewsStory(slug);
+
+  if (loading) {
+    return (
+      <div className="py-24 bg-stone-50 min-h-screen text-center text-sm text-stone-500" role="status">
+        Loading story…
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <NotFoundNotice
+        title="Story unavailable"
+        message="This story could not be loaded right now. Please try again in a moment."
+        backTo="/news"
+        backLabel="Back to News"
+      />
+    );
+  }
 
   if (!article) {
     return (

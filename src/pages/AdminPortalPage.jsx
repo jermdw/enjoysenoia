@@ -4,7 +4,8 @@ import { Shield, Calendar, Building2, Newspaper, Mail, Plus, Trash2, Download, L
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import SEO from '../components/common/SEO';
-import { getEvents, getBusinesses, getNews } from '../services/dataService';
+import { getEvents, getBusinesses } from '../services/dataService';
+import { getPublishedNews } from '../services/newsService';
 import { auth, db } from '../services/firebase';
 import { isAuthorizedAdmin } from '../services/adminAccess';
 import HalloweenAdmin from './admin/HalloweenAdmin';
@@ -13,7 +14,7 @@ export default function AdminPortalPage() {
   const [activeTab, setActiveTab] = useState('events');
   const [events, setEvents] = useState(getEvents());
   const [businesses, setBusinesses] = useState(getBusinesses());
-  const [news, setNews] = useState(getNews());
+  const [news, setNews] = useState([]);
   const [subscribers, setSubscribers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState('');
@@ -47,6 +48,19 @@ export default function AdminPortalPage() {
       }
     });
   }, [navigate]);
+
+  // News lives in Firestore. This tab lists what is published and still only
+  // edits a local copy; the real editor replaces it.
+  useEffect(() => {
+    if (!userEmail) return;
+    let cancelled = false;
+    getPublishedNews()
+      .then((articles) => { if (!cancelled) setNews(articles); })
+      .catch((err) => console.warn('Could not load news:', err));
+    return () => {
+      cancelled = true;
+    };
+  }, [userEmail]);
 
   // Subscribers come from Firestore, which only administrators may read.
   useEffect(() => {

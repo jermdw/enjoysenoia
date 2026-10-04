@@ -2,11 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Newspaper, Calendar, ArrowRight } from 'lucide-react';
 import SEO from '../components/common/SEO';
-import { getNews, isNewsArticle } from '../services/dataService';
+import { getPhotoGalleryItems, isNewsArticle } from '../services/dataService';
+import { useNewsList } from '../hooks/useNews';
 import { webflowAsset } from '../utils/webflowAsset';
 
 export default function NewsPage() {
-  const newsItems = getNews();
+  const { articles, loading, error } = useNewsList();
+  // Galleries wait for the stories, so they don't render first and then jump.
+  const newsItems = loading ? [] : [...articles, ...getPhotoGalleryItems()];
 
   return (
     <div className="py-12 sm:py-16 bg-stone-50 min-h-screen">
@@ -28,6 +31,15 @@ export default function NewsPage() {
             Stay connected with the latest projects, merchant achievements, festival recaps, and community milestones.
           </p>
         </div>
+
+        {loading && (
+          <p className="text-sm text-stone-500" role="status">Loading the latest stories…</p>
+        )}
+        {error && (
+          <p className="text-sm text-stone-600 bg-white border border-stone-200 rounded-xl px-4 py-3">
+            The latest stories could not be loaded right now. Please try again in a moment.
+          </p>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {newsItems.map((item, idx) => {

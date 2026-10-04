@@ -22,9 +22,31 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
-    match /news/{newsId} {
-      allow read: if true;
-      allow write: if isAdmin();
+    /*
+     * News stories, keyed by slug (the /news/<slug> address). Drafts are
+     * admin-only: the public may read a story only once it is published,
+     * so every public query must filter on status == 'published' or the
+     * rules reject it. See src/services/newsService.js.
+     */
+    function isValidNewsStory(slug) {
+      let d = request.resource.data;
+      return d.keys().hasOnly([
+          'title', 'slug', 'summary', 'bodyHtml', 'image', 'imageAlt',
+          'status', 'publishedAt', 'showDate', 'featured', 'eventSlug',
+          'createdAt', 'updatedAt', 'updatedBy', 'webflowId'
+        ])
+        && d.keys().hasAll(['title', 'slug', 'status', 'publishedAt'])
+        && d.slug == slug
+        && slug.matches('^[a-z0-9][a-z0-9-]{0,119}$')
+        && d.title is string && d.title.size() > 0 && d.title.size() <= 200
+        && d.status in ['draft', 'published']
+        && d.publishedAt is timestamp;
+    }
+
+    match /news/{slug} {
+      allow read: if resource.data.status == 'published' || isAdmin();
+      allow create, update: if isAdmin() && isValidNewsStory(slug);
+      allow delete: if isAdmin();
     }
 
     match /downloads/{downloadId} {

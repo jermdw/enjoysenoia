@@ -1,8 +1,8 @@
 // Built from the Webflow CMS by scripts/webflow_transform.py - regenerate
-// rather than editing by hand.
+// rather than editing by hand. News is not here: it lives in Firestore (see
+// services/newsService.js).
 import eventsData from '../../data/site/events.json';
 import businessesData from '../../data/site/businesses.json';
-import newsData from '../../data/site/news.json';
 import galleriesData from '../../data/site/galleries.json';
 
 // An event stays upcoming until it ends; recurring events always are.
@@ -26,19 +26,10 @@ export const getBusinesses = () => {
   return businessesData;
 };
 
-// The /news listing shows articles followed by photo galleries. Galleries link
-// to /photo-galleries/..., not /news/..., so pages use isNewsArticle to keep
-// them out of the news routes.
-export const getNews = () => {
-  return [...getNewsArticles(), ...galleriesData];
-};
-
+// The /news listing shows stories from Firestore followed by these photo
+// galleries. Galleries link to /photo-galleries/..., not /news/..., so pages
+// use isNewsArticle to keep them out of the news routes.
 export const isNewsArticle = (item) => Boolean(item?.link?.startsWith('/news/'));
-
-// Merchants-only posts belong to the business portal, not the public site.
-export const getNewsArticles = () => {
-  return newsData.filter((n) => !n.merchants_only);
-};
 
 export const getPhotoGalleryItems = () => {
   return galleriesData;

@@ -1,6 +1,6 @@
 import { initializeApp, getApps } from 'firebase/app';
 import { initializeAppCheck, ReCaptchaEnterpriseProvider } from 'firebase/app-check';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
 
@@ -61,6 +61,15 @@ if (isFirstInit && recaptchaSiteKey) {
 }
 
 export const db = getFirestore(app);
+
+// Local development against the Firestore emulator, so testing writes never
+// touches the live database (PR previews share it). Opt in with
+// VITE_FIRESTORE_EMULATOR_HOST=127.0.0.1:8080 in .env.local; dev builds only.
+const firestoreEmulator = import.meta.env.DEV && import.meta.env.VITE_FIRESTORE_EMULATOR_HOST;
+if (isFirstInit && firestoreEmulator) {
+  const [host, port] = firestoreEmulator.split(':');
+  connectFirestoreEmulator(db, host, Number(port));
+}
 export const auth = getAuth(app);
 export const storage = getStorage(app);
 export default app;

@@ -349,6 +349,9 @@ def build_businesses(assets, index, report):
 
 
 def build_news(assets, index):
+    # news.json seeded the Firestore `news` collection once
+    # (scripts/seed_news.py). The site reads News from Firestore now, so
+    # rebuilding this file does not change what the site shows.
     raw = load_collection("news")
     news = []
 
