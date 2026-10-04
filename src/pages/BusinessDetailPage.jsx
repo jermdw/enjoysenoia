@@ -59,6 +59,9 @@ export default function BusinessDetailPage() {
               <h1 className="text-3xl sm:text-4xl font-bold font-serif text-stone-900">
                 {business?.name}
               </h1>
+              {business?.summary && (
+                <p className="text-base sm:text-lg text-stone-600">{business.summary}</p>
+              )}
               <div className="flex items-center space-x-2 text-sm text-stone-500">
                 <MapPin className="w-4 h-4 text-senoia-red shrink-0" />
                 <span>Historic Downtown Senoia, GA 30276</span>
