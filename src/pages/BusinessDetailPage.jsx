@@ -1,8 +1,9 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Phone, Mail, Globe, MapPin, ArrowLeft, Facebook, Instagram, Share2 } from 'lucide-react';
+import { Phone, Mail, Globe, MapPin, Clock, ArrowLeft, Facebook, Instagram, Share2 } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import NotFoundNotice from '../components/common/NotFoundNotice';
+import RichText from '../components/common/RichText';
 import { getBusinessBySlug } from '../services/dataService';
 import { webflowAsset } from '../utils/webflowAsset';
 
@@ -58,6 +59,9 @@ export default function BusinessDetailPage() {
               <h1 className="text-3xl sm:text-4xl font-bold font-serif text-stone-900">
                 {business?.name}
               </h1>
+              {business?.summary && (
+                <p className="text-base sm:text-lg text-stone-600">{business.summary}</p>
+              )}
               <div className="flex items-center space-x-2 text-sm text-stone-500">
                 <MapPin className="w-4 h-4 text-senoia-red shrink-0" />
                 <span>Historic Downtown Senoia, GA 30276</span>
@@ -66,6 +70,19 @@ export default function BusinessDetailPage() {
 
             {/* Quick Contact Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-stone-100">
+              {business?.hours_html?.trim() && (
+                <div className="sm:col-span-2 p-4 rounded-xl bg-stone-50 border border-stone-100 flex items-start space-x-3">
+                  <Clock className="w-5 h-5 text-senoia-gold shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-xs text-stone-400 font-medium uppercase">Hours</p>
+                    <RichText
+                      html={business.hours_html}
+                      className="rich-text-compact mt-1 text-sm text-stone-800"
+                    />
+                  </div>
+                </div>
+              )}
+
               {business?.phone && (
                 <div className="p-4 rounded-xl bg-stone-50 border border-stone-100 flex items-center space-x-3">
                   <Phone className="w-5 h-5 text-senoia-gold shrink-0" />
@@ -144,6 +161,16 @@ export default function BusinessDetailPage() {
                 <Share2 className="w-4 h-4" />
               </button>
             </div>
+
+            {business?.description_html?.trim() && (
+              <section className="pt-6 border-t border-stone-100 space-y-4">
+                <h2 className="text-xl sm:text-2xl font-bold font-serif text-stone-900">About</h2>
+                <RichText
+                  html={business.description_html}
+                  className="text-stone-700 leading-relaxed text-base sm:text-lg"
+                />
+              </section>
+            )}
           </div>
         </div>
       </div>
