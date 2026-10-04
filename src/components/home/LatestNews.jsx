@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Newspaper, Calendar, ArrowRight } from 'lucide-react';
-import { getNews } from '../../services/dataService';
+import { getPhotoGalleryItems, isNewsArticle } from '../../services/dataService';
+import { useNewsList } from '../../hooks/useNews';
 import { webflowAsset } from '../../utils/webflowAsset';
 
 export default function LatestNews() {
-  const newsItems = getNews().slice(0, 3);
+  const { articles, loading } = useNewsList({ max: 3 });
+  // Galleries fill in only when there are fewer than three stories.
+  const newsItems = loading ? [] : [...articles, ...getPhotoGalleryItems()].slice(0, 3);
 
   return (
     <section id="news" className="py-16 lg:py-24 bg-white border-b border-stone-200">
@@ -67,7 +70,7 @@ export default function LatestNews() {
 
                 <div className="pt-2 border-t border-stone-200/60">
                   <Link
-                    to={item.link || '/news'}
+                    to={isNewsArticle(item) ? item.link : '/media'}
                     className="inline-flex items-center text-xs font-semibold text-senoia-red group-hover:text-senoia-darkred"
                   >
                     <span>Read Full Story</span>

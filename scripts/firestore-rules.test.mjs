@@ -1,9 +1,10 @@
 /**
- * Rules tests for the Halloween collections.
+ * Rules tests for the Halloween and News collections.
  *
- * The two-collection split in src/services/halloweenService.js is only as good
- * as firestore.rules — and neither `npm run lint` nor `npm run build` reads
- * that file. This exercises it against the real emulator.
+ * The two-collection split in src/services/halloweenService.js, and the
+ * draft/published gate in src/services/newsService.js, are only as good as
+ * firestore.rules — and neither `npm run lint` nor `npm run build` reads that
+ * file. This exercises it against the real emulator.
  *
  * Deliberately not wired into package.json or CI: the repo has no test runner
  * and this needs Java plus a one-off install. Run it by hand from the repo root
@@ -25,7 +26,9 @@ import {
   assertSucceeds,
   assertFails,
 } from '@firebase/rules-unit-testing';
-import { doc, setDoc, getDoc, updateDoc, collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import {
+  doc, setDoc, getDoc, getDocs, updateDoc, deleteDoc, collection, addDoc, query, where, serverTimestamp,
+} from 'firebase/firestore';
 
 const env = await initializeTestEnvironment({
   projectId: 'rules-test',
@@ -111,6 +114,66 @@ await check('admin may NOT write a map point carrying an email',
 await check('admin MAY write an unplaced pin (null coords)',
   () => assertSucceeds(addDoc(collection(admin, 'halloween_map_points'), {
     address: 'unplaced', lat: null, lng: null, kind: 'parking', label: null, createdAt: serverTimestamp() })));
+
+const story = (slug, over = {}) => ({
+  title: 'Porchfest Highlights',
+  slug,
+  summary: 'Thank you, Senoia!',
+  bodyHtml: '<p>Thank you, Senoia!</p>',
+  image: null,
+  imageAlt: '',
+  status: 'published',
+  publishedAt: new Date('2026-09-09T17:00:00Z'),
+  showDate: true,
+  featured: false,
+  eventSlug: null,
+  createdAt: new Date(),
+  updatedAt: new Date(),
+  updatedBy: 'jermdw@gmail.com',
+  webflowId: null,
+  ...over,
+});
+
+await env.withSecurityRulesDisabled(async (ctx) => {
+  await setDoc(doc(ctx.firestore(), 'news/published-story'), story('published-story'));
+  await setDoc(doc(ctx.firestore(), 'news/draft-story'), story('draft-story', { status: 'draft' }));
+});
+
+console.log('\nnews');
+await check('public MAY read a published story',
+  () => assertSucceeds(getDoc(doc(pub, 'news/published-story'))));
+await check('public may NOT read a draft',
+  () => assertFails(getDoc(doc(pub, 'news/draft-story'))));
+await check('signed-in non-admin may NOT read a draft',
+  () => assertFails(getDoc(doc(nonAdmin, 'news/draft-story'))));
+await check('admin MAY read a draft',
+  () => assertSucceeds(getDoc(doc(admin, 'news/draft-story'))));
+await check('public MAY list stories filtered to published',
+  () => assertSucceeds(getDocs(query(collection(pub, 'news'), where('status', '==', 'published')))));
+await check('public may NOT list stories without the published filter',
+  () => assertFails(getDocs(collection(pub, 'news'))));
+await check('public may NOT write a story',
+  () => assertFails(setDoc(doc(pub, 'news/new-story'), story('new-story'))));
+await check('signed-in non-admin may NOT write a story',
+  () => assertFails(setDoc(doc(nonAdmin, 'news/new-story'), story('new-story'))));
+await check('admin MAY create a story',
+  () => assertSucceeds(setDoc(doc(admin, 'news/new-story'), story('new-story'))));
+await check('admin MAY publish a draft',
+  () => assertSucceeds(updateDoc(doc(admin, 'news/draft-story'), { status: 'published' })));
+await check('admin may NOT store a slug that differs from the document id',
+  () => assertFails(setDoc(doc(admin, 'news/other-story'), story('not-other-story'))));
+await check('admin may NOT use a slug with spaces or capitals',
+  () => assertFails(setDoc(doc(admin, 'news/Bad Slug'), story('Bad Slug'))));
+await check('admin may NOT set an unknown status',
+  () => assertFails(setDoc(doc(admin, 'news/odd-story'), story('odd-story', { status: 'scheduled' }))));
+await check('admin may NOT add an unknown field',
+  () => assertFails(setDoc(doc(admin, 'news/odd-story'), story('odd-story', { secretNote: 'hi' }))));
+await check('admin may NOT omit publishedAt',
+  () => assertFails(setDoc(doc(admin, 'news/odd-story'), (() => {
+    const v = story('odd-story'); delete v.publishedAt; return v;
+  })())));
+await check('admin MAY delete a story',
+  () => assertSucceeds(deleteDoc(doc(admin, 'news/new-story'))));
 
 await env.cleanup();
 console.log(`\n${pass} passed, ${fail} failed\n`);
