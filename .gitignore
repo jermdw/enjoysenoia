@@ -28,7 +28,7 @@ dist-ssr
 .firebaserc
 
 # Local Firebase web config (see .env.example and README-masquerade.md)
-client.json # Oauth2
+client.json
 .env
 .env.*
 *.env
