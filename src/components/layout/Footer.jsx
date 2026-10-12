@@ -113,7 +113,7 @@ export default function Footer() {
                 className="inline-flex items-center space-x-1.5 text-xs text-stone-500 hover:text-stone-300 transition-colors"
               >
                 <ShieldCheck className="w-3.5 h-3.5" />
-                <span>DDA Volunteer Portal</span>
+                <span>EnjoySenoia Admin Portal</span>
               </Link>
             </div>
           </div>

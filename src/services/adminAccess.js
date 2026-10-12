@@ -18,6 +18,13 @@ export const ADMIN_EMAILS = [
 ];
 
 /**
+ * Where portal users are told to go for help. Deliberately empty: no support
+ * address is advertised until one that reaches a real inbox exists. Set it to
+ * an email address and the login card footer will show it.
+ */
+export const ADMIN_SUPPORT_EMAIL = '';
+
+/**
  * Resolves true only for an account carrying the `admin` claim or an
  * allowlisted email. Forces a token refresh so a claim granted during the
  * session is picked up without signing out.
