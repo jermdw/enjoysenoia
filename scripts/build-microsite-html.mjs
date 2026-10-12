@@ -51,6 +51,10 @@ for (const site of sites) {
   const file = path.join(out, 'index.html');
   let html = readFileSync(file, 'utf8');
 
+  // index.html carries the main site's share tags between these markers; drop
+  // them so only this micro-site's tags (appended below) remain.
+  html = html.replace(/[ \t]*<!-- main-site-share:start[\s\S]*?main-site-share:end -->\n?/, '');
+
   const replaceOnce = (re, replacement, what) => {
     if (!re.test(html)) {
       console.error(`dist/index.html has no ${what} to replace; update scripts/build-microsite-html.mjs.`);
