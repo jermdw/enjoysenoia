@@ -226,6 +226,26 @@
           "source": "/access-denied",
           "destination": "/",
           "type": 301
+        },
+        {
+          "source": "/events/senoia-porchfest-2026",
+          "destination": "/past-events",
+          "type": 301
+        },
+        {
+          "source": "/events/bad-medicine---a-tribute-to-bon-jovi-fundraiser-concert",
+          "destination": "/past-events",
+          "type": 301
+        },
+        {
+          "source": "/events/locals-night",
+          "destination": "/past-events",
+          "type": 301
+        },
+        {
+          "source": "/events/locals-night-2",
+          "destination": "/past-events",
+          "type": 301
         }
       ],
       "rewrites": [
