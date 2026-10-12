@@ -205,6 +205,16 @@ build; the app picks the page from the hostname.
    production: a public read of `halloween_map_points` returns 200, and a public
    read of `halloween_signups` returns 403 PERMISSION_DENIED.
 
+### Listing on enjoysenoia.com
+
+The main site lists this as the event `halloween-in-senoia`
+(`/events/halloween-in-senoia`), defined in `data/event_overrides.json` and built
+into `data/site/events.json` by `scripts/webflow_transform.py` (an override with a
+`title` and `start` that matches no Webflow item becomes its own event). Its
+button sends visitors to <https://senoiahalloween.com/>. Re-run the transform with
+`--storage-bucket enjoysenoia.firebasestorage.app` after editing the override.
+Cover art is the placeholder `public/halloween/event-card.svg`.
+
 Local target mapping, if you deploy by hand rather than through Actions:
 
 ```bash

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Calendar, Clock, Search, ArrowRight } from 'lucide-react';
 import SEO from '../components/common/SEO';
-import { getEvents, getEventSlug } from '../services/dataService';
+import { getEvents } from '../services/dataService';
+import EventLink from '../components/common/EventLink';
 import { webflowAsset } from '../utils/webflowAsset';
 
 export default function EventsPage() {
@@ -93,20 +93,21 @@ export default function EventsPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredEvents.map((evt, idx) => {
-              const slug = getEventSlug(evt);
               return (
                 <div
                   key={evt.title + idx}
                   className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-xs hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                 >
                   <div className="relative aspect-video w-full overflow-hidden bg-stone-200">
+                    <EventLink event={evt} tabIndex={-1} aria-hidden="true" className="block w-full h-full">
                     <img
                       src={evt.image || webflowAsset('site/6980f95eb898c8958cd58b4e_Senoia_s_Memorial_Day_Celebration__1200_x_628_px___1200_x_628_px___5_.jpg')}
                       alt={evt.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
                     />
-                    <div className="absolute top-3 left-3">
+                    </EventLink>
+                    <div className="absolute top-3 left-3 pointer-events-none">
                       <span className="px-2.5 py-1 text-xs font-semibold rounded-full bg-white/95 text-senoia-red shadow-xs border border-stone-100">
                         {evt.category || 'Event'}
                       </span>
@@ -121,7 +122,7 @@ export default function EventsPage() {
                       </div>
 
                       <h2 className="text-xl font-bold font-serif text-stone-900 group-hover:text-senoia-red transition-colors">
-                        {evt.title}
+                        <EventLink event={evt}>{evt.title}</EventLink>
                       </h2>
 
                       <p className="text-sm text-stone-600 line-clamp-3 leading-relaxed">
@@ -130,13 +131,13 @@ export default function EventsPage() {
                     </div>
 
                     <div className="pt-3 border-t border-stone-100 flex items-center justify-between">
-                      <Link
-                        to={`/events/${slug}`}
+                      <EventLink
+                        event={evt}
                         className="inline-flex items-center text-xs font-semibold text-senoia-red hover:text-senoia-darkred"
                       >
-                        <span>Details & Tickets</span>
+                        <span>{evt.external_url ? 'Event Website' : 'Details & Tickets'}</span>
                         <ArrowRight className="ml-1 w-3.5 h-3.5" />
-                      </Link>
+                      </EventLink>
                       <span className="text-xs text-stone-400">Downtown Senoia</span>
                     </div>
                   </div>

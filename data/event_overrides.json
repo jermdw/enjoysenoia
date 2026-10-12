@@ -6,5 +6,24 @@
     "location": "The Stone Lodge at Marimac Lake, Senoia, GA",
     "ticket_url": "https://thehalloweenmasquerade.com/",
     "ticket_label": "Visit the Official Masquerade Site"
+  },
+  "2026-senoia-turkey-trot-5k": {
+    "external_url": "https://runsignup.com/Race/GA/Senoia/Senoia5KTurkeyTrot",
+    "ticket_url": "https://runsignup.com/Race/GA/Senoia/Senoia5KTurkeyTrot",
+    "ticket_label": "Register on the Official Turkey Trot Site"
+  },
+  "halloween-in-senoia": {
+    "title": "Halloween in Senoia",
+    "date_time": "October 16, 2026",
+    "category": "DDA Event",
+    "description": "Downtown Senoia's Halloween celebration: the Home & Business Decorating Contest, the Masquerade Ball, Toddler Trick-or-Treat and Trick or Treating with an interactive map. October 16–31.",
+    "image": "/halloween/event-card.svg",
+    "start": "2026-10-16T12:00:00+00:00",
+    "end": "2026-10-31T23:59:00+00:00",
+    "location": "Downtown Senoia, GA",
+    "address": "Downtown Senoia, GA",
+    "hero_caption": "Halloween in Senoia",
+    "ticket_url": "https://senoiahalloween.com/",
+    "ticket_label": "Visit the Official Halloween in Senoia Site"
   }
 }

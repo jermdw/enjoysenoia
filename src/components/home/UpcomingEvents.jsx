@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
-import { getEvents, getEventSlug } from '../../services/dataService';
+import { getEvents } from '../../services/dataService';
+import EventLink from '../common/EventLink';
 import { webflowAsset } from '../../utils/webflowAsset';
 
 export default function UpcomingEvents() {
@@ -15,8 +16,12 @@ export default function UpcomingEvents() {
   startOfToday.setHours(0, 0, 0, 0);
 
   const stillToCome = oneOffEvents
-    .map(evt => ({ evt, date: new Date(evt.date_time) }))
-    .filter(({ date }) => !Number.isNaN(date.getTime()) && date >= startOfToday)
+    .map(evt => ({
+      evt,
+      date: new Date(evt.start || evt.date_time),
+      last: new Date(evt.end || evt.start || evt.date_time),
+    }))
+    .filter(({ date, last }) => !Number.isNaN(date.getTime()) && last >= startOfToday)
     .sort((a, b) => a.date - b.date)
     .map(({ evt }) => evt);
 
@@ -60,7 +65,6 @@ export default function UpcomingEvents() {
         ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {upcomingEvents.map((evt, idx) => {
-            const slug = getEventSlug(evt);
             return (
               <div 
                 key={evt.title + idx}
@@ -68,13 +72,15 @@ export default function UpcomingEvents() {
               >
                 {/* Event Image */}
                 <div className="relative aspect-video w-full overflow-hidden bg-stone-200">
+                  <EventLink event={evt} tabIndex={-1} aria-hidden="true" className="block w-full h-full">
                   <img
                     src={evt.image || webflowAsset('site/6980f95eb898c8958cd58b4e_Senoia_s_Memorial_Day_Celebration__1200_x_628_px___1200_x_628_px___5_.jpg')}
                     alt={evt.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
-                  <div className="absolute top-3 left-3">
+                  </EventLink>
+                  <div className="absolute top-3 left-3 pointer-events-none">
                     <span className="px-2.5 py-1 text-xs font-semibold rounded-full bg-white/90 backdrop-blur-md text-senoia-red shadow-xs border border-stone-100">
                       {evt.category || 'DDA Event'}
                     </span>
@@ -90,7 +96,7 @@ export default function UpcomingEvents() {
                     </div>
 
                     <h3 className="text-lg font-bold font-serif text-stone-900 group-hover:text-senoia-red transition-colors line-clamp-2">
-                      {evt.title}
+                      <EventLink event={evt}>{evt.title}</EventLink>
                     </h3>
 
                     <p className="text-sm text-stone-600 line-clamp-3 leading-relaxed">
@@ -99,13 +105,13 @@ export default function UpcomingEvents() {
                   </div>
 
                   <div className="pt-2 border-t border-stone-200/60 flex items-center justify-between">
-                    <Link
-                      to={`/events/${slug}`}
+                    <EventLink
+                      event={evt}
                       className="inline-flex items-center text-xs font-semibold text-senoia-red group-hover:text-senoia-darkred"
                     >
-                      <span>Event Details</span>
+                      <span>{evt.external_url ? 'Event Website' : 'Event Details'}</span>
                       <ArrowRight className="ml-1 w-3.5 h-3.5" />
-                    </Link>
+                    </EventLink>
                     <span className="text-xs text-stone-400">Downtown Senoia</span>
                   </div>
                 </div>
