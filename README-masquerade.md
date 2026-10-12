@@ -33,8 +33,9 @@ plain `thehalloweenmasquerade.com`; any other path there redirects to `/`.
 - [ ] **Brand fonts.** Rumble Brave and Zenaida are not web-licensed here. Drop `.woff2` files in
       `src/masquerade/fonts/`, add `@font-face` rules, and point `--masq-font-display` /
       `--masq-font-body` at them. Cinzel Decorative + Cormorant Garamond stand in until then.
-- [ ] **Artwork.** Hero image, past-year photos, and a 1200×630 share image (`seo.ogImage`).
-      Also replaces `public/masquerade/event-card.svg`.
+- [ ] **Artwork.** Hero image and past-year photos. Also replaces `public/masquerade/event-card.svg`.
+      The 1200×630 share image (`seo.ogImage`, `public/masquerade/og-image.png`) is a stand-in built
+      by `node scripts/build-og-images.mjs`; swap in the organizer's artwork when it arrives.
 - [ ] **Sponsor logos.** Add to the `sponsors` array as `{ name, tierId, logo, url }`; the tier
       grid renders logos automatically once the array is non-empty.
 - [ ] **Costume contest details** — categories, prizes, judging (intake said TBD).
@@ -76,6 +77,12 @@ Only Vite's content-hashed output under `/assets/` is cached as `immutable`. Fil
 cache for an hour and then revalidate.
 
 Both sites ship the same bundle, and the app picks the page from the hostname. The
+`masquerade` target serves `dist-masquerade/` rather than `dist/`: `npm run build` runs
+`scripts/build-microsite-html.mjs`, which copies `dist/` and writes `seo` (title,
+description, canonical, Open Graph, Twitter, share image) into that copy's `index.html`
+so crawlers and link unfurlers that don't run JavaScript see the right head. `main`
+still serves `dist/` untouched. Scrapers cache previews, so after a deploy re-scrape
+the URL in Facebook's Sharing Debugger. The
 `/masquerade` → `/` redirect keeps links shared before the move working. It's a 301 because
 the move is permanent. The page sets its canonical URL to `https://thehalloweenmasquerade.com/`
 (`seo.url`), including when it's reached as enjoysenoia.com/masquerade. If the two sites should

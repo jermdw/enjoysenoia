@@ -257,7 +257,7 @@
     },
     {
       "target": "masquerade",
-      "public": "dist",
+      "public": "dist-masquerade",
       "ignore": [
         "firebase.json",
         "**/.*",
