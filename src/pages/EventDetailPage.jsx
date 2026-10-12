@@ -3,12 +3,19 @@ import { useParams, Link } from 'react-router-dom';
 import { Clock, MapPin, ArrowLeft, Ticket, Share2, Sparkles } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import NotFoundNotice from '../components/common/NotFoundNotice';
-import { getEventBySlug } from '../services/dataService';
+import { getEventBySlug, useContentOverrides } from '../services/dataService';
 import { webflowAsset } from '../utils/webflowAsset';
 
 export default function EventDetailPage() {
   const { slug } = useParams();
+  const { ready } = useContentOverrides();
   const event = getEventBySlug(slug);
+
+  // Hold the page until staff edits have been applied (or given up on), so a
+  // hidden event never flashes and an added one is not reported missing.
+  if (!ready) {
+    return <div className="min-h-screen bg-stone-50" aria-busy="true" />;
+  }
 
   if (!event) {
     return (

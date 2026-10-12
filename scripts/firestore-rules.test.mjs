@@ -1,5 +1,5 @@
 /**
- * Rules tests for the Halloween and News collections.
+ * Rules tests for the Halloween, News and staff-edit (events, businesses) collections.
  *
  * The two-collection split in src/services/halloweenService.js, and the
  * draft/published gate in src/services/newsService.js, are only as good as
@@ -176,6 +176,61 @@ await check('admin MAY record firstPublishedAt when publishing',
   () => assertSucceeds(updateDoc(doc(admin, 'news/new-story'), { status: 'published', firstPublishedAt: new Date() })));
 await check('admin MAY delete a story',
   () => assertSucceeds(deleteDoc(doc(admin, 'news/new-story'))));
+
+
+// Staff edits to events and the downtown directory. The same two checks apply
+// to both collections, so they run through one table.
+const eventDoc = (slug, over = {}) => ({
+  slug, hidden: false, title: 'Fall Festival', start: '2026-11-07T15:00:00.000Z',
+  date_time: 'November 7, 2026 10:00 AM', updatedAt: serverTimestamp(), updatedBy: 'jermdw@gmail.com', ...over,
+});
+const businessDoc = (slug, over = {}) => ({
+  slug, hidden: false, name: 'Senoia Sim Racing', category: 'Shopping & Retail',
+  website: 'https://senoiasimracing.com/', address: 'Lower level, 48 Main Street', updatedAt: serverTimestamp(), ...over,
+});
+
+for (const [col, make, titleKey] of [['events', eventDoc, 'title'], ['businesses', businessDoc, 'name']]) {
+  console.log(`\n${col} (staff edits)`);
+  await env.withSecurityRulesDisabled(async (ctx) => {
+    await setDoc(doc(ctx.firestore(), `${col}/existing-item`), make('existing-item'));
+  });
+  await check(`public MAY read ${col}`,
+    () => assertSucceeds(getDoc(doc(pub, `${col}/existing-item`))));
+  await check(`public MAY list ${col}`,
+    () => assertSucceeds(getDocs(collection(pub, col))));
+  await check(`public may NOT create in ${col}`,
+    () => assertFails(setDoc(doc(pub, `${col}/new-item`), make('new-item'))));
+  await check(`public may NOT hide an item in ${col}`,
+    () => assertFails(updateDoc(doc(pub, `${col}/existing-item`), { hidden: true })));
+  await check(`public may NOT delete from ${col}`,
+    () => assertFails(deleteDoc(doc(pub, `${col}/existing-item`))));
+  await check(`signed-in non-admin may NOT write ${col}`,
+    () => assertFails(setDoc(doc(nonAdmin, `${col}/new-item`), make('new-item'))));
+  await check(`admin MAY create in ${col}`,
+    () => assertSucceeds(setDoc(doc(admin, `${col}/new-item`), make('new-item'))));
+  await check(`admin MAY hide an item in ${col} (partial patch)`,
+    () => assertSucceeds(setDoc(doc(admin, `${col}/some-built-in`), { slug: 'some-built-in', hidden: true }, { merge: true })));
+  await check(`admin MAY delete a patch in ${col}`,
+    () => assertSucceeds(deleteDoc(doc(admin, `${col}/new-item`))));
+  await check(`admin may NOT store a slug that differs from the document id in ${col}`,
+    () => assertFails(setDoc(doc(admin, `${col}/other-item`), make('not-other-item'))));
+  await check(`admin may NOT use a slug with capitals in ${col}`,
+    () => assertFails(setDoc(doc(admin, `${col}/Bad Slug`), make('Bad Slug'))));
+  await check(`admin may NOT add an unknown field in ${col}`,
+    () => assertFails(setDoc(doc(admin, `${col}/odd-item`), make('odd-item', { secretNote: 'hi' }))));
+  await check(`admin may NOT omit hidden in ${col}`,
+    () => assertFails(setDoc(doc(admin, `${col}/odd-item`), (() => {
+      const v = make('odd-item'); delete v.hidden; return v;
+    })())));
+  await check(`admin may NOT set hidden to a non-boolean in ${col}`,
+    () => assertFails(setDoc(doc(admin, `${col}/odd-item`), make('odd-item', { hidden: 'yes' }))));
+  await check(`admin may NOT save an empty ${titleKey} in ${col}`,
+    () => assertFails(setDoc(doc(admin, `${col}/odd-item`), make('odd-item', { [titleKey]: '' }))));
+  await check(`admin may NOT save an oversized ${titleKey} in ${col}`,
+    () => assertFails(setDoc(doc(admin, `${col}/odd-item`), make('odd-item', { [titleKey]: 'x'.repeat(201) }))));
+  await check(`admin may NOT save a non-string image in ${col}`,
+    () => assertFails(setDoc(doc(admin, `${col}/odd-item`), make('odd-item', { image: 5 }))));
+}
 
 await env.cleanup();
 console.log(`\n${pass} passed, ${fail} failed\n`);

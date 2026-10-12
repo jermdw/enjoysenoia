@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, ArrowLeft } from 'lucide-react';
 import SEO from '../components/common/SEO';
-import { getPastEvents } from '../services/dataService';
+import { getPastEvents, useContentOverrides } from '../services/dataService';
 import { webflowAsset } from '../utils/webflowAsset';
 
 export default function PastEventsPage() {
+  useContentOverrides();
   const events = getPastEvents();
 
   return (

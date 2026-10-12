@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Shield, Calendar, Building2, Newspaper, Mail, Plus, Trash2, Download, LogOut, AlertTriangle, Ghost } from 'lucide-react';
+import { Shield, Calendar, Building2, Newspaper, Mail, Download, LogOut, Ghost } from 'lucide-react';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import SEO from '../components/common/SEO';
-import { getEvents, getBusinesses } from '../services/dataService';
+import { getEvents, getBusinesses, useContentOverrides } from '../services/dataService';
 import { auth, db } from '../services/firebase';
 import { isAuthorizedAdmin } from '../services/adminAccess';
 import HalloweenAdmin from './admin/HalloweenAdmin';
 import NewsAdmin from './admin/NewsAdmin';
+import ContentAdmin from './admin/ContentAdmin';
 
 export default function AdminPortalPage() {
   const [activeTab, setActiveTab] = useState('events');
-  const [events, setEvents] = useState(getEvents());
-  const [businesses, setBusinesses] = useState(getBusinesses());
+  // Tab counts follow the live (merged, hidden-excluded) listings.
+  useContentOverrides();
+  const events = getEvents();
+  const businesses = getBusinesses();
   const [subscribers, setSubscribers] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const [modalType, setModalType] = useState('');
-  const [formData, setFormData] = useState({});
   const navigate = useNavigate();
 
   const [userEmail, setUserEmail] = useState(null);
@@ -85,17 +85,6 @@ export default function AdminPortalPage() {
     navigate('/admin');
   };
 
-  const handleSaveItem = (e) => {
-    e.preventDefault();
-    if (modalType === 'event') {
-      setEvents([{ ...formData, is_recurring: false }, ...events]);
-    } else if (modalType === 'business') {
-      setBusinesses([{ ...formData, slug: formData.name.toLowerCase().replace(/\s+/g, '-') }, ...businesses]);
-    }
-    setShowModal(false);
-    setFormData({});
-  };
-
   const exportSubscribersCSV = () => {
     const csvContent = "data:text/csv;charset=utf-8," + ["Email,Date Subscribed", ...subscribers.map(s => `${s.email},${s.date}`)].join("\n");
     const encodedUri = encodeURI(csvContent);
@@ -125,25 +114,6 @@ export default function AdminPortalPage() {
       <SEO title="DDA Content Dashboard" description="Admin dashboard for Senoia DDA volunteers." />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        {/*
-          Events and businesses are read from the static JSON in /data and held
-          in component state; nothing on those tabs writes back yet. Say so
-          plainly rather than let a volunteer type up an event, refresh, and find
-          it gone. News, the subscriber list and Halloween are real Firestore data.
-        */}
-        <div
-          role="status"
-          className="flex items-start gap-3 rounded-2xl border border-amber-300 bg-amber-50 px-5 py-4 text-sm text-amber-900"
-        >
-          <AlertTriangle className="w-5 h-5 shrink-0 mt-0.5" aria-hidden="true" />
-          <p>
-            <span className="font-semibold">Events and businesses are not saved yet.</span>{' '}
-            Changes on those two tabs last only until you reload the page —
-            publishing them still means editing the site&rsquo;s data files. News,
-            the newsletter list and Halloween are live.
-          </p>
-        </div>
-
         {/* Header Bar */}
         <div className="bg-white p-6 rounded-2xl shadow-xs border border-stone-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center space-x-3">
@@ -197,110 +167,10 @@ export default function AdminPortalPage() {
         {/* Content Panels */}
         <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-xs border border-stone-200">
           {/* EVENTS TAB */}
-          {activeTab === 'events' && (
-            <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h2 className="text-lg font-bold font-serif text-stone-900">Manage Events</h2>
-                  <p className="text-xs text-stone-500">Add or edit community and DDA signature events</p>
-                </div>
-                <button
-                  onClick={() => { setModalType('event'); setFormData({}); setShowModal(true); }}
-                  className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-senoia-red hover:bg-senoia-darkred text-white text-xs font-semibold shadow-xs"
-                >
-                  <Plus className="w-4 h-4" />
-                  <span>New Event</span>
-                </button>
-              </div>
-
-              <div className="overflow-x-auto">
-                <table className="w-full text-left text-sm text-stone-600">
-                  <thead className="bg-stone-50 text-xs font-semibold uppercase text-stone-500 border-b border-stone-200">
-                    <tr>
-                      <th className="p-3">Event Title</th>
-                      <th className="p-3">Date & Time</th>
-                      <th className="p-3">Category</th>
-                      <th className="p-3 text-right">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-stone-100">
-                    {events.map((evt, idx) => (
-                      <tr key={idx} className="hover:bg-stone-50/80">
-                        <td className="p-3 font-semibold text-stone-900">{evt.title}</td>
-                        <td className="p-3 text-xs">{evt.date_time}</td>
-                        <td className="p-3">
-                          <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-stone-100 text-stone-700">
-                            {evt.category || 'Event'}
-                          </span>
-                        </td>
-                        <td className="p-3 text-right space-x-2">
-                          <button 
-                            onClick={() => setEvents(events.filter((_, i) => i !== idx))}
-                            className="p-1.5 rounded-lg text-rose-600 hover:bg-rose-50" 
-                            title="Delete"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
+          {activeTab === 'events' && <ContentAdmin kind="event" />}
 
           {/* BUSINESSES TAB */}
-          {activeTab === 'businesses' && (
-            <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h2 className="text-lg font-bold font-serif text-stone-900">Merchant Directory</h2>
-                  <p className="text-xs text-stone-500">Manage downtown Senoia storefronts and service listings</p>
-                </div>
-                <button
-                  onClick={() => { setModalType('business'); setFormData({}); setShowModal(true); }}
-                  className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-senoia-red hover:bg-senoia-darkred text-white text-xs font-semibold shadow-xs"
-                >
-                  <Plus className="w-4 h-4" />
-                  <span>Add Business</span>
-                </button>
-              </div>
-
-              <div className="overflow-x-auto">
-                <table className="w-full text-left text-sm text-stone-600">
-                  <thead className="bg-stone-50 text-xs font-semibold uppercase text-stone-500 border-b border-stone-200">
-                    <tr>
-                      <th className="p-3">Business Name</th>
-                      <th className="p-3">Category</th>
-                      <th className="p-3">Phone</th>
-                      <th className="p-3">Email / Website</th>
-                      <th className="p-3 text-right">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-stone-100">
-                    {businesses.map((b, idx) => (
-                      <tr key={idx} className="hover:bg-stone-50/80">
-                        <td className="p-3 font-semibold text-stone-900">{b.name}</td>
-                        <td className="p-3 text-xs">{b.category}</td>
-                        <td className="p-3 text-xs">{b.phone || '—'}</td>
-                        <td className="p-3 text-xs truncate max-w-[150px]">{b.email || b.website || '—'}</td>
-                        <td className="p-3 text-right">
-                          <button 
-                            onClick={() => setBusinesses(businesses.filter((_, i) => i !== idx))}
-                            className="p-1.5 rounded-lg text-rose-600 hover:bg-rose-50"
-                            title="Delete"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
+          {activeTab === 'businesses' && <ContentAdmin kind="business" />}
 
           {/* NEWS TAB */}
           {activeTab === 'news' && <NewsAdmin />}
@@ -347,105 +217,6 @@ export default function AdminPortalPage() {
           {activeTab === 'halloween' && <HalloweenAdmin />}
         </div>
       </div>
-
-      {/* CREATE MODAL */}
-      {showModal && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 z-50 animate-in fade-in">
-          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl space-y-5 border border-stone-200">
-            <h3 className="text-xl font-bold font-serif text-stone-900 capitalize">
-              Add New {modalType}
-            </h3>
-
-            <form onSubmit={handleSaveItem} className="space-y-4">
-              <div>
-                <label className="block text-xs font-semibold text-stone-700 mb-1">Title / Name</label>
-                <input
-                  type="text"
-                  required
-                  value={formData.title || formData.name || ''}
-                  onChange={(e) => setFormData({ ...formData, [modalType === 'business' ? 'name' : 'title']: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm focus:ring-2 focus:ring-senoia-gold focus:outline-none"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-semibold text-stone-700 mb-1">Category / Tag</label>
-                <input
-                  type="text"
-                  value={formData.category || ''}
-                  onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  placeholder="e.g. Dining, DDA Event, Retail"
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm focus:ring-2 focus:ring-senoia-gold focus:outline-none"
-                />
-              </div>
-
-              {modalType === 'event' && (
-                <div>
-                  <label className="block text-xs font-semibold text-stone-700 mb-1">Date & Time</label>
-                  <input
-                    type="text"
-                    value={formData.date_time || ''}
-                    onChange={(e) => setFormData({ ...formData, date_time: e.target.value })}
-                    placeholder="e.g. October 15, 2026 5:00 PM"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm focus:ring-2 focus:ring-senoia-gold focus:outline-none"
-                  />
-                </div>
-              )}
-
-              {modalType === 'business' && (
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-xs font-semibold text-stone-700 mb-1">Phone</label>
-                    <input
-                      type="text"
-                      value={formData.phone || ''}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="770-555-0199"
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-stone-700 mb-1">Email</label>
-                    <input
-                      type="email"
-                      value={formData.email || ''}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="info@shop.com"
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm"
-                    />
-                  </div>
-                </div>
-              )}
-
-              <div>
-                <label className="block text-xs font-semibold text-stone-700 mb-1">Description / Summary</label>
-                <textarea
-                  rows={3}
-                  value={formData.description || formData.summary || ''}
-                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm focus:ring-2 focus:ring-senoia-gold focus:outline-none"
-                />
-              </div>
-
-              <div className="flex justify-end space-x-3 pt-2">
-                <button
-                  type="button"
-                  onClick={() => setShowModal(false)}
-                  className="px-4 py-2.5 rounded-xl text-stone-600 hover:bg-stone-100 text-xs font-semibold"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-5 py-2.5 rounded-xl bg-senoia-red hover:bg-senoia-darkred text-white text-xs font-semibold shadow-xs"
-                >
-                  Save Item
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
