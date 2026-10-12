@@ -7,6 +7,28 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.jpg" />
     <title>Enjoy Senoia | Senoia Downtown Development Authority</title>
     <meta name="description" content="The mission of the Senoia DDA is to revitalize, enhance, promote, and stimulate the economic development of Senoia while maintaining its historical integrity and charm." />
+    <!-- main-site-share:start
+         Static share tags for crawlers that don't run JS (Facebook, iMessage,
+         Slack, X). Not set here on purpose: og:url and canonical, because this
+         one file is served for every route and the SPA sets those per page.
+         The micro-site build script (scripts/build-microsite-html.mjs) must
+         strip everything between these markers when it writes
+         dist-halloween / dist-masquerade, or the micro-sites would carry
+         these main-site tags alongside their own. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Enjoy Senoia" />
+    <meta property="og:title" content="Enjoy Senoia | Senoia Downtown Development Authority" />
+    <meta property="og:description" content="The mission of the Senoia DDA is to revitalize, enhance, promote, and stimulate the economic development of Senoia while maintaining its historical integrity and charm." />
+    <meta property="og:image" content="https://www.enjoysenoia.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Enjoy Senoia: The perfect setting. For life. Senoia Downtown Development Authority, Historic Senoia, Georgia." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Enjoy Senoia | Senoia Downtown Development Authority" />
+    <meta name="twitter:description" content="The mission of the Senoia DDA is to revitalize, enhance, promote, and stimulate the economic development of Senoia while maintaining its historical integrity and charm." />
+    <meta name="twitter:image" content="https://www.enjoysenoia.com/og-image.png" />
+    <meta name="twitter:image:alt" content="Enjoy Senoia: The perfect setting. For life. Senoia Downtown Development Authority, Historic Senoia, Georgia." />
+    <!-- main-site-share:end -->
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BFSQ0QTYT5"></script>
     <script>
