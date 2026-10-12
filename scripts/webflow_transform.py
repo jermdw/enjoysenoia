@@ -309,6 +309,26 @@ def build_events(assets, index, report):
         event.update(overrides.get(f["slug"], {}))
         events.append(event)
 
+    # An override with a `title` and `start` that matches no Webflow item is an
+    # event that lives only here (e.g. Halloween in Senoia, whose site is its
+    # own micro-site). Everything it omits gets the same empty defaults a
+    # sparse Webflow item would.
+    for slug in sorted(set(overrides) - {e["slug"] for e in events}):
+        o = overrides[slug]
+        if not (o.get("title") and o.get("start")):
+            continue
+        events.append({
+            "title": "", "date_time": "", "category": "", "description": "",
+            "image": None, "link": f"/events/{slug}", "is_recurring": False,
+            "id": f"override-{slug}", "slug": slug, "start": None, "end": None,
+            "is_active": True, "address": None, "location": None,
+            "hero_image": None, "hero_caption": "", "hero_sub_caption": "",
+            "button": None, "signup_url": None, "google_maps_url": None,
+            "coordinator_email": None, "flyer_image": None, "flyer_pdf": None,
+            "sections": {}, "photos": [], "video_url": None, "gallery_slug": None,
+            **o,
+        })
+
     for slug in sorted(set(overrides) - {e["slug"] for e in events}):
         report.append(f"{EVENT_OVERRIDES_FILE.name}: {slug!r} is not a live event; override unused")
 

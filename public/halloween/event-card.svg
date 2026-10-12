@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Placeholder title card for the Halloween in Senoia listing on enjoysenoia.com.
+  Replace with the organizer's artwork when it arrives.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 628" width="1200" height="628" role="img" aria-label="Halloween in Senoia: Masquerade Ball, Home and Business Decorating Contest, Trick or Treating">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#e27925" stop-opacity="0.45" />
+      <stop offset="100%" stop-color="#0e0c0c" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="628" fill="#0e0c0c" />
+  <rect width="1200" height="628" fill="url(#glow)" />
+  <circle cx="960" cy="150" r="78" fill="#f6b93b" opacity="0.9" />
+  <circle cx="990" cy="130" r="70" fill="#0e0c0c" opacity="0.85" />
+  <text x="600" y="300" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="104" font-weight="700" fill="#f9e9d1">Halloween in Senoia</text>
+  <text x="600" y="380" text-anchor="middle" font-family="Arial Narrow, Arial, sans-serif" font-size="34" letter-spacing="4" fill="#e27925">MASQUERADE BALL  |  DECORATING CONTEST  |  TRICK OR TREATING</text>
+  <text x="600" y="460" text-anchor="middle" font-family="Arial Narrow, Arial, sans-serif" font-size="30" letter-spacing="6" fill="#846589">OCTOBER 16 - 31, 2026  |  DOWNTOWN SENOIA, GA</text>
+</svg>
