@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Shield, Calendar, Building2, Newspaper, Mail, Download, LogOut, Ghost } from 'lucide-react';
+import { Shield, Calendar, Building2, Newspaper, Mail, Download, LogOut, Ghost, KeyRound } from 'lucide-react';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import SEO from '../components/common/SEO';
@@ -10,6 +10,7 @@ import { isAuthorizedAdmin } from '../services/adminAccess';
 import HalloweenAdmin from './admin/HalloweenAdmin';
 import NewsAdmin from './admin/NewsAdmin';
 import ContentAdmin from './admin/ContentAdmin';
+import AccountModal from './admin/AccountModal';
 
 export default function AdminPortalPage() {
   const [activeTab, setActiveTab] = useState('events');
@@ -22,6 +23,7 @@ export default function AdminPortalPage() {
 
   const [userEmail, setUserEmail] = useState(null);
   const [checkingAuth, setCheckingAuth] = useState(true);
+  const [accountOpen, setAccountOpen] = useState(false);
 
   // Being signed in is not enough: the account must carry the admin claim (or
   // be on the allowlist the Firebase Rules accept). Anyone else is signed out
@@ -111,7 +113,7 @@ export default function AdminPortalPage() {
 
   return (
     <div className="py-10 bg-stone-100 min-h-screen">
-      <SEO title="DDA Content Dashboard" description="Admin dashboard for Senoia DDA volunteers." />
+      <SEO title="EnjoySenoia Admin Portal" description="Content administration dashboard for EnjoySenoia." />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         {/* Header Bar */}
@@ -121,12 +123,20 @@ export default function AdminPortalPage() {
               <Shield className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-xl font-bold font-serif text-stone-900">DDA Volunteer Portal</h1>
+              <h1 className="text-xl font-bold font-serif text-stone-900">EnjoySenoia Admin Portal</h1>
               <p className="text-xs text-stone-500">Logged in as: <span className="font-semibold text-stone-700">{userEmail}</span></p>
             </div>
           </div>
 
           <div className="flex items-center space-x-3">
+            <button
+              type="button"
+              onClick={() => setAccountOpen(true)}
+              className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-stone-600 bg-stone-100 hover:bg-stone-200 transition-colors"
+            >
+              <KeyRound className="w-4 h-4" />
+              <span>Account</span>
+            </button>
             <button
               onClick={handleLogout}
               className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-stone-600 bg-stone-100 hover:bg-stone-200 transition-colors"
@@ -217,6 +227,8 @@ export default function AdminPortalPage() {
           {activeTab === 'halloween' && <HalloweenAdmin />}
         </div>
       </div>
+
+      {accountOpen && <AccountModal email={userEmail} onClose={() => setAccountOpen(false)} />}
     </div>
   );
 }
