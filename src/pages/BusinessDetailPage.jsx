@@ -4,12 +4,20 @@ import { Phone, Mail, Globe, MapPin, Clock, ArrowLeft, Facebook, Instagram, Shar
 import SEO from '../components/common/SEO';
 import NotFoundNotice from '../components/common/NotFoundNotice';
 import RichText from '../components/common/RichText';
-import { getBusinessBySlug } from '../services/dataService';
+import { getBusinessBySlug, useContentOverrides } from '../services/dataService';
 import { webflowAsset } from '../utils/webflowAsset';
 
 export default function BusinessDetailPage() {
   const { slug } = useParams();
+  const { ready } = useContentOverrides();
   const business = getBusinessBySlug(slug);
+
+  // A built-in item renders at once. Only a miss waits for staff edits to
+  // arrive (or be given up on), so a staff-added page is not reported missing.
+  // Cost: an item staff have hidden can show briefly on a first, uncached load.
+  if (!business && !ready) {
+    return <div className="min-h-screen bg-stone-50" aria-busy="true" />;
+  }
 
   if (!business) {
     return (
@@ -64,7 +72,7 @@ export default function BusinessDetailPage() {
               )}
               <div className="flex items-center space-x-2 text-sm text-stone-500">
                 <MapPin className="w-4 h-4 text-senoia-red shrink-0" />
-                <span>Historic Downtown Senoia, GA 30276</span>
+                <span>{business?.address || 'Historic Downtown Senoia, GA 30276'}</span>
               </div>
             </div>
 

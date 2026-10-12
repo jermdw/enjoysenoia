@@ -12,14 +12,81 @@ service cloud.firestore {
       );
     }
 
-    match /events/{eventId} {
-      allow read: if true;
-      allow write: if isAdmin();
+    /*
+     * Staff edits to the events calendar and downtown directory, merged over
+     * the build-time data/site/*.json at runtime by src/services/dataService.js.
+     *
+     * events/{slug} and businesses/{slug} are keyed by the item's slug. A
+     * document whose slug matches a built-in item is a PATCH: only the fields
+     * present replace the built-in values, and `hidden: true` removes it from
+     * the site. A document whose slug matches nothing is a NEW item. Deleting
+     * a patch restores the built-in item.
+     *
+     * Public read, admin-only write, shape and size checked as for News.
+     */
+    function optString(d, key, max) {
+      return !(key in d) || d[key] == null || (d[key] is string && d[key].size() <= max);
     }
 
-    match /businesses/{businessId} {
+    function isValidEventDoc(slug) {
+      let d = request.resource.data;
+      return d.keys().hasOnly([
+          'slug', 'title', 'date_time', 'start', 'end', 'location', 'description',
+          'image', 'external_url', 'category', 'hidden',
+          'createdAt', 'updatedAt', 'updatedBy'
+        ])
+        && d.keys().hasAll(['slug', 'hidden'])
+        && d.slug == slug
+        && slug.matches('^[a-z0-9][a-z0-9-]{0,119}$')
+        && d.hidden is bool
+        && (!('title' in d) || (d.title is string && d.title.size() > 0 && d.title.size() <= 200))
+        && optString(d, 'date_time', 120)
+        && optString(d, 'start', 40)
+        && optString(d, 'end', 40)
+        && optString(d, 'location', 200)
+        && optString(d, 'description', 5000)
+        && optString(d, 'image', 2000)
+        && optString(d, 'external_url', 2000)
+        && optString(d, 'category', 80)
+        && optString(d, 'updatedBy', 254);
+    }
+
+    function isValidBusinessDoc(slug) {
+      let d = request.resource.data;
+      return d.keys().hasOnly([
+          'slug', 'name', 'category', 'summary', 'description_html', 'hours_html',
+          'phone', 'email', 'website', 'facebook', 'instagram', 'address', 'image',
+          'hidden', 'createdAt', 'updatedAt', 'updatedBy'
+        ])
+        && d.keys().hasAll(['slug', 'hidden'])
+        && d.slug == slug
+        && slug.matches('^[a-z0-9][a-z0-9-]{0,119}$')
+        && d.hidden is bool
+        && (!('name' in d) || (d.name is string && d.name.size() > 0 && d.name.size() <= 200))
+        && optString(d, 'category', 80)
+        && optString(d, 'summary', 300)
+        && optString(d, 'description_html', 10000)
+        && optString(d, 'hours_html', 2000)
+        && optString(d, 'phone', 60)
+        && optString(d, 'email', 254)
+        && optString(d, 'website', 2000)
+        && optString(d, 'facebook', 2000)
+        && optString(d, 'instagram', 2000)
+        && optString(d, 'address', 300)
+        && optString(d, 'image', 2000)
+        && optString(d, 'updatedBy', 254);
+    }
+
+    match /events/{slug} {
       allow read: if true;
-      allow write: if isAdmin();
+      allow create, update: if isAdmin() && isValidEventDoc(slug);
+      allow delete: if isAdmin();
+    }
+
+    match /businesses/{slug} {
+      allow read: if true;
+      allow create, update: if isAdmin() && isValidBusinessDoc(slug);
+      allow delete: if isAdmin();
     }
 
     /*

@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Clock, ArrowRight, Utensils, Music } from 'lucide-react';
-import { getEvents } from '../../services/dataService';
+import { getEvents, useContentOverrides } from '../../services/dataService';
 import { webflowAsset } from '../../utils/webflowAsset';
 
 export default function RecurringEvents() {
+  useContentOverrides();
   const allEvents = getEvents();
   const recurring = allEvents.filter(e => e.is_recurring);
 

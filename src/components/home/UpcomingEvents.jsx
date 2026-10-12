@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
-import { getEvents } from '../../services/dataService';
+import { getEvents, useContentOverrides } from '../../services/dataService';
 import EventLink from '../common/EventLink';
 import { webflowAsset } from '../../utils/webflowAsset';
 
 export default function UpcomingEvents() {
+  useContentOverrides();
   const allEvents = getEvents();
 
   // Show the next four one-off events by date. When nothing is coming up the

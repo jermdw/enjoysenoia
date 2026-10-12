@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Building2, Search, Phone, Mail, MapPin, ExternalLink, Utensils, ShoppingBag, Scissors, Stethoscope, Landmark, BedDouble } from 'lucide-react';
 import SEO from '../components/common/SEO';
-import { getBusinesses } from '../services/dataService';
+import { getBusinesses, useContentOverrides } from '../services/dataService';
 import { fuzzyMatchAny } from '../utils/fuzzySearch';
 import { webflowAsset } from '../utils/webflowAsset';
 
@@ -30,6 +30,7 @@ const CATEGORY_MAP = [
 export default function BusinessesPage() {
   const [selectedCat, setSelectedCat] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  useContentOverrides();
   const businesses = getBusinesses();
 
   const filteredBusinesses = useMemo(() => {
