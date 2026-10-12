@@ -11,9 +11,10 @@ export default function EventDetailPage() {
   const { ready } = useContentOverrides();
   const event = getEventBySlug(slug);
 
-  // Hold the page until staff edits have been applied (or given up on), so a
-  // hidden event never flashes and an added one is not reported missing.
-  if (!ready) {
+  // A built-in item renders at once. Only a miss waits for staff edits to
+  // arrive (or be given up on), so a staff-added page is not reported missing.
+  // Cost: an item staff have hidden can show briefly on a first, uncached load.
+  if (!event && !ready) {
     return <div className="min-h-screen bg-stone-50" aria-busy="true" />;
   }
 

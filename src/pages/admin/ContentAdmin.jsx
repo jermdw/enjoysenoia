@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from 'react';
-import { ArrowLeft, Eye, EyeOff, ExternalLink, Pencil, Plus, RotateCcw, Search, Trash2 } from 'lucide-react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { ArrowLeft, RefreshCw, Eye, EyeOff, ExternalLink, Pencil, Plus, RotateCcw, Search, Trash2 } from 'lucide-react';
 import {
   KINDS,
   displayDateTime,
@@ -14,7 +14,7 @@ import {
   textToHtml,
   toDateTimeInput,
 } from '../../services/contentAdminService';
-import { useContentOverrides } from '../../services/dataService';
+import { loadOverrides, useContentOverrides } from '../../services/dataService';
 
 const inputClass =
   'w-full px-3 py-2 rounded-xl border border-stone-300 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-senoia-red/30 focus:border-senoia-red';
@@ -302,9 +302,21 @@ export default function ContentAdmin({ kind }) {
   const [editing, setEditing] = useState(undefined); // undefined: list; null: new; item: editing
   const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
+  // Saving over a list that failed to load (or came from a stale cache) could
+  // erase another admin's edits, so editing waits for a fresh, successful load.
+  const [loadState, setLoadState] = useState('loading'); // loading | ok | error
   const [busySlug, setBusySlug] = useState('');
   const [notice, setNotice] = useState('');
   const [error, setError] = useState('');
+
+  const refresh = useCallback(async () => {
+    setLoadState('loading');
+    setLoadState((await loadOverrides({ force: true })) ? 'ok' : 'error');
+  }, []);
+
+  useEffect(() => {
+    refresh();
+  }, [refresh]);
 
   const rows = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -335,7 +347,7 @@ export default function ContentAdmin({ kind }) {
     }
   };
 
-  if (editing !== undefined) {
+  if (editing !== undefined && loadState === 'ok') {
     return (
       <ItemForm
         key={editing?.slug || 'new'}
@@ -376,12 +388,21 @@ export default function ContentAdmin({ kind }) {
           <h2 className="text-lg font-bold font-serif text-stone-900">{cfg.title}</h2>
           <p className="text-xs text-stone-500">{cfg.blurb}</p>
         </div>
-        <button type="button" onClick={() => { setNotice(''); setError(''); setEditing(null); }} className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-senoia-red hover:bg-senoia-darkred text-white text-xs font-semibold shadow-xs">
+        <button type="button" disabled={loadState !== 'ok'} onClick={() => { setNotice(''); setError(''); setEditing(null); }} className="disabled:opacity-50 inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-senoia-red hover:bg-senoia-darkred text-white text-xs font-semibold shadow-xs">
           <Plus className="w-4 h-4" />
           <span>{kind === 'event' ? 'New event' : 'Add business'}</span>
         </button>
       </div>
 
+      {loadState === 'loading' && <p className="text-sm text-stone-500" role="status">Loading the latest changes…</p>}
+      {loadState === 'error' && (
+        <div className="text-sm text-red-700 bg-red-50 border border-red-100 rounded-xl px-4 py-3 flex flex-wrap items-center gap-3" role="alert">
+          <span>The latest changes could not be loaded, so editing is switched off to avoid overwriting someone else&rsquo;s work.</span>
+          <button type="button" onClick={refresh} className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white border border-red-200 text-xs font-semibold">
+            <RefreshCw className="w-3.5 h-3.5" /> Try again
+          </button>
+        </div>
+      )}
       {notice && <p className="text-sm text-emerald-800 bg-emerald-50 border border-emerald-100 rounded-xl px-4 py-3" role="status">{notice}</p>}
       {error && <p className="text-sm text-red-700 bg-red-50 border border-red-100 rounded-xl px-4 py-3" role="alert">{error}</p>}
 
@@ -415,7 +436,7 @@ export default function ContentAdmin({ kind }) {
       ) : (
         <ul className="divide-y divide-stone-100">
           {rows.map((item) => {
-            const busy = busySlug === item.slug;
+            const busy = busySlug === item.slug || loadState !== 'ok';
             const edited = item._builtIn && item._overridden && hasContentEdits(kind, item);
             return (
               <li key={item.slug} className={`py-4 flex flex-col sm:flex-row sm:items-center gap-3 ${item.hidden ? 'opacity-70' : ''}`}>

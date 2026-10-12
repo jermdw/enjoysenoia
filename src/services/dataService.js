@@ -66,6 +66,10 @@ let overrides = cached || { events: {}, businesses: {} };
 // 'loading' until the first fetch settles, or immediately when a cached copy
 // is already applied. A failed fetch settles too, as 'ready' on built-in data.
 let status = cached ? 'ready' : 'loading';
+// True once a fetch has succeeded in this page load. A cached copy or a
+// built-in-only fallback is NOT this: the admin portal must not save over
+// edits it could not see.
+let loaded = false;
 let version = 0;
 let loadPromise = null;
 const listeners = new Set();
@@ -104,6 +108,7 @@ export function loadOverrides({ force = false } = {}) {
   const fetched = Promise.all([fetchCollection(EVENTS_COLLECTION), fetchCollection(BUSINESSES_COLLECTION)])
     .then(([events, businesses]) => {
       overrides = { events, businesses };
+      loaded = true;
       writeCache(overrides);
       status = 'ready';
       notify();
@@ -125,8 +130,8 @@ export function loadOverrides({ force = false } = {}) {
  * Subscribes a component to the merged data. Call it once at the top of any
  * component that uses the getters below; it triggers the lazy load and
  * re-renders when the overrides land. `ready` is false only until the first
- * attempt settles, which detail pages use to avoid flashing a built-in item
- * that staff have hidden (or a "not found" for one staff have added).
+ * attempt settles; detail pages use it to avoid a "not found" for an item
+ * staff have added. `loaded` is true only once a fetch has actually succeeded.
  */
 export function useContentOverrides() {
   useSyncExternalStore(
@@ -140,7 +145,7 @@ export function useContentOverrides() {
   useEffect(() => {
     loadOverrides();
   }, []);
-  return { ready: status === 'ready' };
+  return { ready: status === 'ready', loaded };
 }
 
 /* ------------------------------------------------------------------ *
