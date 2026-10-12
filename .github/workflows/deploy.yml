@@ -63,6 +63,14 @@ jobs:
           path: dist
           retention-days: 7
 
+      # The halloween target serves this copy, whose index.html carries the
+      # Halloween head as static HTML (scripts/build-halloween-html.mjs).
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist-halloween
+          path: dist-halloween
+          retention-days: 7
+
   deploy:
     needs: build
     # Live deploys only from main (a manual run on another branch just builds).
@@ -90,6 +98,10 @@ jobs:
         with:
           name: dist
           path: dist
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist-halloween
+          path: dist-halloween
 
       # firebase.json deploys by target name; .firebaserc (gitignored) maps
       # each target to its Hosting site.
