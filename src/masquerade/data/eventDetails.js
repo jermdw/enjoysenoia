@@ -368,5 +368,5 @@ export const seo = {
   title: 'The 3rd Annual Halloween Masquerade: Down the Rabbit Hole | Senoia, GA',
   description:
     'An elegant Halloween masquerade at the Stone Lodge at Marimac Lake in Senoia, Georgia. Saturday, October 24, 2026 — cirque, fire, a seated dinner and the Wonderland After Party.',
-  ogImage: null, // NEEDED: 1200x630 share image
+  ogImage: 'https://thehalloweenmasquerade.com/masquerade/og-image.png', // 1200x630; scripts/build-og-images.mjs
 };

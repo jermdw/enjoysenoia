@@ -211,5 +211,5 @@ export const seo = {
   description:
     'Trick-or-treat map, the home & business decorating contest, Toddler Trick-or-Treat, and the Masquerade Ball — every October date in downtown Senoia, Georgia.',
   url: 'https://senoiahalloween.com/',
-  ogImage: null, // NEEDED: 1200x630 share image.
+  ogImage: 'https://senoiahalloween.com/halloween/og-image.png', // 1200x630; scripts/build-og-images.mjs
 };

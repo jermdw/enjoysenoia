@@ -68,12 +68,18 @@ jobs:
           path: dist
           retention-days: 7
 
-      # The halloween target serves this copy, whose index.html carries the
-      # Halloween head as static HTML (scripts/build-halloween-html.mjs).
+      # The halloween and masquerade targets serve these copies, whose
+      # index.html carries each micro-site's head as static HTML
+      # (scripts/build-microsite-html.mjs).
       - uses: actions/upload-artifact@v4
         with:
           name: dist-halloween
           path: dist-halloween
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist-masquerade
+          path: dist-masquerade
           retention-days: 7
 
   deploy:
@@ -107,6 +113,10 @@ jobs:
         with:
           name: dist-halloween
           path: dist-halloween
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist-masquerade
+          path: dist-masquerade
 
       # firebase.json deploys by target name; .firebaserc (gitignored) maps
       # each target to its Hosting site.
