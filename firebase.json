@@ -300,7 +300,7 @@
     },
     {
       "target": "halloween",
-      "public": "dist",
+      "public": "dist-halloween",
       "ignore": [
         "firebase.json",
         "**/.*",

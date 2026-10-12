@@ -211,9 +211,21 @@ The main site lists this as the event `halloween-in-senoia`
 (`/events/halloween-in-senoia`), defined in `data/event_overrides.json` and built
 into `data/site/events.json` by `scripts/webflow_transform.py` (an override with a
 `title` and `start` that matches no Webflow item becomes its own event). Its
-button sends visitors to <https://senoiahalloween.com/>. Re-run the transform with
+button sends visitors to <https://senoiahalloween.com/>, and its cards on /events
+and the homepage link straight there (`external_url`); the detail page stays
+reachable by URL and in the sitemap. Re-run the transform with
 `--storage-bucket enjoysenoia.firebasestorage.app` after editing the override.
-Cover art is the placeholder `public/halloween/event-card.svg`.
+Cover art is `public/halloween/event-card.svg` (16:9, text drawn as paths so it
+does not depend on fonts).
+
+### Static head for senoiahalloween.com
+
+`npm run build` also runs `scripts/build-halloween-html.mjs`, which copies `dist/`
+to `dist-halloween/` and rewrites that copy's `index.html` head (title,
+description, canonical, Open Graph, Twitter) from `seo` in
+`src/halloween/data/halloweenDetails.js`. Only the `halloween` hosting target
+serves `dist-halloween/`; `main` and `masquerade` still serve `dist/`. The
+deploy workflow uploads and downloads it as the `dist-halloween` artifact.
 
 Local target mapping, if you deploy by hand rather than through Actions:
 
