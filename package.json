@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/generate-sitemap.mjs",
     "build": "vite build && node scripts/build-halloween-html.mjs",
+    "test:sitemap": "node --test scripts/sitemap.test.mjs",
     "preview": "vite preview",
     "lint": "oxlint"
   },
