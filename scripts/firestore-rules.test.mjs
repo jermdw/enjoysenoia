@@ -6,17 +6,14 @@
  * firestore.rules — and neither `npm run lint` nor `npm run build` reads that
  * file. This exercises it against the real emulator.
  *
- * Deliberately not wired into package.json or CI: the repo has no test runner
- * and this needs Java plus a one-off install. Run it by hand from the repo root
- * after touching firestore.rules:
+ * Run in CI by .github/workflows/ci.yml, and locally from the repo root with:
  *
- *   npm i --no-save @firebase/rules-unit-testing@4.0.1
- *   npx -y firebase-tools@latest emulators:exec --only firestore \
- *     --project rules-test "node scripts/firestore-rules.test.mjs"
+ *   npm run test:rules
  *
- * The 4.0.1 pin is not cosmetic: it is the last release peering firebase ^11,
- * which is what this repo uses. Latest (5.x) peers firebase ^12 and npm refuses
- * the install. Bump it when the firebase dependency moves.
+ * That runs this file and storage-rules.test.mjs under one emulator session.
+ * It needs Java 21+ on PATH. @firebase/rules-unit-testing is pinned to 4.0.1,
+ * the last release peering firebase ^11 (latest 5.x peers ^12 and npm refuses
+ * the install); bump it when the firebase dependency moves.
  *
  * Exits non-zero if any assertion fails.
  */

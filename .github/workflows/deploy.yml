@@ -58,8 +58,9 @@ jobs:
             exit 1
           fi
 
+      # Lint and tests are not repeated here; ci.yml runs them on the pull
+      # request, before anything can reach main.
       - run: npm ci
-      - run: npm run lint
       - run: npm run build
 
       - uses: actions/upload-artifact@v4
