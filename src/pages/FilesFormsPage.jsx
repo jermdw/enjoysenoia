@@ -11,13 +11,6 @@ const DOCUMENTS = [
     url: 'https://app.box.com/embed/s/63v9fiw5gpuoj43ltxvcj7042iqbwlix'
   },
   {
-    title: 'Downtown Event Vendor Application',
-    category: 'Grants & Applications',
-    type: 'PDF',
-    description: 'Application for artisans, merchants, and food vendors participating in DDA-sponsored festivals.',
-    url: 'https://app.box.com/embed/s/63v9fiw5gpuoj43ltxvcj7042iqbwlix'
-  },
-  {
     title: 'Senoia DDA Bylaws & Enabling Legislation',
     category: 'Governance & Bylaws',
     type: 'PDF',
@@ -44,7 +37,7 @@ export default function FilesFormsPage() {
     <div className="py-12 sm:py-16 bg-stone-50 min-h-screen">
       <SEO
         title="Files, Forms & Downloads"
-        description="Access Senoia DDA meeting agendas, approved minutes, vendor applications, and façade grant guidelines."
+        description="Access Senoia DDA meeting agendas, approved minutes, bylaws, and façade grant guidelines."
       />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
