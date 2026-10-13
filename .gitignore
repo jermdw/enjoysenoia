@@ -35,6 +35,9 @@ client.json
 .env.*
 *.env
 !.env.example
+# direnv: per-machine shell setup (gcloud config selection, parent .envrc via
+# source_up). `.env.*` above does not match `.envrc`.
+.envrc
 firestore-debug.log
 ui-debug.log
 
