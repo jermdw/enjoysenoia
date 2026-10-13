@@ -23,6 +23,14 @@ It is **not** deployed by CI (`deploy.yml` only deploys Hosting).
    with `VITE_RECAPTCHA_SITE_KEY` (it already is in CI). Local development needs
    the App Check debug token registered, as for Firestore.
 
+   **PR preview channels cannot send.** The reCAPTCHA key's allowed domains
+   cover `enjoysenoia.com` and `enjoysenoia.web.app` (and their subdomains), but
+   a preview host such as `enjoysenoia--pr49-xyz.web.app` is a sibling of those,
+   not a subdomain, so the browser fails with `appCheck/recaptcha-error` before
+   any request is made. The page loads and validates on a preview; test sending
+   on `www.enjoysenoia.com/contact` after merge. Adding `web.app` itself would
+   let any Firebase site mint tokens for this key, so don't.
+
 ## Recipient
 
 `RECIPIENT` in `contactEmail.js` (currently `info@enjoysenoia.com`).
