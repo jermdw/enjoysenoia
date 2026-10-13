@@ -16,6 +16,7 @@ import MediaPage from './pages/MediaPage';
 import NewsPage from './pages/NewsPage';
 import NewsDetailPage from './pages/NewsDetailPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import FaqPage from './pages/FaqPage';
 // The admin pages, and the story editor they carry, load only when someone
 // opens /admin, so visitors never download them.
 const AdminLoginPage = lazy(() => import('./pages/AdminLoginPage'));
@@ -97,6 +98,7 @@ export default function App() {
         <Route path="/files-forms-and-downloads" element={<FilesFormsPage />} />
         <Route path="/senoia-history" element={<SenoiaHistoryPage />} />
         <Route path="/dda-business-portal" element={<BusinessPortalPage />} />
+        <Route path="/faq" element={<FaqPage />} />
         
         {/* Events Routes */}
         <Route path="/events" element={<EventsPage />} />

@@ -1,0 +1,254 @@
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { ChevronDown, HelpCircle } from 'lucide-react';
+import SEO from '../components/common/SEO';
+
+/**
+ * Answers are written from what the site already publishes (Welcome Center
+ * details in the footer, event coordinator inboxes, the event pages' vendor
+ * application buttons). Keep them to facts the DDA has confirmed; when an
+ * answer varies by event, point to the event page or the coordinator.
+ *
+ * `a` is plain text for the FAQPage structured data; `body` is what renders,
+ * so an answer can carry links.
+ */
+const email = (address) => (
+  <a href={`mailto:${address}`} className="text-senoia-red font-medium hover:underline">
+    {address}
+  </a>
+);
+
+const link = (to, label) => (
+  <Link to={to} className="text-senoia-red font-medium hover:underline">
+    {label}
+  </Link>
+);
+
+const SECTIONS = [
+  {
+    title: 'Visiting & the Welcome Center',
+    items: [
+      {
+        q: 'Where is the Welcome Center and when is it open?',
+        a: 'The Welcome Center is at 68 Main St, Senoia, GA 30276. Hours are Monday through Thursday 11:00 AM to 3:00 PM, and Friday and Saturday 11:00 AM to 4:00 PM. You can call (770) 727-9173.',
+        body: (
+          <>
+            The Welcome Center is at <strong>68 Main St</strong>, Senoia, GA 30276. Hours are Monday
+            through Thursday 11:00 AM – 3:00 PM, and Friday and Saturday 11:00 AM – 4:00 PM. You can
+            call <a href="tel:770-727-9173" className="text-senoia-red font-medium hover:underline">(770) 727-9173</a>.
+          </>
+        ),
+      },
+      {
+        q: 'What is the best way to reach someone with a question?',
+        a: 'Email info@enjoysenoia.com for general questions, or the event coordinator listed on the event page for questions about a specific event. Replies can take a little while because the inboxes are answered by volunteers and part-time staff.',
+        body: (
+          <>
+            Email {email('info@enjoysenoia.com')} for general questions, or the coordinator listed on
+            the event's page for questions about a specific event. Replies can take a little while:
+            these inboxes are answered by volunteers and part-time staff, and often need an answer
+            from the event's organizers first.
+          </>
+        ),
+      },
+      {
+        q: 'What is the mailing address?',
+        a: 'Senoia DDA, PO Box 310, Senoia, GA 30276.',
+        body: <>Senoia DDA, PO Box 310, Senoia, GA 30276.</>,
+      },
+    ],
+  },
+  {
+    title: 'Events',
+    items: [
+      {
+        q: 'Where can I see what is coming up?',
+        a: 'The Upcoming Events page lists every scheduled event with its date, location, and a link to details. Past Events keeps the archive.',
+        body: (
+          <>
+            {link('/events', 'Upcoming Events')} lists every scheduled event with its date, location,
+            and a link to details. {link('/past-events', 'Past Events')} keeps the archive.
+          </>
+        ),
+      },
+      {
+        q: 'Who do I contact about a specific event?',
+        a: 'Each event page shows the coordinator email for that event. Several events have their own address: carshow@enjoysenoia.com, porchfest@enjoysenoia.com, lightupsenoia@enjoysenoia.com and memorialday@enjoysenoia.com. If an event page lists no coordinator, use welcome@enjoysenoia.com.',
+        body: (
+          <>
+            Each event page shows the coordinator's email for that event. Several of the larger events
+            have their own address: {email('carshow@enjoysenoia.com')},{' '}
+            {email('porchfest@enjoysenoia.com')}, {email('lightupsenoia@enjoysenoia.com')} and{' '}
+            {email('memorialday@enjoysenoia.com')}. If an event page doesn't list a coordinator,
+            use {email('welcome@enjoysenoia.com')}.
+          </>
+        ),
+      },
+      {
+        q: 'How do I become a vendor at a downtown event?',
+        a: 'Open the event you want to vend at. If vendor applications are open, its page has a Vendor Application button that goes straight to that event\'s application. Senoia Alive After Five, for example, takes vendor applications through Eventeny. The general Downtown Event Vendor Application is also on the Files, Forms & Downloads page.',
+        body: (
+          <>
+            Open the event you want to vend at on the {link('/events', 'events page')}. If applications
+            are open, its page has a <strong>Vendor Application</strong> button that goes straight to
+            that event's application. Senoia Alive After Five, for example, takes vendor applications
+            through Eventeny. The general Downtown Event Vendor Application is also on the{' '}
+            {link('/files-forms-and-downloads', 'Files, Forms & Downloads')} page.
+          </>
+        ),
+      },
+      {
+        q: 'How do I volunteer at an event?',
+        a: 'Email volunteer@enjoysenoia.com, or the coordinator for the specific event you would like to help with.',
+        body: (
+          <>
+            Email {email('volunteer@enjoysenoia.com')}, or the coordinator for the specific event you
+            would like to help with.
+          </>
+        ),
+      },
+      {
+        q: 'Where can I find Halloween and Masquerade information?',
+        a: 'Halloween in Senoia and The Halloween Masquerade each have their own page with schedules, maps, and sign-ups.',
+        body: (
+          <>
+            Halloween in Senoia and The Halloween Masquerade each have their own page with schedules,
+            maps, and sign-ups: {link('/halloween', 'Halloween in Senoia')} and{' '}
+            {link('/masquerade', 'The Halloween Masquerade')}.
+          </>
+        ),
+      },
+      {
+        q: 'Are there photos and videos from past events?',
+        a: 'Yes. Photo galleries and videos from past events are on the Media page.',
+        body: (
+          <>
+            Yes. Photo galleries and videos from past events are on the {link('/media', 'Media')} page.
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    title: 'Businesses & the DDA',
+    items: [
+      {
+        q: 'How do I get my business listed in the downtown directory?',
+        a: 'Email info@enjoysenoia.com with your business name, address, phone, website, and a short description.',
+        body: (
+          <>
+            Email {email('info@enjoysenoia.com')} with your business name, address, phone, website,
+            and a short description. Browse the current listings in the{' '}
+            {link('/downtown-businesses', 'business directory')}.
+          </>
+        ),
+      },
+      {
+        q: 'Is help available for opening or improving a downtown business?',
+        a: 'Yes. The DDA Business Portal covers façade grants, permit and guideline information, and how to reach the DDA about opening a business.',
+        body: (
+          <>
+            Yes. The {link('/dda-business-portal', 'DDA Business Portal')} covers façade grants,
+            permit and guideline information, and how to reach the DDA about opening a business.
+          </>
+        ),
+      },
+      {
+        q: 'Where are DDA meeting agendas, minutes, and forms?',
+        a: 'On the Files, Forms & Downloads page, which also holds the façade grant application, bylaws, and the vendor application.',
+        body: (
+          <>
+            On the {link('/files-forms-and-downloads', 'Files, Forms & Downloads')} page, which also
+            holds the façade grant application, bylaws, and the vendor application.
+          </>
+        ),
+      },
+      {
+        q: 'What does the DDA do?',
+        a: 'The Senoia Downtown Development Authority works to revitalize, enhance, promote, and stimulate the economic development of Senoia while maintaining its historical integrity and charm.',
+        body: (
+          <>
+            The Senoia Downtown Development Authority works to revitalize, enhance, promote, and
+            stimulate the economic development of Senoia while maintaining its historical integrity
+            and charm. Learn more on {link('/about-the-dda', 'About the DDA')}.
+          </>
+        ),
+      },
+    ],
+  },
+];
+
+const STRUCTURED_DATA_ID = 'faq-structured-data';
+
+export default function FaqPage() {
+  // FAQPage JSON-LD, added while this page is mounted so it never lingers on
+  // other routes.
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = STRUCTURED_DATA_ID;
+    script.text = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: SECTIONS.flatMap((section) => section.items).map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: { '@type': 'Answer', text: item.a },
+      })),
+    });
+    document.head.appendChild(script);
+    return () => script.remove();
+  }, []);
+
+  return (
+    <div className="py-12 sm:py-16 bg-stone-50 min-h-screen">
+      <SEO
+        title="Frequently Asked Questions"
+        description="Answers to common questions about visiting Senoia, the Welcome Center, downtown events, vendor applications, volunteering, and the business directory."
+      />
+
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        <div className="space-y-3">
+          <div className="inline-flex items-center space-x-2 text-senoia-red font-semibold text-sm tracking-wide uppercase">
+            <HelpCircle className="w-4 h-4 text-senoia-gold" />
+            <span>Help & Information</span>
+          </div>
+          <h1 className="text-3xl sm:text-5xl font-bold font-serif text-stone-900">
+            Frequently Asked Questions
+          </h1>
+          <p className="text-stone-600 text-base sm:text-lg">
+            Quick answers about visiting downtown Senoia, events, vendor applications, and the DDA.
+            Can't find what you need? Email {email('info@enjoysenoia.com')} or stop by the Welcome
+            Center.
+          </p>
+        </div>
+
+        {SECTIONS.map((section) => (
+          <section key={section.title} className="space-y-3" aria-labelledby={`faq-${section.title}`}>
+            <h2
+              id={`faq-${section.title}`}
+              className="text-xl font-bold font-serif text-stone-900"
+            >
+              {section.title}
+            </h2>
+            {/* Native <details> keeps this keyboard- and screen-reader-friendly
+                with no accordion state to manage. */}
+            <div className="bg-white rounded-2xl shadow-xs border border-stone-200 divide-y divide-stone-200">
+              {section.items.map((item) => (
+                <details key={item.q} className="group">
+                  <summary className="flex items-center justify-between gap-4 px-5 sm:px-6 py-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                    <span className="font-semibold text-stone-900">{item.q}</span>
+                    <ChevronDown className="w-5 h-5 shrink-0 text-senoia-gold transition-transform duration-200 group-open:rotate-180" />
+                  </summary>
+                  <div className="px-5 sm:px-6 pb-5 -mt-1 text-sm sm:text-base text-stone-600 leading-relaxed">
+                    {item.body}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  );
+}
