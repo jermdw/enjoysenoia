@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Calendar, Building2, FileText, Info, Shield, Landmark, HelpCircle } from 'lucide-react';
+import { Menu, X, ChevronDown, Calendar, Building2, FileText, Info, Shield, Landmark, HelpCircle, Mail } from 'lucide-react';
 import { webflowAsset } from '../../utils/webflowAsset';
 
 export default function Navbar() {
@@ -75,7 +75,7 @@ export default function Navbar() {
                 type="button"
                 onClick={() => setAboutDropdown((open) => !open)}
                 aria-haspopup="true" 
-                className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${location.pathname.startsWith('/about') || location.pathname.includes('senoia-history') || location.pathname.includes('files-forms') || location.pathname.includes('business-portal') || location.pathname === '/faq' ? 'text-senoia-red font-semibold bg-stone-100' : 'text-stone-700 hover:text-senoia-red hover:bg-stone-50'}`}
+                className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${location.pathname.startsWith('/about') || location.pathname.includes('senoia-history') || location.pathname.includes('files-forms') || location.pathname.includes('business-portal') || location.pathname === '/faq' || location.pathname === '/contact' ? 'text-senoia-red font-semibold bg-stone-100' : 'text-stone-700 hover:text-senoia-red hover:bg-stone-50'}`}
                 aria-expanded={aboutDropdown}
               >
                 <span>About</span>
@@ -107,6 +107,10 @@ export default function Navbar() {
                   <Link to="/faq" className="flex items-center px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-senoia-red">
                     <HelpCircle className="w-4 h-4 mr-3 text-stone-400" />
                     <span>FAQ</span>
+                  </Link>
+                  <Link to="/contact" className="flex items-center px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-senoia-red">
+                    <Mail className="w-4 h-4 mr-3 text-stone-400" />
+                    <span>Contact Us</span>
                   </Link>
                 </div>
               )}
@@ -215,6 +219,9 @@ export default function Navbar() {
             </Link>
             <Link to="/faq" className="block pl-6 pr-3 py-2 rounded-lg text-sm text-stone-700 hover:bg-stone-50">
               FAQ
+            </Link>
+            <Link to="/contact" className="block pl-6 pr-3 py-2 rounded-lg text-sm text-stone-700 hover:bg-stone-50">
+              Contact Us
             </Link>
           </div>
 
