@@ -14,12 +14,27 @@ It is **not** deployed by CI (`deploy.yml` only deploys Hosting).
    access*, domain `info.enjoysenoia.com`. Then store it as a secret. The CLI
    prompts for the value, so it never lands in your shell history or this repo:
    `firebase functions:secrets:set RESEND_API_KEY --project enjoysenoia`
-3. **Deploy.**
+3. **Let the function verify App Check tokens.** The function runs as the
+   default compute service account, which cannot verify App Check tokens until
+   it is granted the verifier role. Without it every submission fails with a
+   401 before any of the function's code runs (the log says
+   `Permission 'firebaseappcheck.appCheckTokens.verify' denied`). One time:
+
+   ```bash
+   gcloud projects add-iam-policy-binding enjoysenoia \
+     --member="serviceAccount:719218412135-compute@developer.gserviceaccount.com" \
+     --role="roles/firebaseappcheck.tokenVerifier"
+   ```
+
+   The account is `<project number>-compute@developer.gserviceaccount.com`;
+   confirm it with `gcloud functions describe submitContactMessage --gen2
+   --region us-central1 --project enjoysenoia --format='value(serviceConfig.serviceAccountEmail)'`.
+4. **Deploy.**
    `npm --prefix functions install && firebase deploy --only functions --project enjoysenoia`
    (always pass `--project`; the CLI default resolves to another project).
    The deploying account needs Cloud Functions Admin, Cloud Build and Secret
    Manager access; the project owner has these.
-4. **App Check.** The function enforces App Check, so the site must be built
+5. **App Check.** The function enforces App Check, so the site must be built
    with `VITE_RECAPTCHA_SITE_KEY` (it already is in CI). Local development needs
    the App Check debug token registered, as for Firestore.
 
