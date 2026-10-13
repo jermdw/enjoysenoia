@@ -5,9 +5,10 @@ import SEO from '../components/common/SEO';
 
 /**
  * Answers are written from what the site already publishes (Welcome Center
- * details in the footer, event coordinator inboxes, the event pages' vendor
- * application buttons). Keep them to facts the DDA has confirmed; when an
- * answer varies by event, point to the event page or the coordinator.
+ * details in the footer, the event pages' vendor application buttons). Keep
+ * them to facts the DDA has confirmed. When an answer varies by event, point
+ * to the event's own page rather than naming an event inbox: those are not all
+ * monitored year-round, so the event page is the place to keep contacts current.
  *
  * `a` is plain text for the FAQPage structured data; `body` is what renders,
  * so an answer can carry links.
@@ -128,14 +129,14 @@ const SECTIONS = [
       },
       {
         q: 'Who do I contact about a specific event?',
-        a: 'Each event page shows the coordinator email for that event. Several events have their own address: carshow@enjoysenoia.com, porchfest@enjoysenoia.com, lightupsenoia@enjoysenoia.com and memorialday@enjoysenoia.com. If an event page lists no coordinator, use welcome@enjoysenoia.com.',
+        a: 'Open the event on the Upcoming Events page. Each event\'s page lists who to contact, along with any sign-up or application links. Please use the contact information on that page, since event inboxes are not all monitored year-round. If a page has no contact listed, use the contact form or email info@enjoysenoia.com.',
         body: (
           <>
-            Each event page shows the coordinator's email for that event. Several of the larger events
-            have their own address: {email('carshow@enjoysenoia.com')},{' '}
-            {email('porchfest@enjoysenoia.com')}, {email('lightupsenoia@enjoysenoia.com')} and{' '}
-            {email('memorialday@enjoysenoia.com')}. If an event page doesn't list a coordinator,
-            use {email('welcome@enjoysenoia.com')}.
+            Open the event on the {link('/events', 'Upcoming Events')} page. Each event's page lists who
+            to contact, along with any sign-up or application links. Please use the contact information
+            on that page: event inboxes are not all monitored year-round, so a message sent to an old
+            or guessed address may go unread. If a page has no contact listed, use the{' '}
+            {link('/contact', 'contact form')} or email {email('info@enjoysenoia.com')}.
           </>
         ),
       },
