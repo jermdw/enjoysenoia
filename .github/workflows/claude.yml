@@ -11,7 +11,11 @@ on:
 
 jobs:
   claude:
+    # Off until the Anthropic workload-identity federation rule works for this
+    # repo; set the repository variable CLAUDE_REVIEW_ENABLED to 'true' to turn
+    # it on (same switch as claude-review.yml).
     if: >-
+      vars.CLAUDE_REVIEW_ENABLED == 'true' &&
       contains(github.event.comment.body, '@claude') &&
       contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association)
     runs-on: ubuntu-latest
