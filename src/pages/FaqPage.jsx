@@ -7,8 +7,8 @@ import SEO from '../components/common/SEO';
  * Answers are written from what the site already publishes (Welcome Center
  * details in the footer, the event pages' vendor application buttons). Keep
  * them to facts the DDA has confirmed. When an answer varies by event, point
- * to the event's own page rather than naming an event inbox: those are not all
- * monitored year-round, so the event page is the place to keep contacts current.
+ * to the event's own page rather than naming an event inbox, so the event page
+ * is the one place contacts need to be kept current.
  *
  * `a` is plain text for the FAQPage structured data; `body` is what renders,
  * so an answer can carry links.
@@ -53,13 +53,12 @@ const SECTIONS = [
       },
       {
         q: 'What is the best way to reach someone with a question?',
-        a: 'Email info@enjoysenoia.com for general questions, or the event coordinator listed on the event page for questions about a specific event. Replies can take a little while because the inboxes are answered by volunteers and part-time staff.',
+        a: 'Use the contact form or email info@enjoysenoia.com for general questions. For a specific event, use the contact listed on that event\'s page. Replies can take a little while.',
         body: (
           <>
-            Email {email('info@enjoysenoia.com')} for general questions, or the coordinator listed on
-            the event's page for questions about a specific event. Replies can take a little while:
-            these inboxes are answered by volunteers and part-time staff, and often need an answer
-            from the event's organizers first.
+            Use the {link('/contact', 'contact form')} or email {email('info@enjoysenoia.com')} for
+            general questions. For a specific event, use the contact listed on that event's page.
+            Replies can take a little while.
           </>
         ),
       },
@@ -98,12 +97,11 @@ const SECTIONS = [
       },
       {
         q: 'How can I send the DDA a message?',
-        a: 'Use the contact form on the Contact Us page, or email info@enjoysenoia.com. For a specific event, use the coordinator email on that event\'s page.',
+        a: 'Use the contact form on the Contact Us page, or email info@enjoysenoia.com. For a specific event, use the contact listed on that event\'s page.',
         body: (
           <>
-            Use the {link('/contact', 'contact form')} and a volunteer or staff member will reply, or
-            email {email('info@enjoysenoia.com')} directly. For a specific event, use the coordinator
-            email on that event's page.
+            Use the {link('/contact', 'contact form')}, or email {email('info@enjoysenoia.com')}{' '}
+            directly. For a specific event, use the contact listed on that event's page.
           </>
         ),
       },
@@ -129,14 +127,12 @@ const SECTIONS = [
       },
       {
         q: 'Who do I contact about a specific event?',
-        a: 'Open the event on the Upcoming Events page. Each event\'s page lists who to contact, along with any sign-up or application links. Please use the contact information on that page, since event inboxes are not all monitored year-round. If a page has no contact listed, use the contact form or email info@enjoysenoia.com.',
+        a: 'Open the event on the Upcoming Events page. Each event\'s page lists who to contact and any sign-up or application links. If a page has no contact listed, use the contact form.',
         body: (
           <>
             Open the event on the {link('/events', 'Upcoming Events')} page. Each event's page lists who
-            to contact, along with any sign-up or application links. Please use the contact information
-            on that page: event inboxes are not all monitored year-round, so a message sent to an old
-            or guessed address may go unread. If a page has no contact listed, use the{' '}
-            {link('/contact', 'contact form')} or email {email('info@enjoysenoia.com')}.
+            to contact, along with any sign-up or application links. If a page has no contact listed,
+            use the {link('/contact', 'contact form')}.
           </>
         ),
       },
@@ -155,11 +151,12 @@ const SECTIONS = [
       },
       {
         q: 'How do I volunteer at an event?',
-        a: 'Email volunteer@enjoysenoia.com, or the coordinator for the specific event you would like to help with.',
+        a: 'Open the event you would like to help with on the Upcoming Events page; its page lists who to contact and any volunteer sign-up. If it lists none, use the contact form.',
         body: (
           <>
-            Email {email('volunteer@enjoysenoia.com')}, or the coordinator for the specific event you
-            would like to help with.
+            Open the event you would like to help with on the {link('/events', 'Upcoming Events')} page;
+            its page lists who to contact and any volunteer sign-up. If it lists none, use the{' '}
+            {link('/contact', 'contact form')}.
           </>
         ),
       },
