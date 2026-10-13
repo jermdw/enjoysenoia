@@ -96,6 +96,17 @@ const SECTIONS = [
         ),
       },
       {
+        q: 'How can I send the DDA a message?',
+        a: 'Use the contact form on the Contact Us page, or email info@enjoysenoia.com. For a specific event, use the coordinator email on that event\'s page.',
+        body: (
+          <>
+            Use the {link('/contact', 'contact form')} and a volunteer or staff member will reply, or
+            email {email('info@enjoysenoia.com')} directly. For a specific event, use the coordinator
+            email on that event's page.
+          </>
+        ),
+      },
+      {
         q: 'What is the mailing address?',
         a: 'Senoia DDA, PO Box 310, Senoia, GA 30276.',
         body: <>Senoia DDA, PO Box 310, Senoia, GA 30276.</>,

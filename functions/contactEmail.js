@@ -9,7 +9,7 @@
  * a bordered Name / Email / Message / Submitted table.
  */
 
-export const SENDER_DOMAIN = 'updates.enjoysenoia.com';
+export const SENDER_DOMAIN = 'info.enjoysenoia.com';
 export const FROM = `Enjoy Senoia <website@${SENDER_DOMAIN}>`;
 export const RECIPIENT = 'info@enjoysenoia.com';
 

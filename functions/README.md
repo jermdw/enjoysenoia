@@ -5,12 +5,14 @@ It is **not** deployed by CI (`deploy.yml` only deploys Hosting).
 
 ## One-time setup
 
-1. **Sending domain.** In Resend, add `updates.enjoysenoia.com` and add the DNS
-   records it shows (at GoDaddy) until it reads *Verified*. The sender is
-   `Enjoy Senoia <website@updates.enjoysenoia.com>`; change `SENDER_DOMAIN` in
-   `contactEmail.js` if you pick another. Use a subdomain so the records do not
-   touch the apex SPF/MX that mail already relies on.
-2. **API key.** A Resend key that can send from that domain:
+1. **Sending domain.** `info.enjoysenoia.com` is added and verified in Resend.
+   The sender is `Enjoy Senoia <website@info.enjoysenoia.com>`; change
+   `SENDER_DOMAIN` in `contactEmail.js` to use another verified domain. It is a
+   subdomain so its records do not touch the apex SPF/MX that mail already
+   relies on.
+2. **API key.** In Resend, *API Keys → Create API Key*, permission *Sending
+   access*, domain `info.enjoysenoia.com`. Then store it as a secret. The CLI
+   prompts for the value, so it never lands in your shell history or this repo:
    `firebase functions:secrets:set RESEND_API_KEY --project enjoysenoia`
 3. **Deploy.**
    `npm --prefix functions install && firebase deploy --only functions --project enjoysenoia`
