@@ -88,6 +88,9 @@ export default function Footer() {
                 <Link to="/faq" className="hover:text-white transition-colors">FAQ</Link>
               </li>
               <li>
+                <Link to="/contact" className="hover:text-white transition-colors">Contact Us</Link>
+              </li>
+              <li>
                 <Link to="/about-the-veterans-memorial" className="hover:text-white transition-colors">Veterans Memorial</Link>
               </li>
             </ul>

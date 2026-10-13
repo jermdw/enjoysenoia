@@ -3,6 +3,7 @@ import { initializeAppCheck, ReCaptchaEnterpriseProvider } from 'firebase/app-ch
 import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
 import { getAuth, connectAuthEmulator } from 'firebase/auth';
 import { getStorage, connectStorageEmulator } from 'firebase/storage';
+import { getFunctions } from 'firebase/functions';
 
 // Configuration comes from the environment. A production build that is missing
 // any of it fails loudly rather than silently pointing at a placeholder project
@@ -79,6 +80,8 @@ if (isFirstInit && firestoreEmulator) connectFirestoreEmulator(db, ...firestoreE
 
 export const auth = getAuth(app);
 export const storage = getStorage(app);
+// Region matches functions/index.js.
+export const functions = getFunctions(app, 'us-central1');
 
 const authEmulator = emulatorHost('VITE_AUTH_EMULATOR_HOST');
 if (isFirstInit && authEmulator) {
