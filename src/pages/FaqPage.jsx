@@ -138,25 +138,23 @@ const SECTIONS = [
       },
       {
         q: 'How do I become a vendor at a downtown event?',
-        a: 'Open the event you want to vend at. If vendor applications are open, its page has a Vendor Application button that goes straight to that event\'s application. Senoia Alive After Five, for example, takes vendor applications through Eventeny. The general Downtown Event Vendor Application is also on the Files, Forms & Downloads page.',
+        a: 'Each event has its own application process, and its application is on that event\'s page on the Upcoming Events page. If an event\'s page has no application, use the contact form.',
         body: (
           <>
-            Open the event you want to vend at on the {link('/events', 'events page')}. If applications
-            are open, its page has a <strong>Vendor Application</strong> button that goes straight to
-            that event's application. Senoia Alive After Five, for example, takes vendor applications
-            through Eventeny. The general Downtown Event Vendor Application is also on the{' '}
-            {link('/files-forms-and-downloads', 'Files, Forms & Downloads')} page.
+            Each event has its own application process, and the application is on that event's page on
+            the {link('/events', 'Upcoming Events')} page. If an event's page has no application, use
+            the {link('/contact', 'contact form')}.
           </>
         ),
       },
       {
         q: 'How do I volunteer at an event?',
-        a: 'Open the event you would like to help with on the Upcoming Events page; its page lists who to contact and any volunteer sign-up. If it lists none, use the contact form.',
+        a: 'Each event posts its own volunteer sign-ups closer to the date. Look on that event\'s page on the Upcoming Events page, and check back if you do not see one yet. You can also use the contact form.',
         body: (
           <>
-            Open the event you would like to help with on the {link('/events', 'Upcoming Events')} page;
-            its page lists who to contact and any volunteer sign-up. If it lists none, use the{' '}
-            {link('/contact', 'contact form')}.
+            Each event posts its own volunteer sign-ups closer to the date. Look on that event's page on
+            the {link('/events', 'Upcoming Events')} page, and check back if you don't see one yet. You
+            can also use the {link('/contact', 'contact form')}.
           </>
         ),
       },
@@ -208,11 +206,11 @@ const SECTIONS = [
       },
       {
         q: 'Where are DDA meeting agendas, minutes, and forms?',
-        a: 'On the Files, Forms & Downloads page, which also holds the façade grant application, bylaws, and the vendor application.',
+        a: 'On the Files, Forms & Downloads page, which also holds the façade grant application and the DDA bylaws.',
         body: (
           <>
             On the {link('/files-forms-and-downloads', 'Files, Forms & Downloads')} page, which also
-            holds the façade grant application, bylaws, and the vendor application.
+            holds the façade grant application and the DDA bylaws.
           </>
         ),
       },
