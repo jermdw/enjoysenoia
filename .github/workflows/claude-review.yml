@@ -20,8 +20,12 @@ concurrency:
 
 jobs:
   review:
+    # Off until the Anthropic workload-identity federation rule works for this
+    # repo; set the repository variable CLAUDE_REVIEW_ENABLED to 'true' to turn
+    # it on. While off the job is skipped, not failed.
     # Skip drafts, Dependabot (no secret access) and fork PRs (no secret access).
     if: >-
+      vars.CLAUDE_REVIEW_ENABLED == 'true' &&
       github.event.pull_request.draft == false &&
       github.event.pull_request.head.repo.full_name == github.repository &&
       github.actor != 'dependabot[bot]'
