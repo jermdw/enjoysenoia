@@ -5,9 +5,10 @@ import SEO from '../components/common/SEO';
 
 /**
  * Answers are written from what the site already publishes (Welcome Center
- * details in the footer, event coordinator inboxes, the event pages' vendor
- * application buttons). Keep them to facts the DDA has confirmed; when an
- * answer varies by event, point to the event page or the coordinator.
+ * details in the footer, the event pages' vendor application buttons). Keep
+ * them to facts the DDA has confirmed. When an answer varies by event, point
+ * to the event's own page rather than naming an event inbox, so the event page
+ * is the one place contacts need to be kept current.
  *
  * `a` is plain text for the FAQPage structured data; `body` is what renders,
  * so an answer can carry links.
@@ -52,13 +53,12 @@ const SECTIONS = [
       },
       {
         q: 'What is the best way to reach someone with a question?',
-        a: 'Email info@enjoysenoia.com for general questions, or the event coordinator listed on the event page for questions about a specific event. Replies can take a little while because the inboxes are answered by volunteers and part-time staff.',
+        a: 'Use the contact form or email info@enjoysenoia.com for general questions. For a specific event, use the contact listed on that event\'s page. Replies can take a little while.',
         body: (
           <>
-            Email {email('info@enjoysenoia.com')} for general questions, or the coordinator listed on
-            the event's page for questions about a specific event. Replies can take a little while:
-            these inboxes are answered by volunteers and part-time staff, and often need an answer
-            from the event's organizers first.
+            Use the {link('/contact', 'contact form')} or email {email('info@enjoysenoia.com')} for
+            general questions. For a specific event, use the contact listed on that event's page.
+            Replies can take a little while.
           </>
         ),
       },
@@ -97,12 +97,11 @@ const SECTIONS = [
       },
       {
         q: 'How can I send the DDA a message?',
-        a: 'Use the contact form on the Contact Us page, or email info@enjoysenoia.com. For a specific event, use the coordinator email on that event\'s page.',
+        a: 'Use the contact form on the Contact Us page, or email info@enjoysenoia.com. For a specific event, use the contact listed on that event\'s page.',
         body: (
           <>
-            Use the {link('/contact', 'contact form')} and a volunteer or staff member will reply, or
-            email {email('info@enjoysenoia.com')} directly. For a specific event, use the coordinator
-            email on that event's page.
+            Use the {link('/contact', 'contact form')}, or email {email('info@enjoysenoia.com')}{' '}
+            directly. For a specific event, use the contact listed on that event's page.
           </>
         ),
       },
@@ -128,48 +127,34 @@ const SECTIONS = [
       },
       {
         q: 'Who do I contact about a specific event?',
-        a: 'Each event page shows the coordinator email for that event. Several events have their own address: carshow@enjoysenoia.com, porchfest@enjoysenoia.com, lightupsenoia@enjoysenoia.com and memorialday@enjoysenoia.com. If an event page lists no coordinator, use welcome@enjoysenoia.com.',
+        a: 'Each event has its own page on the Upcoming Events page with details for that event, including who to contact. If you cannot find what you need, use the contact form.',
         body: (
           <>
-            Each event page shows the coordinator's email for that event. Several of the larger events
-            have their own address: {email('carshow@enjoysenoia.com')},{' '}
-            {email('porchfest@enjoysenoia.com')}, {email('lightupsenoia@enjoysenoia.com')} and{' '}
-            {email('memorialday@enjoysenoia.com')}. If an event page doesn't list a coordinator,
-            use {email('welcome@enjoysenoia.com')}.
+            Each event has its own page on the {link('/events', 'Upcoming Events')} page with details
+            for that event, including who to contact. If you can't find what you need, use the{' '}
+            {link('/contact', 'contact form')}.
           </>
         ),
       },
       {
         q: 'How do I become a vendor at a downtown event?',
-        a: 'Open the event you want to vend at. If vendor applications are open, its page has a Vendor Application button that goes straight to that event\'s application. Senoia Alive After Five, for example, takes vendor applications through Eventeny. The general Downtown Event Vendor Application is also on the Files, Forms & Downloads page.',
+        a: 'Each event handles its own vendor applications, and they open at different times. Check that event\'s page for application information, or use the contact form.',
         body: (
           <>
-            Open the event you want to vend at on the {link('/events', 'events page')}. If applications
-            are open, its page has a <strong>Vendor Application</strong> button that goes straight to
-            that event's application. Senoia Alive After Five, for example, takes vendor applications
-            through Eventeny. The general Downtown Event Vendor Application is also on the{' '}
-            {link('/files-forms-and-downloads', 'Files, Forms & Downloads')} page.
+            Each event handles its own vendor applications, and they open at different times. Check
+            that event's page on the {link('/events', 'Upcoming Events')} page for application
+            information, or use the {link('/contact', 'contact form')}.
           </>
         ),
       },
       {
         q: 'How do I volunteer at an event?',
-        a: 'Email volunteer@enjoysenoia.com, or the coordinator for the specific event you would like to help with.',
+        a: 'Each event handles its own volunteer sign-ups, usually closer to the date. Check that event\'s page, or use the contact form.',
         body: (
           <>
-            Email {email('volunteer@enjoysenoia.com')}, or the coordinator for the specific event you
-            would like to help with.
-          </>
-        ),
-      },
-      {
-        q: 'Where can I find Halloween and Masquerade information?',
-        a: 'Halloween in Senoia and The Halloween Masquerade each have their own page with schedules, maps, and sign-ups.',
-        body: (
-          <>
-            Halloween in Senoia and The Halloween Masquerade each have their own page with schedules,
-            maps, and sign-ups: {link('/halloween', 'Halloween in Senoia')} and{' '}
-            {link('/masquerade', 'The Halloween Masquerade')}.
+            Each event handles its own volunteer sign-ups, usually closer to the date. Check that
+            event's page on the {link('/events', 'Upcoming Events')} page, or use the{' '}
+            {link('/contact', 'contact form')}.
           </>
         ),
       },
@@ -210,11 +195,11 @@ const SECTIONS = [
       },
       {
         q: 'Where are DDA meeting agendas, minutes, and forms?',
-        a: 'On the Files, Forms & Downloads page, which also holds the façade grant application, bylaws, and the vendor application.',
+        a: 'On the Files, Forms & Downloads page, which also holds the façade grant application and the DDA bylaws.',
         body: (
           <>
             On the {link('/files-forms-and-downloads', 'Files, Forms & Downloads')} page, which also
-            holds the façade grant application, bylaws, and the vendor application.
+            holds the façade grant application and the DDA bylaws.
           </>
         ),
       },
