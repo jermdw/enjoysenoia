@@ -58,8 +58,9 @@ jobs:
             exit 1
           fi
 
+      # Lint and tests are not repeated here; ci.yml runs them on the pull
+      # request, before anything can reach main.
       - run: npm ci
-      - run: npm run lint
       - run: npm run build
 
       - uses: actions/upload-artifact@v4
@@ -85,11 +86,13 @@ jobs:
   deploy:
     needs: build
     # Live deploys only from main (a manual run on another branch just builds).
-    # Pull requests from forks get no secrets, so they can build but not preview.
+    # Pull requests from forks, and Dependabot (whose secrets are a separate
+    # store), get no FIREBASE_SERVICE_ACCOUNT, so they can build but not preview.
     if: >-
       github.ref == 'refs/heads/main' ||
       (github.event_name == 'pull_request' &&
-       github.event.pull_request.head.repo.full_name == github.repository)
+       github.event.pull_request.head.repo.full_name == github.repository &&
+       github.actor != 'dependabot[bot]')
     runs-on: ubuntu-latest
     permissions:
       contents: read

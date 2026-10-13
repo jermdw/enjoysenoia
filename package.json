@@ -8,6 +8,7 @@
     "prebuild": "node scripts/generate-sitemap.mjs",
     "build": "vite build && node scripts/build-microsite-html.mjs",
     "test:sitemap": "node --test scripts/sitemap.test.mjs",
+    "test:rules": "npx -y firebase-tools@15.33.0 emulators:exec --only firestore,storage --project rules-test \"node scripts/firestore-rules.test.mjs && node scripts/storage-rules.test.mjs\"",
     "preview": "vite preview",
     "lint": "oxlint"
   },
@@ -35,6 +36,7 @@
     "tailwindcss": "^4.0.9"
   },
   "devDependencies": {
+    "@firebase/rules-unit-testing": "4.0.1",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",

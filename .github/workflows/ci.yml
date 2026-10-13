@@ -1,0 +1,68 @@
+name: CI
+
+# Runs on pull requests, deliberately NOT on push to main.
+#
+# Merging to main *is* the production release (see deploy.yml), so a check
+# wired into that path fails after the merge, too late to act on. Catching a
+# problem on the PR is where it is still cheap to fix.
+#
+# Job names (`verify`, `rules`) are what the main-branch ruleset requires;
+# renaming one silently un-requires it.
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+# A new push to the same PR makes the in-flight run obsolete.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run test:sitemap
+
+      # Proves the site still compiles. Offline so the sitemap step does not
+      # depend on Firestore being reachable; deploy.yml builds with the real
+      # config and live data.
+      - name: Build
+        run: npm run build
+        env:
+          SITEMAP_OFFLINE: '1'
+
+  # firestore.rules and storage.rules guard the admin portal, and neither lint
+  # nor build reads them. This exercises both against the real emulators.
+  rules:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      # The Firestore and Storage emulators are JVM processes.
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - run: npm ci
+      - run: npm run test:rules
