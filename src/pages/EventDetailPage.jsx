@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Clock, MapPin, ArrowLeft, Ticket, Share2, Sparkles } from 'lucide-react';
+import { Clock, MapPin, ArrowLeft, Ticket, Share2, Sparkles, ExternalLink, Mail } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import NotFoundNotice from '../components/common/NotFoundNotice';
 import { getEventBySlug, useContentOverrides } from '../services/dataService';
@@ -41,6 +41,18 @@ export default function EventDetailPage() {
   // A ticketed event must never fall through to the "free community event" badge.
   const isInternalTicketLink = Boolean(ticketUrl && ticketUrl.startsWith('/'));
   const ticketLabel = event?.ticket_label || 'Official Event & Ticket Website';
+
+  // The Webflow CMS gave each event one optional call-to-action button (for
+  // Alive After Five, "Vendor Application"). It is a secondary action: it must
+  // not stand in for `ticket_url`, or a free event would lose its "no admission
+  // fee" badge. Only http(s) targets render.
+  const cta = event?.button;
+  const ctaUrl = cta && typeof cta.url === 'string' && /^https?:\/\//i.test(cta.url) ? cta.url : null;
+  const ctaLabel = (cta?.text || '').trim() || 'Learn more';
+  const coordinatorEmail =
+    typeof event?.coordinator_email === 'string' && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(event.coordinator_email)
+      ? event.coordinator_email
+      : null;
 
   return (
     <div className="py-12 sm:py-16 bg-stone-50 min-h-screen">
@@ -99,10 +111,21 @@ export default function EventDetailPage() {
             <p>
               Join the Senoia Downtown Development Authority and the local community for this event. Stroll down historic Main Street, visit our local shops and dining destinations, and enjoy the southern hospitality Senoia has to offer.
             </p>
+            {coordinatorEmail && (
+              <p className="text-sm">
+                Questions about this event? Contact the coordinator at{' '}
+                <a href={`mailto:${coordinatorEmail}`} className="inline-flex items-center gap-1 font-medium text-senoia-red hover:text-senoia-darkred">
+                  <Mail className="w-3.5 h-3.5" />
+                  {coordinatorEmail}
+                </a>
+                .
+              </p>
+            )}
           </div>
 
           {/* Action Bar */}
           <div className="pt-6 border-t border-stone-200 flex flex-wrap items-center justify-between gap-4">
+            <div className="flex flex-wrap items-center gap-3">
             {ticketUrl ? (
               isInternalTicketLink ? (
                 <Link
@@ -129,6 +152,19 @@ export default function EventDetailPage() {
                 <span>Free Community Event – No Admission Fee</span>
               </div>
             )}
+
+            {ctaUrl && (
+              <a
+                href={ctaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-6 py-3 rounded-xl bg-senoia-red hover:bg-senoia-darkred text-white font-semibold text-sm shadow-md transition-all hover:scale-105"
+              >
+                <ExternalLink className="mr-2 w-4 h-4" />
+                <span>{ctaLabel}</span>
+              </a>
+            )}
+            </div>
 
             <button
               onClick={() => {
