@@ -127,45 +127,34 @@ const SECTIONS = [
       },
       {
         q: 'Who do I contact about a specific event?',
-        a: 'Open the event on the Upcoming Events page. Each event\'s page lists who to contact and any sign-up or application links. If a page has no contact listed, use the contact form.',
+        a: 'Each event has its own page on the Upcoming Events page with details for that event, including who to contact. If you cannot find what you need, use the contact form.',
         body: (
           <>
-            Open the event on the {link('/events', 'Upcoming Events')} page. Each event's page lists who
-            to contact, along with any sign-up or application links. If a page has no contact listed,
-            use the {link('/contact', 'contact form')}.
+            Each event has its own page on the {link('/events', 'Upcoming Events')} page with details
+            for that event, including who to contact. If you can't find what you need, use the{' '}
+            {link('/contact', 'contact form')}.
           </>
         ),
       },
       {
         q: 'How do I become a vendor at a downtown event?',
-        a: 'Each event has its own application process, and its application is on that event\'s page on the Upcoming Events page. If an event\'s page has no application, use the contact form.',
+        a: 'Each event handles its own vendor applications, and they open at different times. Check that event\'s page for application information, or use the contact form.',
         body: (
           <>
-            Each event has its own application process, and the application is on that event's page on
-            the {link('/events', 'Upcoming Events')} page. If an event's page has no application, use
-            the {link('/contact', 'contact form')}.
+            Each event handles its own vendor applications, and they open at different times. Check
+            that event's page on the {link('/events', 'Upcoming Events')} page for application
+            information, or use the {link('/contact', 'contact form')}.
           </>
         ),
       },
       {
         q: 'How do I volunteer at an event?',
-        a: 'Each event posts its own volunteer sign-ups closer to the date. Look on that event\'s page on the Upcoming Events page, and check back if you do not see one yet. You can also use the contact form.',
+        a: 'Each event handles its own volunteer sign-ups, usually closer to the date. Check that event\'s page, or use the contact form.',
         body: (
           <>
-            Each event posts its own volunteer sign-ups closer to the date. Look on that event's page on
-            the {link('/events', 'Upcoming Events')} page, and check back if you don't see one yet. You
-            can also use the {link('/contact', 'contact form')}.
-          </>
-        ),
-      },
-      {
-        q: 'Where can I find Halloween and Masquerade information?',
-        a: 'Halloween in Senoia and The Halloween Masquerade each have their own page with schedules, maps, and sign-ups.',
-        body: (
-          <>
-            Halloween in Senoia and The Halloween Masquerade each have their own page with schedules,
-            maps, and sign-ups: {link('/halloween', 'Halloween in Senoia')} and{' '}
-            {link('/masquerade', 'The Halloween Masquerade')}.
+            Each event handles its own volunteer sign-ups, usually closer to the date. Check that
+            event's page on the {link('/events', 'Upcoming Events')} page, or use the{' '}
+            {link('/contact', 'contact form')}.
           </>
         ),
       },
