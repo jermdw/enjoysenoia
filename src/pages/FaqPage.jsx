@@ -24,6 +24,17 @@ const link = (to, label) => (
   </Link>
 );
 
+const external = (href, label) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-senoia-red font-medium hover:underline"
+  >
+    {label}
+  </a>
+);
+
 const SECTIONS = [
   {
     title: 'Visiting & the Welcome Center',
@@ -48,6 +59,39 @@ const SECTIONS = [
             the event's page for questions about a specific event. Replies can take a little while:
             these inboxes are answered by volunteers and part-time staff, and often need an answer
             from the event's organizers first.
+          </>
+        ),
+      },
+      {
+        q: 'Where can I rent a space for an event or gathering?',
+        a: 'It depends on the venue. The Senoia Welcome Center rents its space depending on when you need it. The Senoia Farmers\' Market should be contacted directly through senoiafarmersmarket.com. The Stone Lodge at Marimac Lake and Freeman Sasser at Seavy Street park are managed by the City of Senoia (senoia.com/parksites). The Senoia Area Historical Society rents a meeting room (senoiahistory.com/meeting-room). Other downtown places that rent space include The Veranda, Pearl & Pine Brewery, Maguires Irish Pub, and The Classic Market, and a new venue is planned for the old Buggy Shop in early 2027.',
+        body: (
+          <>
+            <p>It depends on the venue:</p>
+            <ul className="mt-2 list-disc pl-5 space-y-1.5">
+              <li>
+                <strong>Senoia Welcome Center:</strong> yes, we rent out our space depending on when
+                you need it. Email {email('welcome@enjoysenoia.com')}.
+              </li>
+              <li>
+                <strong>Senoia Farmers' Market:</strong> contact them directly at{' '}
+                {external('https://www.senoiafarmersmarket.com/', 'senoiafarmersmarket.com')}.
+              </li>
+              <li>
+                <strong>The Stone Lodge at Marimac Lake</strong> and{' '}
+                <strong>Freeman Sasser at Seavy Street park</strong> are managed by the City;
+                details are at {external('https://www.senoia.com/parksites', 'senoia.com/parksites')}.
+              </li>
+              <li>
+                <strong>Senoia Area Historical Society:</strong> rents a{' '}
+                {external('https://senoiahistory.com/meeting-room', 'meeting room')}.
+              </li>
+              <li>
+                <strong>Other downtown spaces:</strong> The Veranda, Pearl &amp; Pine Brewery,
+                Maguires Irish Pub, and The Classic Market also rent space, and a new venue is
+                planned for the old Buggy Shop in early 2027.
+              </li>
+            </ul>
           </>
         ),
       },
