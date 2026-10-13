@@ -1,12 +1,8 @@
 /**
  * Rules tests for storage.rules: the News editor's image uploads.
  *
- * Same setup as firestore-rules.test.mjs (run by hand, not in CI). From the
- * repo root, after touching storage.rules:
- *
- *   npm i --no-save @firebase/rules-unit-testing@4.0.1
- *   npx -y firebase-tools@latest emulators:exec --only storage \
- *     --project rules-test "node scripts/storage-rules.test.mjs"
+ * Run in CI by .github/workflows/ci.yml, and locally with `npm run test:rules`
+ * (see firestore-rules.test.mjs for setup notes).
  *
  * Exits non-zero if any assertion fails.
  */

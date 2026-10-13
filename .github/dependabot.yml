@@ -1,0 +1,30 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    # One PR per week for routine bumps; majors stay separate so they get a
+    # real look.
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      # firebase is held at ^11: @firebase/rules-unit-testing 4.0.1 (the rules
+      # tests in CI) is the last release that peers it, and 5.x needs firebase
+      # 12. Move them together by hand.
+      - dependency-name: firebase
+        update-types: [version-update:semver-major]
+      - dependency-name: '@firebase/rules-unit-testing'
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      actions:
+        patterns: ['*']
