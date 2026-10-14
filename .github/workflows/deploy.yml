@@ -1,5 +1,6 @@
-# Builds the site and deploys it to all three Firebase Hosting sites:
-#   push to main  -> live on enjoysenoia, thehalloweenmasquerade, senoiahalloween
+# Builds the site and deploys it to all four Firebase Hosting sites:
+#   push to main  -> live on enjoysenoia, thehalloweenmasquerade, senoiahalloween,
+#                    senoiachristmas
 #   pull request  -> a preview channel on each, linked in a PR comment
 #
 # Needs, in Settings > Secrets and variables > Actions:
@@ -69,7 +70,7 @@ jobs:
           path: dist
           retention-days: 7
 
-      # The halloween and masquerade targets serve these copies, whose
+      # The halloween, masquerade and christmas targets serve these copies, whose
       # index.html carries each micro-site's head as static HTML
       # (scripts/build-microsite-html.mjs).
       - uses: actions/upload-artifact@v4
@@ -81,6 +82,11 @@ jobs:
         with:
           name: dist-masquerade
           path: dist-masquerade
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist-christmas
+          path: dist-christmas
           retention-days: 7
 
   deploy:
@@ -103,7 +109,7 @@ jobs:
       cancel-in-progress: ${{ github.event_name == 'pull_request' }}
     strategy:
       matrix:
-        target: [main, masquerade, halloween]
+        target: [main, masquerade, halloween, christmas]
     steps:
       - uses: actions/checkout@v5
         with:
@@ -120,6 +126,10 @@ jobs:
         with:
           name: dist-masquerade
           path: dist-masquerade
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist-christmas
+          path: dist-christmas
 
       # firebase.json deploys by target name; .firebaserc (gitignored) maps
       # each target to its Hosting site.
@@ -133,7 +143,8 @@ jobs:
                 "hosting": {
                   "main": ["enjoysenoia"],
                   "masquerade": ["thehalloweenmasquerade"],
-                  "halloween": ["senoiahalloween"]
+                  "halloween": ["senoiahalloween"],
+                  "christmas": ["senoiachristmas"]
                 }
               }
             }
