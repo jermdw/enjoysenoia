@@ -1,19 +1,19 @@
 #!/usr/bin/env node
 /**
- * Writes dist-halloween/ and dist-masquerade/: copies of dist/ whose index.html
- * carries each micro-site's head (title, description, canonical, Open Graph,
- * Twitter) as static HTML.
+ * Writes dist-halloween/, dist-masquerade/ and dist-christmas/: copies of dist/
+ * whose index.html carries each micro-site's head (title, description,
+ * canonical, Open Graph, Twitter) as static HTML.
  *
  * Why: every Hosting target serves the same dist/index.html and the SPA sets
  * the title client-side, so crawlers and link unfurlers that do not run
  * JavaScript saw the DDA's title on https://senoiahalloween.com/ and
- * https://thehalloweenmasquerade.com/. Only the `halloween` and `masquerade`
- * targets' `public` point at these copies (firebase.json); `main` keeps
- * serving dist/ untouched.
+ * https://thehalloweenmasquerade.com/. Only the `halloween`, `masquerade` and
+ * `christmas` targets' `public` point at these copies (firebase.json); `main`
+ * keeps serving dist/ untouched.
  *
  * The values come from the `seo` export of each site's data file, the same
- * object HalloweenSEO.jsx / MasqueradeSEO.jsx apply at runtime, so the two
- * cannot drift.
+ * object HalloweenSEO.jsx / MasqueradeSEO.jsx / ChristmasSEO.jsx apply at
+ * runtime, so the two cannot drift.
  *
  * Run after `vite build` (the `build` npm script does).
  */
@@ -31,6 +31,7 @@ const OG_IMAGE_HEIGHT = 630;
 const sites = [
   { out: 'dist-halloween', data: 'src/halloween/data/halloweenDetails.js' },
   { out: 'dist-masquerade', data: 'src/masquerade/data/eventDetails.js' },
+  { out: 'dist-christmas', data: 'src/christmas/data/christmasDetails.js' },
 ];
 
 if (!existsSync(path.join(src, 'index.html'))) {

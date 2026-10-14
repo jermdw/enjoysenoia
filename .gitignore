@@ -11,6 +11,7 @@ node_modules
 dist
 dist-halloween
 dist-masquerade
+dist-christmas
 dist-ssr
 *.local
 

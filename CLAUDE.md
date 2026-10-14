@@ -1,6 +1,6 @@
 # enjoysenoia
 
-The Senoia, GA downtown site (Downtown Development Authority) plus two event micro-sites,
+The Senoia, GA downtown site (Downtown Development Authority) plus three event micro-sites,
 all built from this one React + Vite SPA and served from Firebase Hosting. Staff manage
 content through an admin portal at `/admin`. Merging to `main` deploys to production.
 
@@ -19,16 +19,21 @@ CI (`.github/workflows/ci.yml`) runs `verify` (lint, sitemap test, offline build
 PRs get a preview channel on each site, `main` goes live, and a daily 09:17 UTC run
 rebuilds so the generated sitemap picks up staff edits.
 
-## One build, three sites
+## One build, four sites
 
 | Hosting target | Site | Serves |
 |---|---|---|
 | `main` | `enjoysenoia` (www.enjoysenoia.com) | `dist/` |
 | `masquerade` | `thehalloweenmasquerade` | `dist-masquerade/` |
 | `halloween` | `senoiahalloween` | `dist-halloween/` |
+| `christmas` | `senoiachristmas` (christmas.enjoysenoia.com) | `dist-christmas/` |
 
 - The SPA picks the micro-site from `window.location.hostname` in `src/App.jsx`
-  (`MASQUERADE_HOST`, `HALLOWEEN_HOST`). Changing a domain means changing that regex too.
+  (`MASQUERADE_HOST`, `HALLOWEEN_HOST`, `CHRISTMAS_HOST`). Changing a domain means
+  changing that regex too.
+- New event micro-sites go on a subdomain of enjoysenoia.com (like
+  christmas.enjoysenoia.com), not a new registered domain. Each still needs its own
+  Hosting site, because the static head below is per site.
 - The micro-site targets serve copies of `dist/` whose `index.html` has a static head
   (title, Open Graph) written by `scripts/build-microsite-html.mjs`, so link unfurlers
   that don't run JS see the right title.

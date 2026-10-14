@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 /**
- * Regenerates the two micro-site share images (1200x630 PNG):
+ * Regenerates the three micro-site share images (1200x630 PNG):
  *   public/halloween/og-image.png   (senoiahalloween.com)
  *   public/masquerade/og-image.png  (thehalloweenmasquerade.com)
+ *   public/christmas/og-image.png   (christmas.enjoysenoia.com)
  *
  * Not part of `npm run build`: the PNGs are committed. Run this by hand when the
  * artwork or the event text changes, then commit the PNGs:
@@ -18,12 +19,19 @@
  * Masquerade: hand-authored in the site's own palette (src/masquerade/masquerade.css),
  * with the key cut from the organizer's title card (src/masquerade/assets/key.png).
  * Event text comes from src/masquerade/data/eventDetails.js.
+ * Christmas: the site's evergreen, gold and cream (src/christmas/christmas.css), with
+ * the sponsor's logo (src/christmas/assets/bmw-of-south-atlanta.png) on a white card
+ * because its wordmark is black. Set in Merriweather and Roboto from @fontsource,
+ * the same files the site serves. Pango can't shape WOFF and on macOS ignores
+ * fontconfig unless told to, so those files are unpacked to TTF and the render runs
+ * with PANGOCAIRO_BACKEND=fc and a fontconfig that sees only them.
  */
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { inflateSync } from 'node:zlib';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const tmp = mkdtempSync(path.join(tmpdir(), 'og-'));
@@ -32,14 +40,52 @@ const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 
 // `quantize` suits flat art (Halloween); the Masquerade has smooth gradients that
 // band when palettized, so it stays truecolor.
-function render(svg, outFile, quantize) {
+function render(svg, outFile, quantize, env) {
   const svgFile = path.join(tmp, path.basename(path.dirname(outFile)) + '.svg');
   writeFileSync(svgFile, svg);
-  execFileSync('rsvg-convert', ['-w', '1200', '-h', '630', svgFile, '-o', outFile]);
+  execFileSync('rsvg-convert', ['-w', '1200', '-h', '630', svgFile, '-o', outFile], { env });
   const args = [outFile, '-strip'];
   if (quantize) args.push('-colors', '128', 'PNG8:' + outFile);
   else args.push(outFile);
   execFileSync('magick', args);
+}
+
+// WOFF 1.0 is an sfnt whose tables are each zlib-compressed; rebuild the sfnt.
+function woffToSfnt(woff) {
+  const count = woff.readUInt16BE(12);
+  const tables = [];
+  for (let i = 0; i < count; i++) {
+    const d = 44 + i * 20;
+    const offset = woff.readUInt32BE(d + 4);
+    const compLength = woff.readUInt32BE(d + 8);
+    const origLength = woff.readUInt32BE(d + 12);
+    const raw = woff.subarray(offset, offset + compLength);
+    tables.push({
+      tag: woff.subarray(d, d + 4),
+      checksum: woff.readUInt32BE(d + 16),
+      data: compLength < origLength ? inflateSync(raw) : raw,
+    });
+  }
+  const pow = 2 ** Math.floor(Math.log2(count));
+  const head = Buffer.alloc(12 + count * 16);
+  head.writeUInt32BE(woff.readUInt32BE(4), 0); // flavor
+  head.writeUInt16BE(count, 4);
+  head.writeUInt16BE(pow * 16, 6);
+  head.writeUInt16BE(Math.log2(pow), 8);
+  head.writeUInt16BE((count - pow) * 16, 10);
+  const body = [];
+  let at = head.length;
+  tables.forEach((t, i) => {
+    const r = 12 + i * 16;
+    t.tag.copy(head, r);
+    head.writeUInt32BE(t.checksum, r + 4);
+    head.writeUInt32BE(at, r + 8);
+    head.writeUInt32BE(t.data.length, r + 12);
+    const pad = (4 - (t.data.length % 4)) % 4;
+    body.push(t.data, Buffer.alloc(pad));
+    at += t.data.length + pad;
+  });
+  return Buffer.concat([head, ...body]);
 }
 
 // --- Halloween in Senoia -----------------------------------------------------
@@ -93,4 +139,55 @@ function render(svg, outFile, quantize) {
   render(svg, path.join(root, 'public/masquerade/og-image.png'));
 }
 
-console.log('Wrote public/halloween/og-image.png and public/masquerade/og-image.png');
+// --- Christmas in Senoia -----------------------------------------------------
+{
+  const { seo } = await import(
+    pathToFileURL(path.join(root, 'src/christmas/data/christmasDetails.js')).href
+  );
+  const logo = readFileSync(path.join(root, 'src/christmas/assets/bmw-of-south-atlanta.png')).toString('base64');
+  const host = new URL(seo.url).hostname.toUpperCase();
+  const fontDir = path.join(tmp, 'christmas-fonts');
+  mkdirSync(fontDir);
+  for (const [pkg, file] of [
+    ['merriweather', 'merriweather-latin-900-normal'],
+    ['merriweather', 'merriweather-latin-900-italic'],
+    ['roboto', 'roboto-latin-500-normal'],
+    ['roboto', 'roboto-latin-700-normal'],
+  ]) {
+    const woff = readFileSync(path.join(root, `node_modules/@fontsource/${pkg}/files/${file}.woff`));
+    writeFileSync(path.join(fontDir, `${file}.ttf`), woffToSfnt(woff));
+  }
+  const fontsConf = path.join(tmp, 'christmas-fonts.conf');
+  writeFileSync(fontsConf, `<?xml version="1.0"?><!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig><dir>${fontDir}</dir><cachedir>${path.join(tmp, 'fc-cache')}</cachedir></fontconfig>`);
+  // fontconfig names the 900 faces "Merriweather Black"; asking for Merriweather at
+  // weight 900 gets nothing of that family and falls back.
+  const display = `'Merriweather Black'`;
+  // The sponsor flyer's line-up, shortened to fit one line.
+  const lineup = 'Christkindl Market · Light Up Senoia Parade 12/5 · Candlelight Tour of Homes 12/13';
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1200 630" width="1200" height="630">
+<defs>
+<linearGradient id="ground" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#142a1d"/><stop offset="100%" stop-color="#1f3d2b"/></linearGradient>
+</defs>
+<rect width="1200" height="630" fill="url(#ground)"/>
+<g fill="#c9a24a" opacity="0.45"><circle cx="96" cy="118" r="3"/><circle cx="1104" cy="96" r="3"/><circle cx="160" cy="520" r="2.5"/><circle cx="1050" cy="540" r="3"/><circle cx="250" cy="300" r="2"/><circle cx="960" cy="330" r="2"/></g>
+<g fill="#fbf6ec" opacity="0.25"><circle cx="190" cy="196" r="2"/><circle cx="1010" cy="214" r="2"/><circle cx="84" cy="404" r="2"/><circle cx="1124" cy="430" r="2"/></g>
+<rect x="28" y="28" width="1144" height="574" fill="none" stroke="#c9a24a" stroke-opacity="0.6" stroke-width="2"/>
+<rect x="40" y="40" width="1120" height="550" fill="none" stroke="#c9a24a" stroke-opacity="0.25"/>
+<text x="600" y="168" text-anchor="middle" fill="#fbf6ec" font-family="${display}" font-size="84">Christmas <tspan fill="#c9a24a" font-style="italic">in</tspan> Senoia</text>
+<g stroke="#c9a24a" stroke-width="2"><line x1="440" y1="214" x2="580" y2="214"/><line x1="620" y1="214" x2="760" y2="214"/></g>
+<path transform="translate(600 214)" fill="#c9a24a" d="M0-11 3-3 11 0 3 3 0 11-3 3-11 0-3-3Z"/>
+<text x="600" y="270" text-anchor="middle" fill="#c9a24a" font-family="Roboto" font-weight="700" font-size="20" letter-spacing="5">PRESENTED BY</text>
+<rect x="370" y="290" width="460" height="148" rx="18" fill="#fff"/>
+<image x="410" y="315" width="380" height="${Math.round((380 * 217) / 889)}" href="data:image/png;base64,${logo}"/>
+<text x="600" y="502" text-anchor="middle" fill="#fbf6ec" font-family="'Roboto Medium'" font-size="25">${esc(lineup)}</text>
+<text x="600" y="558" text-anchor="middle" fill="#c9a24a" font-family="Roboto" font-weight="700" font-size="20" letter-spacing="5">${esc(host)}</text>
+</svg>`;
+  render(svg, path.join(root, 'public/christmas/og-image.png'), false, {
+    ...process.env,
+    PANGOCAIRO_BACKEND: 'fc',
+    FONTCONFIG_FILE: fontsConf,
+  });
+}
+
+console.log('Wrote public/{halloween,masquerade,christmas}/og-image.png');

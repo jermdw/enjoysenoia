@@ -24,6 +24,7 @@ const AdminLoginPage = lazy(() => import('./pages/AdminLoginPage'));
 const AdminPortalPage = lazy(() => import('./pages/AdminPortalPage'));
 import MasqueradePage from './masquerade/MasqueradePage';
 import HalloweenPage from './halloween/HalloweenPage';
+import ChristmasPage from './christmas/ChristmasPage';
 
 /**
  * The Masquerade has its own domain, served from the same build. There the page
@@ -36,16 +37,23 @@ const MASQUERADE_HOST = /(^|\.)thehalloweenmasquerade(\.com|\.firebaseapp\.com|(
 
 /**
  * The Senoia Halloween site works the same way: its own domain, served from the
- * same build, page at the root so the address stays clean.
- *
- * TODO(domain): the apex is being registered at Porkbun and is not chosen yet.
- * `senoiahalloween` below is a placeholder matching the Firebase Hosting site
- * name — update BOTH this pattern and `seo.url` in
- * src/halloween/data/halloweenDetails.js once the real domain is live.
- * Until then the page is reachable at /halloween on the main site and on each
- * PR preview channel, so it can be reviewed before any DNS exists.
+ * same build, page at the root so the address stays clean. Changing the domain
+ * means changing this pattern and `seo.url` in
+ * src/halloween/data/halloweenDetails.js together.
  */
 const HALLOWEEN_HOST = /(^|\.)senoiahalloween(\.com|\.firebaseapp\.com|(--[\w-]+)?\.web\.app)$/;
+
+/**
+ * Christmas in Senoia lives on a subdomain of the DDA's own domain rather than
+ * a domain of its own, so there is nothing to register or renew. It is still a
+ * separate Hosting site (`senoiachristmas`), because only a separate site can
+ * serve an index.html whose static head names the sponsor for link unfurlers
+ * (scripts/build-microsite-html.mjs). Also matches that site's Firebase default
+ * hostnames and preview channels (senoiachristmas--<channel>.web.app).
+ * Changing the domain means changing this pattern and `seo.url` in
+ * src/christmas/data/christmasDetails.js together.
+ */
+const CHRISTMAS_HOST = /^christmas\.enjoysenoia\.com$|(^|\.)senoiachristmas(\.firebaseapp\.com|(--[\w-]+)?\.web\.app)$/;
 
 /**
  * The DDA chrome (navbar + footer) as a layout route, so routes that carry
@@ -77,6 +85,15 @@ export default function App() {
     );
   }
 
+  if (CHRISTMAS_HOST.test(window.location.hostname)) {
+    return (
+      <Routes>
+        <Route path="/" element={<ChristmasPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    );
+  }
+
   if (MASQUERADE_HOST.test(window.location.hostname)) {
     return (
       <Routes>
@@ -91,6 +108,7 @@ export default function App() {
       {/* Standalone micro-site: no Enjoy Senoia navbar or footer. */}
       <Route path="/masquerade" element={<MasqueradePage />} />
       <Route path="/halloween" element={<HalloweenPage />} />
+      <Route path="/christmas" element={<ChristmasPage />} />
 
       <Route element={<DDALayout />}>
         <Route path="/" element={<HomePage />} />
