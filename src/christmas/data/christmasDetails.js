@@ -54,4 +54,5 @@ export const seo = {
   description:
     'Christmas in Senoia, presented by BMW of South Atlanta: the Christkindl Market, the Light Up Senoia Christmas Parade, and the Candlelight Tour of Homes in downtown Senoia, Georgia.',
   url: 'https://christmas.enjoysenoia.com/',
+  ogImage: 'https://christmas.enjoysenoia.com/christmas/og-image.png', // 1200x630; scripts/build-og-images.mjs
 };
