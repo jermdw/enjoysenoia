@@ -200,8 +200,10 @@ export const trickOrTreating = {
   dateLabel: 'October 31st',
   // Per the 9/22 edits. The slide prints the same hours under "Road Closures".
   whenLabel: '5:30pm - 8:30pm',
-  blurb: 'Senoia kids & families can collect candy from private homeowners in the historic district and Willow Dell neighborhoods!',
-  mapNote: 'For updates and detailed map',
+  blurb: [
+    'Zones in the historic district will have multiple homes in the area welcoming trick-or-treaters. Per Halloween tradition: lights on and decorations usually means candy!',
+    'Have fun, be safe and respectful, and thank you to our DDA volunteers and neighbors that help make downtown great!',
+  ],
   roadClosures: [
     'Please note: for safety, Willow Dell neighborhood will have traffic mitigation efforts and “No Parking” areas',
   ],

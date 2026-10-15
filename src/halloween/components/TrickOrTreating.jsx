@@ -55,19 +55,18 @@ export default function TrickOrTreating() {
             <h2>{trickOrTreating.heading}</h2>
             <p className="hallo-pill hallo-pill-orange">{trickOrTreating.dateLabel}</p>
             <p className="hallo-when">{trickOrTreating.whenLabel}</p>
-            <p className="hallo-lede hallo-strong">{trickOrTreating.blurb}</p>
+            <div className="hallo-blurb">
+              {trickOrTreating.blurb.map((line, i) => (
+                <p key={i} className="hallo-lede hallo-strong">{line}</p>
+              ))}
+            </div>
           </div>
 
           {trickOrTreating.roadClosures.length > 0 && (
-            <div className="hallo-closures">
-              <h3>Road Closures</h3>
-              <ul>
-                {trickOrTreating.roadClosures.map((line, i) => <li key={i}>{line}</li>)}
-              </ul>
+            <div className="hallo-center hallo-closures">
+              {trickOrTreating.roadClosures.map((line, i) => <p key={i}>{line}</p>)}
             </div>
           )}
-
-          <p className="hallo-center hallo-map-note">{trickOrTreating.mapNote}</p>
 
           <ul className="hallo-legend">
             {Object.entries(trickOrTreating.mapKinds).map(([kind, { fill, label }]) => (
