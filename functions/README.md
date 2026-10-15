@@ -1,6 +1,7 @@
 # Cloud Functions
 
-Currently one function, `submitContactMessage`, behind the `/contact` page.
+Two functions: `submitContactMessage` (the `/contact` page) and
+`submitSponsorLogo` (the `/sponsor-logo` page; see *Sponsor logo uploads* below).
 It is **not** deployed by CI (`deploy.yml` only deploys Hosting).
 
 ## One-time setup
@@ -59,3 +60,39 @@ and the Admin SDK can read it; no client rules exist for it.
 ## Tests
 
 `cd functions && npm test`
+
+## Sponsor logo uploads
+
+`/sponsor-logo` is where event sponsors send their logo. The link goes in the
+Ticket Tailor confirmation email. The page calls `submitSponsorLogo`, which has
+the same protections as the contact form (App Check token consumed, honeypot,
+fill time, 10 uploads per IP per hour), checks the file (png, jpg, webp, svg,
+pdf, eps or ai; 7 MB; the first bytes must match the extension), files it in a
+Google Drive folder as `Sponsor - Event - date.ext`, writes a record to
+Firestore `sponsor_logos` (no client rules; console and Admin SDK only) and
+emails info@enjoysenoia.com through Resend. A failed email does not fail the
+upload. If Drive fails the sponsor is told to email the logo instead, and the
+record is left with `driveStatus: 'failed'`.
+
+One-time setup:
+
+1. **A shared drive.** In Google Drive create a *shared drive* (for example
+   "Sponsor Logos") and add Melissa and whoever else needs the logos as members.
+   A normal My Drive folder will not work: service accounts have no storage
+   quota of their own, so uploads into a person's folder are refused. Create a
+   folder inside it if you want, and copy its ID from the URL
+   (`drive.google.com/drive/folders/<ID>`).
+2. **Let the function write to it.** Add the function's runtime service account
+   (`<project number>-compute@developer.gserviceaccount.com`, as in step 3
+   above) to the shared drive as *Content manager*.
+3. **Enable the Drive API** on the `enjoysenoia` project:
+   `gcloud services enable drive.googleapis.com --project enjoysenoia`
+4. **Deploy.** `firebase deploy --only functions --project enjoysenoia`. The CLI
+   asks for `SPONSOR_LOGO_FOLDER_ID` the first time; paste the folder ID. (To
+   skip the prompt put `SPONSOR_LOGO_FOLDER_ID=<ID>` in `functions/.env`.)
+   Functions are not deployed by CI, so merging the site change alone leaves the
+   page showing "we could not save your logo" until this is done.
+5. **Ticket Tailor.** In each event's confirmation email add something like:
+   *"Sponsoring with us for the first time, or has your logo changed? Please
+   send it here: https://www.enjoysenoia.com/sponsor-logo?event=Senoia+Porchfest"*.
+   `?event=` is optional and prefills the event field.
