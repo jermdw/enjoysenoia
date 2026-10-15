@@ -46,6 +46,8 @@ const DOCS = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databas
 const EXCLUDED_ROUTES = new Set(['/masquerade', '/halloween']);
 // Only meant for people sent the link (sponsor logo upload); noindexed too.
 EXCLUDED_ROUTES.add('/sponsor-logo');
+// Opened from the cancel link in a volunteer's confirmation email; noindexed too.
+EXCLUDED_ROUTES.add('/volunteer-cancel');
 
 /* ---------------------------- built-in routes --------------------------- */
 

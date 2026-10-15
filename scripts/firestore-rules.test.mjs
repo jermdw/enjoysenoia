@@ -229,6 +229,82 @@ for (const [col, make, titleKey] of [['events', eventDoc, 'title'], ['businesses
     () => assertFails(setDoc(doc(admin, `${col}/odd-item`), make('odd-item', { image: 5 }))));
 }
 
+
+// Volunteer sign-ups. Shifts and events are public counts; signups hold PII and
+// are only ever created by the Cloud Functions (Admin SDK), never a client.
+const vShift = (over = {}) => ({
+  role: 'Early setup crew', time: 'Sat Nov 21, 6:00 AM', note: 'Cones and signs',
+  spotsTotal: 6, spotsFilled: 0, sortOrder: 1, ...over,
+});
+const vEvent = (over = {}) => ({ name: '2026 Senoia Turkey Trot 5K', intro: 'Help us set up.', signupOpen: true, ...over });
+const vSignup = (over = {}) => ({
+  eventSlug: 'trot', shiftId: 's1', firstName: 'Jane', lastName: 'Doe', email: 'jane@example.com',
+  phone: '770-555-0100', note: '', cancelToken: 'a'.repeat(48), status: 'active', ...over,
+});
+
+await env.withSecurityRulesDisabled(async (ctx) => {
+  const fs = ctx.firestore();
+  await setDoc(doc(fs, 'volunteer_events/trot'), vEvent());
+  await setDoc(doc(fs, 'volunteer_events/trot/shifts/s1'), vShift({ spotsFilled: 2 }));
+  await setDoc(doc(fs, 'volunteer_signups/su1'), vSignup());
+});
+
+console.log('\nvolunteer_events and shifts');
+await check('public MAY read an event',
+  () => assertSucceeds(getDoc(doc(pub, 'volunteer_events/trot'))));
+await check('public MAY list shifts',
+  () => assertSucceeds(getDocs(collection(pub, 'volunteer_events/trot/shifts'))));
+await check('public may NOT create a shift',
+  () => assertFails(setDoc(doc(pub, 'volunteer_events/trot/shifts/x'), vShift())));
+await check('public may NOT edit a shift count',
+  () => assertFails(updateDoc(doc(pub, 'volunteer_events/trot/shifts/s1'), { spotsFilled: 0 })));
+await check('signed-in non-admin may NOT write an event',
+  () => assertFails(setDoc(doc(nonAdmin, 'volunteer_events/trot'), vEvent())));
+await check('admin MAY write an event',
+  () => assertSucceeds(setDoc(doc(admin, 'volunteer_events/trot'), vEvent({ signupOpen: false }))));
+await check('admin may NOT add an unknown event field',
+  () => assertFails(setDoc(doc(admin, 'volunteer_events/trot'), vEvent({ secret: 1 }))));
+await check('admin MAY create a shift at zero filled',
+  () => assertSucceeds(setDoc(doc(admin, 'volunteer_events/trot/shifts/s2'), vShift())));
+await check('admin may NOT create a shift already part-filled',
+  () => assertFails(setDoc(doc(admin, 'volunteer_events/trot/shifts/s3'), vShift({ spotsFilled: 3 }))));
+await check('admin MAY edit a shift without touching the count',
+  () => assertSucceeds(updateDoc(doc(admin, 'volunteer_events/trot/shifts/s1'), { spotsTotal: 8, role: 'Course marshal' })));
+await check('admin may NOT reset a count by more than one',
+  () => assertFails(updateDoc(doc(admin, 'volunteer_events/trot/shifts/s1'), { spotsFilled: 0 })));
+await check('admin MAY release one spot',
+  () => assertSucceeds(updateDoc(doc(admin, 'volunteer_events/trot/shifts/s1'), { spotsFilled: 1 })));
+await check('admin may NOT raise a count',
+  () => assertFails(updateDoc(doc(admin, 'volunteer_events/trot/shifts/s1'), { spotsFilled: 5 })));
+await check('admin may NOT save a shift with no spots',
+  () => assertFails(updateDoc(doc(admin, 'volunteer_events/trot/shifts/s1'), { spotsTotal: 0 })));
+await check('admin MAY delete a shift',
+  () => assertSucceeds(deleteDoc(doc(admin, 'volunteer_events/trot/shifts/s2'))));
+
+console.log('\nvolunteer_signups');
+await check('public may NOT read a sign-up',
+  () => assertFails(getDoc(doc(pub, 'volunteer_signups/su1'))));
+await check('public may NOT list sign-ups',
+  () => assertFails(getDocs(collection(pub, 'volunteer_signups'))));
+await check('signed-in non-admin may NOT read a sign-up',
+  () => assertFails(getDoc(doc(nonAdmin, 'volunteer_signups/su1'))));
+await check('public may NOT create a sign-up',
+  () => assertFails(addDoc(collection(pub, 'volunteer_signups'), vSignup())));
+await check('admin may NOT create a sign-up from the browser',
+  () => assertFails(addDoc(collection(admin, 'volunteer_signups'), vSignup())));
+await check('admin MAY read a sign-up',
+  () => assertSucceeds(getDoc(doc(admin, 'volunteer_signups/su1'))));
+await check('admin may NOT edit a volunteer\'s details',
+  () => assertFails(updateDoc(doc(admin, 'volunteer_signups/su1'), { email: 'other@example.com' })));
+await check('admin may NOT cancel and edit in one write',
+  () => assertFails(updateDoc(doc(admin, 'volunteer_signups/su1'), { status: 'cancelled', phone: '1' })));
+await check('admin MAY cancel a sign-up',
+  () => assertSucceeds(updateDoc(doc(admin, 'volunteer_signups/su1'), { status: 'cancelled', cancelledAt: serverTimestamp() })));
+await check('admin may NOT cancel one twice',
+  () => assertFails(updateDoc(doc(admin, 'volunteer_signups/su1'), { status: 'cancelled', cancelledAt: serverTimestamp() })));
+await check('admin may NOT delete a sign-up',
+  () => assertFails(deleteDoc(doc(admin, 'volunteer_signups/su1'))));
+
 await env.cleanup();
 console.log(`\n${pass} passed, ${fail} failed\n`);
 process.exit(fail ? 1 : 0);

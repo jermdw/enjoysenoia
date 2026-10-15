@@ -16,11 +16,16 @@
  * validated (type, size, magic bytes), filed in a shared Google Drive folder and
  * announced to staff by email; a metadata record goes in `sponsor_logos`.
  *
+ * submitVolunteerSignup / cancelVolunteerSignup: the volunteer shift board
+ * (/volunteer/:eventSlug). Volunteers have no account, so every write goes
+ * through these (the Admin SDK bypasses rules after validating). The shift's
+ * `spotsFilled` only changes inside a transaction that re-checks state.
+ *
  * The contact message is written to `contact_messages` BEFORE the email is attempted,
  * so a failed send never loses someone's enquiry. The collection has no rules
  * block, so clients cannot read or write it; only this function can.
  */
-import { createHash } from 'node:crypto';
+import { createHash, randomBytes } from 'node:crypto';
 import { initializeApp } from 'firebase-admin/app';
 import { FieldValue, Timestamp, getFirestore } from 'firebase-admin/firestore';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
@@ -30,6 +35,12 @@ import { Readable } from 'node:stream';
 import { Resend } from 'resend';
 import { buildContactEmail, validateContact } from './contactEmail.js';
 import { FILE_TYPES, buildSponsorLogoEmail, driveFileName, validateSponsorLogo } from './sponsorLogo.js';
+import {
+  buildVolunteerCancelEmail,
+  buildVolunteerConfirmationEmail,
+  buildVolunteerStaffEmail,
+  validateVolunteerSignup,
+} from './volunteerSignup.js';
 
 initializeApp();
 
@@ -48,6 +59,7 @@ const MIN_FILL_MS = 3000;
 const RATE_LIMIT = 5;
 const RATE_WINDOW_MS = 60 * 60 * 1000;
 const LOGO_RATE_LIMIT = 10;
+const VOLUNTEER_RATE_LIMIT = 10;
 
 /**
  * Allows RATE_LIMIT submissions per IP per hour. One small document per hashed
@@ -208,6 +220,166 @@ export const submitSponsorLogo = onCall(
     } catch (err) {
       console.error(`submitSponsorLogo(${record.id}): staff email NOT sent`, err);
     }
+
+    return { ok: true };
+  }
+);
+
+const CLOSED_MESSAGE = 'Volunteer sign-ups are closed.';
+
+/** Best-effort send: a failed email never undoes a sign-up that is committed. */
+async function sendBestEffort(label, mail) {
+  try {
+    const { error } = await new Resend(RESEND_API_KEY.value()).emails.send({
+      from: mail.from,
+      to: mail.to,
+      replyTo: mail.replyTo,
+      subject: mail.subject,
+      html: mail.html,
+    });
+    if (error) throw new Error(error.message || 'Resend rejected the message');
+  } catch (err) {
+    console.error(`${label}: email to ${mail.to} NOT sent`, err);
+  }
+}
+
+export const submitVolunteerSignup = onCall(
+  {
+    region: 'us-central1',
+    enforceAppCheck: true,
+    consumeAppCheckToken: true,
+    secrets: [RESEND_API_KEY],
+    maxInstances: 5,
+  },
+  async (request) => {
+    const body = request.data && typeof request.data === 'object' ? request.data : {};
+
+    if (typeof body.website === 'string' && body.website.trim() !== '') return { ok: true };
+
+    if (typeof body.elapsedMs !== 'number' || body.elapsedMs < MIN_FILL_MS) {
+      throw new HttpsError('failed-precondition', 'Please take a moment and try signing up again.');
+    }
+
+    const checked = validateVolunteerSignup(body);
+    if (!checked.ok) {
+      throw new HttpsError('invalid-argument', 'Please check the form and try again.', { fields: checked.errors });
+    }
+    const data = checked.value;
+
+    const db = getFirestore();
+    const ip = request.rawRequest?.ip || 'unknown';
+    const ipHash = createHash('sha256').update(ip).digest('hex');
+    if (!(await takeRateLimitSlot(db, ipHash, 'volunteer_rate', VOLUNTEER_RATE_LIMIT))) {
+      throw new HttpsError('resource-exhausted', 'Too many sign-ups from this connection. Please try again later.');
+    }
+
+    const eventRef = db.doc(`volunteer_events/${data.eventSlug}`);
+    const shiftRef = db.doc(`volunteer_events/${data.eventSlug}/shifts/${data.shiftId}`);
+    const signupRef = db.collection('volunteer_signups').doc();
+    const cancelToken = randomBytes(24).toString('hex');
+
+    const { shift, eventName } = await db.runTransaction(async (tx) => {
+      const [eventSnap, shiftSnap] = await Promise.all([tx.get(eventRef), tx.get(shiftRef)]);
+      // A missing event document means sign-ups were never opened.
+      if (!eventSnap.exists || eventSnap.data().signupOpen !== true) {
+        throw new HttpsError('failed-precondition', CLOSED_MESSAGE);
+      }
+      if (!shiftSnap.exists) throw new HttpsError('not-found', 'That shift is no longer available.');
+      const s = shiftSnap.data();
+      if ((s.spotsFilled ?? 0) >= s.spotsTotal) {
+        throw new HttpsError('failed-precondition', 'Sorry, that shift just filled up.');
+      }
+      // Duplicate emails are allowed on purpose: households share addresses,
+      // and one person may take several slots.
+      tx.create(signupRef, {
+        eventSlug: data.eventSlug,
+        shiftId: data.shiftId,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        phone: data.phone,
+        note: data.note,
+        cancelToken,
+        status: 'active',
+        createdAt: FieldValue.serverTimestamp(),
+        ipHash,
+      });
+      tx.update(shiftRef, { spotsFilled: FieldValue.increment(1) });
+      return { shift: s, eventName: eventSnap.data().name || 'event' };
+    });
+
+    await Promise.all([
+      sendBestEffort(
+        `submitVolunteerSignup(${signupRef.id})`,
+        buildVolunteerConfirmationEmail({ signup: data, shift, eventName, cancelToken })
+      ),
+      sendBestEffort(
+        `submitVolunteerSignup(${signupRef.id}) staff`,
+        buildVolunteerStaffEmail({ kind: 'signup', signup: data, shift, eventName })
+      ),
+    ]);
+
+    return { ok: true };
+  }
+);
+
+export const cancelVolunteerSignup = onCall(
+  {
+    region: 'us-central1',
+    enforceAppCheck: true,
+    consumeAppCheckToken: true,
+    secrets: [RESEND_API_KEY],
+    maxInstances: 5,
+  },
+  async (request) => {
+    const token = typeof request.data?.token === 'string' ? request.data.token.trim() : '';
+    if (!/^[a-f0-9]{48}$/.test(token)) {
+      throw new HttpsError('not-found', 'This cancellation link is not valid.');
+    }
+
+    const db = getFirestore();
+    const found = await db.collection('volunteer_signups').where('cancelToken', '==', token).limit(1).get();
+    if (found.empty) throw new HttpsError('not-found', 'This cancellation link is not valid.');
+    const signupRef = found.docs[0].ref;
+
+    const signup = await db.runTransaction(async (tx) => {
+      const s = (await tx.get(signupRef)).data();
+      if (s.status !== 'active') {
+        throw new HttpsError('failed-precondition', 'This sign-up was already cancelled.');
+      }
+      // An admin may have deleted the shift; the cancellation must still work.
+      const shiftRef = db.doc(`volunteer_events/${s.eventSlug}/shifts/${s.shiftId}`);
+      const shiftSnap = await tx.get(shiftRef);
+      tx.update(signupRef, { status: 'cancelled', cancelledAt: FieldValue.serverTimestamp() });
+      if (shiftSnap.exists) {
+        // Floored: a shift deleted and re-created with spotsFilled: 0 while
+        // this sign-up stayed active must not go negative.
+        tx.update(shiftRef, { spotsFilled: Math.max(0, (shiftSnap.data().spotsFilled ?? 0) - 1) });
+      }
+      return s;
+    });
+
+    const [shiftSnap, eventSnap] = await Promise.all([
+      db.doc(`volunteer_events/${signup.eventSlug}/shifts/${signup.shiftId}`).get(),
+      db.doc(`volunteer_events/${signup.eventSlug}`).get(),
+    ]);
+    const shift = shiftSnap.data();
+    const eventName = eventSnap.data()?.name || 'event';
+    await Promise.all([
+      sendBestEffort(
+        `cancelVolunteerSignup(${signupRef.id})`,
+        buildVolunteerCancelEmail({ signup, shift, eventName, eventSlug: signup.eventSlug })
+      ),
+      sendBestEffort(
+        `cancelVolunteerSignup(${signupRef.id}) staff`,
+        buildVolunteerStaffEmail({
+          kind: 'cancel',
+          signup,
+          shift: shift ?? { role: 'a deleted shift', time: '' },
+          eventName,
+        })
+      ),
+    ]);
 
     return { ok: true };
   }

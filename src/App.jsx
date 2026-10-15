@@ -19,6 +19,8 @@ import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import FaqPage from './pages/FaqPage';
 import ContactPage from './pages/ContactPage';
 import SponsorLogoPage from './pages/SponsorLogoPage';
+import VolunteerPage from './pages/VolunteerPage';
+import VolunteerCancelPage from './pages/VolunteerCancelPage';
 // The admin pages, and the story editor they carry, load only when someone
 // opens /admin, so visitors never download them.
 const AdminLoginPage = lazy(() => import('./pages/AdminLoginPage'));
@@ -121,6 +123,8 @@ export default function App() {
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/sponsor-logo" element={<SponsorLogoPage />} />
+        <Route path="/volunteer/:eventSlug" element={<VolunteerPage />} />
+        <Route path="/volunteer-cancel" element={<VolunteerCancelPage />} />
         
         {/* Events Routes */}
         <Route path="/events" element={<EventsPage />} />
