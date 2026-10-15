@@ -41,8 +41,11 @@ export default function TrickOrTreating() {
     };
   }, []);
 
-  const placed = points.filter((p) => typeof p.lat === 'number' && typeof p.lng === 'number');
-  const zones = trickOrTreating.trickOrTreatZones;
+  // Placed decorating-contest entrants. A pin without coordinates is not on
+  // the map, so it is not listed either.
+  const entrants = points.filter(
+    (p) => p.kind === 'residential' && typeof p.lat === 'number' && typeof p.lng === 'number'
+  );
 
   return (
     <section id="trick-or-treating">
@@ -105,31 +108,20 @@ export default function TrickOrTreating() {
             <p className="hallo-field-note">{trickOrTreating.emptyState}</p>
           )}
 
-          {/* The map is not reachable by keyboard in any useful way, so the same
-              stops are listed underneath it. Only placed pins: one without
-              coordinates is not on the map, so it does not belong here either. */}
-          {(placed.length > 0 || zones.spots.length > 0) && (
-            <ul className="hallo-point-list" aria-label="Every stop on the map">
-              {zones.spots.map((spot) => (
-                <li key={spot.name}>
-                  <svg viewBox={BAT_VIEWBOX} className="hallo-map-bat" aria-hidden="true" focusable="false">
-                    <Bat />
-                  </svg>
-                  <span>{spot.name} &mdash; {zones.label}</span>
+          {/* The contest entrants on the map, listed in text. Zones, closures and
+              parking are shown on the map and in its legend only. */}
+          {entrants.length > 0 && (
+            <ul className="hallo-point-list" aria-label="Decorating contest entrants">
+              {entrants.map((p) => (
+                <li key={p.id}>
+                  <span
+                    className="hallo-map-dot"
+                    style={{ backgroundColor: trickOrTreating.mapKinds.residential.fill }}
+                    aria-hidden="true"
+                  />
+                  <span>{p.address}</span>
                 </li>
               ))}
-              {placed.map((p) => {
-                const kind = trickOrTreating.mapKinds[p.kind] ?? trickOrTreating.mapKinds.residential;
-                return (
-                  <li key={p.id}>
-                    <span className="hallo-map-dot" style={{ backgroundColor: kind.fill }} aria-hidden="true" />
-                    <span>
-                      {p.address}
-                      {p.kind !== 'residential' && <> &mdash; {p.label || kind.label}</>}
-                    </span>
-                  </li>
-                );
-              })}
             </ul>
           )}
 
