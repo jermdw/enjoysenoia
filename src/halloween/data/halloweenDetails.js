@@ -162,7 +162,7 @@ export const toddlerTrickOrTreat = {
   // Shown under the date pill: the heading in the route's style, then body copy.
   firstStop: {
     heading: 'First stop: The Peculiar Blooms',
-    body: 'Join us for Toddler Trick-or-Treating. Start at our local kid’s boutique… the first 100 visitors receive a complimentary Trick-or-Treat tote! (located inside The Veranda)',
+    body: 'Start at our local kid’s boutique… the first 100 visitors receive a complimentary Trick-or-Treat tote! (located inside The Veranda)',
   },
   // "Caycies" is left exactly as written; it may be the business's own styling
   // rather than a missing apostrophe.
