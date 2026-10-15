@@ -61,7 +61,20 @@ export async function sendSponsorLogo(fields, file) {
     throw err;
   }
   const call = httpsCallable(functions, 'submitSponsorLogo', { limitedUseAppCheckTokens: true });
-  await call({
+  try {
+    await call(await buildPayload(fields, file));
+  } catch (err) {
+    // The function reports which fields it rejected (functions/index.js) in
+    // `details.fields`; surface them like the checks above.
+    if (err.code === 'functions/invalid-argument' && err.details?.fields) {
+      err.fieldErrors = err.details.fields;
+    }
+    throw err;
+  }
+}
+
+async function buildPayload(fields, file) {
+  return {
     sponsor: fields.sponsor.trim(),
     email: fields.email.trim(),
     contactName: (fields.contactName || '').trim(),
@@ -70,5 +83,5 @@ export async function sendSponsorLogo(fields, file) {
     fileBase64: await toBase64(file),
     website: fields.website || '',
     elapsedMs: fields.elapsedMs,
-  });
+  };
 }
