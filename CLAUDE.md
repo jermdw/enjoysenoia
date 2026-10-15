@@ -69,6 +69,15 @@ rebuilds so the generated sitemap picks up staff edits.
   built-in data; `SITEMAP_OFFLINE=1` skips Firestore. Redirects on the `main` target are
   excluded from the sitemap.
 
+## Volunteer shift boards
+
+`/volunteer/:eventSlug` (ported from the senoia-car-show repo). Shifts and the
+`signupOpen` switch live in Firestore `volunteer_events`; sign-ups are written only
+by the `submitVolunteerSignup` / `cancelVolunteerSignup` functions, never the
+browser. An event opts in with `volunteer_url` in `data/event_overrides.json`;
+staff run it from the admin **Volunteers** tab. Rules and functions are deployed
+by hand (see `functions/README.md`).
+
 ## Admin access (three places, keep in step)
 
 An admin is an account with the `admin` custom claim, or an email on the allowlist. The

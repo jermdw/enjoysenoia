@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Clock, MapPin, ArrowLeft, Ticket, Share2, Sparkles, ExternalLink, Mail } from 'lucide-react';
+import { Clock, MapPin, ArrowLeft, Ticket, Share2, Sparkles, ExternalLink, Mail, HandHeart } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import NotFoundNotice from '../components/common/NotFoundNotice';
 import { getEventBySlug, useContentOverrides } from '../services/dataService';
@@ -46,6 +46,11 @@ export default function EventDetailPage() {
   // Alive After Five, "Vendor Application"). It is a secondary action: it must
   // not stand in for `ticket_url`, or a free event would lose its "no admission
   // fee" badge. Only http(s) targets render.
+  // Events with a volunteer shift board set `volunteer_url` (an on-site path,
+  // /volunteer/<slug>) in data/event_overrides.json.
+  const volunteerUrl = typeof event?.volunteer_url === 'string' && event.volunteer_url.startsWith('/') ? event.volunteer_url : null;
+  const volunteerLabel = event?.volunteer_label || 'Volunteer';
+
   const cta = event?.button;
   const ctaUrl = cta && typeof cta.url === 'string' && /^https?:\/\//i.test(cta.url) ? cta.url : null;
   const ctaLabel = (cta?.text || '').trim() || 'Learn more';
@@ -151,6 +156,16 @@ export default function EventDetailPage() {
                 <Sparkles className="w-4 h-4" />
                 <span>Free Community Event – No Admission Fee</span>
               </div>
+            )}
+
+            {volunteerUrl && (
+              <Link
+                to={volunteerUrl}
+                className="inline-flex items-center px-6 py-3 rounded-xl border-2 border-senoia-red text-senoia-red hover:bg-senoia-red hover:text-white font-semibold text-sm transition-colors"
+              >
+                <HandHeart className="mr-2 w-4 h-4" />
+                <span>{volunteerLabel}</span>
+              </Link>
             )}
 
             {ctaUrl && (

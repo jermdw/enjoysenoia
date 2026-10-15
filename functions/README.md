@@ -1,7 +1,9 @@
 # Cloud Functions
 
-Two functions: `submitContactMessage` (the `/contact` page) and
-`submitSponsorLogo` (the `/sponsor-logo` page; see *Sponsor logo uploads* below).
+Four functions: `submitContactMessage` (the `/contact` page),
+`submitSponsorLogo` (the `/sponsor-logo` page; see *Sponsor logo uploads* below)
+and `submitVolunteerSignup` / `cancelVolunteerSignup` (the `/volunteer/:eventSlug`
+shift board; see *Volunteer sign-ups* below).
 It is **not** deployed by CI (`deploy.yml` only deploys Hosting).
 
 ## One-time setup
@@ -96,3 +98,28 @@ One-time setup:
    *"Sponsoring with us for the first time, or has your logo changed? Please
    send it here: https://www.enjoysenoia.com/sponsor-logo?event=Senoia+Porchfest"*.
    `?event=` is optional and prefills the event field.
+
+## Volunteer sign-ups
+
+`/volunteer/:eventSlug` is a shift board, ported from the Senoia Car Show's
+volunteer system. Volunteers have no account, so the page calls
+`submitVolunteerSignup`, which has the same protections as the contact form
+(App Check token consumed, honeypot, fill time, 10 sign-ups per IP per hour),
+then takes a spot inside a Firestore transaction that re-checks capacity and the
+event's `signupOpen` switch. It writes `volunteer_signups` (name, email, phone,
+note, a random `cancelToken`), emails the volunteer a confirmation with a cancel
+link, and emails info@enjoysenoia.com. Emails are best-effort: a failed send
+never undoes a sign-up. `cancelVolunteerSignup` (the `/volunteer-cancel?token=`
+page) releases the spot, floored at zero.
+
+Data: `volunteer_events/{eventSlug}` (`name`, `intro`, `signupOpen`),
+`volunteer_events/{eventSlug}/shifts/{id}` (`role`, `time`, `note`, `spotsTotal`,
+`spotsFilled`, `sortOrder`; public read, counts only) and `volunteer_signups`
+(admin read only; no client creates). Staff manage all of it in the admin portal's
+**Volunteers** tab. An event gets a board by carrying `volunteer_url` in
+`data/event_overrides.json`.
+
+**Sign-ups stay closed until staff open them**: a missing event document, or
+`signupOpen: false`, makes the function refuse. Rules and functions are not
+deployed by CI; deploy both with `--project enjoysenoia` before the page goes
+live: `firebase deploy --only firestore:rules,functions --project enjoysenoia`.

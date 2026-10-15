@@ -202,5 +202,70 @@ service cloud.firestore {
         && request.resource.data.address.size() <= 200;
       allow delete: if isAdmin();
     }
+
+    /*
+     * Volunteer sign-ups (/volunteer/:eventSlug), ported from the Senoia Car
+     * Show's volunteer system.
+     *
+     * volunteer_events/{eventSlug}          name, intro, signupOpen (the close switch)
+     * volunteer_events/{eventSlug}/shifts   role, time, note, spotsTotal, spotsFilled, sortOrder
+     * volunteer_signups/{id}                volunteer PII + cancelToken + status
+     *
+     * Events and shifts are public (counts only, no PII). Signups are never
+     * publicly readable and never client-created: volunteers have no account,
+     * so the submitVolunteerSignup / cancelVolunteerSignup functions write them
+     * with the Admin SDK inside a transaction.
+     *
+     * `spotsFilled` is owned by that transaction. An admin may create a shift
+     * (at 0) and edit everything else; the only change they may make to the
+     * count is to release one spot, which is what removing a volunteer does
+     * (src/services/volunteerService.js, in a client transaction).
+     */
+    function isValidVolunteerEvent() {
+      let d = request.resource.data;
+      return d.keys().hasOnly(['name', 'intro', 'signupOpen', 'updatedAt'])
+        && d.keys().hasAll(['name', 'signupOpen'])
+        && d.name is string && d.name.size() > 0 && d.name.size() <= 200
+        && d.signupOpen is bool
+        && optString(d, 'intro', 2000);
+    }
+
+    function isValidVolunteerShift() {
+      let d = request.resource.data;
+      return d.keys().hasOnly(['role', 'time', 'note', 'spotsTotal', 'spotsFilled', 'sortOrder'])
+        && d.keys().hasAll(['role', 'time', 'spotsTotal', 'spotsFilled', 'sortOrder'])
+        && d.role is string && d.role.size() > 0 && d.role.size() <= 120
+        && d.time is string && d.time.size() > 0 && d.time.size() <= 120
+        && optString(d, 'note', 500)
+        && d.spotsTotal is int && d.spotsTotal >= 1 && d.spotsTotal <= 500
+        && d.spotsFilled is int && d.spotsFilled >= 0
+        && d.sortOrder is number;
+    }
+
+    match /volunteer_events/{eventSlug} {
+      allow read: if true;
+      allow create, update: if isAdmin() && isValidVolunteerEvent();
+      allow delete: if isAdmin();
+
+      match /shifts/{shiftId} {
+        allow read: if true;
+        allow create: if isAdmin() && isValidVolunteerShift()
+          && request.resource.data.spotsFilled == 0;
+        allow update: if isAdmin() && isValidVolunteerShift()
+          && (request.resource.data.spotsFilled == resource.data.spotsFilled
+              || request.resource.data.spotsFilled == resource.data.spotsFilled - 1);
+        allow delete: if isAdmin();
+      }
+    }
+
+    match /volunteer_signups/{signupId} {
+      allow read: if isAdmin();
+      // Staff may only cancel a sign-up; nothing else on it can change.
+      allow update: if isAdmin()
+        && resource.data.status == 'active'
+        && request.resource.data.status == 'cancelled'
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'cancelledAt']);
+      allow create, delete: if false;
+    }
   }
 }

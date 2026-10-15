@@ -10,7 +10,9 @@
   "2026-senoia-turkey-trot-5k": {
     "external_url": "https://runsignup.com/Race/GA/Senoia/Senoia5KTurkeyTrot",
     "ticket_url": "https://runsignup.com/Race/GA/Senoia/Senoia5KTurkeyTrot",
-    "ticket_label": "Register on the Official Turkey Trot Site"
+    "ticket_label": "Register on the Official Turkey Trot Site",
+    "volunteer_url": "/volunteer/2026-senoia-turkey-trot-5k",
+    "volunteer_label": "Volunteer to Help Set Up"
   },
   "halloween-in-senoia": {
     "title": "Halloween in Senoia",
