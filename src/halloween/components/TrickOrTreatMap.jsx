@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, CircleMarker, Polygon, Popup, Tooltip } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { trickOrTreating } from '../data/halloweenDetails';
 
@@ -31,6 +31,16 @@ export default function TrickOrTreatMap({ points }) {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        {/* Drawn first so the pins sit on top of the shading. */}
+        {trickOrTreating.mapAreas.map((area) => (
+          <Polygon
+            key={area.id}
+            positions={area.polygon}
+            pathOptions={{ color: area.stroke, weight: 2, dashArray: '6 4', fillColor: area.fill, fillOpacity: 0.3 }}
+          >
+            <Tooltip sticky>{area.label}</Tooltip>
+          </Polygon>
+        ))}
         {placed.map((point) => {
           const style = kinds[point.kind] ?? kinds.residential;
           return (
