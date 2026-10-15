@@ -230,6 +230,8 @@ export const trickOrTreating = {
       { name: 'Pylant St at Seavy St', at: [33.301342, -84.556339] },
       { name: 'Pylant St between Couch St and Johnson St', at: [33.303987, -84.556103] },
       { name: 'Baggarly Way north of Johnson St', at: [33.303241, -84.554607] },
+      // The centre of the Willow Dell outline below (its area centroid).
+      { name: 'Willow Dell neighborhood', at: [33.305328, -84.561534] },
     ],
   },
   // Shaded areas drawn under the pins, and listed in the legend. OSM has no
