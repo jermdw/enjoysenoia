@@ -96,7 +96,7 @@ export function validateSponsorLogo(input) {
     bytes = Buffer.from(base64, 'base64');
     if (bytes.length === 0) errors.file = 'That file is empty.';
     else if (bytes.length > MAX_BYTES) errors.file = 'That file is over 7 MB. Please email it to us instead.';
-    else if (!FILE_TYPES[ext].matches(bytes)) errors.file = `That does not look like a real .${ext} file.`;
+    else if (!FILE_TYPES[ext].matches(bytes)) errors.file = `That does not look like a real .${ext} file. Try exporting or saving it again as a PNG or JPG.`;
   }
 
   return Object.keys(errors).length > 0
