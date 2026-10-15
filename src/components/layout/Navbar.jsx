@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Calendar, Building2, FileText, Info, Shield, Landmark, HelpCircle, Mail } from 'lucide-react';
 import { webflowAsset } from '../../utils/webflowAsset';
 
+// How long a dropdown stays open after the pointer leaves it, so a slightly
+// wobbly path from the trigger down into the menu doesn't close it.
+const CLOSE_DELAY_MS = 150;
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [aboutDropdown, setAboutDropdown] = useState(false);
-  const [eventsDropdown, setEventsDropdown] = useState(false);
+  // Which desktop dropdown is open ('about' | 'events' | null). One value keeps
+  // them mutually exclusive, so a pending close never overlaps the next menu.
+  const [openMenu, setOpenMenu] = useState(null);
+  const closeTimer = useRef(null);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
@@ -18,28 +24,58 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const cancelClose = () => {
+    clearTimeout(closeTimer.current);
+    closeTimer.current = null;
+  };
+
+  const closeMenu = (name) => setOpenMenu((current) => (current === name ? null : current));
+
   // Close menus on route change
   useEffect(() => {
     setIsOpen(false);
-    setAboutDropdown(false);
-    setEventsDropdown(false);
+    cancelClose();
+    setOpenMenu(null);
   }, [location.pathname]);
 
   // Escape closes whichever dropdown is open, wherever focus sits.
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key !== 'Escape') return;
-      setAboutDropdown(false);
-      setEventsDropdown(false);
+      cancelClose();
+      setOpenMenu(null);
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Closes a dropdown once focus leaves it entirely, so tabbing past the last
-  // link behaves like moving the pointer away.
-  const closeOnBlur = (setter) => (e) => {
-    if (!e.currentTarget.contains(e.relatedTarget)) setter(false);
+  useEffect(() => cancelClose, []);
+
+  // Props for a dropdown's wrapper (trigger + menu). Hover only reacts to a
+  // real mouse: on a touch screen a tap fires pointerenter and then click, and
+  // the click toggle would immediately undo the hover open. Touch and keyboard
+  // use the trigger's click toggle instead.
+  const dropdownProps = (name) => ({
+    onPointerEnter: (e) => {
+      if (e.pointerType !== 'mouse') return;
+      cancelClose();
+      setOpenMenu(name);
+    },
+    onPointerLeave: (e) => {
+      if (e.pointerType !== 'mouse') return;
+      cancelClose();
+      closeTimer.current = setTimeout(() => closeMenu(name), CLOSE_DELAY_MS);
+    },
+    // Closes once focus leaves the dropdown entirely, so tabbing past the last
+    // link behaves like moving the pointer away.
+    onBlur: (e) => {
+      if (!e.currentTarget.contains(e.relatedTarget)) closeMenu(name);
+    },
+  });
+
+  const toggleMenu = (name) => {
+    cancelClose();
+    setOpenMenu((current) => (current === name ? null : name));
   };
 
   return (
@@ -65,85 +101,83 @@ export default function Navbar() {
             </Link>
 
             {/* About Dropdown */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setAboutDropdown(true)}
-              onMouseLeave={() => setAboutDropdown(false)}
-              onBlur={closeOnBlur(setAboutDropdown)}
-            >
+            <div className="relative" {...dropdownProps('about')}>
               <button 
                 type="button"
-                onClick={() => setAboutDropdown((open) => !open)}
+                onClick={() => toggleMenu('about')}
                 aria-haspopup="true" 
                 className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${location.pathname.startsWith('/about') || location.pathname.includes('senoia-history') || location.pathname.includes('files-forms') || location.pathname.includes('business-portal') || location.pathname === '/faq' || location.pathname === '/contact' ? 'text-senoia-red font-semibold bg-stone-100' : 'text-stone-700 hover:text-senoia-red hover:bg-stone-50'}`}
-                aria-expanded={aboutDropdown}
+                aria-expanded={openMenu === 'about'}
               >
                 <span>About</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
 
-              {aboutDropdown && (
-                <div className="absolute left-0 mt-1 w-64 rounded-xl shadow-xl bg-white ring-1 ring-black/5 py-2 z-50 border border-stone-100 animate-in fade-in slide-in-from-top-2 duration-150">
-                  <Link to="/about-the-dda" className="flex items-center px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-senoia-red">
-                    <Landmark className="w-4 h-4 mr-3 text-stone-400" />
-                    <span>About the DDA</span>
-                  </Link>
-                  <Link to="/about-the-veterans-memorial" className="flex items-center px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-senoia-red">
-                    <Shield className="w-4 h-4 mr-3 text-stone-400" />
-                    <span>Senoia Veterans Memorial</span>
-                  </Link>
-                  <Link to="/files-forms-and-downloads" className="flex items-center px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-senoia-red">
-                    <FileText className="w-4 h-4 mr-3 text-stone-400" />
-                    <span>Files, Forms & Downloads</span>
-                  </Link>
-                  <Link to="/senoia-history" className="flex items-center px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-senoia-red">
-                    <Info className="w-4 h-4 mr-3 text-stone-400" />
-                    <span>Senoia History</span>
-                  </Link>
-                  <Link to="/dda-business-portal" className="flex items-center px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-senoia-red">
-                    <Building2 className="w-4 h-4 mr-3 text-stone-400" />
-                    <span>DDA Business Portal</span>
-                  </Link>
-                  <Link to="/faq" className="flex items-center px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-senoia-red">
-                    <HelpCircle className="w-4 h-4 mr-3 text-stone-400" />
-                    <span>FAQ</span>
-                  </Link>
-                  <Link to="/contact" className="flex items-center px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-senoia-red">
-                    <Mail className="w-4 h-4 mr-3 text-stone-400" />
-                    <span>Contact Us</span>
-                  </Link>
+              {openMenu === 'about' && (
+                // pt-1 (padding, not margin) keeps the space between trigger
+                // and panel inside the dropdown, so the pointer never leaves it.
+                <div className="absolute left-0 top-full pt-1 z-50">
+                  <div className="w-64 rounded-xl shadow-xl bg-white ring-1 ring-black/5 py-2 border border-stone-100 animate-in fade-in slide-in-from-top-2 duration-150">
+                    <Link to="/about-the-dda" className="flex items-center px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-senoia-red">
+                      <Landmark className="w-4 h-4 mr-3 text-stone-400" />
+                      <span>About the DDA</span>
+                    </Link>
+                    <Link to="/about-the-veterans-memorial" className="flex items-center px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-senoia-red">
+                      <Shield className="w-4 h-4 mr-3 text-stone-400" />
+                      <span>Senoia Veterans Memorial</span>
+                    </Link>
+                    <Link to="/files-forms-and-downloads" className="flex items-center px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-senoia-red">
+                      <FileText className="w-4 h-4 mr-3 text-stone-400" />
+                      <span>Files, Forms & Downloads</span>
+                    </Link>
+                    <Link to="/senoia-history" className="flex items-center px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-senoia-red">
+                      <Info className="w-4 h-4 mr-3 text-stone-400" />
+                      <span>Senoia History</span>
+                    </Link>
+                    <Link to="/dda-business-portal" className="flex items-center px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-senoia-red">
+                      <Building2 className="w-4 h-4 mr-3 text-stone-400" />
+                      <span>DDA Business Portal</span>
+                    </Link>
+                    <Link to="/faq" className="flex items-center px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-senoia-red">
+                      <HelpCircle className="w-4 h-4 mr-3 text-stone-400" />
+                      <span>FAQ</span>
+                    </Link>
+                    <Link to="/contact" className="flex items-center px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-senoia-red">
+                      <Mail className="w-4 h-4 mr-3 text-stone-400" />
+                      <span>Contact Us</span>
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>
 
             {/* Events Dropdown */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setEventsDropdown(true)}
-              onMouseLeave={() => setEventsDropdown(false)}
-              onBlur={closeOnBlur(setEventsDropdown)}
-            >
+            <div className="relative" {...dropdownProps('events')}>
               <button 
                 type="button"
-                onClick={() => setEventsDropdown((open) => !open)}
+                onClick={() => toggleMenu('events')}
                 aria-haspopup="true" 
                 className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${location.pathname.startsWith('/events') || location.pathname.startsWith('/past-events') ? 'text-senoia-red font-semibold bg-stone-100' : 'text-stone-700 hover:text-senoia-red hover:bg-stone-50'}`}
-                aria-expanded={eventsDropdown}
+                aria-expanded={openMenu === 'events'}
               >
                 <span>Events</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
 
-              {eventsDropdown && (
-                <div className="absolute left-0 mt-1 w-52 rounded-xl shadow-xl bg-white ring-1 ring-black/5 py-2 z-50 border border-stone-100 animate-in fade-in slide-in-from-top-2 duration-150">
-                  <Link to="/events" className="flex items-center px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-senoia-red">
-                    <Calendar className="w-4 h-4 mr-3 text-stone-400" />
-                    <span>Upcoming Events</span>
-                  </Link>
-                  <Link to="/past-events" className="flex items-center px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-senoia-red">
-                    <Calendar className="w-4 h-4 mr-3 text-stone-400" />
-                    <span>Past Events</span>
-                  </Link>
+              {openMenu === 'events' && (
+                // pt-1 (padding, not margin) keeps the space between trigger
+                // and panel inside the dropdown, so the pointer never leaves it.
+                <div className="absolute left-0 top-full pt-1 z-50">
+                  <div className="w-52 rounded-xl shadow-xl bg-white ring-1 ring-black/5 py-2 border border-stone-100 animate-in fade-in slide-in-from-top-2 duration-150">
+                    <Link to="/events" className="flex items-center px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-senoia-red">
+                      <Calendar className="w-4 h-4 mr-3 text-stone-400" />
+                      <span>Upcoming Events</span>
+                    </Link>
+                    <Link to="/past-events" className="flex items-center px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-senoia-red">
+                      <Calendar className="w-4 h-4 mr-3 text-stone-400" />
+                      <span>Past Events</span>
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>
