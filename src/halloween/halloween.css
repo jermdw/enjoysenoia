@@ -922,31 +922,17 @@
   content: '\00a0-';
 }
 
+/* The trick-or-treating intro is separate paragraphs, so give them air. */
+.hallo .hallo-blurb > p + p {
+  margin-top: 0.9rem;
+}
+
+/* Safety notes above the map, as plain centred lines. */
 .hallo .hallo-closures {
-  display: grid;
-  gap: 0.25rem 1.5rem;
   margin: 1.5rem auto;
   max-width: 40rem;
 }
 
-@media (min-width: 40rem) {
-  .hallo .hallo-closures {
-    grid-template-columns: auto 1fr;
-    align-items: center;
-  }
-}
-
-.hallo .hallo-closures h3 {
-  margin: 0;
-}
-
-.hallo .hallo-closures ul {
-  margin: 0;
-  padding-left: 1.1rem;
-}
-
-.hallo .hallo-map-note {
-  font-weight: 700;
-  font-size: 1.2rem;
-  margin-top: 1.5rem;
+.hallo .hallo-closures p {
+  margin: 0.25rem 0;
 }
