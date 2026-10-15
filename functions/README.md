@@ -76,28 +76,47 @@ emails info@enjoysenoia.com through Resend. A failed email does not fail the
 upload. If Drive fails the sponsor is told to email the logo instead, and the
 record is left with `driveStatus: 'failed'`.
 
-One-time setup:
+The function uploads to Drive as a regular Google account, not a service
+account: service accounts have no storage quota, so they cannot own files in a
+normal folder, and the DDA has no Workspace shared drive. The OAuth scope is
+`drive.file`, so the token can only reach the folder this app creates.
 
-1. **A shared drive.** In Google Drive create a *shared drive* (for example
-   "Sponsor Logos") and add Melissa and whoever else needs the logos as members.
-   A normal My Drive folder will not work: service accounts have no storage
-   quota of their own, so uploads into a person's folder are refused. Create a
-   folder inside it if you want, and copy its ID from the URL
-   (`drive.google.com/drive/folders/<ID>`).
-2. **Let the function write to it.** Add the function's runtime service account
-   (`<project number>-compute@developer.gserviceaccount.com`, as in step 3
-   above) to the shared drive as *Content manager*.
-3. **Enable the Drive API** on the `enjoysenoia` project:
+One-time setup (pick the Google account that will own the logos; it shares the
+folder with Melissa and anyone else, and should be a stable account, not one
+somebody might close):
+
+1. **Enable the Drive API:**
    `gcloud services enable drive.googleapis.com --project enjoysenoia`
-4. **Deploy.** `firebase deploy --only functions --project enjoysenoia`. The CLI
-   asks for `SPONSOR_LOGO_FOLDER_ID` the first time; paste the folder ID. (To
-   skip the prompt put `SPONSOR_LOGO_FOLDER_ID=<ID>` in `functions/.env`.)
+2. **OAuth consent screen.** Google Cloud console > APIs & Services > OAuth
+   consent screen (Google Auth platform). User type *External*, app name
+   "Enjoy Senoia logo upload", add `https://www.googleapis.com/auth/drive.file`
+   as the only scope, then **publish the app to production**. In *Testing* mode
+   Google expires the refresh token after 7 days. `drive.file` is not a
+   sensitive scope, so publishing needs no Google review.
+3. **OAuth client.** Credentials > Create credentials > OAuth client ID >
+   *Desktop app*. Note the client ID and secret.
+4. **Authorise once.** `npm --prefix functions install`, then
+   `cd functions && node driveSetup.mjs <client ID> <client secret>`. Open the
+   URL it prints and sign in as the owning account. It creates a "Sponsor
+   Logos" folder in that account's Drive and prints the refresh token and the
+   folder ID. (An "unverified app" warning on the sign-in page is expected for a
+   private app: *Advanced > Go to ... (unsafe)*.)
+5. **Share the folder** with Melissa and whoever else needs the logos.
+6. **Store the secrets** the script printed (the CLI prompts for each value):
+   `firebase functions:secrets:set DRIVE_CLIENT_ID --project enjoysenoia`, and
+   the same for `DRIVE_CLIENT_SECRET` and `DRIVE_REFRESH_TOKEN`.
+7. **Deploy.** `firebase deploy --only functions --project enjoysenoia`. It asks
+   for `SPONSOR_LOGO_FOLDER_ID` the first time (or put it in `functions/.env`).
    Functions are not deployed by CI, so merging the site change alone leaves the
    page showing "we could not save your logo" until this is done.
-5. **Ticket Tailor.** In each event's confirmation email add something like:
+8. **Ticket Tailor.** In each event's confirmation email add something like:
    *"Sponsoring with us for the first time, or has your logo changed? Please
    send it here: https://www.enjoysenoia.com/sponsor-logo?event=Senoia+Porchfest"*.
    `?event=` is optional and prefills the event field.
+
+If uploads start failing with `invalid_grant` in the function logs, the token
+was revoked or went unused for about six months: re-run step 4 and update
+`DRIVE_REFRESH_TOKEN`.
 
 ## Volunteer sign-ups
 

@@ -10,7 +10,7 @@
     {
       "source": "functions",
       "codebase": "default",
-      "ignore": ["node_modules", ".git", "*.test.js", "README.md"]
+      "ignore": ["node_modules", ".git", "*.test.js", "README.md", "driveSetup.mjs"]
     }
   ],
   "hosting": [
