@@ -18,8 +18,8 @@ export default defineConfig({
           'vendor-react': ['react', 'react-dom', 'react-router-dom'],
           'vendor-firebase': ['firebase/app', 'firebase/firestore', 'firebase/auth', 'firebase/storage'],
           'vendor-icons': ['lucide-react'],
-          // Only reached through the lazy import in TrickOrTreating, so this
-          // chunk stays out of the initial load for every other page.
+          // Only reached through the lazy imports in TrickOrTreating and the
+          // admin pin dialog, so this chunk stays out of every initial load.
           'vendor-map': ['leaflet', 'react-leaflet']
         }
       }

@@ -46,9 +46,16 @@ also the spam gate: a collection that were both public-write and public-read
 would let anyone drop an arbitrary address onto a map of the town's
 trick-or-treat route.
 
-`lat`/`lng` may be null. An unplaced pin is stored and skipped by the map, which
-is what lets the site run with no geocoding service at all — the admin pastes
-coordinates from Google Maps when publishing.
+Publishing opens a pin dialog that looks the address up with OpenStreetMap's
+Nominatim (`src/services/geocode.js`, free, no key) and shows the result on a
+map. The admin confirms the pin, clicks the map to move it, or pastes
+coordinates from Google Maps; nothing is written until they confirm. Only the
+address is sent to Nominatim, never the name or email. OSM often estimates US
+house numbers along the street, so the check matters.
+
+`lat`/`lng` may be null. An unplaced pin is stored and skipped by the map, so
+a failed lookup never blocks publishing; a **Place** button on the pin list
+adds coordinates later.
 
 The sign-up form tells entrants that residential addresses appear on a public
 map. The brief does not include that disclosure; it is there because the site
