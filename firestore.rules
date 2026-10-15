@@ -33,6 +33,7 @@ service cloud.firestore {
       return d.keys().hasOnly([
           'slug', 'title', 'date_time', 'start', 'end', 'location', 'description',
           'image', 'external_url', 'category', 'hidden',
+          'volunteer_enabled', 'volunteer_label',
           'createdAt', 'updatedAt', 'updatedBy'
         ])
         && d.keys().hasAll(['slug', 'hidden'])
@@ -48,6 +49,8 @@ service cloud.firestore {
         && optString(d, 'image', 2000)
         && optString(d, 'external_url', 2000)
         && optString(d, 'category', 80)
+        && (!('volunteer_enabled' in d) || d.volunteer_enabled is bool)
+        && optString(d, 'volunteer_label', 60)
         && optString(d, 'updatedBy', 254);
     }
 

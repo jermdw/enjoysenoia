@@ -135,8 +135,9 @@ Data: `volunteer_events/{eventSlug}` (`name`, `intro`, `signupOpen`),
 `volunteer_events/{eventSlug}/shifts/{id}` (`role`, `time`, `note`, `spotsTotal`,
 `spotsFilled`, `sortOrder`; public read, counts only) and `volunteer_signups`
 (admin read only; no client creates). Staff manage all of it in the admin portal's
-**Volunteers** tab. An event gets a board by carrying `volunteer_url` in
-`data/event_overrides.json`.
+**Volunteers** tab. An event gets a board when staff tick "Link volunteer
+sign-up" on it in the Events tab (`volunteer_enabled` on the event's Firestore
+patch; `volunteer_url` in `data/event_overrides.json` is the built-in default).
 
 **Sign-ups stay closed until staff open them**: a missing event document, or
 `signupOpen: false`, makes the function refuse. Rules and functions are not

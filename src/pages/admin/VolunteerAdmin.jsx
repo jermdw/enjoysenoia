@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Download, Pencil, RefreshCw, Trash2, UserMinus } from 'lucide-react';
-import { getEvents } from '../../services/dataService';
+import { getAllEventsForAdmin, useContentOverrides } from '../../services/dataService';
+import { hasVolunteerBoard } from '../../utils/volunteer';
 import {
   addShift,
   deleteShift,
@@ -16,8 +17,8 @@ import {
 /**
  * Volunteer shifts and roster, per event.
  *
- * An event gets a shift board by carrying `volunteer_url` in
- * data/event_overrides.json (the tab lists those events). Everything else is
+ * An event gets a shift board when staff tick "Link volunteer sign-up" on it in
+ * the Events tab (the tab lists those events). Everything else is
  * managed here: the open/close switch, the shifts and who has signed up. All
  * reads and writes are admin-only at the rules layer. Removing a volunteer, and
  * every count change, run in transactions (see volunteerService.js).
@@ -41,11 +42,16 @@ function downloadCsv(filename, csv) {
 const inputClass = 'w-full rounded-lg border border-stone-300 bg-white px-3 py-2 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-senoia-red/40';
 
 export default function VolunteerAdmin() {
+  // Live merged events, so linking one from its listing shows up here at once.
+  useContentOverrides();
+  const events = getAllEventsForAdmin();
   const options = useMemo(
-    () => getEvents().filter((e) => typeof e.volunteer_url === 'string').map((e) => ({ slug: e.slug, title: e.title })),
-    []
+    () => events.filter(hasVolunteerBoard).map((e) => ({ slug: e.slug, title: e.title })),
+    [events]
   );
-  const [eventSlug, setEventSlug] = useState(options[0]?.slug || null);
+  const [chosen, setChosen] = useState(null);
+  const eventSlug = options.some((o) => o.slug === chosen) ? chosen : options[0]?.slug || null;
+  const setEventSlug = setChosen;
   const [eventDoc, setEventDoc] = useState(null);
   const [settings, setSettings] = useState({ name: '', intro: '', signupOpen: false });
   const [shifts, setShifts] = useState([]);
@@ -148,8 +154,8 @@ export default function VolunteerAdmin() {
   if (!eventSlug) {
     return (
       <p className="text-sm text-stone-600">
-        No event has a volunteer sign-up yet. Add <code className="text-xs">volunteer_url</code> to the event in{' '}
-        <code className="text-xs">data/event_overrides.json</code>.
+        No event is linked to volunteer sign-up yet. In the Events tab, edit an event and tick{' '}
+        <strong>Link volunteer sign-up</strong>.
       </p>
     );
   }

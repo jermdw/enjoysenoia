@@ -23,6 +23,7 @@ import {
   loadOverrides,
 } from './dataService';
 import { SLUG_PATTERN, slugify } from './newsService';
+import { hasVolunteerBoard } from '../utils/volunteer';
 
 export { SLUG_PATTERN, slugify };
 
@@ -32,7 +33,10 @@ export const KINDS = {
     builtIn: getBuiltInEvent,
     all: getAllEventsForAdmin,
     // Fields staff can change; a patch holds a subset of these.
-    fields: ['title', 'date_time', 'start', 'end', 'location', 'description', 'image', 'external_url', 'category'],
+    fields: ['title', 'date_time', 'start', 'end', 'location', 'description', 'image', 'external_url', 'category', 'volunteer_label'],
+    // Stored as real booleans, so they are handled apart from the string fields.
+    // The built-in value is what the site would show with no staff edit.
+    boolFields: { volunteer_enabled: (builtIn) => hasVolunteerBoard(builtIn) },
     label: 'event',
   },
   business: {
@@ -51,7 +55,11 @@ const norm = (v) => (v == null ? '' : String(v).trim());
 export function hasContentEdits(kind, item) {
   const builtIn = KINDS[kind].builtIn(item.slug);
   if (!builtIn) return true;
-  return KINDS[kind].fields.some((f) => norm(item[f]) !== norm(builtIn[f]));
+  const k = KINDS[kind];
+  const bools = Object.entries(k.boolFields || {}).some(
+    ([f, effective]) => typeof item[f] === 'boolean' && item[f] !== effective(builtIn)
+  );
+  return bools || k.fields.some((f) => norm(item[f]) !== norm(builtIn[f]));
 }
 
 /** Slugs already taken, by built-in items and by staff additions alike. */
@@ -78,6 +86,10 @@ export async function saveItem(kind, { slug, values, hidden = false }) {
     } else if (value) {
       data[f] = value;
     }
+  });
+  Object.entries(k.boolFields || {}).forEach(([f, effective]) => {
+    const value = Boolean(values[f]);
+    if (builtIn ? value !== effective(builtIn) : value) data[f] = value;
   });
   if (!builtIn) {
     const title = kind === 'event' ? data.title : data.name;

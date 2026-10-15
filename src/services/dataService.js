@@ -31,7 +31,7 @@ const FETCH_TIMEOUT_MS = 4000;
 
 // Plain-data fields only (no Firestore timestamps), so the cache is JSON-safe.
 const CONTENT_FIELDS = {
-  events: ['title', 'date_time', 'start', 'end', 'location', 'description', 'image', 'external_url', 'category', 'hidden'],
+  events: ['title', 'date_time', 'start', 'end', 'location', 'description', 'image', 'external_url', 'category', 'volunteer_enabled', 'volunteer_label', 'hidden'],
   businesses: ['name', 'category', 'summary', 'description_html', 'hours_html', 'phone', 'email', 'website', 'facebook', 'instagram', 'address', 'image', 'hidden'],
 };
 

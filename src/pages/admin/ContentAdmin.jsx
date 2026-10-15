@@ -15,6 +15,8 @@ import {
   toDateTimeInput,
 } from '../../services/contentAdminService';
 import { loadOverrides, useContentOverrides } from '../../services/dataService';
+import { ensureVolunteerBoard } from '../../services/volunteerService';
+import { hasVolunteerBoard } from '../../utils/volunteer';
 
 const inputClass =
   'w-full px-3 py-2 rounded-xl border border-stone-300 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-senoia-red/30 focus:border-senoia-red';
@@ -52,6 +54,8 @@ const CONFIG = {
       description: i?.description || '',
       image: i?.image || '',
       external_url: i?.external_url || '',
+      volunteer_enabled: hasVolunteerBoard(i),
+      volunteer_label: i?.volunteer_label || '',
     }),
     // An untouched date keeps its stored ISO string, so saving other fields
     // does not rewrite it.
@@ -65,6 +69,8 @@ const CONFIG = {
       description: f.description,
       image: f.image,
       external_url: f.external_url,
+      volunteer_enabled: f.volunteer_enabled,
+      volunteer_label: f.volunteer_label,
     }),
   },
   business: {
@@ -121,7 +127,7 @@ function Field({ label, hint, children }) {
   );
 }
 
-function ItemForm({ kind, item, onDone }) {
+function ItemForm({ kind, item, onDone, onOpenVolunteers }) {
   const cfg = CONFIG[kind];
   const isNew = !item;
   const [form, setForm] = useState(() => cfg.toForm(item));
@@ -168,7 +174,16 @@ function ItemForm({ kind, item, onDone }) {
         values: cfg.toValues(form, item),
         hidden: item?.hidden || false,
       });
-      onDone(`Saved "${form[nameKey]}". It is live on the site now.`);
+      let note = '';
+      if (kind === 'event' && form.volunteer_enabled) {
+        try {
+          await ensureVolunteerBoard(effectiveSlug, form.title);
+        } catch (err) {
+          console.warn('Could not prepare the volunteer board:', err);
+          note = ' The volunteer board could not be prepared; set it up in the Volunteers tab.';
+        }
+      }
+      onDone(`Saved "${form[nameKey]}". It is live on the site now.${note}`);
     } catch (err) {
       console.warn('Save failed:', err);
       setError(
@@ -225,6 +240,35 @@ function ItemForm({ kind, item, onDone }) {
           <Field label="Event website (optional)" hint="When set, the event's card goes straight to this site in a new tab.">
             <input type="url" {...bind('external_url')} placeholder="https://" />
           </Field>
+          <div className="rounded-xl border border-stone-200 bg-stone-50 p-4 space-y-3">
+            <label className="flex items-start gap-2 text-sm font-semibold text-stone-800">
+              <input
+                type="checkbox"
+                className="mt-0.5"
+                checked={form.volunteer_enabled}
+                onChange={(e) => set({ volunteer_enabled: e.target.checked })}
+              />
+              <span>
+                Link volunteer sign-up
+                <span className="block text-[11px] font-normal text-stone-500">
+                  Adds a Volunteer button to this event's page, going to /volunteer/{effectiveSlug || '…'}.
+                  Add shifts and open sign-ups in the Volunteers tab; until then visitors see "not open".
+                </span>
+              </span>
+            </label>
+            {form.volunteer_enabled && (
+              <>
+                <Field label="Button text" hint="Defaults to “Volunteer”.">
+                  <input {...bind('volunteer_label')} placeholder="Volunteer to Help Set Up" maxLength={60} />
+                </Field>
+                {onOpenVolunteers && !isNew && (
+                  <button type="button" onClick={onOpenVolunteers} className="text-xs font-semibold text-senoia-red hover:underline">
+                    Manage shifts and volunteers →
+                  </button>
+                )}
+              </>
+            )}
+          </div>
         </>
       ) : (
         <>
@@ -284,6 +328,7 @@ function Badge({ tone, children }) {
     hidden: 'bg-stone-200 text-stone-700',
     edited: 'bg-amber-100 text-amber-800',
     added: 'bg-emerald-100 text-emerald-800',
+    volunteer: 'bg-sky-100 text-sky-800',
   };
   return <span className={`shrink-0 text-[11px] font-semibold px-2 py-0.5 rounded-full ${tones[tone]}`}>{children}</span>;
 }
@@ -293,7 +338,7 @@ function Badge({ tone, children }) {
  * lists every item (hidden ones included) merged with staff edits, and saves
  * straight to Firestore. See services/dataService.js for how the site merges.
  */
-export default function ContentAdmin({ kind }) {
+export default function ContentAdmin({ kind, onOpenVolunteers }) {
   const cfg = CONFIG[kind];
   const k = KINDS[kind];
   useContentOverrides();
@@ -353,6 +398,7 @@ export default function ContentAdmin({ kind }) {
         key={editing?.slug || 'new'}
         kind={kind}
         item={editing}
+        onOpenVolunteers={onOpenVolunteers}
         onDone={(message) => {
           setEditing(undefined);
           setError('');
@@ -445,6 +491,7 @@ export default function ContentAdmin({ kind }) {
                     {item.hidden && <Badge tone="hidden">Hidden</Badge>}
                     {!item._builtIn && <Badge tone="added">Added by staff</Badge>}
                     {edited && <Badge tone="edited">Edited</Badge>}
+                    {kind === 'event' && hasVolunteerBoard(item) && <Badge tone="volunteer">Volunteers</Badge>}
                     <h3 className="font-semibold text-stone-900 truncate">{name(item)}</h3>
                   </div>
                   <p className="mt-1 text-xs text-stone-500 truncate">

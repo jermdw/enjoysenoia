@@ -5,6 +5,7 @@ import SEO from '../components/common/SEO';
 import NotFoundNotice from '../components/common/NotFoundNotice';
 import { getEventBySlug, useContentOverrides } from '../services/dataService';
 import { webflowAsset } from '../utils/webflowAsset';
+import { hasVolunteerBoard, volunteerPath } from '../utils/volunteer';
 
 export default function EventDetailPage() {
   const { slug } = useParams();
@@ -46,9 +47,10 @@ export default function EventDetailPage() {
   // Alive After Five, "Vendor Application"). It is a secondary action: it must
   // not stand in for `ticket_url`, or a free event would lose its "no admission
   // fee" badge. Only http(s) targets render.
-  // Events with a volunteer shift board set `volunteer_url` (an on-site path,
-  // /volunteer/<slug>) in data/event_overrides.json.
-  const volunteerUrl = typeof event?.volunteer_url === 'string' && event.volunteer_url.startsWith('/') ? event.volunteer_url : null;
+  // Staff link an event to volunteer sign-up from its listing in the admin
+  // portal (`volunteer_enabled`); `volunteer_url` in data/event_overrides.json
+  // is the built-in default. See src/utils/volunteer.js.
+  const volunteerUrl = hasVolunteerBoard(event) ? volunteerPath(event) : null;
   const volunteerLabel = event?.volunteer_label || 'Volunteer';
 
   const cta = event?.button;
