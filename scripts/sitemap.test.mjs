@@ -52,6 +52,7 @@ test('redirected paths are excluded; only exact main-target redirects count', ()
 
 test('staticRoutes skips params, wildcards, admin and micro-site pages', () => {
   const src = '<Route path="/x"/><Route path="/e/:slug"/><Route path="*"/><Route path="/admin"/><Route path="/halloween"/>';
+  assert.deepEqual([...staticRoutes(src + '<Route path="/sponsor-logo"/>')], ['/x']);
   assert.deepEqual([...staticRoutes(src)], ['/x']);
 });
 

@@ -5,9 +5,10 @@
   "main": "index.js",
   "engines": { "node": "22" },
   "scripts": {
-    "test": "node --test contactEmail.test.js"
+    "test": "node --test contactEmail.test.js sponsorLogo.test.js"
   },
   "dependencies": {
+    "@googleapis/drive": "^8.0.0",
     "firebase-admin": "^13.0.0",
     "firebase-functions": "^6.3.0",
     "resend": "^4.0.0"

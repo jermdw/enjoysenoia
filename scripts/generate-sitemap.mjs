@@ -44,6 +44,8 @@ const DOCS = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databas
 
 // Served by their own micro-sites, so not part of this host's sitemap.
 const EXCLUDED_ROUTES = new Set(['/masquerade', '/halloween']);
+// Only meant for people sent the link (sponsor logo upload); noindexed too.
+EXCLUDED_ROUTES.add('/sponsor-logo');
 
 /* ---------------------------- built-in routes --------------------------- */
 
