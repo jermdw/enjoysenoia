@@ -34,8 +34,14 @@ import { FILE_TYPES, buildSponsorLogoEmail, driveFileName, validateSponsorLogo }
 initializeApp();
 
 const RESEND_API_KEY = defineSecret('RESEND_API_KEY');
-// ID of the shared Drive folder logos are filed in (the last part of its URL).
-// Share that folder with this function's runtime service account.
+// Logos are filed in Drive AS a regular Google account (a service account has
+// no storage quota of its own, so it cannot own files in a normal folder). The
+// account authorises once with driveSetup.mjs, which also creates the folder
+// and prints the three secrets and the folder ID below. The scope is
+// drive.file, so the function can only touch files and folders it created.
+const DRIVE_CLIENT_ID = defineSecret('DRIVE_CLIENT_ID');
+const DRIVE_CLIENT_SECRET = defineSecret('DRIVE_CLIENT_SECRET');
+const DRIVE_REFRESH_TOKEN = defineSecret('DRIVE_REFRESH_TOKEN');
 const SPONSOR_LOGO_FOLDER_ID = defineString('SPONSOR_LOGO_FOLDER_ID');
 
 const MIN_FILL_MS = 3000;
@@ -133,7 +139,7 @@ export const submitSponsorLogo = onCall(
     region: 'us-central1',
     enforceAppCheck: true,
     consumeAppCheckToken: true,
-    secrets: [RESEND_API_KEY],
+    secrets: [RESEND_API_KEY, DRIVE_CLIENT_ID, DRIVE_CLIENT_SECRET, DRIVE_REFRESH_TOKEN],
     maxInstances: 5,
     // Room for a ~7 MB file as base64.
     memory: '512MiB',
@@ -164,7 +170,9 @@ export const submitSponsorLogo = onCall(
     const record = db.collection('sponsor_logos').doc();
     let driveUrl = null;
     try {
-      const client = drive({ version: 'v3', auth: new auth.GoogleAuth({ scopes: ['https://www.googleapis.com/auth/drive'] }) });
+      const oauth = new auth.OAuth2(DRIVE_CLIENT_ID.value(), DRIVE_CLIENT_SECRET.value());
+      oauth.setCredentials({ refresh_token: DRIVE_REFRESH_TOKEN.value() });
+      const client = drive({ version: 'v3', auth: oauth });
       const res = await client.files.create({
         requestBody: {
           name: driveFileName(data, submittedAt),
@@ -173,7 +181,6 @@ export const submitSponsorLogo = onCall(
         },
         media: { mimeType: FILE_TYPES[data.ext].mime, body: Readable.from(bytes) },
         fields: 'id, webViewLink',
-        supportsAllDrives: true,
       });
       driveUrl = res.data.webViewLink || `https://drive.google.com/file/d/${res.data.id}/view`;
       await record.set({ ...data, createdAt: Timestamp.fromDate(submittedAt), ipHash, driveFileId: res.data.id, driveStatus: 'filed' });
