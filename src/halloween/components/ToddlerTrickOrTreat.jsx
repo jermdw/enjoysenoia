@@ -18,6 +18,9 @@ export default function ToddlerTrickOrTreat() {
           <p className="hallo-subtitle">{toddlerTrickOrTreat.where}</p>
           <p className="hallo-pill">{toddlerTrickOrTreat.whenLabel}</p>
 
+          <p className="hallo-subtitle">{toddlerTrickOrTreat.firstStop.heading}</p>
+          <p className="hallo-lede">{toddlerTrickOrTreat.firstStop.body}</p>
+
           <h3 className="hallo-biz-heading">Participating Businesses:</h3>
           {/* Set as a run of names, like the slide, rather than as tiles: these
               are a list to read, not things to press. */}
@@ -25,9 +28,8 @@ export default function ToddlerTrickOrTreat() {
             {toddlerTrickOrTreat.participatingBusinesses.map((name) => (
               <li key={name}>{name}</li>
             ))}
+            <li>{toddlerTrickOrTreat.moreBusinesses}</li>
           </ul>
-
-          <p className="hallo-perk">{toddlerTrickOrTreat.perk}</p>
         </WavyFrame>
       </div>
     </section>
