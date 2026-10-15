@@ -213,7 +213,7 @@ export const trickOrTreating = {
   // Pin colours, shared by the map and its legend. `fill` must read against both
   // the OpenStreetMap tiles and the cream page.
   mapKinds: {
-    residential: { fill: '#e27925', label: 'Decorating Contest Entrance' },
+    residential: { fill: '#e27925', label: 'Decorating Contest Entrant' },
     closure: { fill: '#c81e1e', label: 'Road closed' },
     parking: { fill: '#5a4466', label: 'Parking' },
   },
