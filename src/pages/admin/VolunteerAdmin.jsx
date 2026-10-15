@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Download, Pencil, RefreshCw, Trash2, UserMinus } from 'lucide-react';
+import { ArrowLeft, ChevronRight, Download, Pencil, RefreshCw, Trash2, UserMinus } from 'lucide-react';
 import { getAllEventsForAdmin, useContentOverrides } from '../../services/dataService';
 import { hasVolunteerBoard } from '../../utils/volunteer';
 import {
@@ -15,11 +15,11 @@ import {
 } from '../../services/volunteerService';
 
 /**
- * Volunteer shifts and roster, per event.
+ * Volunteer sign-ups across the site: a list of every event linked to a shift
+ * board, and, for the one picked, its settings, shifts and roster.
  *
  * An event gets a shift board when staff tick "Link volunteer sign-up" on it in
- * the Events tab (the tab lists those events). Everything else is
- * managed here: the open/close switch, the shifts and who has signed up. All
+ * the Events tab. Everything else is managed here: the open/close switch, the shifts and who has signed up. All
  * reads and writes are admin-only at the rules layer. Removing a volunteer, and
  * every count change, run in transactions (see volunteerService.js).
  */
@@ -41,17 +41,138 @@ function downloadCsv(filename, csv) {
 
 const inputClass = 'w-full rounded-lg border border-stone-300 bg-white px-3 py-2 text-sm text-stone-900 focus:outline-none focus:ring-2 focus:ring-senoia-red/40';
 
+/** Open / closed / not set up, as a small pill. */
+function StatusPill({ board }) {
+  const [label, tone] = !board
+    ? ['Not set up', 'bg-amber-100 text-amber-800']
+    : board.signupOpen
+      ? ['Open', 'bg-emerald-100 text-emerald-800']
+      : ['Closed', 'bg-stone-200 text-stone-700'];
+  return <span className={`shrink-0 text-[11px] font-semibold px-2 py-0.5 rounded-full ${tone}`}>{label}</span>;
+}
+
+/**
+ * The tab's landing view: every event linked to volunteer sign-up, with whether
+ * sign-ups are open and how full its shifts are. Counts come from the public
+ * shift documents, so this needs no read of anyone's personal details.
+ */
 export default function VolunteerAdmin() {
   // Live merged events, so linking one from its listing shows up here at once.
   useContentOverrides();
   const events = getAllEventsForAdmin();
-  const options = useMemo(
-    () => events.filter(hasVolunteerBoard).map((e) => ({ slug: e.slug, title: e.title })),
-    [events]
+  const linked = useMemo(() => events.filter(hasVolunteerBoard), [events]);
+  const [selected, setSelected] = useState(null);
+  const [summaries, setSummaries] = useState({});
+  const [state, setState] = useState('loading'); // loading | ready | error
+
+  const load = useCallback(async () => {
+    setState('loading');
+    try {
+      const rows = await Promise.all(
+        linked.map(async (e) => {
+          const [board, shifts] = await Promise.all([getVolunteerEvent(e.slug), getShifts(e.slug)]);
+          return [
+            e.slug,
+            {
+              board,
+              shiftCount: shifts.length,
+              filled: shifts.reduce((n, s) => n + (s.spotsFilled ?? 0), 0),
+              total: shifts.reduce((n, s) => n + (s.spotsTotal ?? 0), 0),
+            },
+          ];
+        })
+      );
+      setSummaries(Object.fromEntries(rows));
+      setState('ready');
+    } catch (err) {
+      console.warn('Could not load volunteer boards:', err);
+      setState('error');
+    }
+  }, [linked]);
+
+  // Refreshed on returning from a board, so its edits show in the list.
+  useEffect(() => {
+    if (!selected) load();
+  }, [load, selected]);
+
+  const current = linked.find((e) => e.slug === selected);
+  if (current) {
+    return <VolunteerBoard eventSlug={current.slug} eventTitle={current.title} onBack={() => setSelected(null)} />;
+  }
+
+  if (linked.length === 0) {
+    return (
+      <div className="space-y-2">
+        <h2 className="text-lg font-bold font-serif text-stone-900">Volunteer Sign-ups</h2>
+        <p className="text-sm text-stone-600">
+          No event is linked to volunteer sign-up yet. In the Events tab, edit an event and tick{' '}
+          <strong>Link volunteer sign-up</strong>.
+        </p>
+      </div>
+    );
+  }
+
+  const byDate = [...linked].sort((a, b) => new Date(a.start || 0) - new Date(b.start || 0));
+
+  return (
+    <div className="space-y-5">
+      <div className="flex items-center justify-between flex-wrap gap-3">
+        <div>
+          <h2 className="text-lg font-bold font-serif text-stone-900">Volunteer Sign-ups</h2>
+          <p className="text-xs text-stone-500">
+            Every event linked to a shift board. Link more from the Events tab.
+          </p>
+        </div>
+        <button onClick={load} disabled={state === 'loading'} className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 disabled:opacity-50 text-xs font-semibold">
+          <RefreshCw className="w-4 h-4" />
+          <span>Refresh</span>
+        </button>
+      </div>
+
+      {state === 'error' && (
+        <p className="text-sm text-red-700" role="alert">Could not load the sign-up counts. Try Refresh.</p>
+      )}
+
+      <ul className="divide-y divide-stone-100 rounded-xl border border-stone-200 bg-white">
+        {byDate.map((e) => {
+          const sum = summaries[e.slug];
+          return (
+            <li key={e.slug}>
+              <button
+                type="button"
+                onClick={() => setSelected(e.slug)}
+                className="w-full text-left px-4 py-4 flex items-center gap-3 hover:bg-stone-50"
+              >
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap items-center gap-2">
+                    {sum && <StatusPill board={sum.board} />}
+                    {e.hidden && <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-stone-200 text-stone-700">Event hidden</span>}
+                    <span className="font-semibold text-stone-900 truncate">{e.title}</span>
+                  </div>
+                  <p className="mt-1 text-xs text-stone-500">
+                    {e.date_time || ''}
+                    {sum && (
+                      <>
+                        {e.date_time ? ' · ' : ''}
+                        {sum.shiftCount === 0
+                          ? 'No shifts yet'
+                          : `${sum.filled} of ${sum.total} spots filled across ${sum.shiftCount} ${sum.shiftCount === 1 ? 'shift' : 'shifts'}`}
+                      </>
+                    )}
+                  </p>
+                </div>
+                <ChevronRight className="w-4 h-4 text-stone-400 shrink-0" />
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
-  const [chosen, setChosen] = useState(null);
-  const eventSlug = options.some((o) => o.slug === chosen) ? chosen : options[0]?.slug || null;
-  const setEventSlug = setChosen;
+}
+
+/** One event's board: sign-up settings, shifts and roster. */
+function VolunteerBoard({ eventSlug, eventTitle, onBack }) {
   const [eventDoc, setEventDoc] = useState(null);
   const [settings, setSettings] = useState({ name: '', intro: '', signupOpen: false });
   const [shifts, setShifts] = useState([]);
@@ -61,7 +182,7 @@ export default function VolunteerAdmin() {
   const [editingId, setEditingId] = useState(null);
   const [busy, setBusy] = useState(false);
 
-  const builtInTitle = options.find((o) => o.slug === eventSlug)?.title || '';
+  const builtInTitle = eventTitle || '';
 
   const load = useCallback(async () => {
     if (!eventSlug) return;
@@ -151,19 +272,13 @@ export default function VolunteerAdmin() {
     downloadCsv(`${eventSlug}_volunteers_${new Date().toISOString().slice(0, 10)}.csv`, rosterToCsv(shifts, signups));
   };
 
-  if (!eventSlug) {
-    return (
-      <p className="text-sm text-stone-600">
-        No event is linked to volunteer sign-up yet. In the Events tab, edit an event and tick{' '}
-        <strong>Link volunteer sign-up</strong>.
-      </p>
-    );
-  }
-
   if (state === 'error') {
     return (
       <div className="space-y-3">
-        <h2 className="text-lg font-bold font-serif text-stone-900">Volunteers</h2>
+        <button type="button" onClick={onBack} className="inline-flex items-center gap-1 text-xs font-semibold text-stone-500 hover:text-senoia-red">
+          <ArrowLeft className="w-4 h-4" /> All volunteer sign-ups
+        </button>
+        <h2 className="text-lg font-bold font-serif text-stone-900">{eventTitle}</h2>
         <p className="text-sm text-stone-600">Could not load volunteer data. Please try again.</p>
         <button onClick={load} className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-xs font-semibold">
           <RefreshCw className="w-4 h-4" />
@@ -180,17 +295,15 @@ export default function VolunteerAdmin() {
     <div className="space-y-8">
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h2 className="text-lg font-bold font-serif text-stone-900">Volunteers</h2>
+          <button type="button" onClick={onBack} className="inline-flex items-center gap-1 text-xs font-semibold text-stone-500 hover:text-senoia-red">
+          <ArrowLeft className="w-4 h-4" /> All volunteer sign-ups
+          </button>
+          <h2 className="text-lg font-bold font-serif text-stone-900">{eventTitle}</h2>
           <p className="text-xs text-stone-500">
             Public page: <code>/volunteer/{eventSlug}</code> &middot; {active.length} signed up
           </p>
         </div>
         <div className="flex items-center gap-2">
-          {options.length > 1 && (
-            <select value={eventSlug} onChange={(e) => setEventSlug(e.target.value)} className={`${inputClass} w-auto`}>
-              {options.map((o) => <option key={o.slug} value={o.slug}>{o.title}</option>)}
-            </select>
-          )}
           <button
             onClick={onExport}
             disabled={active.length === 0}
