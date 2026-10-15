@@ -217,6 +217,19 @@ export const trickOrTreating = {
     closure: { fill: '#c81e1e', label: 'Road closed' },
     parking: { fill: '#5a4466', label: 'Parking' },
   },
+  // Drawn as black bats rather than dots. Fixed spots from the organisers, so
+  // they live here instead of in Firestore (a new pin kind would need a rules
+  // change and a hand deploy). Corners are the OSM street crossings; the two
+  // stretches use the middle of that stretch of street. [lat, lng].
+  trickOrTreatZones: {
+    label: 'Trick or Treat Zone',
+    spots: [
+      { name: 'Morgan St at Lower Creek Trail', at: [33.298421, -84.556453] },
+      { name: 'Pylant St at Seavy St', at: [33.301342, -84.556339] },
+      { name: 'Pylant St between Couch St and Johnson St', at: [33.303987, -84.556103] },
+      { name: 'Baggarly Way north of Johnson St', at: [33.303241, -84.554607] },
+    ],
+  },
   // Shaded areas drawn under the pins, and listed in the legend. OSM has no
   // boundary for Willow Dell, so this outline is Willow Dell Drive (the loop
   // and its entrance from Pylant St), Senoya Ct and Sherrels Ford from OSM,

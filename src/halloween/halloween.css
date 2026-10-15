@@ -562,6 +562,19 @@
   border: 2px solid var(--hallo-black);
 }
 
+/* The bat drawn at legend size; its viewBox is cropped to the wings. */
+.hallo .hallo-map-bat {
+  width: 1.9rem;
+  height: 0.8rem;
+  flex-shrink: 0;
+}
+
+/* Leaflet's default divIcon class adds a white box; this replaces it. */
+.hallo .hallo-bat-marker {
+  background: none;
+  border: 0;
+}
+
 .hallo .hallo-map-swatch {
   width: 1.1rem;
   height: 0.9rem;

@@ -1,7 +1,7 @@
 import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { trickOrTreating } from '../data/halloweenDetails';
 import { getMapPoints } from '../../services/halloweenService';
-import { WavyFrame, Icon, JackOLantern } from './Art';
+import { WavyFrame, Icon, JackOLantern, Bat, BAT_VIEWBOX } from './Art';
 
 // Leaflet plus react-leaflet is a heavy dependency for a page whose first
 // screen is type. Split it out so it loads when this section is reached rather
@@ -42,6 +42,7 @@ export default function TrickOrTreating() {
   }, []);
 
   const placed = points.filter((p) => typeof p.lat === 'number' && typeof p.lng === 'number');
+  const zones = trickOrTreating.trickOrTreatZones;
 
   return (
     <section id="trick-or-treating">
@@ -72,6 +73,12 @@ export default function TrickOrTreating() {
                 {label}
               </li>
             ))}
+            <li>
+              <svg viewBox={BAT_VIEWBOX} className="hallo-map-bat" aria-hidden="true" focusable="false">
+                <Bat />
+              </svg>
+              {trickOrTreating.trickOrTreatZones.label}
+            </li>
             {trickOrTreating.mapAreas.map((area) => (
               <li key={area.id}>
                 <span
@@ -101,8 +108,16 @@ export default function TrickOrTreating() {
           {/* The map is not reachable by keyboard in any useful way, so the same
               stops are listed underneath it. Only placed pins: one without
               coordinates is not on the map, so it does not belong here either. */}
-          {placed.length > 0 && (
+          {(placed.length > 0 || zones.spots.length > 0) && (
             <ul className="hallo-point-list" aria-label="Every stop on the map">
+              {zones.spots.map((spot) => (
+                <li key={spot.name}>
+                  <svg viewBox={BAT_VIEWBOX} className="hallo-map-bat" aria-hidden="true" focusable="false">
+                    <Bat />
+                  </svg>
+                  <span>{spot.name} &mdash; {zones.label}</span>
+                </li>
+              ))}
               {placed.map((p) => {
                 const kind = trickOrTreating.mapKinds[p.kind] ?? trickOrTreating.mapKinds.residential;
                 return (
