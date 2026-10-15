@@ -159,6 +159,11 @@ export const toddlerTrickOrTreat = {
   ],
   // The slide sets the route on its own line, as a subtitle.
   where: 'Main Street & Barnes Street',
+  // Shown under the date pill: the heading in the route's style, then body copy.
+  firstStop: {
+    heading: 'First stop: The Peculiar Blooms',
+    body: 'Join us for Toddler Trick-or-Treating. Start at our local kid’s boutique… the first 100 visitors receive a complimentary Trick-or-Treat tote! (located inside The Veranda)',
+  },
   // "Caycies" is left exactly as written; it may be the business's own styling
   // rather than a missing apostrophe.
   participatingBusinesses: [
@@ -179,8 +184,8 @@ export const toddlerTrickOrTreat = {
     'State Farm: Chase Mewbourn',
     'Edward Jones: Jennifer Camp',
   ],
-  // CONFIRM: the slide reads "recieve" — corrected to "receive" here.
-  perk: 'First 100 visitors to The Peculiar Blooms (inside The Veranda) receive a free Trick-or-Treat tote!',
+  // Closes the run of names; kept out of the array because it is not a business.
+  moreBusinesses: 'and more!',
 };
 
 /**

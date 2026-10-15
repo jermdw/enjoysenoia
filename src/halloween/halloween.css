@@ -909,18 +909,6 @@
   content: '\00a0-';
 }
 
-.hallo .hallo-perk {
-  margin: 2rem auto 0;
-  max-width: 36rem;
-  font-family: var(--hallo-font-sub);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: clamp(1.05rem, 2.6vw, 1.35rem);
-  line-height: 1.5;
-  color: var(--hallo-orange-deep);
-}
-
 .hallo .hallo-closures {
   display: grid;
   gap: 0.25rem 1.5rem;
