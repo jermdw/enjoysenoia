@@ -74,8 +74,10 @@ rebuilds so the generated sitemap picks up staff edits.
 `/volunteer/:eventSlug` (ported from the senoia-car-show repo). Shifts and the
 `signupOpen` switch live in Firestore `volunteer_events`; sign-ups are written only
 by the `submitVolunteerSignup` / `cancelVolunteerSignup` functions, never the
-browser. An event opts in with `volunteer_url` in `data/event_overrides.json`;
-staff run it from the admin **Volunteers** tab. Rules and functions are deployed
+browser. Staff link an event from its listing (Events tab, "Link volunteer sign-up" =
+`volunteer_enabled` on its Firestore patch; `volunteer_url` in
+`data/event_overrides.json` is the built-in default) and run it from the
+**Volunteers** tab. Rules and functions are deployed
 by hand (see `functions/README.md`).
 
 ## Admin access (three places, keep in step)

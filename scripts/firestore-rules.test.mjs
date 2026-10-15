@@ -229,6 +229,20 @@ for (const [col, make, titleKey] of [['events', eventDoc, 'title'], ['businesses
     () => assertFails(setDoc(doc(admin, `${col}/odd-item`), make('odd-item', { image: 5 }))));
 }
 
+console.log('\nevents (volunteer link)');
+await check('admin MAY link volunteer sign-up on an event',
+  () => assertSucceeds(setDoc(doc(admin, 'events/vol-item'), eventDoc('vol-item', { volunteer_enabled: true, volunteer_label: 'Help set up' }))));
+await check('admin MAY unlink it (explicit false)',
+  () => assertSucceeds(setDoc(doc(admin, 'events/vol-item'), eventDoc('vol-item', { volunteer_enabled: false }))));
+await check('admin may NOT store volunteer_enabled as a string',
+  () => assertFails(setDoc(doc(admin, 'events/vol-item'), eventDoc('vol-item', { volunteer_enabled: 'true' }))));
+await check('admin may NOT store an oversized volunteer_label',
+  () => assertFails(setDoc(doc(admin, 'events/vol-item'), eventDoc('vol-item', { volunteer_label: 'x'.repeat(61) }))));
+await check('public may NOT link volunteer sign-up',
+  () => assertFails(setDoc(doc(pub, 'events/vol-item2'), eventDoc('vol-item2', { volunteer_enabled: true }))));
+await check('businesses do not accept volunteer fields',
+  () => assertFails(setDoc(doc(admin, 'businesses/vol-biz'), businessDoc('vol-biz', { volunteer_enabled: true }))));
+
 
 // Volunteer sign-ups. Shifts and events are public counts; signups hold PII and
 // are only ever created by the Cloud Functions (Admin SDK), never a client.

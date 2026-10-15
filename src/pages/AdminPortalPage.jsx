@@ -179,7 +179,7 @@ export default function AdminPortalPage() {
         {/* Content Panels */}
         <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-xs border border-stone-200">
           {/* EVENTS TAB */}
-          {activeTab === 'events' && <ContentAdmin kind="event" />}
+          {activeTab === 'events' && <ContentAdmin kind="event" onOpenVolunteers={() => setActiveTab('volunteers')} />}
 
           {/* BUSINESSES TAB */}
           {activeTab === 'businesses' && <ContentAdmin kind="business" />}

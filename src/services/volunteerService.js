@@ -113,6 +113,16 @@ export async function getVolunteerEvent(eventSlug) {
   return snap.exists() ? snap.data() : null;
 }
 
+/**
+ * Makes sure the event has a (closed) board document, so linking an event to
+ * volunteer sign-up from its listing leaves it ready for shifts. Never reopens
+ * or renames one that exists.
+ */
+export async function ensureVolunteerBoard(eventSlug, name) {
+  if (await getVolunteerEvent(eventSlug)) return;
+  await saveVolunteerEvent(eventSlug, { name: name || eventSlug, intro: '', signupOpen: false });
+}
+
 /** Event-level fields: name, intro and the open/close switch. */
 export async function saveVolunteerEvent(eventSlug, { name, intro, signupOpen }) {
   const data = { name: name.trim(), signupOpen: Boolean(signupOpen), updatedAt: serverTimestamp() };
