@@ -562,21 +562,32 @@
   border: 2px solid var(--hallo-black);
 }
 
+.hallo .hallo-map-swatch {
+  width: 1.1rem;
+  height: 0.9rem;
+  border-radius: 0.2rem;
+  border: 2px dashed;
+}
+
+/* A plain list under the map: one line per stop, two columns when there is room. */
 .hallo .hallo-point-list {
   list-style: none;
   padding: 0;
-  margin-top: 1rem;
-  display: grid;
-  gap: 0.6rem;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  margin: 1.25rem 0 0;
+  columns: 2 16rem;
+  column-gap: 2rem;
 }
 
-.hallo .hallo-point-list strong {
-  display: block;
-  font-family: var(--hallo-font-sub);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
+.hallo .hallo-point-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0;
+  break-inside: avoid;
+}
+
+.hallo .hallo-point-list .hallo-map-dot {
+  flex-shrink: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {

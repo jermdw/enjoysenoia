@@ -41,6 +41,8 @@ export default function TrickOrTreating() {
     };
   }, []);
 
+  const placed = points.filter((p) => typeof p.lat === 'number' && typeof p.lng === 'number');
+
   return (
     <section id="trick-or-treating">
       <div className="hallo-wrap">
@@ -70,6 +72,16 @@ export default function TrickOrTreating() {
                 {label}
               </li>
             ))}
+            {trickOrTreating.mapAreas.map((area) => (
+              <li key={area.id}>
+                <span
+                  className="hallo-map-swatch"
+                  style={{ backgroundColor: `${area.fill}4d`, borderColor: area.stroke }}
+                  aria-hidden="true"
+                />
+                {area.label}
+              </li>
+            ))}
           </ul>
 
           {state === 'error' ? (
@@ -87,15 +99,22 @@ export default function TrickOrTreating() {
           )}
 
           {/* The map is not reachable by keyboard in any useful way, so the same
-              information is listed underneath it. */}
-          {points.length > 0 && (
+              stops are listed underneath it. Only placed pins: one without
+              coordinates is not on the map, so it does not belong here either. */}
+          {placed.length > 0 && (
             <ul className="hallo-point-list" aria-label="Every stop on the map">
-              {points.map((p) => (
-                <li key={p.id} className="hallo-card">
-                  <strong>{p.label || p.kind}</strong>
-                  <span>{p.address}</span>
-                </li>
-              ))}
+              {placed.map((p) => {
+                const kind = trickOrTreating.mapKinds[p.kind] ?? trickOrTreating.mapKinds.residential;
+                return (
+                  <li key={p.id}>
+                    <span className="hallo-map-dot" style={{ backgroundColor: kind.fill }} aria-hidden="true" />
+                    <span>
+                      {p.address}
+                      {p.kind !== 'residential' && <> &mdash; {p.label || kind.label}</>}
+                    </span>
+                  </li>
+                );
+              })}
             </ul>
           )}
 
