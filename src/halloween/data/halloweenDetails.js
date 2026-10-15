@@ -162,13 +162,22 @@ export const toddlerTrickOrTreat = {
   // "Caycies" is left exactly as written; it may be the business's own styling
   // rather than a missing apostrophe.
   participatingBusinesses: [
-    'Classic Market',
+    'Senoia Welcome Center',
+    'The Classic Market',
     'Caycies Boutique',
     'Zackie Hart',
     'Borgo Italia',
     'The Parlor Salon',
+    'The Glass House Society',
     'Greenhouse Mercantile',
     'Senoia Bicycle',
+    'Book Love',
+    'Madeley Salon',
+    'Mess Hall on Main',
+    'Lisa’s Creperie',
+    'Olivia James Boutique',
+    'State Farm: Chase Mewbourn',
+    'Edward Jones: Jennifer Camp',
   ],
   // CONFIRM: the slide reads "recieve" — corrected to "receive" here.
   perk: 'First 100 visitors to The Peculiar Blooms (inside The Veranda) receive a free Trick-or-Treat tote!',
