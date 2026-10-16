@@ -15,6 +15,11 @@
  * object HalloweenSEO.jsx / MasqueradeSEO.jsx / ChristmasSEO.jsx apply at
  * runtime, so the two cannot drift.
  *
+ * Each copy also gets its own sitemap.xml and robots.txt. dist/ carries the
+ * main site's (every URL on www.enjoysenoia.com), which Search Console rejects
+ * for another host's property. A micro-site is a single page (every other path
+ * redirects to `/`), so its sitemap is just `seo.url`.
+ *
  * Run after `vite build` (the `build` npm script does).
  */
 import { cpSync, existsSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
@@ -89,5 +94,18 @@ for (const site of sites) {
   html = html.replace(/(<meta\s+name="description"[^>]*>)/, (m) => `${m}\n    ${tags.join('\n    ')}`);
 
   writeFileSync(file, html);
+
+  const origin = new URL(seo.url).origin;
+  writeFileSync(
+    path.join(out, 'sitemap.xml'),
+    '<?xml version="1.0" encoding="UTF-8"?>\n' +
+      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+      `  <url><loc>${esc(seo.url)}</loc></url>\n` +
+      '</urlset>\n',
+  );
+  writeFileSync(
+    path.join(out, 'robots.txt'),
+    `User-agent: *\nAllow: /\n\nSitemap: ${origin}/sitemap.xml\n`,
+  );
   console.log(`${site.out}/index.html: title "${seo.title}", canonical ${seo.url}`);
 }
