@@ -4,10 +4,12 @@ import {
   getSignups,
   getMapPoints,
   publishMapPoint,
+  updateMapPoint,
   deleteMapPoint,
   signupsToCsv,
   POINT_KINDS,
 } from '../../services/halloweenService';
+import PinPlacerModal from './PinPlacerModal';
 
 /**
  * Halloween decorating contest — review sign-ups and manage the public map.
@@ -19,6 +21,9 @@ import {
  * THE PUBLISH STEP IS THE PRIVACY BOUNDARY. Sign-ups hold a name, an address
  * and an email. Publishing copies the address alone into `halloween_map_points`
  * — the only one of the two collections the public can read.
+ *
+ * Coordinates come from PinPlacerModal: it looks the address up and the admin
+ * confirms or moves the pin before anything is written.
  */
 
 /** Sheets and Excel both need a real file; a data: URI mangles quoted commas. */
@@ -39,8 +44,10 @@ export default function HalloweenAdmin() {
   const [signups, setSignups] = useState([]);
   const [points, setPoints] = useState([]);
   const [state, setState] = useState('loading'); // loading | ready | error
-  const [busyId, setBusyId] = useState(null);
-  const [newPoint, setNewPoint] = useState({ address: '', lat: '', lng: '', kind: 'closure', label: '' });
+  // What the pin dialog is placing: a sign-up being published, a new
+  // closure/parking pin from the form, or an existing pin that is not placed.
+  const [placing, setPlacing] = useState(null); // null | { mode: 'signup' | 'new' | 'existing', ... }
+  const [newPoint, setNewPoint] = useState({ address: '', kind: 'closure', label: '' });
 
   const load = useCallback(async () => {
     setState('loading');
@@ -62,61 +69,26 @@ export default function HalloweenAdmin() {
     downloadCsv(`senoia_halloween_signups_${new Date().toISOString().slice(0, 10)}.csv`, signupsToCsv(signups));
   };
 
-  const onPublish = async (signup) => {
-    // Coordinates are optional: an unplaced pin is stored and skipped by the
-    // map until someone adds them, so nothing blocks on geocoding.
-    const raw = window.prompt(
-      `Coordinates for ${signup.address}\n\nPaste "lat, lng" (right-click the spot in Google Maps to copy), or leave blank to publish it unplaced.`,
-      ''
-    );
-    if (raw === null) return;
-
-    let lat = null;
-    let lng = null;
-    if (raw.trim()) {
-      const [a, b] = raw.split(',').map((v) => Number(v.trim()));
-      if (!Number.isFinite(a) || !Number.isFinite(b)) {
-        window.alert('Could not read those coordinates. Expected something like: 33.302, -84.554');
-        return;
-      }
-      lat = a;
-      lng = b;
-    }
-
-    setBusyId(signup.id);
-    try {
+  // Coordinates stay optional: an unplaced pin is stored and skipped by the
+  // map until someone places it, so a failed lookup never blocks publishing.
+  const onConfirmPlacement = async ({ lat, lng }) => {
+    if (placing.mode === 'signup') {
+      const { signup } = placing;
       await publishMapPoint({ signupId: signup.id, address: signup.address, lat, lng, kind: 'residential' });
-      await load();
-    } catch (err) {
-      console.warn('Could not publish map point:', err);
-      window.alert('Could not publish that address. Please try again.');
-    } finally {
-      setBusyId(null);
+    } else if (placing.mode === 'new') {
+      const { address, kind, label } = placing.point;
+      await publishMapPoint({ address, lat, lng, kind, label: label.trim() || null });
+      setNewPoint({ address: '', kind: 'closure', label: '' });
+    } else {
+      await updateMapPoint(placing.point.id, { lat, lng });
     }
+    setPlacing(null);
+    await load();
   };
 
-  const onAddPoint = async (e) => {
+  const onAddPoint = (e) => {
     e.preventDefault();
-    const lat = newPoint.lat.trim() ? Number(newPoint.lat) : null;
-    const lng = newPoint.lng.trim() ? Number(newPoint.lng) : null;
-    if ((lat !== null && !Number.isFinite(lat)) || (lng !== null && !Number.isFinite(lng))) {
-      window.alert('Latitude and longitude must be numbers.');
-      return;
-    }
-    try {
-      await publishMapPoint({
-        address: newPoint.address,
-        lat,
-        lng,
-        kind: newPoint.kind,
-        label: newPoint.label.trim() || null,
-      });
-      setNewPoint({ address: '', lat: '', lng: '', kind: 'closure', label: '' });
-      await load();
-    } catch (err) {
-      console.warn('Could not add map point:', err);
-      window.alert('Could not add that point.');
-    }
+    setPlacing({ mode: 'new', point: { ...newPoint } });
   };
 
   const onDeletePoint = async (id) => {
@@ -202,12 +174,11 @@ export default function HalloweenAdmin() {
                         <span className="text-xs text-emerald-700 font-semibold">Published</span>
                       ) : (
                         <button
-                          onClick={() => onPublish(s)}
-                          disabled={busyId === s.id}
-                          className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-stone-900 hover:bg-stone-700 disabled:opacity-50 text-white text-xs font-semibold"
+                          onClick={() => setPlacing({ mode: 'signup', signup: s })}
+                          className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-stone-900 hover:bg-stone-700 text-white text-xs font-semibold"
                         >
                           <MapPin className="w-3.5 h-3.5" />
-                          <span>{busyId === s.id ? 'Publishing…' : 'Publish to map'}</span>
+                          <span>Publish to map</span>
                         </button>
                       )}
                     </td>
@@ -226,12 +197,13 @@ export default function HalloweenAdmin() {
             <div>
               <h2 className="text-lg font-bold font-serif text-stone-900">Map Pins</h2>
               <p className="text-xs text-stone-500">
-                Road closures and parking are added here directly. Leave latitude and longitude
-                blank to store a pin without placing it yet.
+                Road closures and parking are added here directly. The address is looked up
+                and you confirm the pin on a map; for a description like an intersection,
+                click the spot instead.
               </p>
             </div>
 
-            <form onSubmit={onAddPoint} className="grid gap-3 sm:grid-cols-5 items-end">
+            <form onSubmit={onAddPoint} className="grid gap-3 sm:grid-cols-4 items-end">
               <div className="sm:col-span-2">
                 <label className="block text-xs font-semibold text-stone-700 mb-1" htmlFor="hallo-pt-address">Address or description</label>
                 <input
@@ -255,16 +227,12 @@ export default function HalloweenAdmin() {
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-semibold text-stone-700 mb-1" htmlFor="hallo-pt-lat">Lat</label>
-                <input id="hallo-pt-lat" value={newPoint.lat} onChange={(e) => setNewPoint({ ...newPoint, lat: e.target.value })} className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm" placeholder="33.302" />
+                <label className="block text-xs font-semibold text-stone-700 mb-1" htmlFor="hallo-pt-label">Label (optional)</label>
+                <input id="hallo-pt-label" value={newPoint.label} onChange={(e) => setNewPoint({ ...newPoint, label: e.target.value })} className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm" placeholder="Road closed" />
               </div>
-              <div>
-                <label className="block text-xs font-semibold text-stone-700 mb-1" htmlFor="hallo-pt-lng">Lng</label>
-                <input id="hallo-pt-lng" value={newPoint.lng} onChange={(e) => setNewPoint({ ...newPoint, lng: e.target.value })} className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm" placeholder="-84.554" />
-              </div>
-              <div className="sm:col-span-5">
+              <div className="sm:col-span-4">
                 <button type="submit" className="px-5 py-2.5 rounded-xl bg-senoia-red hover:bg-senoia-darkred text-white text-xs font-semibold shadow-xs">
-                  Add pin
+                  Add pin…
                 </button>
               </div>
             </form>
@@ -280,14 +248,38 @@ export default function HalloweenAdmin() {
                       <span className="ml-2 text-xs text-amber-700">not placed</span>
                     )}
                   </span>
-                  <button onClick={() => onDeletePoint(p.id)} aria-label={`Remove ${p.address}`} className="p-2 rounded-lg text-stone-400 hover:text-red-600 hover:bg-red-50">
-                    <Trash2 className="w-4 h-4" />
-                  </button>
+                  <span className="flex items-center gap-1 shrink-0">
+                    {(p.lat == null || p.lng == null) && (
+                      <button
+                        onClick={() => setPlacing({ mode: 'existing', point: p })}
+                        className="inline-flex items-center space-x-1 px-2.5 py-1.5 rounded-lg bg-stone-100 hover:bg-stone-200 text-xs font-semibold"
+                      >
+                        <MapPin className="w-3.5 h-3.5" />
+                        <span>Place</span>
+                      </button>
+                    )}
+                    <button onClick={() => onDeletePoint(p.id)} aria-label={`Remove ${p.address}`} className="p-2 rounded-lg text-stone-400 hover:text-red-600 hover:bg-red-50">
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </span>
                 </li>
               ))}
             </ul>
           </div>
         </>
+      )}
+
+      {placing && (
+        <PinPlacerModal
+          key={placing.mode === 'signup' ? placing.signup.id : placing.point.id ?? 'new'}
+          title={placing.mode === 'signup' ? 'Publish to the trick-or-treat map' : placing.mode === 'new' ? 'Add a map pin' : 'Place this pin'}
+          address={placing.mode === 'signup' ? placing.signup.address : placing.point.address}
+          kind={placing.mode === 'signup' ? 'residential' : placing.point.kind}
+          confirmLabel={placing.mode === 'existing' ? 'Save pin here' : placing.mode === 'signup' ? 'Publish here' : 'Add pin here'}
+          unplacedLabel={placing.mode === 'existing' ? null : placing.mode === 'signup' ? 'Publish without a pin' : 'Add without placing'}
+          onConfirm={onConfirmPlacement}
+          onClose={() => setPlacing(null)}
+        />
       )}
     </div>
   );

@@ -159,19 +159,33 @@ export const toddlerTrickOrTreat = {
   ],
   // The slide sets the route on its own line, as a subtitle.
   where: 'Main Street & Barnes Street',
+  // Shown under the date pill: the heading in the route's style, then body copy.
+  firstStop: {
+    heading: 'First stop: The Peculiar Blooms',
+    body: 'Start at our local kid’s boutique… the first 100 visitors receive a complimentary Trick-or-Treat tote! (located inside The Veranda)',
+  },
   // "Caycies" is left exactly as written; it may be the business's own styling
   // rather than a missing apostrophe.
   participatingBusinesses: [
-    'Classic Market',
+    'Senoia Welcome Center',
+    'The Classic Market',
     'Caycies Boutique',
     'Zackie Hart',
     'Borgo Italia',
     'The Parlor Salon',
+    'The Glass House Society',
     'Greenhouse Mercantile',
     'Senoia Bicycle',
+    'Book Love',
+    'Madeley Salon',
+    'Mess Hall on Main',
+    'Lisa’s Creperie',
+    'Olivia James Boutique',
+    'State Farm: Chase Mewbourn',
+    'Edward Jones: Jennifer Camp',
   ],
-  // CONFIRM: the slide reads "recieve" — corrected to "receive" here.
-  perk: 'First 100 visitors to The Peculiar Blooms (inside The Veranda) receive a free Trick-or-Treat tote!',
+  // Closes the run of names; kept out of the array because it is not a business.
+  moreBusinesses: 'and more!',
 };
 
 /**
@@ -186,8 +200,10 @@ export const trickOrTreating = {
   dateLabel: 'October 31st',
   // Per the 9/22 edits. The slide prints the same hours under "Road Closures".
   whenLabel: '5:30pm - 8:30pm',
-  blurb: 'Senoia kids & families can collect candy from private homeowners in the historic district and Willow Dell neighborhoods!',
-  mapNote: 'For updates and detailed map',
+  blurb: [
+    'Zones in the historic district will have multiple homes in the area welcoming trick-or-treaters. Per Halloween tradition: lights on and decorations usually means candy!',
+    'Have fun, be safe and respectful, and thank you to our DDA volunteers and neighbors that help make downtown great!',
+  ],
   roadClosures: [
     'Please note: for safety, Willow Dell neighborhood will have traffic mitigation efforts and “No Parking” areas',
   ],
@@ -199,10 +215,62 @@ export const trickOrTreating = {
   // Pin colours, shared by the map and its legend. `fill` must read against both
   // the OpenStreetMap tiles and the cream page.
   mapKinds: {
-    residential: { fill: '#e27925', label: 'Handing out candy' },
+    residential: { fill: '#e27925', label: 'Decorating Contest Entrant' },
     closure: { fill: '#c81e1e', label: 'Road closed' },
     parking: { fill: '#5a4466', label: 'Parking' },
   },
+  // Drawn as black bats rather than dots. Fixed spots from the organisers, so
+  // they live here instead of in Firestore (a new pin kind would need a rules
+  // change and a hand deploy). Corners are the OSM street crossings; the two
+  // stretches use the middle of that stretch of street. [lat, lng].
+  trickOrTreatZones: {
+    label: 'Trick or Treat Zone',
+    spots: [
+      { name: 'Morgan St at Lower Creek Trail', at: [33.298421, -84.556453] },
+      { name: 'Pylant St at Seavy St', at: [33.301342, -84.556339] },
+      { name: 'Pylant St between Couch St and Johnson St', at: [33.303987, -84.556103] },
+      { name: 'Baggarly Way north of Johnson St', at: [33.303241, -84.554607] },
+      // The centre of the Willow Dell outline below (its area centroid).
+      { name: 'Willow Dell neighborhood', at: [33.305328, -84.561534] },
+    ],
+  },
+  // Shaded areas drawn under the pins, and listed in the legend. OSM has no
+  // boundary for Willow Dell, so this outline is Willow Dell Drive (the loop
+  // and its entrance from Pylant St), Senoya Ct and Sherrels Ford from OSM,
+  // widened about 55 m to take in the lots. Wihuri Pkwy is left out: it runs
+  // past the large non-residential buildings south of the loop. Points are
+  // [lat, lng].
+  mapAreas: [
+    {
+      id: 'willow-dell',
+      label: 'Willow Dell neighborhood',
+      fill: '#f6b93b',
+      stroke: '#a14d0c',
+      polygon: [
+        [33.30514, -84.56474],
+        [33.30559, -84.56538],
+        [33.30607, -84.56560],
+        [33.30689, -84.56555],
+        [33.30754, -84.56498],
+        [33.30773, -84.56423],
+        [33.30774, -84.56159],
+        [33.30753, -84.56064],
+        [33.30700, -84.56002],
+        [33.30509, -84.55860],
+        [33.30467, -84.55848],
+        [33.30412, -84.55857],
+        [33.30366, -84.55816],
+        [33.30282, -84.55790],
+        [33.30173, -84.55772],
+        [33.30125, -84.55783],
+        [33.30103, -84.55832],
+        [33.30125, -84.55881],
+        [33.30314, -84.55918],
+        [33.30347, -84.55948],
+        [33.30376, -84.56191],
+      ],
+    },
+  ],
   emptyState: 'The map fills in as entries come in. Check back closer to Halloween.',
 };
 

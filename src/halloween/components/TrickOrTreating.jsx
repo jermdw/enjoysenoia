@@ -1,7 +1,7 @@
 import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { trickOrTreating } from '../data/halloweenDetails';
 import { getMapPoints } from '../../services/halloweenService';
-import { WavyFrame, Icon, JackOLantern } from './Art';
+import { WavyFrame, Icon, JackOLantern, Bat, BAT_VIEWBOX } from './Art';
 
 // Leaflet plus react-leaflet is a heavy dependency for a page whose first
 // screen is type. Split it out so it loads when this section is reached rather
@@ -41,6 +41,12 @@ export default function TrickOrTreating() {
     };
   }, []);
 
+  // Placed decorating-contest entrants. A pin without coordinates is not on
+  // the map, so it is not listed either.
+  const entrants = points.filter(
+    (p) => p.kind === 'residential' && typeof p.lat === 'number' && typeof p.lng === 'number'
+  );
+
   return (
     <section id="trick-or-treating">
       <div className="hallo-wrap">
@@ -49,25 +55,40 @@ export default function TrickOrTreating() {
             <h2>{trickOrTreating.heading}</h2>
             <p className="hallo-pill hallo-pill-orange">{trickOrTreating.dateLabel}</p>
             <p className="hallo-when">{trickOrTreating.whenLabel}</p>
-            <p className="hallo-lede hallo-strong">{trickOrTreating.blurb}</p>
+            <div className="hallo-blurb">
+              {trickOrTreating.blurb.map((line, i) => (
+                <p key={i} className="hallo-lede hallo-strong">{line}</p>
+              ))}
+            </div>
           </div>
 
           {trickOrTreating.roadClosures.length > 0 && (
-            <div className="hallo-closures">
-              <h3>Road Closures</h3>
-              <ul>
-                {trickOrTreating.roadClosures.map((line, i) => <li key={i}>{line}</li>)}
-              </ul>
+            <div className="hallo-center hallo-closures">
+              {trickOrTreating.roadClosures.map((line, i) => <p key={i}>{line}</p>)}
             </div>
           )}
-
-          <p className="hallo-center hallo-map-note">{trickOrTreating.mapNote}</p>
 
           <ul className="hallo-legend">
             {Object.entries(trickOrTreating.mapKinds).map(([kind, { fill, label }]) => (
               <li key={kind}>
                 <span className="hallo-map-dot" style={{ backgroundColor: fill }} aria-hidden="true" />
                 {label}
+              </li>
+            ))}
+            <li>
+              <svg viewBox={BAT_VIEWBOX} className="hallo-map-bat" aria-hidden="true" focusable="false">
+                <Bat />
+              </svg>
+              {trickOrTreating.trickOrTreatZones.label}
+            </li>
+            {trickOrTreating.mapAreas.map((area) => (
+              <li key={area.id}>
+                <span
+                  className="hallo-map-swatch"
+                  style={{ backgroundColor: `${area.fill}4d`, borderColor: area.stroke }}
+                  aria-hidden="true"
+                />
+                {area.label}
               </li>
             ))}
           </ul>
@@ -86,13 +107,17 @@ export default function TrickOrTreating() {
             <p className="hallo-field-note">{trickOrTreating.emptyState}</p>
           )}
 
-          {/* The map is not reachable by keyboard in any useful way, so the same
-              information is listed underneath it. */}
-          {points.length > 0 && (
-            <ul className="hallo-point-list" aria-label="Every stop on the map">
-              {points.map((p) => (
-                <li key={p.id} className="hallo-card">
-                  <strong>{p.label || p.kind}</strong>
+          {/* The contest entrants on the map, listed in text. Zones, closures and
+              parking are shown on the map and in its legend only. */}
+          {entrants.length > 0 && (
+            <ul className="hallo-point-list" aria-label="Decorating contest entrants">
+              {entrants.map((p) => (
+                <li key={p.id}>
+                  <span
+                    className="hallo-map-dot"
+                    style={{ backgroundColor: trickOrTreating.mapKinds.residential.fill }}
+                    aria-hidden="true"
+                  />
                   <span>{p.address}</span>
                 </li>
               ))}

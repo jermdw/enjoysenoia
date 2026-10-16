@@ -68,11 +68,18 @@ export function BlackCat(props) {
   );
 }
 
+/** The bat's outline, shared with the map marker (which is an HTML string, not React). */
+export const BAT_PATH =
+  'M50 38 L46 30 L44 40 C34 30 18 30 6 38 C14 42 16 50 14 58 C20 53 27 53 31 59 C35 52 43 52 46 60 L50 56 L54 60 C57 52 65 52 69 59 C73 53 80 53 86 58 C84 50 86 42 94 38 C82 30 66 30 56 40 L54 30 Z';
+
+/** The part of the 100×100 grid the bat actually fills, for drawing it on its own. */
+export const BAT_VIEWBOX = '2 24 96 40';
+
 export function Bat(props) {
   return (
     <g {...props}>
       <path
-        d="M50 38 L46 30 L44 40 C34 30 18 30 6 38 C14 42 16 50 14 58 C20 53 27 53 31 59 C35 52 43 52 46 60 L50 56 L54 60 C57 52 65 52 69 59 C73 53 80 53 86 58 C84 50 86 42 94 38 C82 30 66 30 56 40 L54 30 Z"
+        d={BAT_PATH}
         fill="var(--hallo-black)"
         strokeLinejoin="round"
       />
