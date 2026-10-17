@@ -323,6 +323,15 @@
   margin-top: 0.35rem;
 }
 
+/* Stands in for the form once entries close. */
+.hallo .hallo-contest-closed > * {
+  margin: 0;
+}
+
+.hallo .hallo-contest-closed > * + * {
+  margin-top: 0.85rem;
+}
+
 .hallo .hallo-form {
   display: grid;
   gap: 1.1rem;

@@ -4,7 +4,10 @@ import SignupForm from './SignupForm';
 import { WavyFrame } from './Art';
 import peacockLogo from '../assets/kimberly-peacock-realtor.png';
 
-/** Section 2 — the decorating contest and its sign-up form. */
+/**
+ * Section 2 — the decorating contest and its sign-up form. Once
+ * `entriesOpen` is false the form is replaced by a closed notice.
+ */
 export default function DecoratingContest() {
   return (
     <section id="contest">
@@ -16,7 +19,9 @@ export default function DecoratingContest() {
 
             <p className="hallo-keydates">
               <strong>{decoratingContest.judgedLabel}</strong>
-              <span>{decoratingContest.deadlineLabel}</span>
+              <span>
+                {decoratingContest.entriesOpen ? decoratingContest.deadlineLabel : decoratingContest.closedDeadlineLabel}
+              </span>
             </p>
 
             <h3>Who can participate?</h3>
@@ -45,7 +50,15 @@ export default function DecoratingContest() {
             />
           </div>
 
-          <SignupForm />
+          {decoratingContest.entriesOpen ? (
+            <SignupForm />
+          ) : (
+            <div className="hallo-card hallo-contest-closed" role="status">
+              <h3>{decoratingContest.closed.heading}</h3>
+              <p>{decoratingContest.closed.body}</p>
+              <a href="#trick-or-treating" className="hallo-btn hallo-btn-ghost">See the trick-or-treat map</a>
+            </div>
+          )}
         </WavyFrame>
       </div>
     </section>

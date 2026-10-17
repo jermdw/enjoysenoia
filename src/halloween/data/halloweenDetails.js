@@ -103,6 +103,15 @@ export const decoratingContest = {
   blurb: 'Celebrate the spooky season by decorating your home or business!',
   judgedLabel: 'Judged Saturday October 17th',
   deadlineLabel: 'Submit your address by Friday October 16th',
+  // The sign-up switch. false swaps the form for `closed` and the hero's
+  // "Enter" button for `closedCta`; set it back to true to reopen entries.
+  entriesOpen: false,
+  closedDeadlineLabel: 'Entries closed Friday October 16th',
+  closedCta: 'Contest winners coming soon',
+  closed: {
+    heading: 'Entries are closed',
+    body: 'Thank you to everyone who entered! Judging is underway, and winners will be announced soon.',
+  },
   eligibility: [
     'Any home or brick & mortar business within a 2 mile radius of historic Senoia',
     'In other words - anyone within legal golf carting distance from Main Street',
