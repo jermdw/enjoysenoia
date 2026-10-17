@@ -1,0 +1,117 @@
+# Deploys Firestore/Storage rules, Firestore indexes and Cloud Functions, which
+# deploy.yml (Hosting only) leaves out. Started by hand, from main only, so
+# what ships is what was reviewed and merged:
+#   Actions > Deploy backend > Run workflow, or
+#   gh workflow run deploy-backend.yml --ref main -f only=rules
+#
+# This is how a Claude Code cloud session deploys the backend without holding
+# a Google credential itself.
+#
+# Needs, in Settings > Environments > backend:
+#   secret    FIREBASE_BACKEND_SERVICE_ACCOUNT  JSON key of a deploy-only
+#             service account (roles listed in functions/README.md). Kept apart
+#             from FIREBASE_SERVICE_ACCOUNT, which can only deploy Hosting.
+#   variable  SPONSOR_LOGO_FOLDER_ID  the functions' one defineString param; a
+#             non-interactive deploy can't prompt for it.
+# The environment MUST have a deployment-branch rule of `main` only. The `if:`
+# below is not enough on its own: `gh workflow run --ref <branch>` runs that
+# branch's copy of this file, which could drop the check and deploy unreviewed
+# code with the key. The environment rule is enforced outside the file.
+# Add required reviewers too to make every run wait for a yes.
+name: Deploy backend
+
+on:
+  workflow_dispatch:
+    inputs:
+      only:
+        description: What to deploy
+        type: choice
+        required: true
+        default: rules
+        options:
+          - rules        # firestore.rules + storage.rules
+          - indexes      # firestore.indexes.json
+          - functions
+          - all
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-backend
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: backend
+    env:
+      FIREBASE_PROJECT: enjoysenoia
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      # functions/package.json pins the runtime to Node 22.
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Pick deploy targets
+        id: targets
+        env:
+          ONLY: ${{ inputs.only }}
+        run: |
+          case "$ONLY" in
+            rules)     only='firestore:rules,storage' ;;
+            indexes)   only='firestore:indexes' ;;
+            functions) only='functions' ;;
+            all)       only='firestore,storage,functions' ;;
+            *) echo "::error::Unknown target: $ONLY"; exit 1 ;;
+          esac
+          echo "only=$only" >> "$GITHUB_OUTPUT"
+
+      # Same checks a local deploy relies on: the functions' unit tests, and the
+      # values firebase deploy would otherwise prompt for.
+      - name: Install and test functions
+        if: contains(steps.targets.outputs.only, 'functions')
+        env:
+          SPONSOR_LOGO_FOLDER_ID: ${{ vars.SPONSOR_LOGO_FOLDER_ID }}
+        run: |
+          if [ -z "$SPONSOR_LOGO_FOLDER_ID" ]; then
+            echo "::error::Set the SPONSOR_LOGO_FOLDER_ID variable on the backend environment"
+            exit 1
+          fi
+          npm ci --prefix functions
+          npm test --prefix functions
+          echo "SPONSOR_LOGO_FOLDER_ID=$SPONSOR_LOGO_FOLDER_ID" > "functions/.env.$FIREBASE_PROJECT"
+
+      # The key goes to a file outside the checkout, so nothing under the repo
+      # (or a functions upload) can pick it up.
+      - name: Write credentials
+        env:
+          KEY: ${{ secrets.FIREBASE_BACKEND_SERVICE_ACCOUNT }}
+        run: |
+          if [ -z "$KEY" ]; then
+            echo "::error::Set the FIREBASE_BACKEND_SERVICE_ACCOUNT secret on the backend environment"
+            exit 1
+          fi
+          umask 077
+          printf '%s' "$KEY" > "$RUNNER_TEMP/sa.json"
+          echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/sa.json" >> "$GITHUB_ENV"
+
+      # Same firebase-tools version as test:rules in package.json. No --force:
+      # a deploy that would delete a function or an index stops instead.
+      - name: Deploy
+        env:
+          ONLY: ${{ steps.targets.outputs.only }}
+        run: >-
+          npx -y firebase-tools@15.33.0 deploy
+          --only "$ONLY"
+          --project "$FIREBASE_PROJECT"
+          --non-interactive
+
+      - name: Remove credentials
+        if: always()
+        run: rm -f "$RUNNER_TEMP/sa.json"
