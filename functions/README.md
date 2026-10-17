@@ -4,7 +4,9 @@ Four functions: `submitContactMessage` (the `/contact` page),
 `submitSponsorLogo` (the `/sponsor-logo` page; see *Sponsor logo uploads* below)
 and `submitVolunteerSignup` / `cancelVolunteerSignup` (the `/volunteer/:eventSlug`
 shift board; see *Volunteer sign-ups* below).
-It is **not** deployed by CI (`deploy.yml` only deploys Hosting).
+It is **not** deployed on merge (`deploy.yml` only deploys Hosting). Deploy it
+by hand, or with the **Deploy backend** workflow (see *Deploying from GitHub
+Actions* at the end).
 
 ## One-time setup
 
@@ -143,3 +145,59 @@ patch; `volunteer_url` in `data/event_overrides.json` is the built-in default).
 `signupOpen: false`, makes the function refuse. Rules and functions are not
 deployed by CI; deploy both with `--project enjoysenoia` before the page goes
 live: `firebase deploy --only firestore:rules,functions --project enjoysenoia`.
+
+## Deploying from GitHub Actions
+
+`.github/workflows/deploy-backend.yml` deploys rules, indexes or functions from
+`main` when started by hand, so nobody needs a Google credential on their own
+machine or in a Claude Code cloud session:
+
+```bash
+gh workflow run deploy-backend.yml --ref main -f only=rules   # or indexes, functions, all
+```
+
+It runs `firebase deploy --non-interactive` without `--force`, so a deploy that
+would delete a function or an index fails instead of deleting it. Do those by
+hand.
+
+One-time setup (project owner):
+
+1. **A deploy-only service account**, separate from the Hosting one behind
+   `FIREBASE_SERVICE_ACCOUNT`:
+
+   ```bash
+   gcloud iam service-accounts create backend-deploy --project enjoysenoia \
+     --display-name "GitHub Actions: rules and functions deploy"
+   SA=backend-deploy@enjoysenoia.iam.gserviceaccount.com
+   for role in roles/firebase.viewer roles/firebaserules.admin roles/datastore.indexAdmin \
+       roles/cloudfunctions.admin roles/secretmanager.viewer roles/artifactregistry.reader \
+       roles/firebaseextensions.viewer roles/serviceusage.serviceUsageConsumer; do
+     gcloud projects add-iam-policy-binding enjoysenoia \
+       --member="serviceAccount:$SA" --role="$role" --condition=None
+   done
+   # Functions run as the default compute account; deploying them means acting as it.
+   gcloud iam service-accounts add-iam-policy-binding \
+     719218412135-compute@developer.gserviceaccount.com --project enjoysenoia \
+     --member="serviceAccount:$SA" --role=roles/iam.serviceAccountUser
+   ```
+
+   That role list is a starting point, not a verified minimum. If a run fails on
+   a permission, the log names it; grant that one role. It assumes the secrets
+   are already bound to the runtime account and the Artifact Registry cleanup
+   policy is already set (both happen on the first deploy from an owner's
+   machine). A new `defineSecret` needs one owner deploy first, or
+   `roles/secretmanager.admin` here.
+2. **The `backend` environment** (Settings > Environments > New environment).
+   Under *Deployment branches and tags* choose *Selected branches* and add
+   `main`. **This is required, not optional:** a run started on another branch
+   uses that branch's copy of the workflow, so the `if:` in the file can't stop
+   it; only this rule keeps the key away from unmerged code. To make every run
+   wait for a yes, also add yourself as a required reviewer. Then add the key
+   and the folder ID.
+   `gh` reads the key from the file, so it never reaches your shell history:
+
+   ```bash
+   gcloud iam service-accounts keys create key.json --iam-account "$SA"
+   gh secret set FIREBASE_BACKEND_SERVICE_ACCOUNT --env backend < key.json && rm key.json
+   gh variable set SPONSOR_LOGO_FOLDER_ID --env backend --body '<folder ID>'
+   ```

@@ -51,6 +51,19 @@ rebuilds so the generated sitemap picks up staff edits.
 - Deploys need the `FIREBASE_SERVICE_ACCOUNT` secret, which Dependabot and fork PRs
   don't get, so they build but don't preview.
 
+## Claude Code cloud sessions
+
+`.claude/settings.json` runs `scripts/cloud-session-start.sh` at session start. It
+returns at once unless `CLAUDE_CODE_REMOTE=true`. In a cloud VM it runs `npm ci`,
+writes `.firebaserc` and fetches the firebase-tools version `test:rules` pins.
+
+- The cloud environment's variables hold only the public `VITE_*` values from
+  `.env.example`. Anyone using the environment can read them, so no keys go there.
+- A cloud session deploys through GitHub and never holds a Google credential:
+  open a PR for previews, merge for live. For the backend, start the **Deploy
+  backend** workflow: `gh workflow run deploy-backend.yml --ref main -f only=<rules|indexes|functions|all>`.
+  If the cloud GitHub proxy refuses that (403), start it from the Actions tab.
+
 ## Content model
 
 - Events and businesses are generated from the Webflow CMS by
@@ -77,8 +90,8 @@ by the `submitVolunteerSignup` / `cancelVolunteerSignup` functions, never the
 browser. Staff link an event from its listing (Events tab, "Link volunteer sign-up" =
 `volunteer_enabled` on its Firestore patch; `volunteer_url` in
 `data/event_overrides.json` is the built-in default) and run it from the
-**Volunteers** tab. Rules and functions are deployed
-by hand (see `functions/README.md`).
+**Volunteers** tab. Rules and functions are not deployed on merge; deploy them by
+hand or with the **Deploy backend** workflow (see `functions/README.md`).
 
 ## Admin access (three places, keep in step)
 
