@@ -40,10 +40,10 @@ jobs:
     steps:
       # Neither job pushes, so don't leave the token in .git/config where
       # npm lifecycle scripts could read it.
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
@@ -64,7 +64,7 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: dist
           path: dist
@@ -73,17 +73,17 @@ jobs:
       # The halloween, masquerade and christmas targets serve these copies, whose
       # index.html carries each micro-site's head as static HTML
       # (scripts/build-microsite-html.mjs).
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: dist-halloween
           path: dist-halloween
           retention-days: 7
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: dist-masquerade
           path: dist-masquerade
           retention-days: 7
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: dist-christmas
           path: dist-christmas
@@ -111,22 +111,22 @@ jobs:
       matrix:
         target: [main, masquerade, halloween, christmas]
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: dist
           path: dist
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: dist-halloween
           path: dist-halloween
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: dist-masquerade
           path: dist-masquerade
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: dist-christmas
           path: dist-christmas
