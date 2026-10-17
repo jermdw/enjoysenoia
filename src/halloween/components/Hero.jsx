@@ -1,5 +1,5 @@
 import React from 'react';
-import { event } from '../data/halloweenDetails';
+import { event, decoratingContest } from '../data/halloweenDetails';
 import { WavyFrame, Icon, Ghost } from './Art';
 
 /**
@@ -27,7 +27,9 @@ export default function Hero() {
           </ul>
 
           <div className="hallo-hero-actions">
-            <a href="#contest" className="hallo-btn">Enter the decorating contest</a>
+            <a href="#contest" className="hallo-btn">
+              {decoratingContest.entriesOpen ? 'Enter the decorating contest' : decoratingContest.closedCta}
+            </a>
             <a href="#trick-or-treating" className="hallo-btn hallo-btn-ghost">See the map</a>
           </div>
         </WavyFrame>
