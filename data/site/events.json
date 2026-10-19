@@ -1786,7 +1786,10 @@
     "hero_image": "https://firebasestorage.googleapis.com/v0/b/enjoysenoia.firebasestorage.app/o/webflow%2Fcms%2F69b177b7927b8052b2ff124c_Fat_tuesday__1200_x_628_px___22_.jpg?alt=media",
     "hero_caption": "Light Up Senoia Annual Christmas Parade",
     "hero_sub_caption": null,
-    "button": null,
+    "button": {
+      "text": "Register to Be in the Parade",
+      "url": "https://buytickets.at/senoiadda/2360201"
+    },
     "signup_url": null,
     "google_maps_url": null,
     "coordinator_email": "lightupsenoia@enjoysenoia.com",
