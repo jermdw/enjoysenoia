@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Clock, MapPin, ArrowLeft, Ticket, Share2, Sparkles, ExternalLink, Mail, HandHeart } from 'lucide-react';
+import { Clock, MapPin, ArrowLeft, Ticket, Share2, Sparkles, ExternalLink, Mail, HandHeart, Handshake } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import NotFoundNotice from '../components/common/NotFoundNotice';
 import { getEventBySlug, useContentOverrides } from '../services/dataService';
@@ -52,6 +52,13 @@ export default function EventDetailPage() {
   // is the built-in default. See src/utils/volunteer.js.
   const volunteerUrl = hasVolunteerBoard(event) ? volunteerPath(event) : null;
   const volunteerLabel = event?.volunteer_label || 'Volunteer';
+
+  // Sponsorship checkout (Ticket Tailor), set as `sponsor_url` in
+  // data/event_overrides.json. Its own button, so an event can link both
+  // registration (`button`) and sponsorship without one replacing the other.
+  const sponsorUrl =
+    typeof event?.sponsor_url === 'string' && /^https?:\/\//i.test(event.sponsor_url) ? event.sponsor_url : null;
+  const sponsorLabel = event?.sponsor_label || 'Become a Sponsor';
 
   const cta = event?.button;
   const ctaUrl = cta && typeof cta.url === 'string' && /^https?:\/\//i.test(cta.url) ? cta.url : null;
@@ -168,6 +175,18 @@ export default function EventDetailPage() {
                 <HandHeart className="mr-2 w-4 h-4" />
                 <span>{volunteerLabel}</span>
               </Link>
+            )}
+
+            {sponsorUrl && (
+              <a
+                href={sponsorUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-6 py-3 rounded-xl border-2 border-senoia-red text-senoia-red hover:bg-senoia-red hover:text-white font-semibold text-sm transition-colors"
+              >
+                <Handshake className="mr-2 w-4 h-4" />
+                <span>{sponsorLabel}</span>
+              </a>
             )}
 
             {ctaUrl && (
