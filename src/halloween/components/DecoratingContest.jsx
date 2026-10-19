@@ -1,64 +1,35 @@
 import React from 'react';
 import { decoratingContest } from '../data/halloweenDetails';
-import SignupForm from './SignupForm';
 import { WavyFrame } from './Art';
 import peacockLogo from '../assets/kimberly-peacock-realtor.png';
 
 /**
- * Section 2 — the decorating contest and its sign-up form. Once
- * `entriesOpen` is false the form is replaced by a closed notice.
+ * Section 2 — the decorating contest results and the sponsor's logo. Entries
+ * have closed, so SignupForm is no longer rendered here.
  */
 export default function DecoratingContest() {
   return (
     <section id="contest">
       <div className="hallo-wrap">
-        <WavyFrame className="hallo-split">
-          <div>
-            <h2>{decoratingContest.heading}</h2>
-            <p className="hallo-lede">{decoratingContest.blurb}</p>
-
-            <p className="hallo-keydates">
-              <strong>{decoratingContest.judgedLabel}</strong>
-              <span>
-                {decoratingContest.entriesOpen ? decoratingContest.deadlineLabel : decoratingContest.closedDeadlineLabel}
-              </span>
-            </p>
-
-            <h3>Who can participate?</h3>
-            <ul className="hallo-bullets">
-              {decoratingContest.eligibility.map((line, i) => (
-                <li key={i}>{line}</li>
-              ))}
-            </ul>
-
-            {decoratingContest.contestCategories.map((cat) => (
-              <div key={cat.id} className="hallo-card hallo-cat">
-                <h3>Category: {cat.label}</h3>
-                <p>{cat.blurb}</p>
-              </div>
-            ))}
-
-            <p className="hallo-winners">{decoratingContest.winnersNote}</p>
-            <p className="hallo-sponsor-label">{decoratingContest.sponsorLabel}</p>
-            <img
-              className="hallo-contest-logo"
-              src={peacockLogo}
-              alt={decoratingContest.logoAlt}
-              width="720"
-              height="348"
-              loading="lazy"
-            />
-          </div>
-
-          {decoratingContest.entriesOpen ? (
-            <SignupForm />
-          ) : (
-            <div className="hallo-card hallo-contest-closed" role="status">
-              <h3>{decoratingContest.closed.heading}</h3>
-              <p>{decoratingContest.closed.body}</p>
-              <a href="#trick-or-treating" className="hallo-btn hallo-btn-ghost">See the trick-or-treat map</a>
-            </div>
-          )}
+        <WavyFrame>
+          <h2>{decoratingContest.heading}</h2>
+          {decoratingContest.results.map((line, i) => (
+            <p key={i} className="hallo-lede">{line}</p>
+          ))}
+          <p className="hallo-winners">{decoratingContest.winner}</p>
+          <p>{decoratingContest.honorableMentions}</p>
+          <p>
+            <a href="#trick-or-treating">{decoratingContest.mapNote}</a>
+          </p>
+          <p className="hallo-sponsor-label">{decoratingContest.sponsorThanks}</p>
+          <img
+            className="hallo-contest-logo"
+            src={peacockLogo}
+            alt={decoratingContest.logoAlt}
+            width="720"
+            height="348"
+            loading="lazy"
+          />
         </WavyFrame>
       </div>
     </section>

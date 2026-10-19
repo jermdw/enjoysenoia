@@ -323,15 +323,6 @@
   margin-top: 0.35rem;
 }
 
-/* Stands in for the form once entries close. */
-.hallo .hallo-contest-closed > * {
-  margin: 0;
-}
-
-.hallo .hallo-contest-closed > * + * {
-  margin-top: 0.85rem;
-}
-
 .hallo .hallo-form {
   display: grid;
   gap: 1.1rem;
@@ -578,8 +569,15 @@
   flex-shrink: 0;
 }
 
+.hallo .hallo-map-star {
+  width: 1.2rem;
+  height: 1.15rem;
+  flex-shrink: 0;
+}
+
 /* Leaflet's default divIcon class adds a white box; this replaces it. */
-.hallo .hallo-bat-marker {
+.hallo .hallo-bat-marker,
+.hallo .hallo-star-marker {
   background: none;
   border: 0;
 }
@@ -754,21 +752,6 @@
   margin-top: 2.25rem;
 }
 
-/* ---- Two-column section (contest) ---- */
-.hallo .hallo-split {
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: minmax(0, 1fr);
-  align-items: start;
-}
-
-@media (min-width: 56rem) {
-  .hallo .hallo-split {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 3rem;
-  }
-}
-
 /* ---- Fact list (Masquerade teaser) ---- */
 .hallo .hallo-facts {
   display: grid;
@@ -834,52 +817,15 @@
   font-size: 1.2rem;
 }
 
-.hallo .hallo-keydates {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  margin: 1.25rem 0;
-  padding-left: 0.85rem;
-  border-left: 4px solid var(--hallo-orange);
-}
-
-.hallo .hallo-keydates strong {
-  font-family: var(--hallo-font-sub);
-  font-weight: 600;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-}
-
 .hallo h3 {
   font-size: 1.6rem;
   margin-top: 1.75rem;
   margin-bottom: 0.6rem;
 }
 
-.hallo .hallo-bullets {
-  padding-left: 1.1rem;
-  margin: 0;
-}
-
-.hallo .hallo-bullets li {
-  margin-bottom: 0.4rem;
-}
-
-.hallo .hallo-cat {
-  margin-top: 1.25rem;
-}
-
-.hallo .hallo-cat h3 {
-  margin-top: 0;
-}
-
-.hallo .hallo-cat p {
-  margin: 0;
-}
-
 .hallo .hallo-winners {
   margin-top: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 700;
   font-style: italic;
 }
@@ -934,14 +880,4 @@
 /* The trick-or-treating intro is separate paragraphs, so give them air. */
 .hallo .hallo-blurb > p + p {
   margin-top: 0.9rem;
-}
-
-/* Safety notes above the map, as plain centred lines. */
-.hallo .hallo-closures {
-  margin: 1.5rem auto;
-  max-width: 40rem;
-}
-
-.hallo .hallo-closures p {
-  margin: 0.25rem 0;
 }
