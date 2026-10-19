@@ -28,5 +28,11 @@
     "external_url": "https://senoiahalloween.com/",
     "ticket_url": "https://senoiahalloween.com/",
     "ticket_label": "Visit the Official Halloween in Senoia Site"
+  },
+  "light-up-senoia-parade": {
+    "button": {
+      "text": "Register to Be in the Parade",
+      "url": "https://buytickets.at/senoiadda/2360201"
+    }
   }
 }
