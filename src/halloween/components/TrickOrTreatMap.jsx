@@ -3,7 +3,7 @@ import L from 'leaflet';
 import { MapContainer, TileLayer, CircleMarker, Marker, Polygon, Popup, Tooltip } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { trickOrTreating } from '../data/halloweenDetails';
-import { BAT_PATH, BAT_VIEWBOX } from './Art';
+import { BAT_PATH, BAT_VIEWBOX, STAR_PATH, STAR_VIEWBOX } from './Art';
 
 // Trick-or-treat zones are bats, not dots. A divIcon holding inline SVG needs
 // no image file, so it avoids the bundler problem CircleMarker is used for
@@ -17,6 +17,18 @@ const batIcon = L.divIcon({
   iconSize: [48, 20],
   iconAnchor: [24, 10],
   popupAnchor: [0, -8],
+});
+
+// The contest winner is a gold star in place of its dot, drawn above the
+// other pins so it is never hidden under a neighbour.
+const starIcon = L.divIcon({
+  className: 'hallo-star-marker',
+  html: `<svg viewBox="${STAR_VIEWBOX}" width="30" height="29" aria-hidden="true" focusable="false">`
+    + `<path d="${STAR_PATH}" fill="${trickOrTreating.winner.fill}" stroke="#0e0c0c" stroke-width="1.5" stroke-linejoin="round"/>`
+    + '</svg>',
+  iconSize: [30, 29],
+  iconAnchor: [15, 15],
+  popupAnchor: [0, -12],
 });
 
 /**
@@ -67,6 +79,17 @@ export default function TrickOrTreatMap({ points }) {
           </Marker>
         ))}
         {placed.map((point) => {
+          if (point.id === trickOrTreating.winner.pointId) {
+            return (
+              <Marker key={point.id} position={[point.lat, point.lng]} icon={starIcon} zIndexOffset={1000}>
+                <Popup>
+                  <strong>{trickOrTreating.winner.label}</strong>
+                  <br />
+                  {point.address}
+                </Popup>
+              </Marker>
+            );
+          }
           const style = kinds[point.kind] ?? kinds.residential;
           return (
             <CircleMarker

@@ -83,57 +83,41 @@ export const calendarEvents = [
     kind: 'trickOrTreat',
     label: 'Trick or Treating',
     title: 'Trick or Treating',
-    detail: '5:30pm – 8:30pm in the historic district and Willow Dell. Road closures and the detailed map are on this site.',
+    detail: '5:30pm – 8:30pm in the historic district and Willow Dell. The trick-or-treat map is on this site.',
     href: '#trick-or-treating',
   },
 ];
 
 /**
- * Section 2 — the decorating contest and its sign-up form.
- *
- * Two independent choices on the form:
- *   category        residential | business — who you are. Drives whether the
- *                   address is eligible for the trick-or-treat map.
- *   contestCategory spooky | pumpkinPals   — which judging lane you enter.
- * They are separate fields precisely because they are separate questions; a
- * business can enter either lane.
+ * Section 2 — the decorating contest. Entries closed Friday October 16th and
+ * judging was Saturday the 17th; this is the results copy from Shauna's
+ * 10/19 email, verbatim. SignupForm.jsx and the fields it reads (`categories`,
+ * `contestCategories`, `addressNote`, `privacyNote`) stay in case the contest
+ * runs again next year.
  */
 export const decoratingContest = {
   heading: 'Decorating Contest',
-  blurb: 'Celebrate the spooky season by decorating your home or business!',
-  judgedLabel: 'Judged Saturday October 17th',
-  deadlineLabel: 'Submit your address by Friday October 16th',
-  // The sign-up switch. false swaps the form for `closed` and the hero's
-  // "Enter" button for `closedCta`; set it back to true to reopen entries.
+  // The sign-up switch. Leave false: the section now shows results, not a form.
   entriesOpen: false,
-  closedDeadlineLabel: 'Entries closed Friday October 16th',
-  closedCta: 'Contest winners coming soon',
-  closed: {
-    heading: 'Entries are closed',
-    body: 'Thank you to everyone who entered! Judging is underway, and winners will be announced soon.',
-  },
-  eligibility: [
-    'Any home or brick & mortar business within a 2 mile radius of historic Senoia',
-    'In other words - anyone within legal golf carting distance from Main Street',
+  closedCta: 'See the contest winner',
+  // CONFIRM: the email says "5 Categories" but names four.
+  results: [
+    'Thank you for all who participated! Our entrants were judged on 5 Categories: Creativity & Theming, Composition & Use of Space, Craftsmanship/DIY Element, and Overall Halloween Joy.',
   ],
-  // The short form of the rule, shown under the address field.
-  addressNote: 'Must be within a 2 mile radius of historic Senoia — anyone within legal golf carting distance from Main Street.',
-  // The slides say "Winners will be featured on Enjoy Senoia and on the official
-  // Trick or Treating map!", while the written brief says every *residential*
-  // entry goes on the map. CONFIRM which is intended. Either works without a
-  // code change: an admin publishes addresses to the map one at a time, so the
-  // organizer can publish all residential entries or only the winners.
-  winnersNote: 'Winners will be featured on Enjoy Senoia and on the official Trick or Treating map!',
-  // Shown under winnersNote. src/halloween/assets/kimberly-peacock-realtor.png
-  sponsorLabel: 'Thank You to Our Sponsor:',
+  winner: 'And the Winner is… the Pirates at 95 Middle Street!',
+  honorableMentions:
+    'Honorable mentions to Summerween, the Peanuts gang, the Wicked Witches and all of the Giant Skellys and Cutie Blow-ups around town.',
+  mapNote: 'You can visit the entrants (and trick-or-treat spots) for yourself by using the map below.',
+  sponsorThanks: 'Special appreciation to Kimberly Peacock, Realtor for sponsoring and assisting in judging efforts!',
+  // src/halloween/assets/kimberly-peacock-realtor.png
   logoAlt: 'Kimberly Peacock, REALTOR®',
+  addressNote: 'Must be within a 2 mile radius of historic Senoia — anyone within legal golf carting distance from Main Street.',
   privacyNote:
     'Residential entries may appear as a pin on the public trick-or-treat map. Only the street address is shown — never your name or email.',
   categories: [
     { id: 'residential', label: 'Home', hint: 'A residence. Eligible for the trick-or-treat map.' },
     { id: 'business', label: 'Business', hint: 'A brick & mortar business.' },
   ],
-  // Verbatim from the slide, including the "Category:" framing.
   contestCategories: [
     {
       id: 'spooky',
@@ -201,20 +185,18 @@ export const toddlerTrickOrTreat = {
  * Section 5 — trick or treating.
  *
  * `mapDefaults` centres the map on downtown Senoia. Pins are not stored here:
- * approved residential addresses and admin-placed closures/parking live in the
- * `halloween_map_points` Firestore collection (see src/services/halloweenService.js).
+ * approved residential addresses live in the `halloween_map_points` Firestore
+ * collection (see src/services/halloweenService.js).
  */
 export const trickOrTreating = {
   heading: 'Trick or Treating',
   dateLabel: 'October 31st',
   // Per the 9/22 edits. The slide prints the same hours under "Road Closures".
   whenLabel: '5:30pm - 8:30pm',
+  // Verbatim from Shauna's 10/19 email.
   blurb: [
-    'Zones in the historic district will have multiple homes in the area welcoming trick-or-treaters. Per Halloween tradition: lights on and decorations usually means candy!',
     'Have fun, be safe and respectful, and thank you to our DDA volunteers and neighbors that help make downtown great!',
-  ],
-  roadClosures: [
-    'Please note: for safety, Willow Dell neighborhood will have traffic mitigation efforts and “No Parking” areas',
+    'Per Halloween tradition: lights on and decorations usually means a homeowner is handing out candy…on the map below, “Trick-or-Treat Zone” (Bats) are where multiple neighbors will be welcoming costumed kiddos.',
   ],
   mapDefaults: {
     // Downtown Senoia, GA — the Main Street the eligibility rule is measured from.
@@ -222,11 +204,19 @@ export const trickOrTreating = {
     zoom: 15,
   },
   // Pin colours, shared by the map and its legend. `fill` must read against both
-  // the OpenStreetMap tiles and the cream page.
+  // the OpenStreetMap tiles and the cream page. Per the 10/19 email the public
+  // map shows only contest entrants, zones and the Willow Dell outline, so
+  // closure and parking pins are left off it (they stay in the admin).
   mapKinds: {
     residential: { fill: '#e27925', label: 'Decorating Contest Entrant' },
-    closure: { fill: '#c81e1e', label: 'Road closed' },
-    parking: { fill: '#5a4466', label: 'Parking' },
+  },
+  // The winning entrant, drawn as a star instead of a dot. Matched on the
+  // halloween_map_points doc id (95 Middle St.); re-publishing that pin in the
+  // admin gives it a new id, so update this if you do.
+  winner: {
+    pointId: '0sgTfKsWCurhYGn6HMyE',
+    label: 'Decorating Contest Winner',
+    fill: '#f6b93b',
   },
   // Drawn as black bats rather than dots. Fixed spots from the organisers, so
   // they live here instead of in Firestore (a new pin kind would need a rules
@@ -236,7 +226,9 @@ export const trickOrTreating = {
     label: 'Trick or Treat Zone',
     spots: [
       { name: 'Morgan St at Lower Creek Trail', at: [33.298421, -84.556453] },
-      { name: 'Pylant St at Seavy St', at: [33.301342, -84.556339] },
+      // Moved up from Pylant at Seavy St (10/19) to take in 9 Johnson St, which
+      // asked to join the zones; it sits on this corner.
+      { name: 'Pylant St at Johnson St', at: [33.302671, -84.55622] },
       { name: 'Pylant St between Couch St and Johnson St', at: [33.303987, -84.556103] },
       { name: 'Baggarly Way north of Johnson St', at: [33.303241, -84.554607] },
       // The centre of the Willow Dell outline below (its area centroid).
