@@ -226,7 +226,9 @@ export const trickOrTreating = {
     label: 'Trick or Treat Zone',
     spots: [
       { name: 'Morgan St at Lower Creek Trail', at: [33.298421, -84.556453] },
-      { name: 'Pylant St at Seavy St', at: [33.301342, -84.556339] },
+      // Moved up from Pylant at Seavy St (10/19) to take in 9 Johnson St, which
+      // asked to join the zones; it sits on this corner.
+      { name: 'Pylant St at Johnson St', at: [33.302671, -84.55622] },
       { name: 'Pylant St between Couch St and Johnson St', at: [33.303987, -84.556103] },
       { name: 'Baggarly Way north of Johnson St', at: [33.303241, -84.554607] },
       // The centre of the Willow Dell outline below (its area centroid).
