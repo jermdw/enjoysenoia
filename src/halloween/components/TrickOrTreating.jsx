@@ -1,7 +1,7 @@
 import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { trickOrTreating } from '../data/halloweenDetails';
 import { getMapPoints } from '../../services/halloweenService';
-import { WavyFrame, Icon, JackOLantern, Bat, BAT_VIEWBOX } from './Art';
+import { WavyFrame, Icon, JackOLantern, Bat, BAT_VIEWBOX, STAR_PATH, STAR_VIEWBOX } from './Art';
 
 // Leaflet plus react-leaflet is a heavy dependency for a page whose first
 // screen is type. Split it out so it loads when this section is reached rather
@@ -25,7 +25,9 @@ export default function TrickOrTreating() {
     getMapPoints()
       .then((rows) => {
         if (cancelled) return;
-        setPoints(rows);
+        // Only contest entrants go on the public map; closure and parking pins
+        // are admin-only now (see mapKinds in halloweenDetails.js).
+        setPoints(rows.filter((p) => p.kind === 'residential'));
         setState('ready');
       })
       .catch((err) => {
@@ -43,9 +45,8 @@ export default function TrickOrTreating() {
 
   // Placed decorating-contest entrants. A pin without coordinates is not on
   // the map, so it is not listed either.
-  const entrants = points.filter(
-    (p) => p.kind === 'residential' && typeof p.lat === 'number' && typeof p.lng === 'number'
-  );
+  const entrants = points.filter((p) => typeof p.lat === 'number' && typeof p.lng === 'number');
+  const { winner } = trickOrTreating;
 
   return (
     <section id="trick-or-treating">
@@ -62,12 +63,6 @@ export default function TrickOrTreating() {
             </div>
           </div>
 
-          {trickOrTreating.roadClosures.length > 0 && (
-            <div className="hallo-center hallo-closures">
-              {trickOrTreating.roadClosures.map((line, i) => <p key={i}>{line}</p>)}
-            </div>
-          )}
-
           <ul className="hallo-legend">
             {Object.entries(trickOrTreating.mapKinds).map(([kind, { fill, label }]) => (
               <li key={kind}>
@@ -75,6 +70,12 @@ export default function TrickOrTreating() {
                 {label}
               </li>
             ))}
+            <li>
+              <svg viewBox={STAR_VIEWBOX} className="hallo-map-star" aria-hidden="true" focusable="false">
+                <path d={STAR_PATH} fill={winner.fill} stroke="#0e0c0c" strokeWidth="1.5" strokeLinejoin="round" />
+              </svg>
+              {winner.label}
+            </li>
             <li>
               <svg viewBox={BAT_VIEWBOX} className="hallo-map-bat" aria-hidden="true" focusable="false">
                 <Bat />
@@ -107,18 +108,27 @@ export default function TrickOrTreating() {
             <p className="hallo-field-note">{trickOrTreating.emptyState}</p>
           )}
 
-          {/* The contest entrants on the map, listed in text. Zones, closures and
-              parking are shown on the map and in its legend only. */}
+          {/* The contest entrants on the map, listed in text. Zones are shown on
+              the map and in its legend only. */}
           {entrants.length > 0 && (
             <ul className="hallo-point-list" aria-label="Decorating contest entrants">
               {entrants.map((p) => (
                 <li key={p.id}>
-                  <span
-                    className="hallo-map-dot"
-                    style={{ backgroundColor: trickOrTreating.mapKinds.residential.fill }}
-                    aria-hidden="true"
-                  />
-                  <span>{p.address}</span>
+                  {p.id === winner.pointId ? (
+                    <svg viewBox={STAR_VIEWBOX} className="hallo-map-star" aria-hidden="true" focusable="false">
+                      <path d={STAR_PATH} fill={winner.fill} stroke="#0e0c0c" strokeWidth="1.5" strokeLinejoin="round" />
+                    </svg>
+                  ) : (
+                    <span
+                      className="hallo-map-dot"
+                      style={{ backgroundColor: trickOrTreating.mapKinds.residential.fill }}
+                      aria-hidden="true"
+                    />
+                  )}
+                  <span>
+                    {p.address}
+                    {p.id === winner.pointId && <strong> — {winner.label}</strong>}
+                  </span>
                 </li>
               ))}
             </ul>

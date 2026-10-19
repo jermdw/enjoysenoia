@@ -75,6 +75,12 @@ export const BAT_PATH =
 /** The part of the 100×100 grid the bat actually fills, for drawing it on its own. */
 export const BAT_VIEWBOX = '2 24 96 40';
 
+/** A five-point star, for the decorating contest winner on the map and its legend. */
+export const STAR_PATH =
+  'M12 2 L14.94 8.26 L21.8 9.27 L16.9 14.14 L18.18 21 L12 17.77 L5.82 21 L7.1 14.14 L2.2 9.27 L9.06 8.26 Z';
+
+export const STAR_VIEWBOX = '1 1 22 21';
+
 export function Bat(props) {
   return (
     <g {...props}>
