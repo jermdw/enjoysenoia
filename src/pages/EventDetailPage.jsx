@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Clock, MapPin, ArrowLeft, Ticket, Share2, Sparkles, ExternalLink, Mail, HandHeart, Handshake } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import NotFoundNotice from '../components/common/NotFoundNotice';
+import RichText from '../components/common/RichText';
 import { getEventBySlug, useContentOverrides } from '../services/dataService';
 import { webflowAsset } from '../utils/webflowAsset';
 import { hasVolunteerBoard, volunteerPath } from '../utils/volunteer';
@@ -59,6 +60,15 @@ export default function EventDetailPage() {
   const sponsorUrl =
     typeof event?.sponsor_url === 'string' && /^https?:\/\//i.test(event.sponsor_url) ? event.sponsor_url : null;
   const sponsorLabel = event?.sponsor_label || 'Become a Sponsor';
+
+  // The full write-up for an event (schedule, rules, how to buy), as HTML set
+  // in `details_html` in data/event_overrides.json. Opt-in: the Webflow
+  // `sections` are kept in the data but not shown, as many are out of date.
+  const detailsHtml = typeof event?.details_html === 'string' ? event.details_html : '';
+
+  // A ticketed event whose box office isn't open yet (no `ticket_url`) says so
+  // with `admission_note` instead of falling through to the free badge.
+  const admissionNote = typeof event?.admission_note === 'string' ? event.admission_note.trim() : '';
 
   const cta = event?.button;
   const ctaUrl = cta && typeof cta.url === 'string' && /^https?:\/\//i.test(cta.url) ? cta.url : null;
@@ -122,9 +132,13 @@ export default function EventDetailPage() {
             <p className="text-lg font-medium text-stone-800">
               {event?.description}
             </p>
-            <p>
-              Join the Senoia Downtown Development Authority and the local community for this event. Stroll down historic Main Street, visit our local shops and dining destinations, and enjoy the southern hospitality Senoia has to offer.
-            </p>
+            {detailsHtml ? (
+              <RichText html={detailsHtml} />
+            ) : (
+              <p>
+                Join the Senoia Downtown Development Authority and the local community for this event. Stroll down historic Main Street, visit our local shops and dining destinations, and enjoy the southern hospitality Senoia has to offer.
+              </p>
+            )}
             {coordinatorEmail && (
               <p className="text-sm">
                 Questions about this event? Contact the coordinator at{' '}
@@ -160,6 +174,11 @@ export default function EventDetailPage() {
                   <span>{ticketLabel}</span>
                 </a>
               )
+            ) : admissionNote ? (
+              <div className="inline-flex items-center space-x-2 text-sm font-semibold text-senoia-red bg-red-50 px-4 py-2 rounded-xl border border-red-200">
+                <Ticket className="w-4 h-4" />
+                <span>{admissionNote}</span>
+              </div>
             ) : (
               <div className="inline-flex items-center space-x-2 text-sm font-semibold text-emerald-700 bg-emerald-50 px-4 py-2 rounded-xl border border-emerald-200">
                 <Sparkles className="w-4 h-4" />
