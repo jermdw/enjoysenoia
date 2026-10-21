@@ -88,7 +88,7 @@ export default function Hero() {
           </div>
         </dl>
 
-        <div className="mt-11 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="mt-11 flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-4">
           <a
             href="#tickets"
             className="w-full sm:w-auto px-9 py-4 rounded-sm bg-[var(--masq-crimson)] hover:bg-[var(--masq-crimson-bright)] text-[var(--masq-cream)] text-xs font-semibold uppercase tracking-[0.25em] transition-all hover:scale-[1.03]"
@@ -100,6 +100,12 @@ export default function Hero() {
             className="w-full sm:w-auto px-9 py-4 rounded-sm border border-[var(--masq-line)] hover:border-[var(--masq-gold)] text-[var(--masq-cream)] text-xs font-semibold uppercase tracking-[0.25em] transition-colors"
           >
             The Invitation
+          </a>
+          <a
+            href="#arrivals"
+            className="w-full sm:w-auto px-9 py-4 rounded-sm bg-[var(--masq-crimson)] hover:bg-[var(--masq-crimson-bright)] text-[var(--masq-cream)] text-xs font-semibold uppercase tracking-[0.25em] transition-all hover:scale-[1.03]"
+          >
+            Arrivals &amp; Parking
           </a>
         </div>
 
