@@ -152,3 +152,44 @@
     scroll-behavior: auto;
   }
 }
+
+/* Arrivals & Parking map. */
+.masq .masq-map {
+  height: clamp(22rem, 65vh, 32rem);
+  border: 1px solid var(--masq-line);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.masq .masq-map-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--masq-cream-dim);
+  background-color: var(--masq-ink-raised);
+}
+
+/* Leaflet tooltips default to a white card; these are dark labels in the
+   page's display face. */
+.masq .masq-map-label {
+  background-color: rgba(11, 10, 12, 0.92);
+  color: var(--masq-cream);
+  border: 1px solid var(--masq-gold);
+  border-radius: 2px;
+  font-family: var(--masq-font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.15rem 0.5rem;
+  box-shadow: none;
+}
+
+.masq .masq-map-label::before {
+  display: none;
+}
+
+.masq .masq-map-label-venue {
+  background-color: var(--masq-crimson);
+  border-color: var(--masq-cream);
+  font-size: 0.95rem;
+}

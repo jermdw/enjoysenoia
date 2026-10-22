@@ -304,6 +304,34 @@ export const gallery = [
   { src: '/masquerade/gallery/img_8505.jpg', w: 1024, h: 683, alt: 'A fire performer raises flaming torches beneath the tent as guests watch from their seats.' },
 ];
 
+/**
+ * Arrivals & Parking section. Copy is the organizer's, from her 2026-10-21
+ * email. Pins follow the marked-up map she attached: OSM has no Stone Lodge,
+ * so its pin is the building inside the drive loop west of the lake.
+ */
+export const arrivals = {
+  paragraphs: [
+    'Parking is available in the Senoia Branch Library lots: upper, next to library, and lower. Golf carts may enter from Howard Road and park on the side of Mary’s Parkway.',
+    'Tickets are digital entry; you may share your name or QR code at the door.',
+  ],
+  // Senoia Branch Library, 148 Pylant St — the organizer asked for the map
+  // to centre here.
+  center: [33.29771, -84.56133],
+  // The lodge is about 200 m west of the library; on a phone, zoom 17 would
+  // push its pin off the edge.
+  zoom: 17,
+  zoomNarrow: 16,
+  // `tooltip` is the side the always-on label sits, so pins this close don't
+  // cover each other's labels.
+  markers: [
+    { id: 'lodge', label: 'Masquerade Here', kind: 'venue', at: [33.29876, -84.56352], tooltip: 'bottom' },
+    { id: 'golf-carts', label: 'Golf Cart Parking', kind: 'golf', at: [33.29923, -84.56311], tooltip: 'top' },
+    { id: 'upper-lot', label: 'Parking', kind: 'parking', at: [33.29858, -84.56152], tooltip: 'top' },
+    { id: 'library-lot', label: 'Parking', kind: 'parking', at: [33.29789, -84.56108], tooltip: 'right' },
+    { id: 'lower-lot', label: 'Parking', kind: 'parking', at: [33.29603, -84.56305], tooltip: 'bottom' },
+  ],
+};
+
 export const faqs = [
   {
     q: 'Who can attend?',

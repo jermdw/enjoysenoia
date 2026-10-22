@@ -4,6 +4,7 @@ import MasqueradeSEO from './components/MasqueradeSEO';
 import MasqueradeNav from './components/MasqueradeNav';
 import Hero from './components/Hero';
 import Invitation from './components/Invitation';
+import ArrivalsParking from './components/ArrivalsParking';
 import Tickets from './components/Tickets';
 import Schedule from './components/Schedule';
 import Gallery from './components/Gallery';
@@ -37,6 +38,7 @@ export default function MasqueradePage() {
       <main>
         <Hero />
         <Invitation />
+        <ArrivalsParking />
         <Tickets />
         <Schedule />
         <Gallery />
