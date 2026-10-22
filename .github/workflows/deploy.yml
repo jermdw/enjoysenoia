@@ -162,3 +162,7 @@ jobs:
           # ('' is falsy in expressions, so the condition must lead with 'live'.)
           channelId: ${{ github.event_name != 'pull_request' && 'live' || '' }}
           expires: 7d
+          # Not `latest`: 15.34.1 (2026-10-21) also reads the Service Usage API,
+          # which the deploy service account can't, and every deploy got a 403.
+          # Granting it roles/serviceusage.serviceUsageConsumer would allow unpinning.
+          firebaseToolsVersion: 15.34.0
