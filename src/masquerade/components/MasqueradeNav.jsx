@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Suit } from './Ornament';
-import { event } from '../data/eventDetails';
 
+// Post-event: only the sections still on the page (see MasqueradePage).
 const links = [
-  { href: '#invitation', label: 'The Invitation' },
-  { href: '#tickets', label: 'Tickets' },
-  { href: '#schedule', label: 'The Evening' },
+  { href: '#thanks', label: 'Our Sponsors' },
   { href: '#gallery', label: 'Past Years' },
-  { href: '#sponsors', label: 'Sponsors' },
-  { href: '#faq', label: 'Know Before You Go' },
+  { href: '#follow', label: 'Follow' },
 ];
 
 export default function MasqueradeNav() {
@@ -51,12 +48,6 @@ export default function MasqueradeNav() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <a
-              href="#tickets"
-              className="hidden sm:inline-flex items-center px-5 py-2.5 rounded-sm bg-[var(--masq-crimson)] hover:bg-[var(--masq-crimson-bright)] text-[var(--masq-cream)] text-xs font-semibold uppercase tracking-[0.2em] transition-colors"
-            >
-              Tickets
-            </a>
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
@@ -83,13 +74,6 @@ export default function MasqueradeNav() {
                 {link.label}
               </a>
             ))}
-            <a
-              href="#tickets"
-              onClick={() => setOpen(false)}
-              className="mt-4 text-center px-5 py-3 rounded-sm bg-[var(--masq-crimson)] text-[var(--masq-cream)] text-xs font-semibold uppercase tracking-[0.2em]"
-            >
-              {event.dateShort} — Tickets
-            </a>
           </div>
         </nav>
       )}
