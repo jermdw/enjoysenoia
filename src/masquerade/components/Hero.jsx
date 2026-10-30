@@ -1,8 +1,8 @@
 import React from 'react';
-import { CalendarDays, Clock, MapPin } from 'lucide-react';
+import { CalendarDays, Clock, ExternalLink, MapPin } from 'lucide-react';
 import { Suit, Key } from './Ornament';
 import Ordinal from './Ordinal';
-import { event, heroBlurb } from '../data/eventDetails';
+import { event, thankYou } from '../data/eventDetails';
 
 /**
  * Falling playing cards. Positions are fixed rather than random so the layout
@@ -60,13 +60,9 @@ export default function Hero() {
           <Key className="w-44 sm:w-64 h-auto" />
         </div>
 
-        <div className="mt-8 max-w-2xl mx-auto space-y-4">
-          {heroBlurb.map((para) => (
-            <p key={para} className="text-lg sm:text-xl text-[var(--masq-cream-dim)] leading-relaxed">
-              {para}
-            </p>
-          ))}
-        </div>
+        <p className="mt-8 max-w-2xl mx-auto text-lg sm:text-xl text-[var(--masq-cream-dim)] leading-relaxed">
+          {thankYou.lead}
+        </p>
 
         <dl className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-8 text-[var(--masq-cream)]">
           <div className="flex items-center gap-2.5">
@@ -89,24 +85,18 @@ export default function Hero() {
         </dl>
 
         <div className="mt-11 flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-4">
-          <a
-            href="#tickets"
-            className="w-full sm:w-auto px-9 py-4 rounded-sm bg-[var(--masq-crimson)] hover:bg-[var(--masq-crimson-bright)] text-[var(--masq-cream)] text-xs font-semibold uppercase tracking-[0.25em] transition-all hover:scale-[1.03]"
-          >
-            Reserve Your Place
-          </a>
-          <a
-            href="#invitation"
-            className="w-full sm:w-auto px-9 py-4 rounded-sm border border-[var(--masq-line)] hover:border-[var(--masq-gold)] text-[var(--masq-cream)] text-xs font-semibold uppercase tracking-[0.25em] transition-colors"
-          >
-            The Invitation
-          </a>
-          <a
-            href="#arrivals"
-            className="w-full sm:w-auto px-9 py-4 rounded-sm bg-[var(--masq-crimson)] hover:bg-[var(--masq-crimson-bright)] text-[var(--masq-cream)] text-xs font-semibold uppercase tracking-[0.25em] transition-all hover:scale-[1.03]"
-          >
-            Arrivals &amp; Parking
-          </a>
+          {thankYou.photos.map((link) => (
+            <a
+              key={link.label}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-9 py-4 rounded-sm bg-[var(--masq-crimson)] hover:bg-[var(--masq-crimson-bright)] text-[var(--masq-cream)] text-xs font-semibold uppercase tracking-[0.25em] transition-all hover:scale-[1.03]"
+            >
+              <span>{link.label}</span>
+              <ExternalLink className="w-3.5 h-3.5 opacity-70" />
+            </a>
+          ))}
         </div>
 
         <p className="mt-8 text-sm text-[var(--masq-cream-dim)]">

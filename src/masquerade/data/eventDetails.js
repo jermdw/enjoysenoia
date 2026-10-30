@@ -41,11 +41,56 @@ export const event = {
   hashtag: '#DowntheRabbitHole',
 };
 
-/** Hero copy, as written by the organizer. Paragraphs render in order. */
-export const heroBlurb = [
-  'This Halloween, follow the white rabbit through the keyhole in the door for an evening inspired by the strange, elegant, and wonderfully curious world of Wonderland.',
-  'Spend the evening enjoying dinner, drinks, music, dancing, and a few curious surprises along the way.',
-];
+/**
+ * After the event. The organizer's 2026-10-29 email replaced the hero blurb
+ * ("This Halloween, follow the white rabbit…") with a thank-you and links to
+ * the night's photos, and asked for the credits below.
+ */
+export const thankYou = {
+  lead: 'Thank you for joining us! You can find your photos below.',
+  photos: [
+    {
+      label: 'Red Carpet',
+      url: 'https://listings.mpp-media.com/listings/01a18836-e069-72f8-8ecf-43061791d891/download-center?signature=52d26a44bce9f1f1b92bd8dae0d4203c96ad7323085f4f5308d0fdf080618c35',
+    },
+    { label: 'Photobooth', url: 'https://boothpics.com/X0X4' },
+  ],
+  // The organizer's poster of sponsor and Friends of Wonderland logos, as sent
+  // (973×1544, IMG_1126.jpeg).
+  sponsorLogos: '/masquerade/sponsors-2026.jpg',
+  sponsors: [
+    { name: 'Susan Medina with Modern Woodmen', url: 'https://reps.modernwoodmen.org/smedina/' },
+    { name: 'Origin Aesthetics', url: 'https://www.origin-aesthetics.com' },
+    { name: 'Roof King', url: 'https://roofkingexteriors.com' },
+    { name: 'Jake McPherson with First Community Mortgage', url: 'https://www.firstcommunitymortgage.com/loan-officer/jakemcpherson/' },
+    { name: 'Senoia Bicycle', url: 'https://www.senoiabicycle.com' },
+  ],
+  friends: [
+    { name: 'Glass House Society', role: 'floral centerpieces', url: 'https://www.facebook.com/p/Glass-House-Society-61587607612747/' },
+    { name: '4 Rivers Antiques', role: 'boutique & interior decor', url: 'https://www.facebook.com/kellyandcoantiques/' },
+    { name: 'Heather Ozee', role: 'boutique & artist', url: 'https://www.heatherozeedesigns.com' },
+    { name: 'House of Eteaquette', role: 'VIP', url: 'https://www.houseofeteaquette.com' },
+    { name: 'Crooks Marketplace', role: 'VIP Bourbon tasting', url: 'https://crookscostplus.com' },
+    { name: 'Doc Brown Spirits', role: 'VIP Bourbon tasting', url: 'https://docbrownfarm.com' },
+  ],
+  specialThanks: [
+    { name: 'Hidden Gem Bar Co.', role: 'Savannah, your Bourbon tasting guide', url: 'https://www.instagram.com/hiddengembarco' },
+    // The email spells it "Sahavge"; "Savahge" matches menu.caterer and the
+    // caterer's own email address, which the organizer gave as the link.
+    { name: 'Maison Savahge', role: 'your chef & catering', url: 'mailto:DianeSavahge@gmail.com' },
+    { name: 'Crust & Craft', role: 'your bar', url: 'https://www.crustandcraftpizza.com/senoia' },
+    { name: 'Constance Echo Palmer & cast', role: 'your acrobatic entertainment', url: 'https://www.circusecho.com' },
+    { name: 'Marvin Ross', role: 'your illusionist & magician', url: 'https://www.marvinross.com/about' },
+  ],
+  // Only `name` is linked: .masq-link's underline is drawn for one line.
+  hosts: {
+    before: 'And your hosts, the',
+    name: 'Downtown Development Authority',
+    after: ', as represented by Shauna Mooney & Taylor Schmeck.',
+    url: 'https://www.enjoysenoia.com',
+  },
+  signOff: 'See you next year, Mateys!',
+};
 
 /**
  * Ticketing. Both links go straight to Ticket Tailor's hosted checkout (the
