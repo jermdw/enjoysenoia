@@ -307,6 +307,43 @@ export const sponsorTiers = [
 export const sponsors = []; // NEEDED: [{ name, tierId, logo, url }]
 
 /**
+ * Photographs from this year's Masquerade (2026-10-24), chosen from the
+ * photographer's event and Red Carpet sets and ordered from late afternoon to
+ * the end of the night. The DDA may use them in print or digital; the credit
+ * below goes with them wherever they're shown. Files are her web-resolution
+ * exports, resized to 1600px on the long side with EXIF stripped; the file
+ * number is hers (mppmediadowntherabbithole<n>.JPG).
+ */
+export const gallery2026 = [
+  { src: '/masquerade/gallery-2026/mpp-2026-01.jpg', w: 1600, h: 1066, alt: 'An aerial view of the white tents on the lawn beside Marimac Lake in late afternoon sun.' },
+  { src: '/masquerade/gallery-2026/mpp-2026-16.jpg', w: 1600, h: 1066, alt: 'The Stone Lodge dressed for Wonderland, its porch hung with giant playing cards and red paper roses.' },
+  { src: '/masquerade/gallery-2026/mpp-2026-74.jpg', w: 1024, h: 1536, alt: 'The keyhole doorway at the top of the path, a strip of green carpet leading through it toward the tents.' },
+  { src: '/masquerade/gallery-2026/mpp-2026-12.jpg', w: 1024, h: 1536, alt: 'A long table set with black linen, a gold urn of red roses and a single white taper.' },
+  { src: '/masquerade/gallery-2026/mpp-2026-09.jpg', w: 1600, h: 1066, alt: 'Paper lanterns, trailing vines and a gold chandelier hung beneath the tent.' },
+  { src: '/masquerade/gallery-2026/mpp-2026-41.jpg', w: 1600, h: 1066, alt: 'Glasses of champagne tagged "Drink Me" on a black-and-white striped tablecloth.' },
+  { src: '/masquerade/gallery-2026/mpp-2026-38.jpg', w: 1600, h: 1066, alt: 'Guests in gowns, masks and costumes arriving along the path at golden hour.' },
+  { src: '/masquerade/gallery-2026/mpp-2026-123.jpg', w: 1600, h: 1066, alt: 'The Mad Hatter and a masked guest on the red carpet, holding up a giant pocket watch.' },
+  { src: '/masquerade/gallery-2026/mpp-2026-145.jpg', w: 1600, h: 1066, alt: 'Three guests in silk gowns and masks posing together on the red carpet.' },
+  { src: '/masquerade/gallery-2026/mpp-2026-53.jpg', w: 1600, h: 1066, alt: 'The Cheshire Cat’s eyes and grin hanging among the leaves of a tree.' },
+  { src: '/masquerade/gallery-2026/mpp-2026-61.jpg', w: 1600, h: 1066, alt: 'The White Rabbit, Alice and the Mad Hatter around a giant chessboard on the lawn.' },
+  { src: '/masquerade/gallery-2026/mpp-2026-57.jpg', w: 1600, h: 1066, alt: 'An aerialist in a white rabbit costume hanging from a hoop beneath the trees.' },
+  { src: '/masquerade/gallery-2026/mpp-2026-70.jpg', w: 1600, h: 1066, alt: 'Two acrobats in a high lift on the lawn above the lake.' },
+  { src: '/masquerade/gallery-2026/mpp-2026-68.jpg', w: 1600, h: 1066, alt: 'Costumed guests inside the Stone Lodge, among them the Queen of Hearts and a giant red rose hat.' },
+  { src: '/masquerade/gallery-2026/mpp-2026-111.jpg', w: 1600, h: 1066, alt: 'The DJ at his decks in a Mad Hatter coat, top hat and mask.' },
+  { src: '/masquerade/gallery-2026/mpp-2026-105.jpg', w: 1600, h: 1066, alt: 'A crowd of costumed guests gathered outside the Lodge after dark.' },
+  { src: '/masquerade/gallery-2026/mpp-2026-104.jpg', w: 1600, h: 1066, alt: 'Guests wearing oversized red-and-white toadstool hats, laughing together at night.' },
+  { src: '/masquerade/gallery-2026/mpp-2026-88.jpg', w: 1024, h: 1536, alt: 'A fire dancer in a silver corset spinning flames in the dark.' },
+  { src: '/masquerade/gallery-2026/mpp-2026-95.jpg', w: 1600, h: 1066, alt: 'The fire dancer raising a flaming staff overhead as guests watch.' },
+  { src: '/masquerade/gallery-2026/mpp-2026-115.jpg', w: 1600, h: 1066, alt: 'The Caterpillar in green and blue lounging beside a giant toadstool with a glowing hookah.' },
+];
+
+export const photoCredit2026 = {
+  before: 'Photographs © 2026',
+  name: 'Melissa Prosser Photography, LLC',
+  url: 'https://www.melissaprosser.com/license',
+};
+
+/**
  * Photographs from the first two Masquerades, ordered so the gallery runs from
  * late afternoon through to the end of the night.
  *

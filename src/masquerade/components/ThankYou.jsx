@@ -27,7 +27,7 @@ function CreditList({ title, items }) {
 /** Post-event credits, in the order the organizer listed them. */
 export default function ThankYou() {
   return (
-    <section id="thanks" className="py-24 sm:py-32 bg-[var(--masq-ink-soft)] scroll-mt-16">
+    <section id="thanks" className="py-24 sm:py-32 bg-[var(--masq-ink)] scroll-mt-16">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl text-[var(--masq-cream)]">
           Please be sure to thank &amp; visit our sponsors

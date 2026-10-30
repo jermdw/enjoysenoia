@@ -4,6 +4,7 @@ import { Suit } from './Ornament';
 
 // Post-event: only the sections still on the page (see MasqueradePage).
 const links = [
+  { href: '#photos', label: '2026 Photos' },
   { href: '#thanks', label: 'Our Sponsors' },
   { href: '#gallery', label: 'Past Years' },
   { href: '#follow', label: 'Follow' },
