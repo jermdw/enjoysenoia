@@ -48,11 +48,10 @@ export const event = {
  */
 export const thankYou = {
   lead: 'Thank you for joining us! You can find your photos below.',
+  // The Red Carpet download link came down 2026-10-30: it opened the
+  // photographer's whole shoot, which she didn't want shared. Guests get a
+  // Red Carpet button again once she sends a link to their photos alone.
   photos: [
-    {
-      label: 'Red Carpet',
-      url: 'https://listings.mpp-media.com/listings/01a18836-e069-72f8-8ecf-43061791d891/download-center?signature=52d26a44bce9f1f1b92bd8dae0d4203c96ad7323085f4f5308d0fdf080618c35',
-    },
     { label: 'Photobooth', url: 'https://boothpics.com/X0X4' },
   ],
   // The organizer's poster of sponsor and Friends of Wonderland logos, as sent
@@ -442,6 +441,6 @@ export const seo = {
   // Post-event wording; also the static description scripts/build-microsite-html.mjs
   // writes for link unfurlers.
   description:
-    'Thank you for joining us at the Stone Lodge at Marimac Lake in Senoia, Georgia, on October 24, 2026. Find your Red Carpet and Photobooth photos, and thank the sponsors who made the night possible.',
+    'Thank you for joining us at the Stone Lodge at Marimac Lake in Senoia, Georgia, on October 24, 2026. Find your Photobooth photos, and thank the sponsors who made the night possible.',
   ogImage: 'https://thehalloweenmasquerade.com/masquerade/og-image.png', // 1200x630; scripts/build-og-images.mjs
 };
