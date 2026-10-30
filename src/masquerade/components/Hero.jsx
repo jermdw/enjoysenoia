@@ -99,9 +99,6 @@ export default function Hero() {
           ))}
         </div>
 
-        <p className="mt-8 text-sm text-[var(--masq-cream-dim)]">
-          {event.ageLabel} · {event.weatherLabel}
-        </p>
       </div>
     </section>
   );

@@ -4,13 +4,7 @@ import MasqueradeSEO from './components/MasqueradeSEO';
 import MasqueradeNav from './components/MasqueradeNav';
 import Hero from './components/Hero';
 import ThankYou from './components/ThankYou';
-import Invitation from './components/Invitation';
-import ArrivalsParking from './components/ArrivalsParking';
-import Tickets from './components/Tickets';
-import Schedule from './components/Schedule';
 import Gallery from './components/Gallery';
-import Sponsors from './components/Sponsors';
-import Faq from './components/Faq';
 import Follow from './components/Follow';
 
 /**
@@ -20,6 +14,10 @@ import Follow from './components/Follow';
  * Deploy note: this lives at /masquerade today. Serving it at
  * thehalloweenmasquerade.com needs a second Firebase Hosting site and a
  * `hosting` array with targets in firebase.json — see README-masquerade.md.
+ *
+ * Post-event (2026-10-29): the pre-event sections — Invitation, ArrivalsParking,
+ * Tickets, Schedule, Sponsors and Faq — are off the page. Their components and
+ * data are kept for next year; add them back here to reopen sales.
  */
 export default function MasqueradePage() {
   useEffect(() => {
@@ -39,13 +37,7 @@ export default function MasqueradePage() {
       <main>
         <Hero />
         <ThankYou />
-        <Invitation />
-        <ArrivalsParking />
-        <Tickets />
-        <Schedule />
         <Gallery />
-        <Sponsors />
-        <Faq />
         <Follow />
       </main>
     </div>
