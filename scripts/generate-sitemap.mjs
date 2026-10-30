@@ -48,6 +48,8 @@ const EXCLUDED_ROUTES = new Set(['/masquerade', '/halloween']);
 EXCLUDED_ROUTES.add('/sponsor-logo');
 // Opened from the cancel link in a volunteer's confirmation email; noindexed too.
 EXCLUDED_ROUTES.add('/volunteer-cancel');
+// The Masquerade's Red Carpet downloads, for ticket holders with a link; noindexed too.
+EXCLUDED_ROUTES.add('/masquerade/red-carpet');
 
 /* ---------------------------- built-in routes --------------------------- */
 

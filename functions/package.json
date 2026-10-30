@@ -5,7 +5,7 @@
   "main": "index.js",
   "engines": { "node": "22" },
   "scripts": {
-    "test": "node --test contactEmail.test.js sponsorLogo.test.js volunteerSignup.test.js"
+    "test": "node --test contactEmail.test.js sponsorLogo.test.js volunteerSignup.test.js redCarpet.test.js"
   },
   "dependencies": {
     "@googleapis/drive": "^8.0.0",

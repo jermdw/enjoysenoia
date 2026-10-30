@@ -3,7 +3,7 @@ import { initializeAppCheck, ReCaptchaEnterpriseProvider } from 'firebase/app-ch
 import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
 import { getAuth, connectAuthEmulator } from 'firebase/auth';
 import { getStorage, connectStorageEmulator } from 'firebase/storage';
-import { getFunctions } from 'firebase/functions';
+import { getFunctions, connectFunctionsEmulator } from 'firebase/functions';
 
 // Configuration comes from the environment. A production build that is missing
 // any of it fails loudly rather than silently pointing at a placeholder project
@@ -69,7 +69,8 @@ export const db = getFirestore(app);
 //   VITE_FIRESTORE_EMULATOR_HOST=127.0.0.1:8080
 //   VITE_AUTH_EMULATOR_HOST=127.0.0.1:9099
 //   VITE_STORAGE_EMULATOR_HOST=127.0.0.1:9199
-const emulatorHost = (name) => {
+//   VITE_FUNCTIONS_EMULATOR_HOST=127.0.0.1:5001
+export const emulatorHost = (name) => {
   const value = import.meta.env.DEV && import.meta.env[name];
   if (!value) return null;
   const [host, port] = value.split(':');
@@ -89,4 +90,6 @@ if (isFirstInit && authEmulator) {
 }
 const storageEmulator = emulatorHost('VITE_STORAGE_EMULATOR_HOST');
 if (isFirstInit && storageEmulator) connectStorageEmulator(storage, ...storageEmulator);
+const functionsEmulator = emulatorHost('VITE_FUNCTIONS_EMULATOR_HOST');
+if (isFirstInit && functionsEmulator) connectFunctionsEmulator(functions, ...functionsEmulator);
 export default app;

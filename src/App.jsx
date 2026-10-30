@@ -26,6 +26,7 @@ import VolunteerCancelPage from './pages/VolunteerCancelPage';
 const AdminLoginPage = lazy(() => import('./pages/AdminLoginPage'));
 const AdminPortalPage = lazy(() => import('./pages/AdminPortalPage'));
 import MasqueradePage from './masquerade/MasqueradePage';
+import RedCarpetPage from './masquerade/RedCarpetPage';
 import HalloweenPage from './halloween/HalloweenPage';
 import ChristmasPage from './christmas/ChristmasPage';
 
@@ -101,6 +102,7 @@ export default function App() {
     return (
       <Routes>
         <Route path="/" element={<MasqueradePage />} />
+        <Route path="/red-carpet" element={<RedCarpetPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     );
@@ -110,6 +112,7 @@ export default function App() {
     <Routes>
       {/* Standalone micro-site: no Enjoy Senoia navbar or footer. */}
       <Route path="/masquerade" element={<MasqueradePage />} />
+      <Route path="/masquerade/red-carpet" element={<RedCarpetPage />} />
       <Route path="/halloween" element={<HalloweenPage />} />
       <Route path="/christmas" element={<ChristmasPage />} />
 
