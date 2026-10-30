@@ -1882,7 +1882,7 @@
     "title": "2026 Senoia Candlelight Tour of Homes",
     "date_time": "December 13, 2026 3:00 PM",
     "category": "DDA Event",
-    "description": "Senoia's annual Candlelight Christmas Tour of Homes: eight stops in downtown Senoia, Sunday, December 13 from 3 to 8 PM. Tickets are $30 and go on sale November 1.",
+    "description": "Senoia's annual Candlelight Christmas Tour of Homes: eight stops in downtown Senoia, Sunday, December 13 from 3 to 8 PM. Tickets are $30 and go on sale Saturday, October 31.",
     "image": "https://firebasestorage.googleapis.com/v0/b/enjoysenoia.firebasestorage.app/o/webflow%2Fcms%2F6a937f3012f236c0e8937b18_Untitled__1200_x_628_px___9_.jpg?alt=media",
     "link": "/events/2026-senoia-candlelight-tour-of-homes",
     "is_recurring": false,
@@ -1908,7 +1908,10 @@
     "photos": [],
     "video_url": null,
     "gallery_slug": null,
-    "admission_note": "Tickets $30 · On sale November 1",
-    "details_html": "<h3>Event Overview</h3>\n<p>Join us Sunday, December 13, from 3:00 to 8:00 PM for Senoia's annual Candlelight Christmas Tour of Homes. This year's tour has 8 stops.</p>\n<h3>Tickets</h3>\n<p>Tickets are $30 and go on sale November 1.</p>\n<h3>Tour Booklet Pickup</h3>\n<p>Pick up your tour booklet at the Senoia Welcome Center, 68 Main Street, beginning Monday, December 7.</p>\n<p>Welcome Center hours: Monday through Saturday, 11 AM to 6 PM, and Sunday beginning at noon. Phone: (770) 727-9173.</p>\n<h3>Please Don't Buy or Sell Tickets Online</h3>\n<p><strong>Do not sell or trade Tour of Homes tickets online.</strong> Please coordinate with Senoia Welcome Center staff instead. Too many people have been scammed trying to buy or sell tickets on Facebook.</p>"
+    "admission_note": "Tickets $30 · On sale Saturday, October 31 at 8 AM",
+    "ticket_url": "https://buytickets.at/senoiadda/2477581",
+    "ticket_label": "Buy Tour of Homes Tickets",
+    "on_sale_at": "2026-10-31T08:00:00-04:00",
+    "details_html": "<h3>Event Overview</h3>\n<p>Join us Sunday, December 13, from 3:00 to 8:00 PM for Senoia's annual Candlelight Christmas Tour of Homes. This year's tour has 8 stops.</p>\n<h3>Tickets</h3>\n<p>Tickets are $30 and go on sale Saturday, October 31 at 8 AM.</p>\n<h3>Tour Booklet Pickup</h3>\n<p>Pick up your tour booklet at the Senoia Welcome Center, 68 Main Street, beginning Monday, December 7.</p>\n<p>Welcome Center hours: Monday through Saturday, 11 AM to 6 PM, and Sunday beginning at noon. Phone: (770) 727-9173.</p>\n<h3>Please Don't Buy or Sell Tickets Online</h3>\n<p><strong>Do not sell or trade Tour of Homes tickets online.</strong> Please coordinate with Senoia Welcome Center staff instead. Too many people have been scammed trying to buy or sell tickets on Facebook.</p>"
   }
 ]
