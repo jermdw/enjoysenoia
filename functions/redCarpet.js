@@ -76,7 +76,7 @@ export function buildRedCarpetLinkEmail({ to, token, expiresAt }) {
   <p style="margin: 28px 0;">
     <a href="${url}" style="background: #8B1A1A; color: #fff; padding: 12px 24px; text-decoration: none; border-radius: 2px;">See the Red Carpet photos</a>
   </p>
-  <p style="font-size: 13px; color: #666;">This link works until ${escapeHtml(until)}. After that, ask for a new one at <a href="${SITE_URL}/red-carpet">thehalloweenmasquerade.com/red-carpet</a>. Please don't forward it; it's just for you.</p>
+  <p style="font-size: 13px; color: #666;">This link works until ${escapeHtml(until)}. After that, ask for a new one at <a href="${SITE_URL}/red-carpet">thehalloweenmasquerade.com/red-carpet</a>. Feel free to share it with your party, but please don't post it publicly.</p>
   <p style="font-size: 13px; color: #666;">Photographs &copy; 2026 Melissa Prosser Photography, LLC. For personal use.</p>
 </div>`.trim();
   return {
