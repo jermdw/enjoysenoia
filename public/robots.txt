@@ -3,5 +3,6 @@ Allow: /
 Disallow: /admin
 Disallow: /sponsor-logo
 Disallow: /volunteer-cancel
+Disallow: /masquerade/red-carpet
 
 Sitemap: https://www.enjoysenoia.com/sitemap.xml

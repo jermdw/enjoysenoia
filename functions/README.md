@@ -146,6 +146,36 @@ patch; `volunteer_url` in `data/event_overrides.json` is the built-in default).
 deployed by CI; deploy both with `--project enjoysenoia` before the page goes
 live: `firebase deploy --only firestore:rules,functions --project enjoysenoia`.
 
+## Masquerade Red Carpet downloads
+
+`/red-carpet` on thehalloweenmasquerade.com lets ticket holders download a
+print-ready copy of their Red Carpet photo. The photographer did not want her
+shoot public, so it is gated by an emailed magic link (details in
+`redCarpet.js`):
+
+- `requestRedCarpetLink` (callable; contact-form protections, plus 3 links per
+  address per hour) looks the address up in `masquerade_photo_guests` and, if it
+  is there, stores `red_carpet_links/{sha256(token)}` (expires in 14 days) and
+  emails the link. It answers `{ ok: true }` either way, so the form can't be
+  used to learn who bought tickets.
+- `redCarpetPhotos` (HTTP, because `<img>` tags load from it) checks the token on
+  every request and streams from `private/masquerade-2026/red-carpet/{thumb,full}/<n>.jpg`.
+  `storage.rules` keeps `private/` closed to every browser, admins included.
+
+Guests pick their own photos from the whole set; nothing ties a photo to a
+buyer. Only hashes are stored. Neither collection has a rules block.
+
+**Going live, in this order** (merging deploys only the page):
+
+1. Rules: `gh workflow run deploy-backend.yml --ref main -f only=rules`. The
+   upload script refuses to run until `private/` is closed.
+2. Photos: `scripts/upload_red_carpet_photos.sh ~/Downloads/halloween_masquerade_photos`
+   (needs gcloud with write access and ImageMagick; about 1.6 GB).
+3. Guest list: export the Masquerade orders (or issued tickets) from Ticket
+   Tailor as CSV, then `python3 scripts/import_red_carpet_guests.py orders.csv --project enjoysenoia`.
+   Re-run with a newer export for door sales; existing guests are kept.
+4. Functions: `gh workflow run deploy-backend.yml --ref main -f only=functions`.
+
 ## Deploying from GitHub Actions
 
 `.github/workflows/deploy-backend.yml` deploys rules, indexes or functions from
