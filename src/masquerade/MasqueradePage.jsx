@@ -6,6 +6,7 @@ import Hero from './components/Hero';
 import ThankYou from './components/ThankYou';
 import Gallery from './components/Gallery';
 import Follow from './components/Follow';
+import { gallery2026, photoCredit2026 } from './data/eventDetails';
 
 /**
  * The Masquerade micro-site — its own brand, rendered outside the DDA Layout
@@ -36,6 +37,15 @@ export default function MasqueradePage() {
       <MasqueradeNav />
       <main>
         <Hero />
+        <Gallery
+          id="photos"
+          eyebrow="October 24, 2026"
+          title="Down the Rabbit Hole"
+          lead="This year's Masquerade, from golden hour on the lake to the last of the fire."
+          label="Photographs from the 2026 Masquerade"
+          photos={gallery2026}
+          credit={photoCredit2026}
+        />
         <ThankYou />
         <Gallery />
         <Follow />

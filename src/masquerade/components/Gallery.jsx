@@ -1,21 +1,34 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
 import { SectionHeading } from './Ornament';
-import { gallery } from '../data/eventDetails';
+import { gallery as pastYears } from '../data/eventDetails';
 
 const INTERVAL = 5000;
 
 /**
- * Photographs from previous years, as a carousel that advances on its own.
+ * A carousel of photographs that advances on its own. With no props it shows
+ * the previous years; MasqueradePage also uses it for this year's photos.
  *
- * The order still runs late afternoon to end of night, so advancing forward
- * walks the evening — see the note on `gallery` in eventDetails.js.
+ * Each set runs late afternoon to end of night, so advancing forward walks the
+ * evening — see the notes on `gallery` and `gallery2026` in eventDetails.js.
  *
  * Frames are letterboxed rather than cropped: the set is 15 portrait and 13
  * landscape, and a fixed aspect box would cut the tall ones badly. A height-
  * constrained box with object-contain lets each photo keep its own shape.
+ *
+ * `credit` ({ before, name, url }) is a photographer credit shown under the
+ * frame.
  */
-export default function Gallery() {
+export default function Gallery({
+  id = 'gallery',
+  eyebrow = 'Previous years',
+  title = 'From Past Masquerades',
+  lead = 'The first two years, from the tables being laid to the last of the fire.',
+  label = 'Photographs from previous Masquerades',
+  photos: gallery = pastYears,
+  credit,
+  className = 'bg-[var(--masq-ink-soft)]',
+}) {
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(true);
   const count = gallery.length;
@@ -37,18 +50,14 @@ export default function Gallery() {
   };
 
   return (
-    <section id="gallery" className="py-24 sm:py-32 bg-[var(--masq-ink-soft)] scroll-mt-16">
+    <section id={id} className={`py-24 sm:py-32 scroll-mt-16 ${className}`}>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="Previous years"
-          title="From Past Masquerades"
-          lead="The first two years, from the tables being laid to the last of the fire."
-        />
+        <SectionHeading eyebrow={eyebrow} title={title} lead={lead} />
 
         <div
           role="group"
           aria-roledescription="carousel"
-          aria-label="Photographs from previous Masquerades"
+          aria-label={label}
           tabIndex={0}
           onKeyDown={onKeyDown}
           onMouseEnter={() => setPlaying(false)}
@@ -110,6 +119,15 @@ export default function Gallery() {
             </button>
           </div>
         </div>
+
+        {credit && (
+          <p className="mt-5 text-center text-sm text-[var(--masq-cream-dim)]">
+            {credit.before}{' '}
+            <a href={credit.url} target="_blank" rel="noopener noreferrer" className="masq-link">
+              {credit.name}
+            </a>
+          </p>
+        )}
       </div>
     </section>
   );
