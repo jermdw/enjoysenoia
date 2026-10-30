@@ -40,7 +40,7 @@ export const events = [
     slug: '2026-senoia-candlelight-tour-of-homes',
     title: 'Candlelight Tour of Homes',
     when: 'Sunday, December 13',
-    blurb: 'Eight stops in downtown Senoia, 3 to 8 PM. Tickets are $30 and go on sale November 1.',
+    blurb: 'Eight stops in downtown Senoia, 3 to 8 PM. Tickets are $30 and go on sale Saturday, October 31.',
     icon: 'home',
   },
 ];

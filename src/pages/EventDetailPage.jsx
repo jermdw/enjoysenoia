@@ -37,6 +37,11 @@ export default function EventDetailPage() {
   const isPorchfest = slug?.includes('porchfest') || event?.title?.toLowerCase().includes('porchfest');
 
   let ticketUrl = event?.ticket_url || null;
+  // `on_sale_at` (ISO time with offset) holds the ticket link back until the box
+  // office opens, so it can be merged ahead of time and needs no scheduled job.
+  // Until then the page shows `admission_note`. An unparseable value is ignored.
+  const onSaleAt = Date.parse(event?.on_sale_at ?? '');
+  if (ticketUrl && Date.now() < onSaleAt) ticketUrl = null;
   if (!ticketUrl && isCarShow) ticketUrl = 'https://senoiacar.show';
   if (!ticketUrl && isPorchfest) ticketUrl = 'https://senoiaporchfest.org';
 
