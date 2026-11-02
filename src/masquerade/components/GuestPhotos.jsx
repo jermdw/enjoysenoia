@@ -9,10 +9,23 @@ import { thankYou } from '../data/eventDetails';
 export default function GuestPhotos() {
   const photos = thankYou.guestPhotos;
   const total = photos.length;
+  const { video } = thankYou;
 
   return (
     <section id="photos" className="py-16 sm:py-24 bg-[var(--masq-ink)] scroll-mt-16">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <video
+          src={video.src}
+          poster={video.poster}
+          controls
+          preload="metadata"
+          playsInline
+          aria-label={video.title}
+          className="w-full mb-10 sm:mb-14 rounded-sm border border-[var(--masq-line)] bg-black"
+        >
+          Your browser can't play this video.
+        </video>
+
         <ul className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
           {photos.map((photo, i) => (
             <li

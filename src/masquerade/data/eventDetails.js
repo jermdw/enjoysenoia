@@ -54,6 +54,13 @@ export const thankYou = {
     { label: 'Red Carpet', url: 'https://listings.mpp-media.com/listings/01a18d09-9ebd-710e-bba4-3035a9c7ec0e/download-center?signature=f0cc231e6779ff015510df35afd4b2a96d9e3c3be249019bf267f41a127b6870' },
     { label: 'Photobooth', url: 'https://boothpics.com/X0X4' },
   ],
+  // The night's video, embedded and served from this site. Re-encoded to 720p
+  // from the photographer's 4K file to keep it small enough for the repo.
+  video: {
+    src: '/masquerade/video/masquerade-2026.mp4',
+    poster: '/masquerade/video/masquerade-2026-poster.jpg',
+    title: 'The 3rd Annual Halloween Masquerade: Down the Rabbit Hole',
+  },
   // Photos from this year, as sent with the 2026-11-02 email. Shown as a grid
   // under the thank-you buttons.
   guestPhotos: [
