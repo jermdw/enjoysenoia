@@ -49,11 +49,11 @@ export default function AboutDDAPage() {
             </div>
             <h2 className="text-xl font-bold font-serif text-stone-900">Regular Monthly Meetings</h2>
             <p className="text-sm text-stone-600 leading-relaxed">
-              The Senoia DDA meets on the <strong>3rd Monday of each month at 6:30 PM</strong> at Senoia City Hall. All meetings are open to the public.
+              The Senoia DDA meets on the <strong>2nd Tuesday of each month at 6:00 PM</strong><sup>*</sup> at the Welcome Center (68 Main St). All meetings are open to the public.
             </p>
-            <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 text-sm text-amber-900 leading-relaxed" role="note">
-              <strong>Meeting rescheduled:</strong> The DDA meeting previously set for <strong>November 10</strong> has been moved to <strong>November 17 at 6:00 PM</strong> at the <strong>Welcome Center</strong> (68 Main St).
-            </div>
+            <p className="text-xs text-stone-500 leading-relaxed">
+              <sup>*</sup>November&rsquo;s meeting is on <strong>Tuesday, November 17 at 6:00 PM</strong> at the Welcome Center (68 Main St) instead of November 10.
+            </p>
             <div className="pt-2">
               <Link
                 to="/files-forms-and-downloads"
