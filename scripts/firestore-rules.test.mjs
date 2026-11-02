@@ -319,6 +319,22 @@ await check('admin may NOT cancel one twice',
 await check('admin may NOT delete a sign-up',
   () => assertFails(deleteDoc(doc(admin, 'volunteer_signups/su1'))));
 
+// Written only by the requestRedCarpetLink function and the import script
+// (Admin SDK); no rules block, so every browser read and write is refused.
+console.log('\nRed Carpet guest list and links');
+await env.withSecurityRulesDisabled(async (ctx) => {
+  const fs = ctx.firestore();
+  await setDoc(doc(fs, 'masquerade_photo_guests/abc'), { addedAt: serverTimestamp() });
+  await setDoc(doc(fs, 'red_carpet_links/def'), { emailHash: 'abc' });
+});
+for (const path of ['masquerade_photo_guests/abc', 'red_carpet_links/def']) {
+  await check(`public may NOT read ${path}`, () => assertFails(getDoc(doc(pub, path))));
+  await check(`admin may NOT read ${path}`, () => assertFails(getDoc(doc(admin, path))));
+  await check(`admin may NOT write ${path}`, () => assertFails(setDoc(doc(admin, path), { x: 1 })));
+}
+await check('public may NOT add itself to the guest list',
+  () => assertFails(setDoc(doc(pub, 'masquerade_photo_guests/new'), { addedAt: serverTimestamp() })));
+
 await env.cleanup();
 console.log(`\n${pass} passed, ${fail} failed\n`);
 process.exit(fail ? 1 : 0);

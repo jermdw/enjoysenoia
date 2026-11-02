@@ -21,6 +21,12 @@
  * through these (the Admin SDK bypasses rules after validating). The shift's
  * `spotsFilled` only changes inside a transaction that re-checks state.
  *
+ * requestRedCarpetLink / redCarpetPhotos: Masquerade guests' Red Carpet photo
+ * downloads, behind an emailed magic link (see redCarpet.js). The link request
+ * gets the contact form's protections; the photo endpoint is a plain HTTP
+ * function because <img> tags can't call a callable or carry App Check. Its
+ * token is the credential, checked on every request.
+ *
  * The contact message is written to `contact_messages` BEFORE the email is attempted,
  * so a failed send never loses someone's enquiry. The collection has no rules
  * block, so clients cannot read or write it; only this function can.
@@ -28,7 +34,8 @@
 import { createHash, randomBytes } from 'node:crypto';
 import { initializeApp } from 'firebase-admin/app';
 import { FieldValue, Timestamp, getFirestore } from 'firebase-admin/firestore';
-import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { getStorage } from 'firebase-admin/storage';
+import { HttpsError, onCall, onRequest } from 'firebase-functions/v2/https';
 import { defineSecret, defineString } from 'firebase-functions/params';
 import { auth, drive } from '@googleapis/drive';
 import { Readable } from 'node:stream';
@@ -41,6 +48,20 @@ import {
   buildVolunteerStaffEmail,
   validateVolunteerSignup,
 } from './volunteerSignup.js';
+import {
+  GUESTS,
+  LINKS,
+  LINK_TTL_MS,
+  PHOTO_RE,
+  STORAGE_PREFIX,
+  TOKEN_RE,
+  buildRedCarpetLinkEmail,
+  downloadName,
+  emailHash,
+  photoPath,
+  sha256,
+  validateLinkRequest,
+} from './redCarpet.js';
 
 initializeApp();
 
@@ -60,6 +81,9 @@ const RATE_LIMIT = 5;
 const RATE_WINDOW_MS = 60 * 60 * 1000;
 const LOGO_RATE_LIMIT = 10;
 const VOLUNTEER_RATE_LIMIT = 10;
+const RED_CARPET_RATE_LIMIT = 10;
+// Links per guest address per hour, so the form can't flood someone's inbox.
+const RED_CARPET_EMAIL_LIMIT = 3;
 
 /**
  * Allows RATE_LIMIT submissions per IP per hour. One small document per hashed
@@ -382,5 +406,135 @@ export const cancelVolunteerSignup = onCall(
     ]);
 
     return { ok: true };
+  }
+);
+
+export const requestRedCarpetLink = onCall(
+  {
+    region: 'us-central1',
+    enforceAppCheck: true,
+    consumeAppCheckToken: true,
+    secrets: [RESEND_API_KEY],
+    maxInstances: 5,
+  },
+  async (request) => {
+    const body = request.data && typeof request.data === 'object' ? request.data : {};
+
+    if (typeof body.website === 'string' && body.website.trim() !== '') return { ok: true };
+
+    if (typeof body.elapsedMs !== 'number' || body.elapsedMs < MIN_FILL_MS) {
+      throw new HttpsError('failed-precondition', 'Please take a moment and try again.');
+    }
+
+    const checked = validateLinkRequest(body);
+    if (!checked.ok) throw new HttpsError('invalid-argument', 'Please enter a valid email address.');
+
+    const db = getFirestore();
+    const ip = request.rawRequest?.ip || 'unknown';
+    const ipHash = createHash('sha256').update(ip).digest('hex');
+    if (!(await takeRateLimitSlot(db, ipHash, 'red_carpet_rate', RED_CARPET_RATE_LIMIT))) {
+      throw new HttpsError('resource-exhausted', 'Too many requests from this connection. Please try again later.');
+    }
+
+    // From here on the answer is { ok: true } whether or not a link goes out,
+    // so the form can't be used to find out who bought tickets.
+    const hash = emailHash(checked.email);
+    const guest = await db.doc(`${GUESTS}/${hash}`).get();
+    if (!guest.exists) return { ok: true };
+    if (!(await takeRateLimitSlot(db, hash, 'red_carpet_email_rate', RED_CARPET_EMAIL_LIMIT))) return { ok: true };
+
+    const token = randomBytes(24).toString('hex');
+    const expiresAt = new Date(Date.now() + LINK_TTL_MS);
+    await db.doc(`${LINKS}/${sha256(token)}`).create({
+      emailHash: hash,
+      createdAt: FieldValue.serverTimestamp(),
+      expiresAt: Timestamp.fromDate(expiresAt),
+    });
+    await sendBestEffort(
+      `requestRedCarpetLink(${hash.slice(0, 8)})`,
+      buildRedCarpetLinkEmail({ to: checked.email, token, expiresAt })
+    );
+    return { ok: true };
+  }
+);
+
+/**
+ * GET ?t=<token>                  -> { photos: ['123', ...], expiresAt } (JSON)
+ * GET ?t=<token>&n=<n>            -> that photo's thumbnail
+ * GET ?t=<token>&n=<n>&size=full  -> the print file, as a download
+ *
+ * 404 for a token that never existed, 410 for one past its expiry; the page
+ * offers a new link for either.
+ */
+export const redCarpetPhotos = onRequest(
+  {
+    region: 'us-central1',
+    // Matched against the whole Origin header: the Masquerade's domain, its
+    // Firebase hosts and preview channels, enjoysenoia.com/masquerade, and dev.
+    cors: [
+      /^https:\/\/(www\.)?thehalloweenmasquerade\.com$/,
+      /^https:\/\/thehalloweenmasquerade(--[\w-]+)?\.(web\.app|firebaseapp\.com)$/,
+      /^https:\/\/(www\.)?enjoysenoia\.com$/,
+      /^http:\/\/localhost(:\d+)?$/,
+    ],
+    maxInstances: 10,
+    memory: '512MiB',
+  },
+  async (req, res) => {
+    if (req.method !== 'GET') {
+      res.status(405).end();
+      return;
+    }
+    const token = typeof req.query.t === 'string' ? req.query.t : '';
+    if (!TOKEN_RE.test(token)) {
+      res.status(404).json({ error: 'not-found' });
+      return;
+    }
+    const link = await getFirestore().doc(`${LINKS}/${sha256(token)}`).get();
+    if (!link.exists) {
+      res.status(404).json({ error: 'not-found' });
+      return;
+    }
+    const expiresAt = link.data().expiresAt.toDate();
+    if (expiresAt.getTime() < Date.now()) {
+      res.status(410).json({ error: 'expired' });
+      return;
+    }
+
+    const bucket = getStorage().bucket();
+    const n = req.query.n;
+    if (n === undefined) {
+      const [files] = await bucket.getFiles({ prefix: `${STORAGE_PREFIX}/thumb/` });
+      const photos = files
+        .map((f) => f.name.slice(f.name.lastIndexOf('/') + 1).replace(/\.jpg$/, ''))
+        .filter((name) => PHOTO_RE.test(name))
+        .sort((a, b) => Number(a) - Number(b));
+      res.set('Cache-Control', 'private, no-store').json({ photos, expiresAt: expiresAt.toISOString() });
+      return;
+    }
+
+    if (typeof n !== 'string' || !PHOTO_RE.test(n)) {
+      res.status(404).json({ error: 'not-found' });
+      return;
+    }
+    const full = req.query.size === 'full';
+    const file = bucket.file(photoPath(n, full ? 'full' : 'thumb'));
+    const [exists] = await file.exists();
+    if (!exists) {
+      res.status(404).json({ error: 'not-found' });
+      return;
+    }
+    res.set('Content-Type', 'image/jpeg');
+    // Private: a shared cache must never hand one guest's request to another.
+    res.set('Cache-Control', 'private, max-age=3600');
+    if (full) res.set('Content-Disposition', `attachment; filename="${downloadName(n)}"`);
+    file
+      .createReadStream()
+      .on('error', (err) => {
+        console.error(`redCarpetPhotos: reading ${file.name} failed`, err);
+        if (!res.headersSent) res.status(500).end();
+        else res.destroy(err);
+      })
+      .pipe(res);
   }
 );

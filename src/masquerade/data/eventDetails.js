@@ -48,10 +48,12 @@ export const event = {
  */
 export const thankYou = {
   lead: 'Thank you for joining us! You can find your photos below.',
-  // The 2026-11-02 email replaced the old Red Carpet link (which opened the
-  // photographer's whole shoot) with a listing of guest photos only.
+  // `to` is a page on this site (relative to the Masquerade's home), `url` an
+  // outside link. Red Carpet once linked the photographer's whole download
+  // center, which she didn't want shared; it now opens the guest-only
+  // download page (RedCarpetPage, functions/redCarpet.js).
   photos: [
-    { label: 'Red Carpet', url: 'https://listings.mpp-media.com/listings/01a18d09-9ebd-710e-bba4-3035a9c7ec0e/download-center?signature=f0cc231e6779ff015510df35afd4b2a96d9e3c3be249019bf267f41a127b6870' },
+    { label: 'Red Carpet', to: 'red-carpet' },
     { label: 'Photobooth', url: 'https://boothpics.com/X0X4' },
   ],
   // The night's video, embedded and served from this site. Re-encoded to 720p
@@ -460,6 +462,6 @@ export const seo = {
   // Post-event wording; also the static description scripts/build-microsite-html.mjs
   // writes for link unfurlers.
   description:
-    'Thank you for joining us at the Stone Lodge at Marimac Lake in Senoia, Georgia, on October 24, 2026. Find your Photobooth photos, and thank the sponsors who made the night possible.',
+    'Thank you for joining us at the Stone Lodge at Marimac Lake in Senoia, Georgia, on October 24, 2026. Find your Red Carpet and Photobooth photos, and thank the sponsors who made the night possible.',
   ogImage: 'https://thehalloweenmasquerade.com/masquerade/og-image.png', // 1200x630; scripts/build-og-images.mjs
 };
