@@ -3,6 +3,7 @@ import './masquerade.css';
 import MasqueradeSEO from './components/MasqueradeSEO';
 import MasqueradeNav from './components/MasqueradeNav';
 import Hero from './components/Hero';
+import GuestPhotos from './components/GuestPhotos';
 import ThankYou from './components/ThankYou';
 import Gallery from './components/Gallery';
 import Follow from './components/Follow';
@@ -36,6 +37,7 @@ export default function MasqueradePage() {
       <MasqueradeNav />
       <main>
         <Hero />
+        <GuestPhotos />
         <ThankYou />
         <Gallery />
         <Follow />

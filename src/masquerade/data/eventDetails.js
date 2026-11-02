@@ -56,6 +56,30 @@ export const thankYou = {
     { label: 'Red Carpet', to: 'red-carpet' },
     { label: 'Photobooth', url: 'https://boothpics.com/X0X4' },
   ],
+  // The night's video, embedded and served from this site. Re-encoded to 720p
+  // from the photographer's 4K file to keep it small enough for the repo.
+  video: {
+    src: '/masquerade/video/masquerade-2026.mp4',
+    poster: '/masquerade/video/masquerade-2026-poster.jpg',
+    title: 'The 3rd Annual Halloween Masquerade: Down the Rabbit Hole',
+  },
+  // Photos from this year, as sent with the 2026-11-02 email. Shown as a grid
+  // under the thank-you buttons, credited the same way as the Red Carpet page.
+  photoCredit: {
+    before: 'Photographs © 2026',
+    name: 'Melissa Prosser Photography, LLC',
+    url: 'https://www.melissaprosser.com/license',
+  },
+  guestPhotos: [
+    { src: '/masquerade/photos-2026/01.jpg', w: 1600, h: 1066 },
+    { src: '/masquerade/photos-2026/02.jpg', w: 1600, h: 1066 },
+    { src: '/masquerade/photos-2026/03.jpg', w: 1600, h: 1066 },
+    { src: '/masquerade/photos-2026/04.jpg', w: 1600, h: 1066 },
+    { src: '/masquerade/photos-2026/05.jpg', w: 1600, h: 1066 },
+    { src: '/masquerade/photos-2026/06.jpg', w: 1066, h: 1600 },
+    { src: '/masquerade/photos-2026/07.jpg', w: 1600, h: 1066 },
+    { src: '/masquerade/photos-2026/08.jpg', w: 1600, h: 1066 },
+  ],
   // The organizer's poster of sponsor and Friends of Wonderland logos, as sent
   // (973×1544, IMG_1126.jpeg).
   sponsorLogos: '/masquerade/sponsors-2026.jpg',
