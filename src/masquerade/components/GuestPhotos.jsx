@@ -9,7 +9,7 @@ import { thankYou } from '../data/eventDetails';
 export default function GuestPhotos() {
   const photos = thankYou.guestPhotos;
   const total = photos.length;
-  const { video } = thankYou;
+  const { video, photoCredit } = thankYou;
 
   return (
     <section id="photos" className="py-16 sm:py-24 bg-[var(--masq-ink)] scroll-mt-16">
@@ -44,6 +44,14 @@ export default function GuestPhotos() {
             </li>
           ))}
         </ul>
+
+        <p className="mt-6 text-center text-sm text-[var(--masq-cream-dim)]">
+          {photoCredit.before}{' '}
+          <a href={photoCredit.url} target="_blank" rel="noopener noreferrer" className="masq-link">
+            {photoCredit.name}
+          </a>
+          . For personal use.
+        </p>
       </div>
     </section>
   );

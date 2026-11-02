@@ -64,7 +64,12 @@ export const thankYou = {
     title: 'The 3rd Annual Halloween Masquerade: Down the Rabbit Hole',
   },
   // Photos from this year, as sent with the 2026-11-02 email. Shown as a grid
-  // under the thank-you buttons.
+  // under the thank-you buttons, credited the same way as the Red Carpet page.
+  photoCredit: {
+    before: 'Photographs © 2026',
+    name: 'Melissa Prosser Photography, LLC',
+    url: 'https://www.melissaprosser.com/license',
+  },
   guestPhotos: [
     { src: '/masquerade/photos-2026/01.jpg', w: 1600, h: 1066 },
     { src: '/masquerade/photos-2026/02.jpg', w: 1600, h: 1066 },
