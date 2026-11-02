@@ -48,11 +48,23 @@ export const event = {
  */
 export const thankYou = {
   lead: 'Thank you for joining us! You can find your photos below.',
-  // The Red Carpet download link came down 2026-10-30: it opened the
-  // photographer's whole shoot, which she didn't want shared. Guests get a
-  // Red Carpet button again once she sends a link to their photos alone.
+  // The 2026-11-02 email replaced the old Red Carpet link (which opened the
+  // photographer's whole shoot) with a listing of guest photos only.
   photos: [
+    { label: 'Red Carpet', url: 'https://listings.mpp-media.com/listings/01a18d09-9ebd-710e-bba4-3035a9c7ec0e/download-center?signature=f0cc231e6779ff015510df35afd4b2a96d9e3c3be249019bf267f41a127b6870' },
     { label: 'Photobooth', url: 'https://boothpics.com/X0X4' },
+  ],
+  // Photos from this year, as sent with the 2026-11-02 email. Shown as a grid
+  // under the thank-you buttons.
+  guestPhotos: [
+    { src: '/masquerade/photos-2026/01.jpg', w: 1600, h: 1066 },
+    { src: '/masquerade/photos-2026/02.jpg', w: 1600, h: 1066 },
+    { src: '/masquerade/photos-2026/03.jpg', w: 1600, h: 1066 },
+    { src: '/masquerade/photos-2026/04.jpg', w: 1600, h: 1066 },
+    { src: '/masquerade/photos-2026/05.jpg', w: 1600, h: 1066 },
+    { src: '/masquerade/photos-2026/06.jpg', w: 1066, h: 1600 },
+    { src: '/masquerade/photos-2026/07.jpg', w: 1600, h: 1066 },
+    { src: '/masquerade/photos-2026/08.jpg', w: 1600, h: 1066 },
   ],
   // The organizer's poster of sponsor and Friends of Wonderland logos, as sent
   // (973×1544, IMG_1126.jpeg).
