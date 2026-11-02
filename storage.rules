@@ -12,8 +12,14 @@ service firebase.storage {
       );
     }
 
-    match /{allPaths=**} {
-      allow read: if true;
+    // {rest=**} matches zero or more segments, so this covers every object,
+    // root-level ones included.
+    match /{top}/{rest=**} {
+      // Everything is public except private/, which only the Admin SDK reads
+      // (the Masquerade's Red Carpet print files, served through the
+      // redCarpetPhotos function to guests with a link). A narrower match
+      // below could not take this back: any rule that allows, allows.
+      allow read: if top != 'private';
       // The site itself writes only under news/ (below). The migrated Webflow
       // assets were uploaded with admin credentials, which bypass these rules,
       // as does the Firebase console. Before this an admin's browser session

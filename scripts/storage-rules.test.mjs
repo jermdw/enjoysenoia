@@ -1,5 +1,6 @@
 /**
- * Rules tests for storage.rules: the News editor's image uploads.
+ * Rules tests for storage.rules: the News editor's image uploads, and the
+ * private/ prefix that only the Admin SDK may read.
  *
  * Run in CI by .github/workflows/ci.yml, and locally with `npm run test:rules`
  * (see firestore-rules.test.mjs for setup notes).
@@ -37,6 +38,8 @@ const check = async (label, fn) => {
 await env.withSecurityRulesDisabled(async (ctx) => {
   await uploadBytes(ref(ctx.storage(), 'webflow/site/logo.png'), png, image);
   await uploadBytes(ref(ctx.storage(), 'news/old-story/photo.png'), png, image);
+  await uploadBytes(ref(ctx.storage(), 'private/masquerade-2026/red-carpet/full/123.jpg'), png, image);
+  await uploadBytes(ref(ctx.storage(), 'root.png'), png, image);
 });
 
 console.log('\nreads');
@@ -44,6 +47,15 @@ await check('public MAY read a migrated asset',
   () => assertSucceeds(getBytes(ref(pub, 'webflow/site/logo.png'))));
 await check('public MAY read a news image',
   () => assertSucceeds(getBytes(ref(pub, 'news/old-story/photo.png'))));
+
+await check('public MAY read a file at the bucket root',
+  () => assertSucceeds(getBytes(ref(pub, 'root.png'))));
+await check('public may NOT read under private/',
+  () => assertFails(getBytes(ref(pub, 'private/masquerade-2026/red-carpet/full/123.jpg'))));
+await check('admin may NOT read under private/ from the browser',
+  () => assertFails(getBytes(ref(admin, 'private/masquerade-2026/red-carpet/full/123.jpg'))));
+await check('admin may NOT upload under private/ from the browser',
+  () => assertFails(uploadBytes(ref(admin, 'private/masquerade-2026/red-carpet/full/999.jpg'), png, image)));
 
 console.log('\nnews uploads');
 await check('admin MAY upload an image under news/<slug>/',

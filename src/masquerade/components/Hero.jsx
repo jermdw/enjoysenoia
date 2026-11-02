@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { CalendarDays, Clock, ExternalLink, MapPin } from 'lucide-react';
 import { Suit, Key } from './Ornament';
 import Ordinal from './Ordinal';
@@ -18,7 +19,12 @@ const cards = [
   { left: '91%', delay: '7s', duration: '25s', suit: 'spade', size: 'w-3 h-3' },
 ];
 
+const buttonClass =
+  'w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-9 py-4 rounded-sm bg-[var(--masq-crimson)] hover:bg-[var(--masq-crimson-bright)] text-[var(--masq-cream)] text-xs font-semibold uppercase tracking-[0.25em] transition-all hover:scale-[1.03]';
+
 export default function Hero() {
+  // The page is / on thehalloweenmasquerade.com and /masquerade on enjoysenoia.com.
+  const home = useLocation().pathname.startsWith('/masquerade') ? '/masquerade/' : '/';
   return (
     <section id="top" className="relative min-h-[100svh] flex items-center justify-center overflow-hidden masq-vignette">
       {/* Backdrop: deep crimson bloom over near-black. Replace with the hero
@@ -85,18 +91,18 @@ export default function Hero() {
         </dl>
 
         <div className="mt-11 flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-4">
-          {thankYou.photos.map((link) => (
-            <a
-              key={link.label}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-9 py-4 rounded-sm bg-[var(--masq-crimson)] hover:bg-[var(--masq-crimson-bright)] text-[var(--masq-cream)] text-xs font-semibold uppercase tracking-[0.25em] transition-all hover:scale-[1.03]"
-            >
-              <span>{link.label}</span>
-              <ExternalLink className="w-3.5 h-3.5 opacity-70" />
-            </a>
-          ))}
+          {thankYou.photos.map((link) =>
+            link.to ? (
+              <Link key={link.label} to={`${home}${link.to}`} className={buttonClass}>
+                {link.label}
+              </Link>
+            ) : (
+              <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer" className={buttonClass}>
+                <span>{link.label}</span>
+                <ExternalLink className="w-3.5 h-3.5 opacity-70" />
+              </a>
+            )
+          )}
         </div>
 
       </div>

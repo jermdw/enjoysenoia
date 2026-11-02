@@ -93,6 +93,15 @@ browser. Staff link an event from its listing (Events tab, "Link volunteer sign-
 **Volunteers** tab. Rules and functions are not deployed on merge; deploy them by
 hand or with the **Deploy backend** workflow (see `functions/README.md`).
 
+## Masquerade Red Carpet downloads
+
+`/red-carpet` on the Masquerade site gives ticket holders an emailed magic link
+to the photographer's Red Carpet set (`functions/redCarpet.js`). The print files
+live under `private/` in Storage, which `storage.rules` closes to every browser;
+only the `redCarpetPhotos` function reads them. Keep anything else that must not
+be public under `private/` too: the catch-all rule makes the rest of the bucket
+world-readable. Go-live order is in `functions/README.md`.
+
 ## Admin access (three places, keep in step)
 
 An admin is an account with the `admin` custom claim, or an email on the allowlist. The
