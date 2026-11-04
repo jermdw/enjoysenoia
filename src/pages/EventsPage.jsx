@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Calendar, Clock, Search, ArrowRight } from 'lucide-react';
 import SEO from '../components/common/SEO';
-import { getEvents, useContentOverrides } from '../services/dataService';
+import { getListedEvents, useContentOverrides } from '../services/dataService';
 import EventLink from '../components/common/EventLink';
 import { webflowAsset } from '../utils/webflowAsset';
 
@@ -9,7 +9,7 @@ export default function EventsPage() {
   const [activeFilter, setActiveFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   useContentOverrides();
-  const allEvents = getEvents();
+  const allEvents = getListedEvents();
 
   const filteredEvents = allEvents.filter((evt) => {
     const matchesFilter =

@@ -243,6 +243,14 @@ export const getEvents = () => {
   return upcoming.some((e) => !e._builtIn) ? [...upcoming].sort(byStart) : upcoming;
 };
 
+/**
+ * The upcoming events that get their own card on the public lists. `listed: false`
+ * (data/event_overrides.json) folds an event under an umbrella listing, as the
+ * parade and Tour of Homes are under Christmas in Senoia. Unlike `hidden`, its
+ * detail page, sitemap entry and getEventBySlug all keep working.
+ */
+export const getListedEvents = () => getEvents().filter((e) => e.listed !== false);
+
 export const getPastEvents = () => {
   ensureMerged();
   const past = mergedEvents.filter((e) => visible(e) && !isUpcoming(e));

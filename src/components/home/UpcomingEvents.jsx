@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
-import { getEvents, useContentOverrides } from '../../services/dataService';
+import { getListedEvents, useContentOverrides } from '../../services/dataService';
 import EventLink from '../common/EventLink';
 import { webflowAsset } from '../../utils/webflowAsset';
 
 export default function UpcomingEvents() {
   useContentOverrides();
-  const allEvents = getEvents();
+  const allEvents = getListedEvents();
 
   // Show the next four one-off events by date. When nothing is coming up the
   // section says so — an "Upcoming Events" list of expired dates is worse than
