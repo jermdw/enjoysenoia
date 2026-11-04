@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { getListedEvents, useContentOverrides } from '../../services/dataService';
 import EventLink from '../common/EventLink';
+import EventTicketButton from '../common/EventTicketButton';
 import { webflowAsset } from '../../utils/webflowAsset';
 
 export default function UpcomingEvents() {
@@ -105,15 +106,18 @@ export default function UpcomingEvents() {
                     </p>
                   </div>
 
-                  <div className="pt-2 border-t border-stone-200/60 flex items-center justify-between">
-                    <EventLink
-                      event={evt}
-                      className="inline-flex items-center text-xs font-semibold text-senoia-red group-hover:text-senoia-darkred"
-                    >
-                      <span>{evt.external_url ? 'Event Website' : 'Event Details'}</span>
-                      <ArrowRight className="ml-1 w-3.5 h-3.5" />
-                    </EventLink>
-                    <span className="text-xs text-stone-400">Downtown Senoia</span>
+                  <div className="space-y-3">
+                    <EventTicketButton event={evt} />
+                    <div className="pt-2 border-t border-stone-200/60 flex items-center justify-between">
+                      <EventLink
+                        event={evt}
+                        className="inline-flex items-center text-xs font-semibold text-senoia-red group-hover:text-senoia-darkred"
+                      >
+                        <span>{evt.external_url ? 'Event Website' : 'Event Details'}</span>
+                        <ArrowRight className="ml-1 w-3.5 h-3.5" />
+                      </EventLink>
+                      <span className="text-xs text-stone-400">Downtown Senoia</span>
+                    </div>
                   </div>
                 </div>
               </div>

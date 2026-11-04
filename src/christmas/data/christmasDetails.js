@@ -41,7 +41,6 @@ export const events = [
     title: 'Candlelight Tour of Homes',
     when: 'Sunday, December 13',
     blurb: 'Eight stops in downtown Senoia, 3 to 8 PM. Tickets are $30 and sold online only.',
-    linkLabel: 'Tour of Homes tickets & details',
     icon: 'home',
   },
 ];

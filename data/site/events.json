@@ -1798,7 +1798,8 @@
     "gallery_slug": null,
     "external_url": "https://christmas.enjoysenoia.com/",
     "ticket_url": "https://christmas.enjoysenoia.com/",
-    "ticket_label": "Visit the Christmas in Senoia Site"
+    "ticket_label": "Visit the Christmas in Senoia Site",
+    "ticket_event_slug": "2026-senoia-candlelight-tour-of-homes"
   },
   {
     "title": "Light Up Senoia Parade",

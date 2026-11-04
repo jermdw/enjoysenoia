@@ -251,6 +251,18 @@ export const getEvents = () => {
  */
 export const getListedEvents = () => getEvents().filter((e) => e.listed !== false);
 
+/**
+ * An event's checkout link while it is actually selling: not before `on_sale_at`,
+ * not once the event is over. Null otherwise, including for a null event.
+ */
+export const getOpenTicket = (event, now = new Date()) => {
+  const url = event?.ticket_url;
+  if (!url || !/^https?:\/\//i.test(url)) return null;
+  if (now.getTime() < Date.parse(event.on_sale_at ?? '')) return null;
+  if (!isUpcoming(event, now)) return null;
+  return { url, label: event.ticket_label || 'Buy Tickets' };
+};
+
 export const getPastEvents = () => {
   ensureMerged();
   const past = mergedEvents.filter((e) => visible(e) && !isUpcoming(e));

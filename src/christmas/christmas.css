@@ -209,6 +209,13 @@
   outline-offset: 2px;
 }
 
+.xmas-secondary {
+  margin-top: 0.6rem;
+  text-align: center;
+  font-weight: 700;
+  color: var(--xmas-red);
+}
+
 /* ---------- Shop, dine ---------- */
 
 .xmas-shop {
