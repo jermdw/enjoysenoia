@@ -4,7 +4,7 @@ import './christmas.css';
 import ChristmasSEO from './components/ChristmasSEO';
 import bmwLogo from './assets/bmw-of-south-atlanta.png';
 import { DDA_ORIGIN, events, sponsor } from './data/christmasDetails';
-import { getEventBySlug, useContentOverrides } from '../services/dataService';
+import { getEventBySlug, getOpenTicket, useContentOverrides } from '../services/dataService';
 
 const ICONS = { market: Store, parade: Truck, home: House };
 
@@ -47,6 +47,9 @@ function EventCard({ item }) {
   const contact = present(listing?.coordinator_email);
   const href = item.url || `${DDA_ORIGIN}/events/${item.slug}`;
   const label = item.linkLabel || 'Event details';
+  // A listing that is selling tickets leads with checkout; its details page
+  // becomes the secondary link.
+  const ticket = getOpenTicket(listing);
 
   return (
     <li className="xmas-card">
@@ -61,10 +64,15 @@ function EventCard({ item }) {
           Questions? <a href={`mailto:${contact}`}>{contact}</a>
         </p>
       )}
-      <a className="xmas-btn" href={href} target="_blank" rel="noreferrer">
-        {label}
+      <a className="xmas-btn" href={ticket ? ticket.url : href} target="_blank" rel="noreferrer">
+        {ticket ? ticket.label : label}
         <ExternalLink size={16} aria-hidden="true" />
       </a>
+      {ticket && (
+        <a className="xmas-secondary" href={href} target="_blank" rel="noreferrer">
+          {label}
+        </a>
+      )}
     </li>
   );
 }
