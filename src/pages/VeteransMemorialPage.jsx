@@ -1,5 +1,5 @@
 import React from 'react';
-import { Award, Heart, Mail, Flag } from 'lucide-react';
+import { Award, Heart, Mail, Flag, Download } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import { webflowAsset } from '../utils/webflowAsset';
 
@@ -66,6 +66,23 @@ export default function VeteransMemorialPage() {
                   Contributions directly support the continued beautification and expansion of the Senoia Veterans Memorial plaza.
                 </p>
               </div>
+            </div>
+
+            <div className="p-5 sm:p-6 rounded-xl bg-stone-50 border border-stone-100 space-y-3">
+              <h2 className="text-2xl font-bold font-serif text-stone-900">
+                Commemorative Brick Program
+              </h2>
+              <p>
+                Honor a veteran with a brick at the Senoia Veterans Memorial. Download the Veterans Memorial Brick Order Form, complete it, and follow the instructions on the form to place your order.
+              </p>
+              <a
+                href="/documents/veterans-memorial-brick-order-form.pdf"
+                download
+                className="inline-flex items-center px-6 py-3 rounded-xl bg-senoia-red hover:bg-senoia-darkred text-white text-sm font-semibold shadow-xs transition-colors"
+              >
+                <Download className="mr-2 w-4 h-4" />
+                <span>Download Brick Order Form (PDF)</span>
+              </a>
             </div>
 
             <div className="pt-4 border-t border-stone-100 flex flex-wrap items-center justify-between gap-4">
