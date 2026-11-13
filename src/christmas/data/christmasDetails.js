@@ -45,6 +45,51 @@ export const events = [
   },
 ];
 
+/**
+ * The Tour of Homes chauffeured BMW silent auction (src/christmas/AuctionPage.jsx).
+ * Agreed with Stephanie Reeder (DDA) 2026-10-20 and 2026-11-11: three cars,
+ * three separate auctions, four riders per car, $200 opening bid, open to
+ * ticket holders only, all proceeds to the DDA. The cars themselves (title,
+ * photo, opening bid, close time, open switch) are edited in /admin, Auction tab.
+ *
+ * The "$200" and "Sunday, December 6 at 8 PM" below are plain text, and so is
+ * the auction paragraph in the Tour of Homes listing (data/event_overrides.json).
+ * Change the opening bid or close time in admin, and change them here too.
+ */
+export const auction = {
+  eventLine: 'Candlelight Tour of Homes · Sunday, December 13',
+  tagline: 'A silent auction for a chauffeured Tour of Homes for up to four. Three cars, three auctions.',
+  reception:
+    "Your evening begins at the Stone Lodge at Marimac Lakes with champagne and hors d'oeuvres for your party.",
+  ride: "Then your chauffeur drives you home to home on this year's Candlelight Tour of Homes in a BMW from BMW of South Atlanta. Each car seats four.",
+  proceeds: 'Every dollar raised goes to the Senoia Downtown Development Authority.',
+  ticketsUrl: 'https://buytickets.at/senoiadda/2477581',
+  steps: [
+    {
+      title: '1. Get your tickets',
+      body: 'The auction is open to Tour of Homes ticket holders, and everyone riding in the car needs a ticket.',
+    },
+    {
+      title: '2. Get your bidding link',
+      body: 'Enter the email you bought tickets with. We check it with our ticket system and email you a link to bid.',
+    },
+    {
+      title: '3. Bid',
+      body: "Each car is its own auction, starting at $200. We'll email you if someone outbids you.",
+    },
+    {
+      title: '4. Winners hear from us',
+      body: 'Bidding closes Sunday, December 6 at 8 PM. We email each winner to arrange payment and the evening.',
+    },
+  ],
+  terms: [
+    'A bid is a promise to pay that amount if you win. Winners pay the Senoia DDA after bidding closes; we email instructions.',
+    'Each car carries the winner and up to three guests. Every rider needs a Tour of Homes ticket of their own.',
+    "Champagne is served to guests 21 and older. We'll send winners the start time and details by email.",
+    "Bidding closes at the time shown on each car. If a winner can't complete payment, we may offer the car to the next-highest bidder.",
+  ],
+};
+
 // Event detail pages live on the DDA site. Absolute, because on this host every
 // path folds back to "/" (App.jsx).
 export const DDA_ORIGIN = 'https://www.enjoysenoia.com';

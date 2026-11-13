@@ -249,3 +249,308 @@
 .xmas-footer a {
   color: var(--xmas-cream);
 }
+
+/* ---------- Silent auction (AuctionPage.jsx, and its promo on the home page) ---------- */
+
+.xmas-band {
+  background: #fff;
+  border-top: 1px solid var(--xmas-line);
+  border-bottom: 1px solid var(--xmas-line);
+}
+
+.xmas-center {
+  text-align: center;
+}
+
+.xmas-eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--xmas-gold);
+  margin: 0 0 0.75rem;
+}
+
+/* Gold is too light for text on cream or white; red reads there. */
+.xmas-eyebrow-dark {
+  color: var(--xmas-red);
+}
+
+.xmas-hero-compact {
+  padding: 2rem 0 3rem;
+}
+
+.xmas-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--xmas-cream);
+  font-size: 0.95rem;
+  margin-bottom: 1.75rem;
+}
+
+.xmas-auction-title {
+  font-size: clamp(2.2rem, 7vw, 3.8rem);
+  margin: 0;
+}
+
+.xmas-promo {
+  max-width: 40rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.xmas-promo h2 {
+  margin-bottom: 1rem;
+}
+
+.xmas-promo p {
+  margin: 0 0 1.5rem;
+}
+
+.xmas-btn-inline {
+  margin-top: 0;
+}
+
+.xmas-auction-intro {
+  max-width: 44rem;
+}
+
+.xmas-perks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.xmas-perks li {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+}
+
+.xmas-perks svg {
+  flex: none;
+  margin-top: 0.2rem;
+  color: var(--xmas-red);
+}
+
+.xmas-steps {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.xmas-steps h3 {
+  font-family: 'Merriweather', Georgia, serif;
+  font-size: 1.1rem;
+  color: var(--xmas-red);
+  margin: 0 0 0.35rem;
+}
+
+.xmas-steps p {
+  margin: 0;
+  color: var(--xmas-ink-muted);
+}
+
+.xmas-bidder {
+  text-align: center;
+  margin: -0.75rem 0 1.5rem;
+  overflow-wrap: anywhere;
+}
+
+.xmas-linkbtn {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-weight: 700;
+  color: var(--xmas-red);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.xmas-lot-img {
+  width: calc(100% + 3rem);
+  margin: -1.5rem -1.5rem 1rem;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.xmas-lot-desc {
+  color: var(--xmas-ink-muted);
+  margin: 0 0 1rem;
+}
+
+.xmas-lot-stats {
+  display: flex;
+  gap: 2rem;
+  margin: 0 0 1rem;
+}
+
+.xmas-lot-stats dt {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--xmas-ink-muted);
+}
+
+.xmas-lot-stats dd {
+  margin: 0;
+  font-family: 'Merriweather', Georgia, serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  color: var(--xmas-green);
+}
+
+.xmas-standing {
+  font-weight: 700;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  margin: 0 0 1rem;
+}
+
+.xmas-standing.is-leading {
+  background: #e6f0e8;
+  color: var(--xmas-green);
+}
+
+.xmas-standing.is-outbid {
+  background: #f7e4e4;
+  color: var(--xmas-red-deep);
+}
+
+.xmas-closes {
+  font-size: 0.95rem;
+  color: var(--xmas-ink-muted);
+  margin: 0 0 1rem;
+}
+
+.xmas-lot > .xmas-btn,
+.xmas-bid {
+  margin-top: auto;
+}
+
+.xmas-bid label,
+.xmas-linkform label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin: 0.75rem 0 0.3rem;
+}
+
+.xmas-bid-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.xmas-bid input,
+.xmas-linkform input {
+  width: 100%;
+  border: 1px solid rgba(29, 26, 23, 0.35);
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  font: inherit;
+  background: #fff;
+  color: var(--xmas-ink);
+}
+
+.xmas-bid input:focus,
+.xmas-linkform input:focus {
+  outline: 3px solid var(--xmas-gold);
+  outline-offset: 1px;
+}
+
+.xmas-bid-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.85rem;
+}
+
+.xmas .xmas-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+button.xmas-btn {
+  border: 0;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.xmas-bid-confirm {
+  background: #fdf3dc;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  margin: 0.75rem 0 0;
+}
+
+.xmas-bid-error {
+  color: var(--xmas-red-deep);
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin: 0.4rem 0 0;
+}
+
+.xmas-bid-ok {
+  color: var(--xmas-green);
+  font-weight: 700;
+  margin: 0.75rem 0 0;
+}
+
+.xmas-linkform {
+  max-width: 30rem;
+  margin: 0 auto;
+}
+
+.xmas-linkform > p:first-of-type {
+  margin-top: 0;
+}
+
+.xmas-linkform .xmas-btn {
+  margin-top: 1.25rem;
+  width: 100%;
+}
+
+.xmas-linkform svg {
+  color: var(--xmas-red);
+}
+
+.xmas-sent-head {
+  font-family: 'Merriweather', Georgia, serif;
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: var(--xmas-green);
+  margin: 0.5rem 0;
+}
+
+.xmas-fine {
+  font-size: 0.95rem;
+}
+
+.xmas-fine .xmas-wrap {
+  max-width: 44rem;
+}
+
+.xmas-fine li {
+  margin-bottom: 0.5rem;
+  color: var(--xmas-ink-muted);
+}
+
+.xmas-fine a {
+  color: var(--xmas-green);
+  font-weight: 500;
+}

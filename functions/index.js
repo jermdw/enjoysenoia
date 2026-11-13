@@ -27,6 +27,11 @@
  * function because <img> tags can't call a callable or carry App Check. Its
  * token is the credential, checked on every request.
  *
+ * requestAuctionLink / getAuctionBidder / placeAuctionBid: the Tour of Homes
+ * chauffeured BMW silent auction (see auction.js). Ticket ownership is checked
+ * live against Ticket Tailor with TICKET_TAILOR_API_KEY; every bid is taken in
+ * a transaction on its lot that re-checks the close time and the minimum.
+ *
  * The contact message is written to `contact_messages` BEFORE the email is attempted,
  * so a failed send never loses someone's enquiry. The collection has no rules
  * block, so clients cannot read or write it; only this function can.
@@ -62,10 +67,35 @@ import {
   sha256,
   validateLinkRequest,
 } from './redCarpet.js';
+import {
+  BIDDERS,
+  BIDS,
+  LINKS as AUCTION_LINKS,
+  LINK_TTL_MS as AUCTION_LINK_TTL_MS,
+  LOTS,
+  TOKEN_RE as AUCTION_TOKEN_RE,
+  buildAuctionLinkEmail,
+  buildBidConfirmationEmail,
+  buildNoTicketsEmail,
+  buildOutbidEmail,
+  countTickets,
+  emailHash as auctionEmailHash,
+  lotClosedReason,
+  minimumBid,
+  ordersUrl,
+  sha256 as auctionSha256,
+  ticketTailorAuth,
+  validateBid,
+  validateLinkRequest as validateAuctionLinkRequest,
+} from './auction.js';
 
 initializeApp();
 
 const RESEND_API_KEY = defineSecret('RESEND_API_KEY');
+// One read-only orders lookup per bidding-link request. The key must include
+// personal data (the customer_data role), or the buyer email filter matches
+// nothing. Set with: firebase functions:secrets:set TICKET_TAILOR_API_KEY
+const TICKET_TAILOR_API_KEY = defineSecret('TICKET_TAILOR_API_KEY');
 // Logos are filed in Drive AS a regular Google account (a service account has
 // no storage quota of its own, so it cannot own files in a normal folder). The
 // account authorises once with driveSetup.mjs, which also creates the folder
@@ -84,6 +114,10 @@ const VOLUNTEER_RATE_LIMIT = 10;
 const RED_CARPET_RATE_LIMIT = 10;
 // Links per guest address per hour, so the form can't flood someone's inbox.
 const RED_CARPET_EMAIL_LIMIT = 3;
+const AUCTION_LINK_RATE_LIMIT = 10;
+const AUCTION_EMAIL_LIMIT = 3;
+// Per bidder per hour: room for a real bidding war, not a script.
+const AUCTION_BID_LIMIT = 30;
 
 /**
  * Allows RATE_LIMIT submissions per IP per hour. One small document per hashed
@@ -536,5 +570,209 @@ export const redCarpetPhotos = onRequest(
         else res.destroy(err);
       })
       .pipe(res);
+  }
+);
+
+/**
+ * The bidder a token belongs to, or an HttpsError. Shared by the two
+ * token-carrying auction functions.
+ */
+async function auctionBidderForToken(db, token) {
+  const invalid = () => new HttpsError('unauthenticated', 'Your bidding link is not valid. Ask for a new one.');
+  if (!AUCTION_TOKEN_RE.test(token)) throw invalid();
+  const link = await db.doc(`${AUCTION_LINKS}/${auctionSha256(token)}`).get();
+  if (!link.exists) throw invalid();
+  if (link.data().expiresAt.toMillis() < Date.now()) {
+    throw new HttpsError('unauthenticated', 'Your bidding link has expired. Ask for a new one.');
+  }
+  const hash = link.data().emailHash;
+  const bidder = await db.doc(`${BIDDERS}/${hash}`).get();
+  if (!bidder.exists) throw invalid();
+  return { hash, ...bidder.data() };
+}
+
+export const requestAuctionLink = onCall(
+  {
+    region: 'us-central1',
+    enforceAppCheck: true,
+    consumeAppCheckToken: true,
+    secrets: [RESEND_API_KEY, TICKET_TAILOR_API_KEY],
+    maxInstances: 5,
+  },
+  async (request) => {
+    const body = request.data && typeof request.data === 'object' ? request.data : {};
+
+    if (typeof body.website === 'string' && body.website.trim() !== '') return { ok: true };
+
+    if (typeof body.elapsedMs !== 'number' || body.elapsedMs < MIN_FILL_MS) {
+      throw new HttpsError('failed-precondition', 'Please take a moment and try again.');
+    }
+
+    const checked = validateAuctionLinkRequest(body);
+    if (!checked.ok) {
+      throw new HttpsError('invalid-argument', 'Please check the form and try again.', { fields: checked.errors });
+    }
+    const { name, email, phone } = checked.value;
+
+    const db = getFirestore();
+    const ip = request.rawRequest?.ip || 'unknown';
+    const ipHash = createHash('sha256').update(ip).digest('hex');
+    if (!(await takeRateLimitSlot(db, ipHash, 'auction_link_rate', AUCTION_LINK_RATE_LIMIT))) {
+      throw new HttpsError('resource-exhausted', 'Too many requests from this connection. Please try again later.');
+    }
+    const hash = auctionEmailHash(email);
+
+    // Live check against Ticket Tailor. A failure here is reported honestly:
+    // telling a ticket holder "check your email" when nothing was sent is worse.
+    // If its email filter turns out to be case-sensitive, the address as typed
+    // gets a second try.
+    const lookup = async (address) => {
+      const res = await fetch(ordersUrl(address), {
+        headers: { Accept: 'application/json', Authorization: ticketTailorAuth(TICKET_TAILOR_API_KEY.value()) },
+        signal: AbortSignal.timeout(10000),
+      });
+      if (!res.ok) throw new Error(`Ticket Tailor answered ${res.status}: ${(await res.text()).slice(0, 300)}`);
+      return countTickets(await res.json(), email);
+    };
+    let tickets;
+    try {
+      tickets = await lookup(email);
+      const typed = typeof body.email === 'string' ? body.email.trim() : '';
+      if (tickets === 0 && typed && typed !== email) tickets = await lookup(typed);
+    } catch (err) {
+      console.error(`requestAuctionLink(${hash.slice(0, 8)}): ticket lookup FAILED`, err);
+      throw new HttpsError('unavailable', "We couldn't check tickets just now. Please try again in a few minutes.");
+    }
+
+    // Quietly capped per address, so the form can't flood someone's inbox.
+    // Taken only now, so retries during a Ticket Tailor outage don't use it up.
+    if (!(await takeRateLimitSlot(db, hash, 'auction_email_rate', AUCTION_EMAIL_LIMIT))) return { ok: true };
+
+    // From here the page is told { ok: true } either way; only the inbox
+    // learns whether tickets were found.
+    if (tickets === 0) {
+      await sendBestEffort(`requestAuctionLink(${hash.slice(0, 8)}) no tickets`, buildNoTicketsEmail({ to: email }));
+      return { ok: true };
+    }
+
+    await db.doc(`${BIDDERS}/${hash}`).set(
+      { name, email, phone, ticketCount: tickets, verifiedAt: FieldValue.serverTimestamp(), ipHash },
+      { merge: true }
+    );
+    const token = randomBytes(24).toString('hex');
+    await db.doc(`${AUCTION_LINKS}/${auctionSha256(token)}`).create({
+      emailHash: hash,
+      createdAt: FieldValue.serverTimestamp(),
+      expiresAt: Timestamp.fromMillis(Date.now() + AUCTION_LINK_TTL_MS),
+    });
+    await sendBestEffort(`requestAuctionLink(${hash.slice(0, 8)})`, buildAuctionLinkEmail({ to: email, name, token }));
+    return { ok: true };
+  }
+);
+
+/** Who a bidding link belongs to, and their best bid on each car. */
+export const getAuctionBidder = onCall(
+  { region: 'us-central1', enforceAppCheck: true, maxInstances: 10 },
+  async (request) => {
+    const token = typeof request.data?.token === 'string' ? request.data.token.trim() : '';
+    const db = getFirestore();
+    const bidder = await auctionBidderForToken(db, token);
+    const [bids, lots] = await Promise.all([
+      db.collection(BIDS).where('emailHash', '==', bidder.hash).where('status', '==', 'active').get(),
+      db.collection(LOTS).get(),
+    ]);
+    const highIds = new Set(lots.docs.map((d) => d.data().highBidId).filter(Boolean));
+    const mine = {};
+    for (const d of bids.docs) {
+      const { lotId, amount } = d.data();
+      if (!mine[lotId] || amount > mine[lotId].amount) mine[lotId] = { amount, leading: highIds.has(d.id) };
+    }
+    return { name: bidder.name, email: bidder.email, bids: mine };
+  }
+);
+
+export const placeAuctionBid = onCall(
+  {
+    region: 'us-central1',
+    enforceAppCheck: true,
+    secrets: [RESEND_API_KEY],
+    maxInstances: 10,
+  },
+  async (request) => {
+    const checked = validateBid(request.data);
+    if (!checked.ok) throw new HttpsError('invalid-argument', checked.message);
+    const { token, lotId, amount } = checked.value;
+
+    const db = getFirestore();
+    const bidder = await auctionBidderForToken(db, token);
+    if (!(await takeRateLimitSlot(db, bidder.hash, 'auction_bid_rate', AUCTION_BID_LIMIT))) {
+      throw new HttpsError('resource-exhausted', 'Too many bids in a short time. Please wait a little and try again.');
+    }
+
+    const lotRef = db.doc(`${LOTS}/${lotId}`);
+    const bidRef = db.collection(BIDS).doc();
+    const { lot, previous } = await db.runTransaction(async (tx) => {
+      const snap = await tx.get(lotRef);
+      // A missing lot reads as closed, so nothing is biddable until staff set it up.
+      const l = snap.exists ? snap.data() : null;
+      const closed = lotClosedReason(l, Date.now());
+      if (closed) throw new HttpsError('failed-precondition', closed);
+      const prevSnap = l.highBidId ? await tx.get(db.doc(`${BIDS}/${l.highBidId}`)) : null;
+      const prev = prevSnap?.exists ? prevSnap.data() : null;
+      if (prev && prev.emailHash === bidder.hash) {
+        throw new HttpsError('failed-precondition', "You're already the high bidder on this car.");
+      }
+      const min = minimumBid(l);
+      if (amount < min) {
+        throw new HttpsError(
+          'failed-precondition',
+          `Someone got there first. The lowest bid now is $${min.toLocaleString('en-US')}.`,
+          { minimum: min }
+        );
+      }
+      tx.create(bidRef, {
+        lotId,
+        amount,
+        emailHash: bidder.hash,
+        name: bidder.name,
+        email: bidder.email,
+        phone: bidder.phone,
+        status: 'active',
+        createdAt: FieldValue.serverTimestamp(),
+      });
+      tx.update(lotRef, {
+        highBid: amount,
+        highBidId: bidRef.id,
+        bidCount: FieldValue.increment(1),
+        lastBidAt: FieldValue.serverTimestamp(),
+      });
+      return { lot: l, previous: prev };
+    });
+
+    // Best effort: a failed email never undoes a bid that is committed.
+    const closesAt = lot.closesAt.toDate();
+    const mails = [
+      sendBestEffort(
+        `placeAuctionBid(${bidRef.id})`,
+        buildBidConfirmationEmail({ to: bidder.email, name: bidder.name, lotTitle: lot.title, amount, closesAt })
+      ),
+    ];
+    if (previous) {
+      mails.push(
+        sendBestEffort(
+          `placeAuctionBid(${bidRef.id}) outbid`,
+          buildOutbidEmail({
+            to: previous.email,
+            name: previous.name,
+            lotTitle: lot.title,
+            newHigh: amount,
+            nextMinimum: amount + lot.increment,
+            closesAt,
+          })
+        )
+      );
+    }
+    await Promise.all(mails);
+    return { ok: true, amount };
   }
 );
