@@ -6,6 +6,7 @@ import ChristmasSEO from './components/ChristmasSEO';
 import bmwLogo from './assets/bmw-of-south-atlanta.png';
 import { DDA_ORIGIN, auction, events, sponsor } from './data/christmasDetails';
 import { getEventBySlug, getOpenTicket, useContentOverrides } from '../services/dataService';
+import { volunteerLink } from '../utils/volunteer';
 
 const ICONS = { market: Store, parade: Truck, home: House };
 
@@ -51,6 +52,9 @@ function EventCard({ item }) {
   // A listing that is selling tickets leads with checkout; its details page
   // becomes the secondary link.
   const ticket = getOpenTicket(listing);
+  // Volunteer sign-up from the listing; the shift board lives on the DDA site.
+  const volunteer = volunteerLink(listing);
+  const volunteerHref = volunteer && (volunteer.external ? volunteer.url : `${DDA_ORIGIN}${volunteer.url}`);
 
   return (
     <li className="xmas-card">
@@ -72,6 +76,11 @@ function EventCard({ item }) {
       {ticket && (
         <a className="xmas-secondary" href={href} target="_blank" rel="noreferrer">
           {label}
+        </a>
+      )}
+      {volunteerHref && (
+        <a className="xmas-secondary" href={volunteerHref} target="_blank" rel="noreferrer">
+          {listing.volunteer_label || 'Volunteer'}
         </a>
       )}
     </li>

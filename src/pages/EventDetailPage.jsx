@@ -6,7 +6,7 @@ import NotFoundNotice from '../components/common/NotFoundNotice';
 import RichText from '../components/common/RichText';
 import { getEventBySlug, useContentOverrides } from '../services/dataService';
 import { webflowAsset } from '../utils/webflowAsset';
-import { hasVolunteerBoard, volunteerPath } from '../utils/volunteer';
+import { volunteerLink } from '../utils/volunteer';
 
 export default function EventDetailPage() {
   const { slug } = useParams();
@@ -55,8 +55,9 @@ export default function EventDetailPage() {
   // fee" badge. Only http(s) targets render.
   // Staff link an event to volunteer sign-up from its listing in the admin
   // portal (`volunteer_enabled`); `volunteer_url` in data/event_overrides.json
-  // is the built-in default. See src/utils/volunteer.js.
-  const volunteerUrl = hasVolunteerBoard(event) ? volunteerPath(event) : null;
+  // is the built-in default. An outside sign-up site goes in
+  // `volunteer_signup_url`. See src/utils/volunteer.js.
+  const volunteer = volunteerLink(event);
   const volunteerLabel = event?.volunteer_label || 'Volunteer';
 
   // Sponsorship checkout (Ticket Tailor), set as `sponsor_url` in
@@ -191,14 +192,26 @@ export default function EventDetailPage() {
               </div>
             )}
 
-            {volunteerUrl && (
+            {volunteer && !volunteer.external && (
               <Link
-                to={volunteerUrl}
+                to={volunteer.url}
                 className="inline-flex items-center px-6 py-3 rounded-xl border-2 border-senoia-red text-senoia-red hover:bg-senoia-red hover:text-white font-semibold text-sm transition-colors"
               >
                 <HandHeart className="mr-2 w-4 h-4" />
                 <span>{volunteerLabel}</span>
               </Link>
+            )}
+
+            {volunteer?.external && (
+              <a
+                href={volunteer.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-6 py-3 rounded-xl border-2 border-senoia-red text-senoia-red hover:bg-senoia-red hover:text-white font-semibold text-sm transition-colors"
+              >
+                <HandHeart className="mr-2 w-4 h-4" />
+                <span>{volunteerLabel}</span>
+              </a>
             )}
 
             {sponsorUrl && (
