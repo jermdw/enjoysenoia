@@ -185,7 +185,7 @@ holders only. Details in `auction.js`.
 
 - `requestAuctionLink` (callable; contact-form protections, plus 3 per address
   per hour) asks Ticket Tailor live for completed Tour of Homes orders
-  (`ev_2477581`) bought with that email. With tickets: writes
+  (`ev_9295292`) bought with that email. With tickets: writes
   `auction_bidders/{sha256(email)}` (name, email, phone, ticket count), stores
   `auction_links/{sha256(token)}` (45 days) and emails the bidding link.
   Without: emails that address a "we couldn't find your tickets" note. The page
@@ -219,7 +219,7 @@ exist. Until cars exist, the page says bidding opens soon and hides the form.
 1. Secret: `firebase functions:secrets:set TICKET_TAILOR_API_KEY --project enjoysenoia`
    (from 1Password: `op read "op://…" | firebase functions:secrets:set TICKET_TAILOR_API_KEY --project enjoysenoia --data-file -`).
 2. Check the event ID with the key (prints only the event name):
-   `curl -s -u "$(op read 'op://…'):" https://api.tickettailor.com/v1/events/ev_2477581 | python3 -c 'import json,sys; print(json.load(sys.stdin).get("name"))'`.
+   `curl -s -u "$(op read 'op://…'):" https://api.tickettailor.com/v1/events/ev_9295292 | python3 -c 'import json,sys; print(json.load(sys.stdin).get("name"))'`.
    If that isn't the Tour of Homes, fix `TICKET_EVENT_ID` in `auction.js` first.
    **Don't skip this:** with a wrong ID, or a key that hides personal data,
    every real ticket holder is emailed "we couldn't find your tickets".

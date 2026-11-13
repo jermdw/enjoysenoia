@@ -31,11 +31,12 @@ export const SITE_URL = 'https://christmas.enjoysenoia.com';
 export const TICKETS_URL = 'https://buytickets.at/senoiadda/2477581';
 
 /**
- * The Tour of Homes in Ticket Tailor. Its public page is buytickets.at/
- * senoiadda/2477581, and the API names events ev_<that number>. If that ever
- * stops matching, no one gets a bidding link, and the function logs it.
+ * The Tour of Homes event in Ticket Tailor's API, checked against the API on
+ * 2026-11-13. It is not the number in the public ticket link
+ * (buytickets.at/senoiadda/2477581), which is a different ID. If it is wrong,
+ * no one gets a bidding link: every ticket holder is told none were found.
  */
-export const TICKET_EVENT_ID = 'ev_2477581';
+export const TICKET_EVENT_ID = 'ev_9295292';
 // The emulator may point at a local stand-in (TICKET_TAILOR_API_BASE in
 // functions/.env.local), so a test never queries real orders.
 export const TICKET_TAILOR_API =
