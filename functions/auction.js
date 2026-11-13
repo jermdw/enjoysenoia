@@ -2,7 +2,7 @@
  * The Tour of Homes BMW silent auction (christmas.enjoysenoia.com/auction).
  *
  * BMW of South Atlanta lends three cars, each seating four, for a chauffeured
- * Candlelight Tour of Homes: winners start at the Stone Lodge at Marimac Lakes
+ * Candlelight Tour of Homes: winners start at the Mess Hall on Main Street
  * with champagne and hors d'oeuvres, then are driven home to home. Each car is
  * its own auction ("lot"). Only Tour of Homes ticket holders may bid.
  *
@@ -246,7 +246,7 @@ export function buildWinnerEmail({ to, name, lotTitle, amount }) {
   const html = wrap(`
   <h3 style="margin-bottom: 16px;">Congratulations, you won!</h3>
   <p>Hi ${escapeHtml(name)}, bidding has closed, and your bid of <strong>${dollars(amount)}</strong> won the <strong>${escapeHtml(lotTitle)}</strong>: a chauffeured Candlelight Tour of Homes on Sunday, December 13.</p>
-  <p>We'll email you within two days with how to pay and the details of your evening, including when to arrive at the Stone Lodge at Marimac Lakes for champagne and hors d'oeuvres.</p>
+  <p>We'll email you within two days with how to pay and the details of your evening, including when to arrive at the Mess Hall on Main Street for champagne and hors d'oeuvres.</p>
   <p>The car carries you and up to three guests, and every rider needs a Tour of Homes ticket of their own. Need more? <a href="${TICKETS_URL}">Buy Tour of Homes tickets</a>.</p>
   <p>Thank you for supporting downtown Senoia.</p>`);
   return { from: FROM, to, replyTo: REPLY_TO, subject: `You won: ${lotTitle} for the Tour of Homes`, html };
