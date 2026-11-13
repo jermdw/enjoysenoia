@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-do
 import { ArrowLeft, Car, ExternalLink, GlassWater, Mail, Ticket } from 'lucide-react';
 import './christmas.css';
 import bmwLogo from './assets/bmw-of-south-atlanta.png';
-import { auction, sponsor } from './data/christmasDetails';
+import { auction, placeholderPhotos, sponsor } from './data/christmasDetails';
 import {
   getAuctionBidder,
   isLotOpen,
@@ -251,10 +251,23 @@ function LotCard({ lot, token, mine, onBid }) {
   const closes = formatClose(lot);
   const hasBids = typeof lot.highBid === 'number';
   const leading = mine?.leading && mine.amount === lot.highBid;
+  const credit = lot.image ? placeholderPhotos[lot.image] : null;
 
   return (
     <li className="xmas-card xmas-lot">
       {lot.image && <img className="xmas-lot-img" src={lot.image} alt="" loading="lazy" decoding="async" />}
+      {credit && (
+        <p className="xmas-photo-credit">
+          Photo:{' '}
+          <a href={credit.source} target="_blank" rel="noreferrer">
+            {credit.author}
+          </a>
+          ,{' '}
+          <a href={credit.licenseUrl} target="_blank" rel="noreferrer">
+            {credit.license}
+          </a>
+        </p>
+      )}
       <h3 className="xmas-display">{lot.title}</h3>
       {lot.subtitle && <p className="xmas-when">{lot.subtitle}</p>}
       {lot.description && <p className="xmas-lot-desc">{lot.description}</p>}

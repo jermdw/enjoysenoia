@@ -90,6 +90,31 @@ export const auction = {
   ],
 };
 
+/**
+ * Credits for the placeholder car photos in public/christmas/auction/, from
+ * Wikimedia Commons under CC BY-SA 4.0, which requires naming the author and
+ * the license. Keyed by the path a lot's `image` holds; a car whose photo
+ * staff replace simply shows no credit line.
+ */
+const CC_BY_SA_4 = { license: 'CC BY-SA 4.0', licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/' };
+export const placeholderPhotos = {
+  '/christmas/auction/x7.jpg': {
+    author: 'Damian B Oh',
+    source: 'https://commons.wikimedia.org/wiki/File:BMW_G07_LCI_X7_xDrive40i_M_Sport_Black_Sapphire_Metallic_(11).jpg',
+    ...CC_BY_SA_4,
+  },
+  '/christmas/auction/x5.jpg': {
+    author: 'Damian B Oh',
+    source: 'https://commons.wikimedia.org/wiki/File:BMW_G05_LCI_X5_M_Sport_Manhattan_Metallic.jpg',
+    ...CC_BY_SA_4,
+  },
+  '/christmas/auction/ix.jpg': {
+    author: 'Alexander Migl',
+    source: 'https://commons.wikimedia.org/wiki/File:2025_BMW_iX_DSC_2687.jpg',
+    ...CC_BY_SA_4,
+  },
+};
+
 // Event detail pages live on the DDA site. Absolute, because on this host every
 // path folds back to "/" (App.jsx).
 export const DDA_ORIGIN = 'https://www.enjoysenoia.com';

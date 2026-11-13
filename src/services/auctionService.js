@@ -100,12 +100,22 @@ export async function placeAuctionBid(token, lotId, amount) {
 // Bidding closes Sunday, December 6 at 8 PM Eastern (agreed 2026-11-13).
 export const DEFAULT_CLOSE = '2026-12-06T20:00';
 
-/** The three cars BMW of South Atlanta lends. Created closed; staff open them. */
-export const DEFAULT_LOTS = [1, 2, 3].map((n) => ({
-  id: `car-${n}`,
-  title: `BMW Car ${n}`,
+/**
+ * The three cars BMW of South Atlanta lends. Created closed; staff open them.
+ * The models and photos are placeholders (current BMW SUVs) until the
+ * dealership confirms which cars it is sending; staff change them in admin.
+ * The photos are credited on the page (placeholderPhotos in christmasDetails.js).
+ */
+export const DEFAULT_LOTS = [
+  { model: 'X7', photo: 'x7' },
+  { model: 'X5', photo: 'x5' },
+  { model: 'iX', photo: 'ix' },
+].map(({ model, photo }, i) => ({
+  id: `car-${i + 1}`,
+  title: `2026 BMW ${model}`,
   subtitle: 'Chauffeured Candlelight Tour of Homes for up to 4',
-  sortOrder: n,
+  image: `/christmas/auction/${photo}.jpg`,
+  sortOrder: i + 1,
 }));
 
 /**
