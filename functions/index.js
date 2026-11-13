@@ -31,6 +31,8 @@
  * chauffeured BMW silent auction (see auction.js). Ticket ownership is checked
  * live against Ticket Tailor with TICKET_TAILOR_API_KEY; every bid is taken in
  * a transaction on its lot that re-checks the close time and the minimum.
+ * notifyAuctionResults (every 10 minutes) emails each closed car's winner,
+ * the bidders who didn't win, and info@, once per car.
  *
  * The contact message is written to `contact_messages` BEFORE the email is attempted,
  * so a failed send never loses someone's enquiry. The collection has no rules
@@ -41,6 +43,7 @@ import { initializeApp } from 'firebase-admin/app';
 import { FieldValue, Timestamp, getFirestore } from 'firebase-admin/firestore';
 import { getStorage } from 'firebase-admin/storage';
 import { HttpsError, onCall, onRequest } from 'firebase-functions/v2/https';
+import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { defineSecret, defineString } from 'firebase-functions/params';
 import { auth, drive } from '@googleapis/drive';
 import { Readable } from 'node:stream';
@@ -73,16 +76,22 @@ import {
   LINKS as AUCTION_LINKS,
   LINK_TTL_MS as AUCTION_LINK_TTL_MS,
   LOTS,
+  NOTICES,
+  NOTICE_STALE_MS,
   TOKEN_RE as AUCTION_TOKEN_RE,
   buildAuctionLinkEmail,
   buildBidConfirmationEmail,
+  buildDidNotWinEmail,
   buildNoTicketsEmail,
   buildOutbidEmail,
+  buildStaffResultsEmail,
+  buildWinnerEmail,
   countTickets,
   emailHash as auctionEmailHash,
   lotClosedReason,
   minimumBid,
   ordersUrl,
+  planCloseNotices,
   sha256 as auctionSha256,
   ticketTailorAuth,
   validateBid,
@@ -774,5 +783,88 @@ export const placeAuctionBid = onCall(
     }
     await Promise.all(mails);
     return { ok: true, amount };
+  }
+);
+
+/**
+ * Emails the results of every car whose bidding has closed: the winner (we'll
+ * be in touch within two days about payment), each bidder who won nothing in
+ * this run (once, listing their cars), and a summary to info@.
+ *
+ * Exactly once per car: a run first CLAIMS each closed car by creating
+ * auction_close_notices/{lotId}, which fails if it exists, so overlapping or
+ * retried runs never double-send. Cars closed more than NOTICE_STALE_MS ago
+ * when first seen are recorded without emailing anyone.
+ */
+export const notifyAuctionResults = onSchedule(
+  {
+    schedule: 'every 10 minutes',
+    timeZone: 'America/New_York',
+    region: 'us-central1',
+    secrets: [RESEND_API_KEY],
+    retryCount: 0,
+    maxInstances: 1,
+  },
+  async () => {
+    const db = getFirestore();
+    const now = Date.now();
+    const lots = (await db.collection(LOTS).get()).docs
+      .map((d) => ({ id: d.id, ...d.data() }))
+      .filter((l) => typeof l.closesAt?.toMillis === 'function' && l.closesAt.toMillis() <= now);
+    if (!lots.length) return;
+
+    const claimed = [];
+    for (const lot of lots) {
+      const stale = now - lot.closesAt.toMillis() > NOTICE_STALE_MS;
+      try {
+        await db.doc(`${NOTICES}/${lot.id}`).create({
+          status: stale ? 'skipped-stale' : 'sending',
+          lotTitle: lot.title,
+          claimedAt: FieldValue.serverTimestamp(),
+        });
+        if (!stale) claimed.push(lot);
+      } catch (err) {
+        // 6 = ALREADY_EXISTS: this car's results already went out (or are going).
+        if (err?.code !== 6) console.error(`notifyAuctionResults: could not claim ${lot.id}`, err);
+      }
+    }
+    if (!claimed.length) return;
+
+    const bids = (await db.collection(BIDS).where('lotId', 'in', claimed.map((l) => l.id)).get()).docs.map((d) => ({
+      id: d.id,
+      ...d.data(),
+    }));
+    const plan = planCloseNotices(claimed, bids);
+
+    await Promise.all([
+      ...plan.winners.map(({ lot, bid }) =>
+        sendBestEffort(
+          `notifyAuctionResults(${lot.id}) winner`,
+          buildWinnerEmail({ to: bid.email, name: bid.name, lotTitle: lot.title, amount: bid.amount })
+        )
+      ),
+      ...plan.losers.map((p) =>
+        sendBestEffort('notifyAuctionResults did-not-win', buildDidNotWinEmail({ to: p.email, name: p.name, lots: p.lots }))
+      ),
+      sendBestEffort(
+        'notifyAuctionResults staff',
+        buildStaffResultsEmail({ winners: plan.winners, noBids: plan.noBids, losersNotified: plan.losers.length })
+      ),
+    ]);
+
+    await Promise.all(
+      claimed.map((lot) => {
+        const win = plan.winners.find((w) => w.lot.id === lot.id);
+        return db.doc(`${NOTICES}/${lot.id}`).update({
+          status: 'sent',
+          sentAt: FieldValue.serverTimestamp(),
+          winnerBidId: win ? win.bid.id : null,
+          winnerName: win ? win.bid.name : null,
+          winningBid: win ? win.bid.amount : null,
+          losersNotified: plan.losers.filter((p) => p.lots.some((l) => l.title === lot.title)).length,
+        });
+      })
+    );
+    console.log(`notifyAuctionResults: sent results for ${claimed.map((l) => l.id).join(', ')}`);
   }
 );

@@ -60,7 +60,7 @@ export const auction = {
   eventLine: 'Candlelight Tour of Homes · Sunday, December 13',
   tagline: 'A silent auction for a chauffeured Tour of Homes for up to four. Three cars, three auctions.',
   reception:
-    "Your evening begins at the Stone Lodge at Marimac Lakes with champagne and hors d'oeuvres for your party.",
+    "Your evening begins at the Mess Hall on Main Street with champagne and hors d'oeuvres for your party.",
   ride: "Then your chauffeur drives you home to home on this year's Candlelight Tour of Homes in a BMW from BMW of South Atlanta. Each car seats four.",
   proceeds: 'Every dollar raised goes to the Senoia Downtown Development Authority.',
   ticketsUrl: 'https://buytickets.at/senoiadda/2477581',

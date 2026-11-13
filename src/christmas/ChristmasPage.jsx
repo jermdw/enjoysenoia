@@ -149,7 +149,7 @@ export default function ChristmasPage() {
             </h2>
             <p>
               Bid on a chauffeured Candlelight Tour of Homes for up to four, starting with champagne and hors
-              d'oeuvres at the Stone Lodge at Marimac Lakes. {auction.proceeds}
+              d'oeuvres at the Mess Hall on Main Street. {auction.proceeds}
             </p>
             <Link className="xmas-btn xmas-btn-inline" to={auctionPath}>
               See the cars and bid

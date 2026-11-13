@@ -109,6 +109,8 @@ three BMW of South Atlanta cars, each its own auction, ticket holders only. Tick
 ownership is checked live against Ticket Tailor (`TICKET_TAILOR_API_KEY` secret; the key
 must include personal data), then the bidder gets an emailed link. Bids are taken only by
 the `placeAuctionBid` function in a transaction; staff run it from the **Auction** tab.
+`notifyAuctionResults` (every 10 minutes) emails winners, other bidders and info@ once
+per car after close; moving a car's `closesAt` into the past emails real people.
 Go-live order is in `functions/README.md`.
 
 ## Admin access (three places, keep in step)

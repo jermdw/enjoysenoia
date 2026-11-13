@@ -204,6 +204,21 @@ export async function getBids() {
   return snap.docs.map((d) => ({ id: d.id, ...d.data() })).sort((a, b) => ms(b) - ms(a));
 }
 
+/**
+ * When each car's results were emailed (notifyAuctionResults), by lot id.
+ * Optional: if the rule that lets staff read these isn't deployed yet, the tab
+ * still loads, just without the "Results emailed" lines.
+ */
+export async function getCloseNotices() {
+  try {
+    const snap = await getDocs(collection(db, 'auction_close_notices'));
+    return Object.fromEntries(snap.docs.map((d) => [d.id, d.data()]));
+  } catch (err) {
+    console.warn('Could not read auction results notices:', err);
+    return {};
+  }
+}
+
 export async function getBidders() {
   const snap = await getDocs(collection(db, BIDDERS));
   return snap.docs.map((d) => ({ id: d.id, ...d.data() }));

@@ -331,5 +331,12 @@ service cloud.firestore {
       allow read: if isAdmin();
       allow write: if false;
     }
+
+    // One per car once its results are emailed (notifyAuctionResults). The
+    // function's create() is what stops a second send, so no browser writes.
+    match /auction_close_notices/{lotId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
   }
 }
