@@ -392,6 +392,17 @@ await check('admin may NOT read a bidding link',
   () => assertFails(getDoc(doc(admin, 'auction_links/t'))));
 await check('public may NOT read a bidding link',
   () => assertFails(getDoc(doc(pub, 'auction_links/t'))));
+await env.withSecurityRulesDisabled(async (ctx) => {
+  await setDoc(doc(ctx.firestore(), 'auction_close_notices/car-1'), { status: 'sent', winnerName: 'Jane' });
+});
+await check('admin MAY read a results notice',
+  () => assertSucceeds(getDoc(doc(admin, 'auction_close_notices/car-1'))));
+await check('public may NOT read a results notice',
+  () => assertFails(getDoc(doc(pub, 'auction_close_notices/car-1'))));
+await check('admin may NOT delete a results notice (it would re-send)',
+  () => assertFails(deleteDoc(doc(admin, 'auction_close_notices/car-1'))));
+await check('admin may NOT create a results notice',
+  () => assertFails(setDoc(doc(admin, 'auction_close_notices/car-2'), { status: 'sent' })));
 
 await env.cleanup();
 console.log(`\n${pass} passed, ${fail} failed\n`);

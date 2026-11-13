@@ -236,8 +236,23 @@ exist. Until cars exist, the page says bidding opens soon and hides the form.
    confirmation, then void the bid in the Auction tab and check the high bid
    falls back. Then open all three.
 
-There is no automatic email at close. Staff use **Winners CSV** in the Auction
-tab to contact winners and take payment.
+**At close.** `notifyAuctionResults` runs every 10 minutes. For each car past
+its `closesAt` it first creates `auction_close_notices/{lotId}` (which fails if
+it exists, so results go out once per car), then emails:
+
+- the winner: congratulations, and that we'll be in touch **within two days**
+  about payment and the evening;
+- every other bidder on the cars that closed, once, unless they won one;
+- info@enjoysenoia.com: each car, its winning bid and the winner's contact.
+
+A car that closed more than 3 days before the function first sees it is
+recorded as `skipped-stale` and nobody is emailed. Voided bids never win. The
+Auction tab shows when each car's results went out. Payment is still arranged
+by staff: Winners CSV in the Auction tab has the same list.
+
+Deploying it the first time enables Cloud Scheduler, so do it from an owner's
+machine: `firebase deploy --only functions:notifyAuctionResults --project enjoysenoia`.
+**To test it, don't close a real car early:** that emails real bidders.
 
 ## Deploying from GitHub Actions
 

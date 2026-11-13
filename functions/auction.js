@@ -198,3 +198,89 @@ export function buildOutbidEmail({ to, name, lotTitle, newHigh, nextMinimum, clo
   ${button(`${SITE_URL}/auction`, 'Bid again')}`);
   return { from: FROM, to, replyTo: REPLY_TO, subject: `Outbid on ${lotTitle}`, html };
 }
+
+/* ------------------------------ at close ------------------------------ */
+
+// Results go out once per car, recorded here (Admin SDK writes; staff read).
+export const NOTICES = 'auction_close_notices';
+// A car closed longer ago than this when first seen gets no emails, only a
+// record: a late deploy or a reused lot must not mail people weeks later.
+export const NOTICE_STALE_MS = 3 * 24 * 60 * 60 * 1000;
+
+/**
+ * Who hears what when cars close. `lots` are the cars closing in this run
+ * ({ id, title, highBid, highBidId }), `bids` every bid on them. Pure, so the
+ * scheduled function and the tests share it.
+ *
+ * - Each car with a valid high bid has a winner.
+ * - Everyone else who bid on those cars hears once, listing the cars they bid
+ *   on, unless they won one of them (a winner isn't also told they lost).
+ * - Void bids count for nothing.
+ */
+export function planCloseNotices(lots, bids) {
+  const active = bids.filter((b) => b.status === 'active');
+  const winners = [];
+  const noBids = [];
+  for (const lot of lots) {
+    const bid = active.find((b) => b.id === lot.highBidId && b.lotId === lot.id);
+    if (bid) winners.push({ lot, bid });
+    else noBids.push(lot);
+  }
+  const winnerHashes = new Set(winners.map((w) => w.bid.emailHash));
+  const byPerson = new Map();
+  for (const lot of lots) {
+    const won = winners.find((w) => w.lot.id === lot.id);
+    for (const b of active) {
+      if (b.lotId !== lot.id || winnerHashes.has(b.emailHash)) continue;
+      const person = byPerson.get(b.emailHash) || { email: b.email, name: b.name, lots: [] };
+      if (!person.lots.some((l) => l.title === lot.title)) {
+        person.lots.push({ title: lot.title, winningBid: won ? won.bid.amount : null });
+      }
+      byPerson.set(b.emailHash, person);
+    }
+  }
+  return { winners, noBids, losers: [...byPerson.values()] };
+}
+
+export function buildWinnerEmail({ to, name, lotTitle, amount }) {
+  const html = wrap(`
+  <h3 style="margin-bottom: 16px;">Congratulations, you won!</h3>
+  <p>Hi ${escapeHtml(name)}, bidding has closed, and your bid of <strong>${dollars(amount)}</strong> won the <strong>${escapeHtml(lotTitle)}</strong>: a chauffeured Candlelight Tour of Homes on Sunday, December 13.</p>
+  <p>We'll email you within two days with how to pay and the details of your evening, including when to arrive at the Stone Lodge at Marimac Lakes for champagne and hors d'oeuvres.</p>
+  <p>The car carries you and up to three guests, and every rider needs a Tour of Homes ticket of their own. Need more? <a href="${TICKETS_URL}">Buy Tour of Homes tickets</a>.</p>
+  <p>Thank you for supporting downtown Senoia.</p>`);
+  return { from: FROM, to, replyTo: REPLY_TO, subject: `You won: ${lotTitle} for the Tour of Homes`, html };
+}
+
+/** One email per person, listing every car they bid on and didn't win. */
+export function buildDidNotWinEmail({ to, name, lots }) {
+  const items = lots
+    .map((l) => `<li>${escapeHtml(l.title)}${l.winningBid ? `: won with a bid of ${dollars(l.winningBid)}` : ''}</li>`)
+    .join('');
+  const html = wrap(`
+  <h3 style="margin-bottom: 16px;">Bidding has closed</h3>
+  <p>Hi ${escapeHtml(name)}, thank you for bidding in the Tour of Homes BMW auction. This time the car${lots.length > 1 ? 's' : ''} you bid on went to another bidder:</p>
+  <ul>${items}</ul>
+  <p>Every dollar raised goes to the Senoia Downtown Development Authority. We hope you enjoy the Candlelight Tour of Homes on Sunday, December 13.</p>`);
+  return { from: FROM, to, replyTo: REPLY_TO, subject: 'Tour of Homes BMW auction: bidding has closed', html };
+}
+
+/** For info@: every car closed in this run and how to reach its winner. */
+export function buildStaffResultsEmail({ winners, noBids, losersNotified }) {
+  const td = 'style="padding: 6px 10px; border-bottom: 1px solid #eee;"';
+  const rows = [
+    ...winners.map(
+      ({ lot, bid }) =>
+        `<tr><td ${td}>${escapeHtml(lot.title)}</td><td ${td}><strong>${dollars(bid.amount)}</strong></td><td ${td}>${escapeHtml(bid.name)}<br>${escapeHtml(bid.email)}<br>${escapeHtml(bid.phone || '')}</td></tr>`
+    ),
+    ...noBids.map((lot) => `<tr><td ${td}>${escapeHtml(lot.title)}</td><td ${td} colspan="2">No bids</td></tr>`),
+  ].join('');
+  const html = `
+<div style="font-family: Georgia, serif; max-width: 640px; color: #1d1a17;">
+  <h2 style="color: #8b1e23;">Tour of Homes BMW auction: results</h2>
+  <p>Bidding has closed. Each winner has been emailed that they won and that we'll be in touch <strong>within two days</strong> about payment and the evening. ${losersNotified} other bidder${losersNotified === 1 ? ' was' : 's were'} thanked.</p>
+  <table style="border-collapse: collapse; font-size: 14px;"><tr><th align="left" ${td}>Car</th><th align="left" ${td}>Winning bid</th><th align="left" ${td}>Winner</th></tr>${rows}</table>
+  <p style="font-size: 13px; color: #4d463f;">The same list is in the admin portal: Auction tab, Winners CSV.</p>
+</div>`.trim();
+  return { from: FROM, to: REPLY_TO, replyTo: REPLY_TO, subject: 'Tour of Homes BMW auction: results', html };
+}

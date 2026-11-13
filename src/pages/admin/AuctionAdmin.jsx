@@ -5,6 +5,7 @@ import {
   createDefaultLots,
   getBidders,
   getBids,
+  getCloseNotices,
   getLots,
   saveLot,
   timestampToEastern,
@@ -40,14 +41,14 @@ function downloadCsv(filename, csv) {
 }
 
 export default function AuctionAdmin() {
-  const [data, setData] = useState({ status: 'loading', lots: [], bids: [], bidders: [] });
+  const [data, setData] = useState({ status: 'loading', lots: [], bids: [], bidders: [], notices: {} });
   const [error, setError] = useState(null);
 
   const load = useCallback(async () => {
     setData((d) => ({ ...d, status: 'loading' }));
     try {
-      const [lots, bids, bidders] = await Promise.all([getLots(), getBids(), getBidders()]);
-      setData({ status: 'ready', lots, bids, bidders });
+      const [lots, bids, bidders, notices] = await Promise.all([getLots(), getBids(), getBidders(), getCloseNotices()]);
+      setData({ status: 'ready', lots, bids, bidders, notices });
     } catch (err) {
       console.warn('Could not load the auction:', err);
       setData((d) => ({ ...d, status: 'error' }));
@@ -127,6 +128,7 @@ export default function AuctionAdmin() {
           key={lot.id}
           lot={lot}
           bids={data.bids.filter((b) => b.lotId === lot.id)}
+          notice={data.notices[lot.id]}
           onChanged={load}
         />
       ))}
@@ -166,7 +168,7 @@ export default function AuctionAdmin() {
   );
 }
 
-function LotPanel({ lot, bids, onChanged }) {
+function LotPanel({ lot, bids, notice, onChanged }) {
   const [form, setForm] = useState(() => ({
     title: lot.title || '',
     subtitle: lot.subtitle || '',
@@ -204,7 +206,10 @@ function LotPanel({ lot, bids, onChanged }) {
   };
 
   const voidOne = async (bid) => {
-    if (!window.confirm(`Void ${bid.name}'s ${money(bid.amount)} bid on ${lot.title}? The next-best bid becomes the high bid. This can't be undone.`)) return;
+    const sent = notice?.status === 'sent'
+      ? `\n\nResults for this car were already emailed${notice.winnerName ? ` (winner: ${notice.winnerName})` : ''}. Voiding now sends nothing new: contact the bidders yourself.`
+      : '';
+    if (!window.confirm(`Void ${bid.name}'s ${money(bid.amount)} bid on ${lot.title}? The next-best bid becomes the high bid. This can't be undone.${sent}`)) return;
     try {
       await voidBid(bid, bids, auth.currentUser?.email);
       onChanged();
@@ -228,6 +233,13 @@ function LotPanel({ lot, bids, onChanged }) {
           {closed ? 'Closed' : lot.open ? 'Open for bids' : 'Not open'}
         </span>
       </header>
+
+      {notice?.status === 'sent' && (
+        <p className="px-4 pt-3 text-xs font-semibold text-emerald-800">
+          Results emailed {when(notice.sentAt)} ET: {notice.winnerName ? `winner ${notice.winnerName} (${money(notice.winningBid)})` : 'no bids'}
+          {notice.losersNotified ? `, ${notice.losersNotified} other bidder${notice.losersNotified === 1 ? '' : 's'} thanked` : ''}.
+        </p>
+      )}
 
       {leader && (
         <p className="px-4 pt-3 text-sm text-stone-700">
