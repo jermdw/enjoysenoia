@@ -102,6 +102,15 @@ only the `redCarpetPhotos` function reads them. Keep anything else that must not
 be public under `private/` too: the catch-all rule makes the rest of the bucket
 world-readable. Go-live order is in `functions/README.md`.
 
+## Tour of Homes BMW silent auction
+
+`/auction` on the Christmas site (`src/christmas/AuctionPage.jsx`, `functions/auction.js`):
+three BMW of South Atlanta cars, each its own auction, ticket holders only. Ticket
+ownership is checked live against Ticket Tailor (`TICKET_TAILOR_API_KEY` secret; the key
+must include personal data), then the bidder gets an emailed link. Bids are taken only by
+the `placeAuctionBid` function in a transaction; staff run it from the **Auction** tab.
+Go-live order is in `functions/README.md`.
+
 ## Admin access (three places, keep in step)
 
 An admin is an account with the `admin` custom claim, or an email on the allowlist. The

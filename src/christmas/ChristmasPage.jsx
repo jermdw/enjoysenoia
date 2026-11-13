@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import { ExternalLink, House, Store, Truck } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { Car, ExternalLink, House, Store, Truck } from 'lucide-react';
 import './christmas.css';
 import ChristmasSEO from './components/ChristmasSEO';
 import bmwLogo from './assets/bmw-of-south-atlanta.png';
-import { DDA_ORIGIN, events, sponsor } from './data/christmasDetails';
+import { DDA_ORIGIN, auction, events, sponsor } from './data/christmasDetails';
 import { getEventBySlug, getOpenTicket, useContentOverrides } from '../services/dataService';
 
 const ICONS = { market: Store, parade: Truck, home: House };
@@ -83,6 +84,8 @@ function EventCard({ item }) {
  */
 export default function ChristmasPage() {
   useContentOverrides();
+  // /christmas on enjoysenoia.com, / on christmas.enjoysenoia.com.
+  const auctionPath = useLocation().pathname.startsWith('/christmas') ? '/christmas/auction' : '/auction';
 
   useEffect(() => {
     // index.html sets a light background on <body>; match the page's cream so
@@ -123,6 +126,25 @@ export default function ChristmasPage() {
                 <EventCard key={item.key} item={item} />
               ))}
             </ul>
+          </div>
+        </section>
+
+        <section className="xmas-section xmas-band" aria-labelledby="xmas-auction">
+          <div className="xmas-wrap xmas-promo">
+            <span className="xmas-card-icon" aria-hidden="true">
+              <Car size={24} />
+            </span>
+            <p className="xmas-eyebrow xmas-eyebrow-dark">Silent auction · Tour of Homes ticket holders</p>
+            <h2 id="xmas-auction" className="xmas-display">
+              Ride the Tour in a BMW
+            </h2>
+            <p>
+              Bid on a chauffeured Candlelight Tour of Homes for up to four, starting with champagne and hors
+              d'oeuvres at the Stone Lodge at Marimac Lakes. {auction.proceeds}
+            </p>
+            <Link className="xmas-btn xmas-btn-inline" to={auctionPath}>
+              See the cars and bid
+            </Link>
           </div>
         </section>
 

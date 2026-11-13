@@ -176,6 +176,69 @@ buyer. Only hashes are stored. Neither collection has a rules block.
    Re-run with a newer export for door sales; existing guests are kept.
 4. Functions: `gh workflow run deploy-backend.yml --ref main -f only=functions`.
 
+## Tour of Homes BMW silent auction
+
+`/auction` on christmas.enjoysenoia.com (also `/christmas/auction` on the main
+site). BMW of South Atlanta lends three cars for a chauffeured Candlelight Tour
+of Homes; each car is its own silent auction, open to Tour of Homes ticket
+holders only. Details in `auction.js`.
+
+- `requestAuctionLink` (callable; contact-form protections, plus 3 per address
+  per hour) asks Ticket Tailor live for completed Tour of Homes orders
+  (`ev_2477581`) bought with that email. With tickets: writes
+  `auction_bidders/{sha256(email)}` (name, email, phone, ticket count), stores
+  `auction_links/{sha256(token)}` (45 days) and emails the bidding link.
+  Without: emails that address a "we couldn't find your tickets" note. The page
+  hears `{ ok: true }` either way. If Ticket Tailor errors, the bidder is told
+  to try again and the log says why.
+- `getAuctionBidder` (callable, token) returns the bidder's name and their best
+  bid on each car, and whether it's leading.
+- `placeAuctionBid` (callable, token; 30 bids per bidder per hour) takes the bid
+  in a transaction on `auction_lots/{lotId}` that re-checks the `open` switch,
+  `closesAt`, and the minimum (opening bid, then high bid + increment), and
+  refuses a bid against yourself. Emails a confirmation, and an outbid notice to
+  the previous high bidder.
+
+`auction_lots` is public (no personal data); `auction_bids` and
+`auction_bidders` are admin-read only, and `auction_links` has no rules block.
+Staff run it from the admin portal's **Auction** tab: set up the three cars,
+edit them, open bidding, void a bid, and export the winners. Payment is taken
+by staff after close; nothing is charged here.
+
+**Ticket Tailor key.** Box office > Manage > API. The key needs personal data
+(the `customer_data` role): "hide personal data in responses" must be **off**,
+or the buyer-email filter matches nothing and nobody gets a link. It is used
+only for the one orders lookup, and nothing Ticket Tailor returns is stored
+except the ticket count.
+
+**Going live, in this order.** The backend goes first, by hand from the PR
+branch, so the page never runs without it. Once this code is on `main`, every
+functions deploy (including unrelated ones) needs `TICKET_TAILOR_API_KEY` to
+exist. Until cars exist, the page says bidding opens soon and hides the form.
+
+1. Secret: `firebase functions:secrets:set TICKET_TAILOR_API_KEY --project enjoysenoia`
+   (from 1Password: `op read "op://…" | firebase functions:secrets:set TICKET_TAILOR_API_KEY --project enjoysenoia --data-file -`).
+2. Check the event ID with the key (prints only the event name):
+   `curl -s -u "$(op read 'op://…'):" https://api.tickettailor.com/v1/events/ev_2477581 | python3 -c 'import json,sys; print(json.load(sys.stdin).get("name"))'`.
+   If that isn't the Tour of Homes, fix `TICKET_EVENT_ID` in `auction.js` first.
+   **Don't skip this:** with a wrong ID, or a key that hides personal data,
+   every real ticket holder is emailed "we couldn't find your tickets".
+3. Rules and the three functions, from an owner's machine (a new
+   `defineSecret` has to be bound to the runtime account once, see below). It
+   may ask for `SPONSOR_LOGO_FOLDER_ID`:
+   `firebase deploy --only firestore:rules,functions:requestAuctionLink,functions:getAuctionBidder,functions:placeAuctionBid --project enjoysenoia`.
+   Later deploys can use the workflow.
+4. Merge the PR (Hosting: the page, the Christmas promo, the listing link).
+5. Admin portal > Auction > **Set up the three cars**, fill in each car's model
+   (and a photo URL if BMW sends one), and save, still closed.
+6. Smoke test: open one car, ask for a link with your own ticket email (type it
+   with a capital letter once, to check the lookup ignores case), bid, check the
+   confirmation, then void the bid in the Auction tab and check the high bid
+   falls back. Then open all three.
+
+There is no automatic email at close. Staff use **Winners CSV** in the Auction
+tab to contact winners and take payment.
+
 ## Deploying from GitHub Actions
 
 `.github/workflows/deploy-backend.yml` deploys rules, indexes or functions from

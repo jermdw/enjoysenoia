@@ -270,5 +270,66 @@ service cloud.firestore {
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'cancelledAt']);
       allow create, delete: if false;
     }
+
+    /*
+     * Tour of Homes chauffeured BMW silent auction (/auction on
+     * christmas.enjoysenoia.com). See functions/auction.js.
+     *
+     * auction_lots/{lotId}     one per car: what it is, the opening bid and
+     *                          step, the open switch, closesAt, and the high
+     *                          bid AMOUNT. Public, with nothing personal in it.
+     * auction_bids/{id}        each bid with the bidder's name, email, phone.
+     * auction_bidders/{hash}   verified ticket holders.
+     * auction_links/{hash}     bidding-link tokens (hashed); no rules block
+     *                          below, so no browser can read or write them.
+     *
+     * Bids and bidders are written only by the placeAuctionBid and
+     * requestAuctionLink functions (Admin SDK). Staff may void a bid and then
+     * set the lot's high bid back (src/services/auctionService.js), which is
+     * why highBid, highBidId and bidCount are writable by an admin.
+     */
+    function isValidAuctionLot() {
+      let d = request.resource.data;
+      return d.keys().hasOnly([
+          'title', 'subtitle', 'description', 'image', 'sortOrder', 'seats',
+          'openingBid', 'increment', 'closesAt', 'open',
+          'highBid', 'highBidId', 'bidCount', 'lastBidAt', 'updatedAt'
+        ])
+        && d.keys().hasAll(['title', 'openingBid', 'increment', 'closesAt', 'open', 'bidCount'])
+        && d.title is string && d.title.size() > 0 && d.title.size() <= 120
+        && optString(d, 'subtitle', 200)
+        && optString(d, 'description', 2000)
+        && optString(d, 'image', 2000)
+        && d.openingBid is int && d.openingBid >= 1
+        && d.increment is int && d.increment >= 1
+        && d.closesAt is timestamp
+        && d.open is bool
+        && d.bidCount is int && d.bidCount >= 0
+        && (!('highBid' in d) || d.highBid == null || (d.highBid is int && d.highBid >= 1))
+        && optString(d, 'highBidId', 40)
+        && (!('seats' in d) || (d.seats is int && d.seats >= 1 && d.seats <= 12))
+        && (!('sortOrder' in d) || d.sortOrder is number);
+    }
+
+    match /auction_lots/{lotId} {
+      allow read: if true;
+      allow create, update: if isAdmin() && lotId.matches('^[a-z0-9][a-z0-9-]{0,39}$') && isValidAuctionLot();
+      allow delete: if isAdmin();
+    }
+
+    match /auction_bids/{bidId} {
+      allow read: if isAdmin();
+      // Staff may only void a bid; the amount and bidder never change.
+      allow update: if isAdmin()
+        && resource.data.status == 'active'
+        && request.resource.data.status == 'void'
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'voidedAt', 'voidedBy']);
+      allow create, delete: if false;
+    }
+
+    match /auction_bidders/{hash} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
   }
 }

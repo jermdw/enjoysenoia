@@ -335,6 +335,64 @@ for (const path of ['masquerade_photo_guests/abc', 'red_carpet_links/def']) {
 await check('public may NOT add itself to the guest list',
   () => assertFails(setDoc(doc(pub, 'masquerade_photo_guests/new'), { addedAt: serverTimestamp() })));
 
+console.log('\nTour of Homes BMW auction');
+const lot = (over = {}) => ({
+  title: 'Car 1', openingBid: 200, increment: 25, closesAt: new Date('2026-12-07T01:00:00Z'),
+  open: false, bidCount: 0, highBid: null, seats: 4, sortOrder: 1, ...over,
+});
+await check('admin MAY create a lot',
+  () => assertSucceeds(setDoc(doc(admin, 'auction_lots/car-1'), lot())));
+await check('public MAY read a lot',
+  () => assertSucceeds(getDoc(doc(pub, 'auction_lots/car-1'))));
+await check('public may NOT write a lot (no self-made high bid)',
+  () => assertFails(updateDoc(doc(pub, 'auction_lots/car-1'), { highBid: 5 })));
+await check('signed-in non-admin may NOT write a lot',
+  () => assertFails(setDoc(doc(nonAdmin, 'auction_lots/car-2'), lot())));
+await check('admin may NOT give a lot a fractional opening bid',
+  () => assertFails(setDoc(doc(admin, 'auction_lots/car-2'), lot({ openingBid: 199.5 }))));
+await check('admin may NOT add an unknown field (e.g. a bidder email) to a lot',
+  () => assertFails(setDoc(doc(admin, 'auction_lots/car-2'), lot({ highBidderEmail: 'x@example.com' }))));
+await check('admin MAY set the high bid back after a void',
+  () => assertSucceeds(updateDoc(doc(admin, 'auction_lots/car-1'), { highBid: 200, highBidId: 'b0', bidCount: 1 })));
+
+await env.withSecurityRulesDisabled(async (ctx) => {
+  const fs = ctx.firestore();
+  await setDoc(doc(fs, 'auction_bids/b1'), {
+    lotId: 'car-1', amount: 250, emailHash: 'h', name: 'Jane', email: 'jane@example.com',
+    phone: '7705550100', status: 'active', createdAt: serverTimestamp(),
+  });
+  await setDoc(doc(fs, 'auction_bidders/h'), { name: 'Jane', email: 'jane@example.com' });
+  await setDoc(doc(fs, 'auction_links/t'), { emailHash: 'h' });
+});
+await check('public may NOT read a bid',
+  () => assertFails(getDoc(doc(pub, 'auction_bids/b1'))));
+await check('public may NOT place a bid from the browser',
+  () => assertFails(addDoc(collection(pub, 'auction_bids'), { lotId: 'car-1', amount: 9999, status: 'active' })));
+await check('admin may NOT place a bid from the browser',
+  () => assertFails(addDoc(collection(admin, 'auction_bids'), { lotId: 'car-1', amount: 9999, status: 'active' })));
+await check('admin MAY read a bid',
+  () => assertSucceeds(getDoc(doc(admin, 'auction_bids/b1'))));
+await check('admin may NOT change a bid amount',
+  () => assertFails(updateDoc(doc(admin, 'auction_bids/b1'), { amount: 10 })));
+await check('admin MAY void a bid',
+  () => assertSucceeds(updateDoc(doc(admin, 'auction_bids/b1'), { status: 'void', voidedAt: serverTimestamp(), voidedBy: 'jermdw@gmail.com' })));
+await check('admin may NOT un-void a bid',
+  () => assertFails(updateDoc(doc(admin, 'auction_bids/b1'), { status: 'active' })));
+await check('admin may NOT delete a bid',
+  () => assertFails(deleteDoc(doc(admin, 'auction_bids/b1'))));
+await check('public may NOT read a bidder',
+  () => assertFails(getDoc(doc(pub, 'auction_bidders/h'))));
+await check('admin MAY read a bidder',
+  () => assertSucceeds(getDoc(doc(admin, 'auction_bidders/h'))));
+await check('admin may NOT write a bidder',
+  () => assertFails(setDoc(doc(admin, 'auction_bidders/h'), { name: 'x' })));
+await check('public may NOT add itself as a bidder',
+  () => assertFails(setDoc(doc(pub, 'auction_bidders/new'), { name: 'x' })));
+await check('admin may NOT read a bidding link',
+  () => assertFails(getDoc(doc(admin, 'auction_links/t'))));
+await check('public may NOT read a bidding link',
+  () => assertFails(getDoc(doc(pub, 'auction_links/t'))));
+
 await env.cleanup();
 console.log(`\n${pass} passed, ${fail} failed\n`);
 process.exit(fail ? 1 : 0);

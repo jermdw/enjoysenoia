@@ -29,6 +29,7 @@ import MasqueradePage from './masquerade/MasqueradePage';
 import RedCarpetPage from './masquerade/RedCarpetPage';
 import HalloweenPage from './halloween/HalloweenPage';
 import ChristmasPage from './christmas/ChristmasPage';
+import AuctionPage from './christmas/AuctionPage';
 
 /**
  * The Masquerade has its own domain, served from the same build. There the page
@@ -93,6 +94,7 @@ export default function App() {
     return (
       <Routes>
         <Route path="/" element={<ChristmasPage />} />
+        <Route path="/auction" element={<AuctionPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     );
@@ -115,6 +117,7 @@ export default function App() {
       <Route path="/masquerade/red-carpet" element={<RedCarpetPage />} />
       <Route path="/halloween" element={<HalloweenPage />} />
       <Route path="/christmas" element={<ChristmasPage />} />
+      <Route path="/christmas/auction" element={<AuctionPage />} />
 
       <Route element={<DDALayout />}>
         <Route path="/" element={<HomePage />} />
