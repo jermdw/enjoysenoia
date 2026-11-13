@@ -113,7 +113,8 @@ export default function AuctionAdmin() {
         <div className="rounded-xl border border-dashed border-stone-300 p-6 text-sm text-stone-600 space-y-3">
           <p>
             The auction isn't set up yet. This creates the three cars, <strong>closed</strong>, with a $200 opening bid,
-            $25 steps, four seats, and bidding closing Sunday, December 6 at 8 PM. Edit them, then open bidding on each.
+            $25 steps, four seats, and bidding closing Sunday, December 6 at 8 PM. The models (2026 X7, X5, iX) and
+            photos are placeholders until BMW of South Atlanta confirms its cars. Edit them, then open bidding on each.
           </p>
           <button onClick={setup} className="px-4 py-2 rounded-xl bg-senoia-red text-white text-xs font-semibold">
             Set up the three cars
@@ -248,7 +249,7 @@ function LotPanel({ lot, bids, onChanged }) {
           <textarea className={inputClass} rows={2} value={form.description} onChange={set('description')} maxLength={2000} />
         </label>
         <label className="text-xs font-semibold text-stone-600 sm:col-span-2">
-          Photo URL (optional, https)
+          Photo (optional: an https link, or a path on this site)
           <input className={inputClass} value={form.image} onChange={set('image')} maxLength={2000} placeholder="https://…" />
         </label>
         <label className="text-xs font-semibold text-stone-600">
