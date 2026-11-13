@@ -377,6 +377,8 @@
 }
 
 .xmas-lot-img {
+  /* Full-bleed to the card edges; the site-wide img rule caps width at 100%. */
+  max-width: none;
   width: calc(100% + 3rem);
   margin: -1.5rem -1.5rem 1rem;
   aspect-ratio: 3 / 2;
@@ -553,4 +555,14 @@ button.xmas-btn {
 .xmas-fine a {
   color: var(--xmas-green);
   font-weight: 500;
+}
+
+.xmas-photo-credit {
+  font-size: 0.75rem;
+  color: var(--xmas-ink-muted);
+  margin: -0.6rem 0 0.9rem;
+}
+
+.xmas-photo-credit a {
+  color: inherit;
 }
