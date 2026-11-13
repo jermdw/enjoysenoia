@@ -3,6 +3,10 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import {
   MAX_BID,
+  buildDidNotWinEmail,
+  buildStaffResultsEmail,
+  buildWinnerEmail,
+  planCloseNotices,
   TICKET_EVENT_ID,
   buildAuctionLinkEmail,
   buildNoTicketsEmail,
@@ -96,4 +100,52 @@ test('emails escape names and carry the bidding link', () => {
   });
   assert.ok(outbid.html.includes('$325'));
   assert.ok(outbid.html.includes('December 6'));
+});
+
+test('at close: one winner per car, losers hear once, a winner is never told they lost', () => {
+  const lots = [
+    { id: 'car-1', title: '2026 BMW X7', highBid: 400, highBidId: 'b3' },
+    { id: 'car-2', title: '2026 BMW X5', highBid: 250, highBidId: 'b5' },
+    { id: 'car-3', title: '2026 BMW iX', highBid: null },
+  ];
+  const bid = (id, lotId, who, amount, status = 'active') =>
+    ({ id, lotId, emailHash: who, email: `${who}@example.com`, name: who, phone: '1', amount, status });
+  const bids = [
+    bid('b1', 'car-1', 'ann', 200),
+    bid('b2', 'car-1', 'bob', 300),
+    bid('b3', 'car-1', 'cat', 400),
+    bid('b4', 'car-2', 'ann', 200),
+    bid('b5', 'car-2', 'bob', 250), // Bob lost the X7 but won the X5
+    bid('b6', 'car-2', 'dan', 225, 'void'),
+  ];
+  const plan = planCloseNotices(lots, bids);
+  assert.deepEqual(plan.winners.map((w) => [w.lot.id, w.bid.emailHash, w.bid.amount]), [['car-1', 'cat', 400], ['car-2', 'bob', 250]]);
+  assert.deepEqual(plan.noBids.map((l) => l.id), ['car-3']);
+  // Ann gets one email covering both cars; Bob (a winner) and Dan (void bid only) get none.
+  assert.equal(plan.losers.length, 1);
+  assert.equal(plan.losers[0].email, 'ann@example.com');
+  assert.deepEqual(plan.losers[0].lots, [{ title: '2026 BMW X7', winningBid: 400 }, { title: '2026 BMW X5', winningBid: 250 }]);
+});
+
+test('a voided high bid is not a winner', () => {
+  const lots = [{ id: 'car-1', title: 'X7', highBid: 300, highBidId: 'b2' }];
+  const plan = planCloseNotices(lots, [
+    { id: 'b2', lotId: 'car-1', emailHash: 'x', amount: 300, status: 'void' },
+  ]);
+  assert.equal(plan.winners.length, 0);
+  assert.deepEqual(plan.noBids.map((l) => l.id), ['car-1']);
+});
+
+test('close emails escape names and say what they should', () => {
+  const win = buildWinnerEmail({ to: 'a@example.com', name: '<A>', lotTitle: '2026 BMW X7', amount: 1250 });
+  assert.ok(win.html.includes('&lt;A&gt;') && win.html.includes('$1,250') && win.html.includes('within two days'));
+  const lost = buildDidNotWinEmail({ to: 'b@example.com', name: 'B', lots: [{ title: 'X7', winningBid: 400 }, { title: 'X5', winningBid: null }] });
+  assert.ok(lost.html.includes('cars you bid on') && lost.html.includes('$400'));
+  const staff = buildStaffResultsEmail({
+    winners: [{ lot: { title: 'X7' }, bid: { amount: 400, name: 'Cat', email: 'cat@example.com', phone: '770' } }],
+    noBids: [{ title: 'iX' }],
+    losersNotified: 1,
+  });
+  assert.equal(staff.to, 'info@enjoysenoia.com');
+  assert.ok(staff.html.includes('cat@example.com') && staff.html.includes('No bids') && staff.html.includes('1 other bidder was'));
 });
