@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { ArrowLeft, RefreshCw, Eye, EyeOff, ExternalLink, Pencil, Plus, RotateCcw, Search, Trash2 } from 'lucide-react';
+import { ArrowLeft, Download, RefreshCw, Eye, EyeOff, ExternalLink, Pencil, Plus, RotateCcw, Search, Trash2 } from 'lucide-react';
 import {
   KINDS,
+  businessesToCsv,
+  downloadCsv,
   displayDateTime,
   fromDateTimeInput,
   hasContentEdits,
@@ -434,10 +436,24 @@ export default function ContentAdmin({ kind, onOpenVolunteers }) {
           <h2 className="text-lg font-bold font-serif text-stone-900">{cfg.title}</h2>
           <p className="text-xs text-stone-500">{cfg.blurb}</p>
         </div>
+        <div className="flex flex-wrap items-center gap-2">
+        {kind === 'business' && (
+          <button
+            type="button"
+            disabled={loadState !== 'ok'}
+            onClick={() => downloadCsv(`enjoysenoia-business-directory-${new Date().toISOString().slice(0, 10)}.csv`, businessesToCsv(items, window.location.origin))}
+            title="Download every listing, staff edits included, as a CSV for Excel or Google Sheets"
+            className="disabled:opacity-50 inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-semibold"
+          >
+            <Download className="w-4 h-4" />
+            <span>Export to spreadsheet</span>
+          </button>
+        )}
         <button type="button" disabled={loadState !== 'ok'} onClick={() => { setNotice(''); setError(''); setEditing(null); }} className="disabled:opacity-50 inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-senoia-red hover:bg-senoia-darkred text-white text-xs font-semibold shadow-xs">
           <Plus className="w-4 h-4" />
           <span>{kind === 'event' ? 'New event' : 'Add business'}</span>
         </button>
+        </div>
       </div>
 
       {loadState === 'loading' && <p className="text-sm text-stone-500" role="status">Loading the latest changes…</p>}
