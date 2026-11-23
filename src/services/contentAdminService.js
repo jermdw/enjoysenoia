@@ -184,3 +184,59 @@ export function htmlToText(html) {
   );
   return (doc.body.textContent || '').replace(/\n{3,}/g, '\n\n').trim();
 }
+
+// A spreadsheet cell: quoted, and with a leading formula character neutralised so
+// a listing can't run as a formula when the file is opened in Excel or Sheets.
+const csvCell = (value) => {
+  let s = String(value ?? '');
+  if (/^[=+\-@\t\r＝＋－＠]/.test(s)) s = `'${s}`;
+  return `"${s.replace(/"/g, '""')}"`;
+};
+
+/**
+ * The Merchant Directory as CSV, alphabetical, staff edits included. Hidden
+ * listings are kept (marked in "On site") so the sheet is the whole directory.
+ */
+export function businessesToCsv(items, origin = '') {
+  const header = [
+    'Name', 'Category', 'Summary', 'Street Address', 'Address Line 2', 'City', 'State', 'ZIP',
+    'Full Address', 'Phone', 'Email', 'Website', 'Facebook', 'Instagram', 'Hours', 'Description',
+    'Directory Page', 'On site',
+  ];
+  const rows = [...items]
+    .sort((a, b) => (a.name || '').localeCompare(b.name || ''))
+    .map((b) => [
+      b.name,
+      b.category,
+      b.summary,
+      b.street_address_1,
+      b.street_address_2,
+      b.city,
+      b.state,
+      b.zip,
+      b.address,
+      b.phone,
+      b.email,
+      b.website,
+      b.facebook,
+      b.instagram,
+      htmlToText(b.hours_html),
+      htmlToText(b.description_html),
+      `${origin}/downtown-business/${b.slug}`,
+      b.hidden ? 'Hidden' : 'Yes',
+    ]);
+  return [header, ...rows].map((r) => r.map(csvCell).join(',')).join('\r\n');
+}
+
+/** Saves text as a file in the browser (a data: URI mangles commas). */
+export function downloadCsv(filename, csv) {
+  const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
