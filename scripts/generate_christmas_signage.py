@@ -11,10 +11,10 @@ PorchFest's royal blue and flag red. The PorchFest dove is gone, and nothing
 replaces it in the corner. Most of these are parking signs, and a festival mark
 on a tow warning just adds noise.
 
-1. **Santa** -- SANTA over a long arrow, double-sided: a right-pointing face
-   and a left-pointing face, so whichever way a driver comes from, the arrow
-   points at the same physical spot. A QR code to the map sits at the arrow's
-   tail. Pass `--map-url`; without it the QR is a dashed placeholder.
+1. **Santa** -- SANTA over a long arrow pointing right, at the final A. One
+   sign, double-sided, the same art on both faces (Stephanie, 2026-11-24). A QR
+   code to the map sits at the arrow's tail. Pass `--map-url`; without it the
+   QR is a dashed placeholder.
 2. **Lot Closed** -- LOT CLOSED / rule / WEDNESDAY & THURSDAY.
 3. **Post Office Patrons Only** -- type-only.
 4. **Merchant Parking** -- MERCHANT PARKING BY PERMIT ONLY / rule /
@@ -248,13 +248,13 @@ def _qr(page, rect, url):
                          word, fontname='OswM', fontsize=s, color=GREEN)
 
 
-def sign_santa(direction, map_url):
+def sign_santa(map_url):
     """SANTA over a long arrow, QR code to the map at the arrow's tail.
 
-    The arrow runs the width of the word so its head lands under the end
-    letter it points past (the final A on the right-pointing face, the S on
-    the left). The QR sits in the corner on the tail side, under the word, so
-    it never competes with where the arrow is pointing. 4.25in square: big
+    The arrow points right and its head lands under the final A. Both faces of
+    the printed sign use this same art. The QR sits in the corner on the tail
+    side, under the word, so it never competes with where the arrow is
+    pointing. 4.25in square: big
     enough to scan from a few steps back, the distance people stand from a
     yard sign.
     """
@@ -276,14 +276,10 @@ def sign_santa(direction, map_url):
 
         row_y = top + th + g1
         qr_gap = 70
-        if direction == 'right':
-            qr_rect = pymupdf.Rect(x0, row_y, x0 + qr, row_y + qr)
-            ax0, ax1 = x0 + qr + qr_gap, x1
-        else:
-            qr_rect = pymupdf.Rect(x1 - qr, row_y, x1, row_y + qr)
-            ax0, ax1 = x0, x1 - qr - qr_gap
+        qr_rect = pymupdf.Rect(x0, row_y, x0 + qr, row_y + qr)
+        ax0, ax1 = x0 + qr + qr_gap, x1
         ay = row_y + qr / 2 - arrow_h / 2
-        draw_arrow(page, (ax0, ay, ax1, ay + arrow_h), direction, GREEN)
+        draw_arrow(page, (ax0, ay, ax1, ay + arrow_h), 'right', GREEN)
         _qr(page, qr_rect, map_url)
         draw_tracked(page, 'SCAN FOR MAP', label_s * 0.74, qr_rect.x0 + qr / 2,
                      row_y + qr + g2, GREEN, tracking=0.1)
@@ -500,8 +496,8 @@ def main():
         doc.close()
         made.append(path)
 
-    emit('01a Santa - front (arrow right)', sign_santa('right', args.map_url))
-    emit('01b Santa - back (arrow left)', sign_santa('left', args.map_url))
+    emit('01 Santa (print 1, double-sided, same art both sides)',
+         sign_santa(args.map_url))
     emit('02 Lot Closed Wednesday & Thursday',
          headline_and_note('LOT CLOSED', 'WEDNESDAY & THURSDAY', head_lines=1))
     emit('03 Post Office Patrons Only', type_only('POST OFFICE PATRONS ONLY'))
